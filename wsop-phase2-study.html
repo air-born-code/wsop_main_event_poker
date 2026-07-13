@@ -1,0 +1,845 @@
+<meta charset="utf-8">
+<title>PHASE II STUDY HALL — Range Warcraft (Days 21–40)</title>
+<style>
+:root{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+    --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+    --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+    --shadow:0 2px 10px rgba(90,70,40,.18);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+  --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+  --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+  --shadow:0 2px 10px rgba(90,70,40,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1000px 320px at 50% -60px, color-mix(in srgb, var(--rust) 13%, transparent), transparent), var(--bg)}
+.kicker{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:12px;font-weight:600;color:var(--bronze);margin:0 0 10px}
+h1{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(38px,7vw,68px);line-height:.95;margin:0 0 12px;text-wrap:balance}
+h1 .r{color:var(--rust)}
+.sub{max-width:64ch;color:var(--dim);font-size:16.5px;margin:0}
+.dash{display:flex;gap:26px;align-items:baseline;margin-top:20px;flex-wrap:wrap}
+.dash .stat{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--faint)}
+.dash .stat b{display:block;font-size:30px;color:var(--rust);letter-spacing:0}
+.dash .stat.z b{color:var(--sage)}
+
+/* day grid */
+.daynav{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media(max-width:720px){.daynav{grid-template-columns:repeat(5,1fr)}}
+.dbtn{position:relative;background:var(--card);border:1px solid var(--line);color:var(--dim);cursor:pointer;
+  padding:9px 2px 7px;text-align:center;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em}
+.dbtn small{display:block;font-size:9px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.dbtn:hover{color:var(--ink);border-color:var(--faint)}
+.dbtn.on{background:var(--rust);border-color:var(--rust);color:#fff8ef}
+.dbtn.on small{color:#f4d9c8}
+.dbtn.pass{border-bottom:3px solid var(--sage-deep)}
+.dbtn.star{border-bottom:3px solid var(--bronze)}
+.dbtn .badge{position:absolute;top:3px;right:5px;font-size:10px}
+.dbtn:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+
+/* lesson */
+main{padding:34px 0 70px}
+.dayhead{margin-bottom:6px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dayhead .dnum{font-family:"SF Mono",ui-monospace,Menlo,monospace;color:var(--faint);font-size:14px}
+h2{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(28px,4.5vw,40px);line-height:1;margin:0}
+.focus-chip{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:11px;padding:4px 10px}
+.focus-chip.g{background:color-mix(in srgb,var(--bronze) 18%,transparent);color:var(--bronze)}
+.focus-chip.m{background:color-mix(in srgb,var(--rust) 18%,transparent);color:var(--rust)}
+.focus-chip.z{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+.obj{color:var(--dim);max-width:68ch;margin:10px 0 26px;font-size:16.5px}
+.lesson{max-width:760px}
+.lesson h3{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:16px;color:var(--bronze);margin:30px 0 8px}
+.lesson p{margin:0 0 12px;color:var(--ink)}
+.lesson p b{color:var(--ink)}
+.lesson ul{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson ol{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson li{margin-bottom:6px}
+.lesson .note{border-left:3px solid var(--sage-deep);background:var(--card);padding:12px 14px;font-size:15px;color:var(--dim);margin:14px 0}
+.lesson .note b{color:var(--sage)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 16px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;text-align:left;color:var(--bronze);background:var(--bg2);padding:9px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+td:first-child{color:var(--ink);white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+
+/* quiz */
+.quiz{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;max-width:760px;margin-top:36px}
+.quiz .qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.quiz h3{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:22px;margin:0;letter-spacing:.05em}
+.bestline{font-size:12px;color:var(--faint);font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin:14px 0 12px;font-size:12px;color:var(--faint)}
+.qtext{font-size:18px;line-height:1.45;margin:0 0 16px;text-wrap:balance}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 13px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1.4}
+.qopt:hover:not(:disabled){border-color:var(--rust)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
+.qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qexpl{margin:14px 0 0;padding:13px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
+.qexpl b{color:var(--ink)}
+.qnav{margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
+.btn{background:var(--rust);border:none;color:#fff8ef;padding:11px 24px;font-size:13px;cursor:pointer;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.btn:hover{background:var(--rust-deep)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--dim)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.result-title{font-size:clamp(26px,4vw,36px);font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1;margin:6px 0 6px;color:var(--rust)}
+.result-title.pass{color:var(--sage)}
+.scoreline{font-size:16px;color:var(--dim);margin-bottom:16px}
+.bar{height:9px;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden;margin:6px 0 18px}
+.bar>i{position:absolute;inset:0;right:auto;background:linear-gradient(90deg,var(--rust-deep),var(--rust))}
+.bar.pass>i{background:linear-gradient(90deg,var(--sage-deep),var(--sage))}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);font-size:13.5px}
+
+/* site nav */
+.sitenav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.sitenav .wrap{display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto}
+.sitenav .brand{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--rust);margin-right:auto;white-space:nowrap}
+.sitenav a,.sitenav .soon{color:var(--dim);text-decoration:none;font-size:12.5px;padding:6px 12px;white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.sitenav a:hover{color:var(--ink);background:var(--bg2)}
+.sitenav a.here{background:var(--rust);color:#fff8ef}
+.sitenav .soon{color:var(--faint)}
+</style>
+
+<nav class="sitenav" aria-label="The Hundred">
+  <div class="wrap">
+    <span class="brand">THE HUNDRED</span>
+    <a data-local="wsop-100-day-plan.html" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8">&#8962; War plan</a>
+    <a data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">I &middot; Forge</a>
+    <a data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc" class="here">II &middot; Warcraft</a>
+    <a data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e">III &middot; Wasteland</a>
+    <span class="soon">IV &middot; Raids</span>
+    <span class="soon">V &middot; Taper</span>
+  </div>
+</nav>
+<script>
+if(location.protocol==="file:")document.querySelectorAll(".sitenav a[data-local]").forEach(function(a){a.href=a.dataset.local});
+</script>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">The Hundred · Phase II · Days 21–40</p>
+    <h1>Range <span class="r">warcraft</span></h1>
+    <p class="sub">Twenty days of advanced postflop combat: check-raise trees, probes, multiway discipline,
+    repping ranges, blockers, leverage wars, and the reads that pay. Read the lesson, then take the drill.
+    Pass at 80%+, mastery at 90%+. Days 27 and 34 are consolidation gauntlets; Day 40 is the exam.
+    Best scores save on this device.</p>
+    <div class="dash">
+      <div class="stat"><b id="stPassed">0</b>days passed</div>
+      <div class="stat z"><b id="stMastered">0</b>mastered</div>
+      <div class="stat"><b id="stAvg">—</b>avg best score</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><nav class="daynav" id="daynav" aria-label="Days 21 to 40"></nav></div>
+
+<main><div class="wrap" id="content"></div></main>
+
+<footer><div class="wrap">
+  Phase II of THE HUNDRED — companion to the <a id="planlink" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8" style="color:var(--rust)">100-day WSOP Main Event war plan</a>
+  and sequel to the <a id="p1link" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c" style="color:var(--rust)">Phase I study hall</a>. Baselines are simplified
+  live-deep tournament defaults for a Main Event field, not solver gospel: learn the pattern, then adapt to the table.
+  Passed Day 40? Continue to the <a id="p3link" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e" style="color:var(--rust)">Phase III study hall — The Wasteland (Days 41–60)</a>.
+</div></footer>
+<script>
+if(location.protocol==="file:"){
+  document.getElementById("planlink").href="wsop-100-day-plan.html";
+  document.getElementById("p1link").href="wsop-phase1-study.html";
+  document.getElementById("p3link").href="wsop-phase3-study.html";
+}
+</script>
+
+<script>
+/* ---------- helpers ---------- */
+const T2=(rows,head)=>`<div class="tblwrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const NOTE=s=>`<div class="note"><b>Live leak to exploit —</b> ${s}</div>`;
+
+/* ---------- LESSON + QUIZ DATA ---------- */
+const L=[];
+
+/* ============ DAY 21 ============ */
+L.push({d:21,t:"Turn check-raise trees",f:"g",obj:"Build turn check-raises on purpose — value that wants stacks, bluffs with real equity and blockers — and know exactly which hands continue when the check-raise hits you.",
+body:`
+<h3>Why the turn is different</h3>
+<p>Flop check-raises are common and can be light — the pot is small and there are two streets to maneuver. By the turn the pot is bloated, ranges are tighter, and a check-raise usually <b>commits the stacks by the river</b>. That makes turn check-raises rarer, scarier, and far more value-weighted — in your hands and in theirs.</p>
+<h3>Building yours (as the flop caller, out of position)</h3>
+${T2([
+["Value","Two pair+, sets, turned straights and flushes — hands that want three streets and fear few rivers"],
+["Bluffs","Combo draws only: pair + open-ender, flush draw + gutshot or overcard, nut flush draws with blockers — real equity when called"],
+["Excluded","Medium one-pair hands (they become bloated bluff-catchers) and naked gutshots (not enough equity at this price)"]],
+["Class","Turn check-raise construction"])}
+<p>Because the raise commits you, every bluff needs a <b>real backup plan when called</b> — outs to the effective nuts, not hope. Say the river sentence before the raise goes in: if he calls, what pot and what stack remain, and which rivers do you jam?</p>
+<h3>Which turns to attack</h3>
+<ul>
+<li><b>Cards that complete your range, not his:</b> middle connectors and draw-completers after you defended the big blind — your flatting range owns them, his barrel range doesn't (Day 17's logic, reversed).</li>
+<li><b>Against auto-barrelers:</b> players who fire two streets on any card have a turn range full of air — your check-raise attacks the widest, weakest barrel ranges.</li></ul>
+<h3>Facing the turn check-raise</h3>
+<p>Population turn check-raises are even more honest than flop ones. Versus a live unknown: <b>fold one pair without backup</b> (yes, including top pair top kicker), continue strong overpairs only at favorable SPR, and continue big combo draws when the price holds. The money you save here funds every bluff you'll ever run.</p>
+<h3>Range depth — a worked check-raise range, combo by combo</h3>
+<p>You defend the BB vs a BTN 2.5x and call his 1/3-pot c-bet on <b>9♠8♠4♦</b>. Turn <b>6♣</b>. Your check-raise range, written out with the dead cards accounted for:</p>
+${T2([
+["Value (~21 combos)","Turned straights T7s (4), 75s (4) · sets 44 (3), 66 (3) · two pair 98s (3), 86s (2), 64s (2) — every one wants stacks by the river"],
+["Bluffs (~14 combos)","Pair + spade draw (9x♠/8x♠ suited), T♠9♠/J♠T♠-type combo draws, A♠X♠ nut-flush draws with a gutter — nothing below 12 outs"],
+["Deliberately absent","98o-type two pair you'd have (call instead — it hates 4-straights and flushes), all naked gutshots, all one-pair hands"]],
+["Class","Combos on 9♠8♠4♦–6♣"])}
+<p>The ratio lands near <b>3:2 value</b> — deliberately value-lean, because the raise commits stacks and live opponents under-fold. Now the transferable skill: this table exists because the 6♣ turned <b>your</b> range's straights while his BTN c-bet range holds almost none of them (he checks back most T7s-type hands on the flop). Before any check-raise, build this table in your head: if the value column is thin, the raise isn't there.</p>
+${NOTE("the live turn check-raise is two pair or better to a comical degree. Folding TPTK to it isn't weakness — it's the single most reliable big laydown in the game.")}`,
+quiz:[
+{q:"Compared to a flop check-raise, a turn check-raise is:",o:["Lighter — more bluffs by the turn","A near stack commitment","Identical in construction","Only used by weak players"],a:1,e:"The bloated pot means the raise <b>commits stacks by the river</b>. That geometry forces tighter, value-heavier construction — for you and for the population."},
+{q:"Which hands anchor your turn check-raise value range?",o:["Any top pair","Two pair+, sets, and turned straights/flushes","Middle pair with a good kicker","Ace-high with blockers"],a:1,e:"The raise builds a pot that only <b>stack-wanting hands</b> should build. One-pair hands that check-raise the turn mostly just bloat a bluff-catcher."},
+{q:"Which bluffs qualify for the turn check-raise?",o:["Any missed flop float","Combo draws with real equity","Naked gutshots — cheap outs","Total air with good timing"],a:1,e:"Because you're near-committed, bluffs need a <b>backup plan when called</b>: 12–15 outs, ideally to the nuts. Naked gutshots and dead floats can't pay that bill."},
+{q:"Why are medium one-pair hands excluded from the check-raise?",o:["They're too weak to win","Raising turns them into bloated bluff-catchers","They should always fold instead","They belong in the lead range"],a:1,e:"The check-raise folds out everything they beat and gets action from everything that beats them. <b>Mediums check-call or check-fold</b> — Day 30 formalizes the boundary."},
+{q:"You barrel K72r-3♦ with AK and a passive live player check-raises the turn. Baseline?",o:["Jam — top pair top kicker","Call down — he could have a draw","Fold","Raise smaller to find out"],a:2,e:"There are almost no draws on K72r-3 and passive players don't invent turn bluffs. <b>TPTK is one pair</b>; the population read says fold and save the stack."},
+{q:"Before check-raising the turn with a combo draw, you must:",o:["Count your outs and pray","Say the river sentence","Check villain's chip stack for tells","Decide to give up on all rivers"],a:1,e:"The raise chooses the river SPR. <b>Plan the jam rivers and give-up rivers now</b> — improvising them under pressure is how combo draws torch stacks."},
+{q:"The best turn cards for adding check-raises as the BB caller are:",o:["Any ace — scare cards","Cards that complete YOUR range's draws","Board-pairing cards only","There are none — never check-raise turns"],a:1,e:"Day 17 taught which cards let HIM barrel. The mirror: cards that smash <b>your</b> flatting range flip the nut advantage and open the raise."},
+{q:"Facing a turn check-raise holding a nut flush draw plus a gutshot, decent price. Baseline?",o:["Fold — respect the raise","Continue","Jam immediately","Call intending to fold every river"],a:1,e:"Value-heavy doesn't mean unplayable: with <b>equity to the effective nuts and a workable price</b>, big combo draws continue. One-pair hands are the ones that leave."}]});
+
+/* ============ DAY 22 ============ */
+L.push({d:22,t:"Probes & delayed c-bets",f:"g",obj:"Attack surrendered betting leads: probe the turn when the raiser checks back, delay your own c-bets with the right candidates, and stab the rivers the field abandons.",
+body:`
+<h3>The check-back confession</h3>
+<p>When the preflop raiser checks back the flop, he confesses: strong top pair and better mostly bet, big draws mostly bet. What checks back is <b>mediums, weak showdown value, and give-ups</b>. His range is capped — and capped ranges are attackable for two full streets.</p>
+<h3>The probe (out of position, turn lead after his check-back)</h3>
+<ul>
+<li><b>Range:</b> your turned value (pairs that improved, completed draws), plus bluffs on cards that favor your range. Size <b>~60–75% pot</b> — capped ranges fold to real pressure, not min-bets.</li>
+<li><b>Best probe cards:</b> middling cards and draw-completers that connect with your big blind defend range; also any card against a player whose check-backs are pure give-ups.</li>
+<li><b>Follow-through:</b> when the probe gets called, plan the river before the turn chip moves — the field calls turn probes with mediums and folds rivers at enormous rates.</li></ul>
+<h3>The delayed c-bet (in position, you checked the flop back)</h3>
+<p>You raised preflop, checked back the flop, and he checks the turn to you. Bet with:</p>
+<ul>
+<li><b>Showdown hands ready for one street of value</b> — the ace-high or second pair that checked for pot control now bets when checked to twice.</li>
+<li><b>Air that gained equity</b> — turned draws and backdoors that arrived.</li>
+<li><b>Denial hands</b> — mediums that hate giving free rivers to overcards.</li></ul>
+<h3>The double-check river</h3>
+<p>When flop and turn both go check-check, the river bettor wins far more than his share: both ranges are capped, but <b>the field under-stabs</b>. Bet your value mercilessly and bluff the runouts that favor your line.</p>
+${NOTE("live raisers check back the flop and then fold turn AND river at rates that make the probe an ATM. The one hand to fear: the trapped monster — rare, and he'll tell you by raising.")}`,
+quiz:[
+{q:"The preflop raiser checks back the flop. His range is now:",o:["Stronger than before — he's trapping","Capped: mediums, weak showdown value, and give-ups","Unchanged — checks mean nothing","All air, always"],a:1,e:"Strong top pair and big draws bet flops at high frequency. The check-back <b>caps his ceiling</b> — and capped ranges are attackable on two streets."},
+{q:"A probe bet is:",o:["Any bet made into the preflop raiser before he acts","An out-of-position turn lead after the raiser checked back the flop","A small turn lead designed to block his bigger bet","A preflop 3-bet"],a:1,e:"You couldn't lead the flop into the raiser's uncapped range — but once he checks back, <b>the turn lead attacks his confessed weakness</b>."},
+{q:"Standard probe sizing:",o:["Min-bet — cheap information","~60–75% pot","Always all-in","25% pot like a flop range-bet"],a:1,e:"The probe isn't a range-bet; it's a <b>pressure bet into a capped range</b>. Size it so his mediums face a real decision."},
+{q:"You defend the BB with 98s vs a CO open. Flop K84r checks through. Which turn is your best probe card?",o:["An offsuit ace","A seven","A king","A deuce"],a:1,e:"Middle connectors are <b>your</b> cards: 76s, 65s, T9s live in your defend range and nowhere in his check-back. The nut advantage just flipped."},
+{q:"Delayed c-bet candidates (you checked the flop back in position):",o:["Only strong made hands — betting after checking screams weakness otherwise","Showdown hands ready for one street of value, air that gained equity, and denial hands","Total air only — your checked range needs bluffs more than value","Every hand — never check twice"],a:1,e:"The delayed c-bet monetizes patience: <b>one clean street of value, arrived draws, and equity denial</b>. The give-ups keep checking."},
+{q:"The population exploit that makes probing so profitable:",o:["Live players trap constantly after checking back","They check back the flop and then overfold turns and rivers","They always bet their strong hands twice","They raise probes with air"],a:1,e:"The field treats a checked-back flop as a finished hand. <b>Probe the turn, fire the river</b> — they fold mediums at rates theory would never allow."},
+{q:"Flop and turn both check through. On the river:",o:["Check — the pot is small, let it go","Bet: both ranges are capped but the field under-stabs","Only bet the nuts","Only bluff"],a:1,e:"Double-checked pots are orphans. <b>The player who claims them profits</b> — thin value gets paid by curiosity, and bluffs collect the abandoned equity."},
+{q:"Your probe gets raised by a live recreational player. Baseline read?",o:["Bluff — he's attacking your weakness","The trapped monster announcing itself","Automatic call — you probed for a reason","Re-bluff jam"],a:1,e:"The one danger in probe-world is the slow-played big hand — <b>and he tells you by raising</b>. Population raises of turn probes are value; release the mediums."}]});
+
+/* ============ DAY 23 ============ */
+L.push({d:23,t:"Multiway postflop discipline",f:"m",obj:"Three or more players change every rule you've learned: c-bet ranges collapse, thin value dies, bluff-catching flips, and someone always has it.",
+body:`
+<h3>The arithmetic of company</h3>
+<p>Fold equity multiplies <b>down</b>: two players who each fold 60% both fold only 36% of the time. Three players: ~22%. Meanwhile the chance that <b>someone</b> connected with the board multiplies up. Every bluff you loved heads-up is worth a fraction of itself multiway.</p>
+<h3>The new rules</h3>
+${T2([
+["C-bets","Value and strong draws only, usually smaller — the range-bet is dead (Day 6's warning, now law)"],
+["Bluffs","Near-zero on most textures; semibluffs need robust equity (strong draws, not gutshots)"],
+["Thin value","Dies — the worst hand that calls you is stronger when two others already checked or called"],
+["Bluff-catching","Fold more — a bet fired into multiple players is honest almost everywhere in the population"],
+["Raises","A raise in a multiway pot is the nuts. Not sometimes. Population-wide, treat it as the nuts"]],
+["Rule","Multiway adjustment"])}
+<h3>Who owns the nuts?</h3>
+<p>Heads-up you asked whose <b>range</b> the board favors. Multiway the question sharpens: <b>who owns the specific nut combos?</b> On T98 two-tone after an EP open and two flats, the flatting ranges own the straights and two-pairs; the opener owns the overpairs that are now bluff-catchers. Betting into the nut-owners' texture with a capped range is lighting money on fire — whoever owns the nuts owns the betting rights.</p>
+<h3>Protection is the exception</h3>
+<p>One kind of bet gains value multiway: <b>protection with strong-but-vulnerable made hands</b>. An overpair on a wet board hates giving three live ranges a free card — bet it, size real, and fold to a raise. (Day 36 develops this.)</p>
+${NOTE("multiway pots are where the field burns the most money: c-betting AK-high into three players 'because I raised' is the signature error. The pot belongs to whoever actually connected — be the player who checks air and bets hands.")}`,
+quiz:[
+{q:"Two opponents each fold 60% to a bet. The chance your multiway bluff gets through both:",o:["60%","48%","~36%","120%"],a:2,e:"0.6 × 0.6 = <b>0.36</b>. Add a third player and it's ~22%. The bluff that printed heads-up is a donation multiway."},
+{q:"Your multiway c-bet range:",o:["Same as heads-up — range-bet small","Value and strong draws only","Wider — more dead money to steal","Never bet multiway"],a:1,e:"Every extra player multiplies the chance someone has it. <b>Bet hands and real draws; check the rest</b> — including your pretty overcards."},
+{q:"Why does thin value die multiway?",o:["It doesn't — more callers means more value","The worst hand that calls is stronger","Because pots are smaller","Because you should always bluff instead"],a:1,e:"Heads-up, second-pair-good-kicker milks curiosity. Multiway, <b>the calling ranges are pre-filtered</b> — your thin bet gets called mostly by better."},
+{q:"A live player bets into three opponents on the turn. Population read?",o:["Bluff — he's attacking the field","Honest value, almost always","Random — no information","Always a draw"],a:1,e:"Nobody in a live Main Event field barrels air into a crowd. <b>Bets into multiple players are value</b> — fold your bluff-catchers without ceremony."},
+{q:"A raise in a multiway pot means:",o:["Pressure — raises are just raises","The nuts, population-wide","A draw, usually","Tilt"],a:1,e:"Raising into a crowd risks facing the field's strongest continues. The population only does it with <b>the goods</b>. Overpairs become bluff-catchers instantly."},
+{q:"You open AKo, get two callers. Flop J74 two-tone. Default?",o:["C-bet — you raised, you bet","Check","Bet pot for protection","Jam"],a:1,e:"The signature multiway error. Your equity is six outs at best against two ranges that like that flop. <b>Check, and let the hand tell you if it's over.</b>"},
+{q:"The one bet type that GAINS value multiway:",o:["Thin value","Protection with strong-but-vulnerable made hands","Bluffs — more dead money","Blocker bets"],a:1,e:"Equity denial scales with the number of live ranges drawing at you. <b>Bet the vulnerable strong hands for real sizes</b> — and fold them to raises (see above)."},
+{q:"On T98tt after an EP open and two flats, who owns the betting rights?",o:["The opener — strongest range preflop","The flatters","Whoever has position","Nobody"],a:1,e:"Multiway hand-reading asks <b>who owns the specific nut combos</b>. Suited connectors live in flatting ranges; the EP opener's AA just became a bluff-catcher on that texture."}]});
+
+/* ============ DAY 24 ============ */
+L.push({d:24,t:"Paired & monotone textures",f:"m",obj:"The strange boards, mastered: who really owns trips, why static textures take small bets, and the blocker that governs every monotone decision.",
+body:`
+<h3>Paired boards: who has the trips?</h3>
+${T2([
+["High paired (KK7, QQ4)","Raiser-friendly: both ranges rarely connect, and your overpairs plus AK/AQ keep the advantage. Range-bet small at high frequency"],
+["Low paired (772, 883)","Caller owns the trips: 7x/8x suited junk lives in the BB defend range, not your open. Bet small and selectively; respect check-raises"]],
+["Texture","Who owns it"])}
+<p>Paired boards are <b>static</b>: hands rarely change value street to street, protection barely matters, and folds are size-insensitive. That's the recipe for <b>small sizing at high frequency</b> — the same 25–33% logic as Day 6, now with a second reason.</p>
+<h3>Monotone: everything sizes down</h3>
+<ul>
+<li>A possible made flush <b>caps how hard anyone can value-bet</b>. Big bets fold out worse and get called by better — so the whole betting tree shrinks. Small bets keep your range wide and his junk in.</li>
+<li><b>The nut-suit ace governs the board.</b> Holding the A♠ on an all-spade flop (without the flush) is the premier barrel/bluff card: you block the nut flush and rep it simultaneously (Day 17's logic at its purest).</li>
+<li>Made <b>small flushes play pot control</b>: bet small or call — big pots on monotone boards belong to bigger flushes.</li></ul>
+<h3>When the board pairs on a flush runout</h3>
+<p>A pairing river devalues every flush — and the population <b>never folds a flush</b>. When you boat up on a paired flush board, size up mercilessly: their calling range is frozen to their hand strength, not the runout.</p>
+${NOTE("live players overfold to bets on paired boards — 'I can't beat trips' — so small bluffs print. But when a live player raises YOUR bet on a paired board, trips is exactly what he has. Bet small, bluff often, believe raises.")}`,
+quiz:[
+{q:"You open, BB calls. Flop KK7 rainbow. Default strategy?",o:["Check — paired boards are scary","Range-bet small at high frequency","Bet pot with trips only","Give up without a king"],a:1,e:"High-paired boards are the raiser's friend: <b>your overpairs and AK/AQ dominate, his defend range whiffed too</b>. Small and frequent, exactly like A72r."},
+{q:"Flop 772 after your CO open, BB calls. Who owns the trips?",o:["You — you raised","The caller","Nobody can have a seven","Equal ownership"],a:1,e:"You don't open 74s; he defends it. <b>Low-paired boards belong to the caller's junk</b> — still bettable small, but respect every check-raise."},
+{q:"Why do paired (static) boards take small bet sizes?",o:["Trips is so rare that any size wins the pot equally often","Hand values barely shift street to street, protection is minor, and folds are size-insensitive","Pot control — never build a big pot where trips is possible","They don't — bet big to protect"],a:1,e:"Static texture = <b>no protection urgency + size-insensitive folds</b>. The small bet buys everything the big bet buys, at a third of the price."},
+{q:"Default sizing adjustment on monotone flops:",o:["Size up — charge the draws","Size down across your whole range","Always check","Overbet to deny equity"],a:1,e:"When the flush is possible, big bets <b>fold out worse and get called by better</b>. Small sizes keep your range wide and navigate the capped tree."},
+{q:"You hold the A♠ (no flush) on a three-spade board. Its special power:",o:["Ace-high showdown value","You block the nut flush and can credibly rep it","It's unplayable","It only matters if a fourth spade comes"],a:1,e:"<b>Block the continue, rep the arrival</b> — Day 17's two blocker jobs in one card. The nut-suit ace governs monotone aggression."},
+{q:"You flop a small flush on a monotone board. Baseline?",o:["Jam — you have a flush","Pot control: bet small or call","Fold to any bet","Overbet for value"],a:1,e:"Small flushes are <b>medium hands wearing a costume</b>. Build a big pot and you're mostly looking at a bigger flush; keep it middling and collect from worse."},
+{q:"The river pairs the board on a flush runout and you boat up. Sizing?",o:["Small — don't scare the flush","Big","Check — trap","Any size works equally"],a:1,e:"Flushes stop being the nuts and their owners don't notice. <b>Size up mercilessly</b> — their call is anchored to hand strength, not the runout."},
+{q:"A live player raises your c-bet on QQ5. Population read?",o:["Bluff — the board missed everyone","Trips or better","A flush draw","Any pair"],a:1,e:"The field overfolds paired boards and only raises them with the goods. <b>Small bluffs print; raises are believed.</b> Both halves of the exploit matter."}]});
+
+/* ============ DAY 25 ============ */
+L.push({d:25,t:"The Deeb doctrine: repping ranges",f:"g",obj:"Every big aggressive line must tell a story your range can actually back: the four questions, the credible-raise map, and the published turn raise that could hold every straight.",
+body:`
+<h3>The published raise</h3>
+<p>The model hand: a Deeb turn raise on a runout where <b>every straight ran through his line</b> — his flat and peel genuinely contained all the straight combos, while the aggressor's line couldn't hold a single one. The raise didn't need his actual cards to be good. It needed the story to be airtight — and it was, so the fold came. That's the doctrine: <b>you can only rep what your line owns.</b></p>
+<h3>The four questions (before any big aggressive line)</h3>
+<ol>
+<li><b>What am I repping?</b> Name the combos — "strength" is not an answer.</li>
+<li><b>Why can I have it?</b> Does your line contain those combos at believable frequency? Would you really have played them this way?</li>
+<li><b>Why can't villain?</b> His actions must cap him below your rep — otherwise you're repping into the hand itself.</li>
+<li><b>Who actually folds?</b> The population gate. A perfect story told to a station is a donation (Day 17's gate three, promoted to doctrine).</li></ol>
+<h3>Your credible-raise map</h3>
+<ul>
+<li>Inventory the lines where <b>your range owns the nuts</b>: BB defends on low connected boards; in-position flats when the four-straight or flush completes; turn cards that smash your flatting range (Day 21).</li>
+<li>The corollary that saves stacks: <b>never bluff-raise when your own line can't hold the hands you're repping.</b> The story you couldn't have told gets called.</li></ul>
+<h3>Believability economics</h3>
+<p>Live players don't count combos, but they feel stories: a big raise on a scary card "means it" to them too. The full four-question rep works best against thinking regs; against recreationals, questions one through three still matter — but question four decides everything.</p>
+${NOTE("the field bluffs exactly backwards: they bluff when THEY are capped and the board scares them, and give up when their range owns it. Deeb's edge isn't magic — it's running the story right-side up, relentlessly.")}`,
+quiz:[
+{q:"The four questions, in order:",o:["Who folds? What do I have? What's the pot? What's my image?","What am I repping? Why can I have it? Why can't villain? Who actually folds?","Am I ahead? Am I behind? Should I bet? How much?","What would Deeb do? — the only question"],a:1,e:"<b>Rep, credibility, cap, and the population gate</b> — in that order, before any big aggressive line. Skip one and the story has a hole."},
+{q:"What made the published turn raise unbeatable?",o:["He had the nuts — the raise was simply value getting paid","His line genuinely contained every straight combo while villain's line couldn't hold one","The villain was weak","The sizing — a raise that large is unplayable whatever the ranges"],a:1,e:"<b>You can only rep what your line owns.</b> When every nut combo lives in your line and none in his, your raise plays the nuts whether you hold them or not."},
+{q:"Which question kills a perfect rep against a calling station?",o:["What am I repping?","Why can I have it?","Why can't villain?","Who actually folds?"],a:3,e:"Questions 1–3 can all pass and the bluff still dies at <b>the population gate</b>. A flawless story told to someone who doesn't fold is a flawless donation."},
+{q:"You defend the BB vs an UTG open. Flop 654, turn 3. Why is your raise credible?",o:["It isn't — you're the caller","Your defend range owns all the 87s/72s?","Because the board is scary","Because you're out of position"],a:1,e:"Low connected runouts live in the <b>BB defend range</b>, not the UTG open. His overpairs are capped bluff-catchers; your raise line owns the nuts."},
+{q:"'Why can't villain have it?' is really asking:",o:["Is he a bad player?","Did his actions remove the nut combos","Does he have chips left?","Is he paying attention?"],a:1,e:"A rep into an uncapped range is a rep into the hand itself. <b>His line must have removed the nuts</b> — a flop check-back, a passive flat, a capped defend."},
+{q:"The corollary that saves your stack:",o:["Never bluff-raise rivers at all — the risk-reward never justifies it","Never bluff-raise when your own line can't contain the hands you're repping","Always raise the same amount","Only bluff when you hold at least one key blocker"],a:1,e:"If you'd have 3-bet the flop with your flushes, you can't credibly raise the river flush card after calling twice. <b>The story you couldn't have told gets called.</b>"},
+{q:"Against live recreationals, how much of the doctrine survives?",o:["None — recs don't read hands, so story logic is wasted on them","The story still matters (scary cards 'mean it' to them too), but question four","All of it applies identically — a good story lands on every level of thinker","Only the sizing matters"],a:1,e:"Recs feel stories even without counting combos. But their fold button is the variable: <b>the gate question outranks the artistry</b> every time."},
+{q:"The field's signature storytelling error you exploit:",o:["They bluff too little everywhere","They bluff when THEY are capped and scared, and give up when their range owns the board","They only bluff rivers, where one bet can claim the whole pot","They balance too carefully, so their bluffs never stand out"],a:1,e:"Backwards bluffing means their scary-card stabs are <b>tells</b>, and their check-backs on their own best boards are surrendered pots. Run it right-side up and collect both ways."}]});
+
+/* ============ DAY 26 ============ */
+L.push({d:26,t:"Exploiting under-bluffers",f:"m",obj:"The most profitable play in live poker is a fold: the never-bluff list, the discipline of the big laydown, and when to re-open the hero calls.",
+body:`
+<h3>Money saved is money won</h3>
+<p>Theory makes many river bluff-catchers indifferent — zero EV either way. Against a population that <b>under-bluffs</b>, every one of those indifferent calls becomes a clear fold. The money you save is invisible, unglamorous, and identical in value to money won. This is the Mad Max economy: survive the wasteland by refusing the fights that were rigged.</p>
+<h3>The never-bluff list</h3>
+<p>Population lines that are value until a specific villain proves otherwise:</p>
+${T2([
+["Limp-reraise preflop","AA/KK to a comical degree (Day 13)"],
+["Turn check-raise","Two pair or better (Day 21)"],
+["Check-raise from a passive player","Value, any street — passivity doesn't wake up bluffing"],
+["Sudden river overbet after a passive line","Slow-played monster (Day 16)"],
+["Raise of your river value bet","Near-nuts — the most honest action in poker (Day 10)"],
+["Big third barrel from a tight player","Value (Day 17)"],
+["Any bet into multiple players","Value (Day 23)"],
+["Raise on a paired board","Trips (Day 24)"]],
+["Line","Population meaning"])}
+<h3>The discipline of the big laydown</h3>
+<ul>
+<li>Overpairs and top pair top kicker are <b>one-pair hands</b>. Against a never-bluff line they're folds — without ceremony, without a speech.</li>
+<li>Write every big laydown in the hand log with the range reasoning. Review at the break: the fold you can articulate is a skill; the fold you can't is a guess.</li>
+<li>The leak that undoes it all: <b>"but he COULD have..."</b> Could isn't does. Population priors hold until this specific villain shows you otherwise.</li></ul>
+<h3>Re-opening the calls</h3>
+<p>The list is a prior, not a prison. Re-open hero calls when: the villain has <b>demonstrated</b> big bluffs, the history between you is dynamic (he's targeting you), or your blockers scream (Day 11's three questions still gate everything).</p>
+${NOTE("every deep Main Event run contains at least one enormous laydown with a one-pair hand that felt impossible. The players who cash deep made it; the rail is full of players who 'had to call.'")}`,
+quiz:[
+{q:"Why is folding an indifferent bluff-catcher profitable against live fields?",o:["It isn't — zero EV is zero EV whoever you're playing","The population under-bluffs, so theory's zero-EV calls become clearly losing calls","Folding is always safest","Calling risks tilt, and tilt costs more than any single pot"],a:1,e:"Indifference assumes balanced bluffing. <b>Remove the bluffs and the call only loses.</b> Money saved is exactly as valuable as money won — it just doesn't feel like it."},
+{q:"A passive live player check-raises the river. Your overpair is:",o:["A snap call — you beat bluffs","A fold","A raise","A crying call"],a:1,e:"Two never-bluff markers stack: <b>check-raise from a passive player + river aggression</b>. One-pair hands fold without a speech."},
+{q:"Which of these is NOT on the never-bluff list?",o:["A limp-reraise from an unknown older player preflop","A small flop stab from the big blind after you check back","Raise of your river value bet","A bet into three players"],a:1,e:"Small stabs at orphaned pots are one of the few things the population DOES bluff. The list is for <b>big, committed, unusual aggression</b> — that's where they're honest."},
+{q:"The thought that destroys big-laydown discipline:",o:["'What does his line rep?'","'But he COULD have a bluff...'","'What do I block?'","'What's the pot price?'"],a:1,e:"<b>Could isn't does.</b> Every never-bluff line technically could contain a bluff; the population data says it doesn't. Priors hold until this villain proves otherwise."},
+{q:"Why write big laydowns in the hand log?",o:["To vent the frustration somewhere it can't damage your play","The fold you can articulate with range reasoning is a skill; the one you can't is a guess","To show your coach you're tight","You shouldn't — reliving folds breeds passivity"],a:1,e:"Articulated folds compound (Day 16's narration discipline applied to discipline itself). <b>Review at breaks turns pain into pattern recognition.</b>"},
+{q:"What legitimately re-opens hero calls against a specific villain?",o:["A strong physical read in the moment — live tells outrank priors","Demonstrated big bluffs, dynamic history targeting you, or screaming blockers","Being card dead for an hour","Pot size — big pots always justify wider calls"],a:1,e:"The list is a <b>prior, not a prison</b>. Update on evidence: shown bluffs, an established dynamic, or Day 11's three questions genuinely clearing the call."},
+{q:"TPTK faces a turn check-raise and a river jam from an unknown live player. The Mad Max verdict:",o:["Call — you can't fold top pair top kicker in the Main Event","Fold","Flip a coin","Call because the pot is big"],a:1,e:"The bigger the pot, the more honest the population's aggression. <b>TPTK is one pair</b>; the freezeout premium makes the fold even clearer than in a re-entry."},
+{q:"The deepest reason under-bluffer exploitation suits a freezeout marathon:",o:["Big folds conserve mental energy across the eight-day grind","Refusing rigged fights preserves the tournament life that carries a premium all event","Folding builds a tight image you can cash in with later bluffs","It speeds up play"],a:1,e:"Every stack you don't lose to a slow-played monster funds days of steals and pressure. <b>The wasteland rewards the grinder who picks only winnable fights.</b>"}]});
+
+/* ============ DAY 27 — consolidation ============ */
+L.push({d:27,t:"Consolidation gauntlet III",f:"z",obj:"Twelve questions sampled from Days 21–26. No lesson today — the gauntlet plus a simulated session with ten marked hands, then the written review. Long sleep tonight.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 questions drawn at random from the week's pools (Days 21–26). Different every attempt — retake until you pass.</li>
+<li><b>75m simulated session:</b> hunt for one probe spot, one multiway discipline spot, and one never-bluff fold. Mark 10 hands.</li>
+<li><b>30m written review:</b> for each marked hand, run the four questions or the never-bluff list — in writing.</li>
+<li><b>Recovery vow:</b> extended sleep tonight plus a 30-minute walk. Week two of the phase raids leverage territory.</li></ul>`,
+pool:{days:[21,22,23,24,25,26],n:12}});
+
+/* ============ DAY 28 ============ */
+L.push({d:28,t:"SPR planning",f:"z",obj:"Every chip you put in chooses a future: commitment thresholds by depth, sizing backwards from the river, and killing the drift into dominated bluff-catchers.",
+body:`
+<h3>The river-first habit becomes law</h3>
+<p>Day 9 gave you the river sentence; Day 19 gave you geometric sizing. Today they merge into a single law: <b>no street is played on its own.</b> Before any significant bet or call, name the pot and the stack behind at the river under standard sizing — then decide whether that river is one you want.</p>
+<h3>Commitment thresholds by SPR</h3>
+${T2([
+["SPR ≤ 3","Committed with top pair good kicker and better; overpairs never fold. Play fast, deny equity"],
+["SPR 4–8","TPTK plays carefully; two pair+ commits. The turn decision decides everything — plan it on the flop"],
+["SPR 9–13","Strong two pair+ and sets commit; one-pair hands pot-control. Big pots need better than one pair"],
+["SPR 13+","Nut-potential world (Day 12): implied odds rule, one-pair hands stay out of stacks"]],
+["Depth","Commitment stance"])}
+<h3>The dominated bluff-catcher drift</h3>
+<p>The error this day exists to kill: calling the turn "to see" with a hand that <b>arrives at the river as a bad bluff-catcher</b> — it blocks his bluffs, loses to his value, and now faces the jam your call built. The rule: before calling any turn bet, name the rivers you call and the rivers you fold. <b>If you can't name them, fold now</b> — the drift is how tired players stack off with second-best hands.</p>
+<h3>Engineering the SPR you want</h3>
+<p>SPR isn't weather — you make it. 3-bet bigger preflop with hands that want low-SPR one-pair pots (QQ at 50bb); flat and keep SPR high with hands that want implied odds (small pairs, suited connectors). Choose the commitment math before the flop exists.</p>
+${NOTE("watch the field play SPR 4 exactly like SPR 14 — folding committed overpairs at SPR 2, stacking off one pair at SPR 12. Every threshold error in the table above is a live opponent's donation to whoever planned the hand from the river backwards.")}`,
+quiz:[
+{q:"The law this day installs:",o:["Bet big with big hands","No street is played on its own","Always pot-control","SPR only matters all-in"],a:1,e:"The river sentence (Day 9) plus geometric sizing (Day 19), merged: <b>every bet chooses a future</b>. Name it before you fund it."},
+{q:"At SPR 2.5 with an overpair, your stance:",o:["Pot control — see what develops","Committed","Fold to aggression","Check every street"],a:1,e:"At SPR ≤3 the math has already decided (Day 19). <b>Overpairs never fold here</b> — 'playing it careful' just donates equity to live draws."},
+{q:"At SPR 12 facing heavy aggression, one-pair hands are:",o:["Committed — pairs are pairs","Pot-controlled bluff-catchers at best","Automatic all-ins","Impossible to play"],a:1,e:"The table's other end: <b>SPR 9–13 pots that go big belong to two pair plus</b>. The one-pair stack-off at depth is Day 12's disaster revisited."},
+{q:"The 'dominated bluff-catcher drift' is:",o:["A solver term for calling ranges that block the wrong bluffs","Calling the turn with no river plan and arriving at a jam holding a hand that blocks bluffs and loses to value","Folding turns so often that your river range arrives too weak","A type of draw"],a:1,e:"You didn't decide to stack off — <b>you drifted there one 'see what happens' call at a time</b>. The turn call built the jam you now can't handle."},
+{q:"The rule that kills the drift:",o:["Never call a turn without a hand that can also call rivers","Before calling a turn bet, name the rivers you call and the rivers you fold","Always raise instead","Raise-or-fold every turn — calling is what creates drifts"],a:1,e:"<b>Pre-naming rivers</b> converts a vague peel into a plan. If every river feels bad when you imagine it now, the fold is due now — one street cheaper."},
+{q:"How do you 'engineer' SPR rather than accept it?",o:["You can't — SPR is set by blinds and stacks, not by you","Size preflop and flop bets to create the commitment math your hand class wants","Min-raise preflop to keep SPR high with your whole range","Ask the dealer"],a:1,e:"QQ wants a low-SPR pot where overpair commitment is correct; 65s wants depth and implied odds. <b>Your sizing chooses the game you'll play postflop.</b>"},
+{q:"Pot 12bb on the flop, 50bb behind. Two ~70% pot bets later, the river is:",o:["A normal bet","Effectively all-in","A check","Impossible to predict"],a:1,e:"Geometry: ~8bb + ~19bb and the river jam is natural. <b>The flop sizing already chose that ending</b> — say the sentence before the first chip, not the last."},
+{q:"Why does SPR discipline matter MORE on Day 6 of the Main Event than Day 1?",o:["It doesn't — math is math","Fatigue kills planning first: tired players stop naming rivers and drift","Stacks are shallower by Day 6, and shallow SPRs punish errors harder","ICM replaces SPR as the governing math once the money nears"],a:1,e:"Under fatigue you fall to your habits, not your knowledge (Day 38 makes this the whole lesson). <b>Automate the river-first check now</b> so exhaustion can't switch it off."}]});
+
+/* ============ DAY 29 ============ */
+L.push({d:29,t:"Thin value mastery",f:"g",obj:"Day 10 gave you the two questions; today you plan three streets ahead: thresholds by archetype, the sizing ceiling, and raising thin where the field only calls.",
+body:`
+<h3>From single bets to value plans</h3>
+<p>Thin value isn't a river decision — it's a <b>three-street plan made on the flop</b>. Holding KQ on K84r versus a station, the plan is bet/bet/bet with ascending sizes. The same hand versus a competent reg is bet/bet/evaluate. Versus a nit: bet/check/check-call. Name the plan when the flop hits, then let the runout amend it — don't improvise each street from scratch.</p>
+<h3>Thresholds by archetype</h3>
+${T2([
+["Station","Three streets with top pair decent kicker; two streets with second pair good kicker. Size up — find the ceiling their curiosity pays"],
+["Nit / passive","One street of thin value at most; their calls are real hands. Strong value bets three streets; mediums check back"],
+["Weak reg","Two streets thin comfortably — they call 'to be safe' then fold rivers; take the two and evaluate"],
+["Strong reg","Thin value exists but smaller — keep their bluff-catchers in, keep their check-raises honest"]],
+["Archetype","Thin-value plan"])}
+<h3>The sizing ceiling</h3>
+<p>Against recreationals, your river value size is an auction: <b>find the biggest number their curiosity pays</b> (Day 10). Today's upgrade: the ceiling moves with board texture and drama. Scary runouts lower it; boring bricks raise it. A station who'd pay 75% on a brick pays 40% when the flush hits — bill accordingly.</p>
+<h3>Raising thin — the forgotten weapon</h3>
+<p>The field only raises with monsters (Day 24, Day 26 — that's why you fold to theirs). The mirror exploit: <b>raise thin for value against weak leads</b>. When a station donk-bets small into your strong top pair, raise — worse pairs and draws call. The play the population never makes is free money when you make it correctly.</p>
+${NOTE("count your session's checked-back rivers against stations at the break. Each one with second pair or better was a bill you wrote and didn't send — the phase exam will ask if you sent them.")}`,
+quiz:[
+{q:"Thin value is properly planned:",o:["River by river as it comes","On the flop","Only preflop","Never — thin value is a leak"],a:1,e:"<b>Bet/bet/bet vs the station, bet/bet/evaluate vs the reg, bet/check/check vs the nit</b> — named at the flop. Improvising each street from scratch is how streets get missed."},
+{q:"KQ on K84r-2-3 versus a station. The plan?",o:["Bet flop, check turn and river — pot control","Three streets, ascending sizes","Check-raise every street","One small bet then shut down"],a:1,e:"Boring runout, station opponent: <b>bill all three streets and size up</b>. His curiosity is inelastic; the only mistake is leaving streets unbilled."},
+{q:"The same KQ versus a tight-passive nit:",o:["Identical — three streets","Bet flop, then slow down","Bluff instead","Fold"],a:1,e:"Day 10's rule scaled to a plan: <b>a nit's continue range is strong</b>. Take one clean street; the second and third bets increasingly only get called by better."},
+{q:"The weak reg's signature payoff pattern:",o:["Calls three streets with anything","Calls two streets 'to be safe' then folds rivers","Raises constantly","Never calls anything"],a:1,e:"Weak regs leak in both directions: <b>two streets of thin value print</b>, and their river folds mean your third barrel is better spent as a bluff elsewhere."},
+{q:"What moves the station's sizing ceiling down?",o:["Nothing — stations always pay","Scary runouts","Bigger pots","Your table image"],a:1,e:"The auction reads the board too: <b>drama lowers the ceiling, bricks raise it</b>. Bill the maximum the texture allows, not a fixed fraction."},
+{q:"A station donk-bets small into your strong top pair. The forgotten weapon:",o:["Call — don't scare him","Raise for thin value","Fold — donks are trips","Jam"],a:1,e:"Population donk leads are weak (Day 31 confirms). <b>Raising thin against them</b> is the mirror image of folding to their raises — both exploit the same honesty."},
+{q:"Why does raising thin for value feel wrong but print?",o:["It doesn't print","You've correctly learned to fear raises","Because raising is always variance","Because solvers never raise"],a:1,e:"The asymmetry is the exploit: <b>their raises are nutted, your thin raises get paid</b> — because they call raises exactly as loosely as they make them honestly."},
+{q:"The break-time audit this day assigns:",o:["Count your bluffs and check the ratio against your value bets","Count checked-back rivers versus stations holding second pair or better","Count your wins","Count the river check-raises you paid off"],a:1,e:"<b>Missed thin value is invisible</b> — no pot is lost, so no alarm rings. The audit makes it visible; the phase exam will ask if the bills went out."}]});
+
+/* ============ DAY 30 ============ */
+L.push({d:30,t:"Pot control & check-call lines",f:"z",obj:"Medium hands are two-street hands: choose which two, find the check-call versus check-fold boundary, and protect showdown value without paying three streets for it.",
+body:`
+<h3>The other side of polarization</h3>
+<p>Day 9 taught that turn betting ranges polarize. Today is the mirror: <b>when ranges polarize, mediums check</b> — and checking is a strategy, not a surrender (Day 8 said it; today builds it). The medium hand's job is to reach showdown at the right price, collecting from bluffs along the way.</p>
+<h3>Two-street hands</h3>
+<p>Most medium-strength hands are worth <b>two streets of money, not three</b>. The skill is choosing WHICH two:</p>
+<ul>
+<li><b>Bet flop, bet turn, check river</b> — when his range is draw-heavy and the river completes nothing: deny equity twice, then stop.</li>
+<li><b>Bet flop, check turn, bet/call river</b> — when the turn polarizes against you but the river card is safe: pot control the middle, collect at the end.</li>
+<li><b>Check-call twice, fold rivers that complete everything</b> — as the defender against a polarized bettor.</li></ul>
+<h3>The check-call vs check-fold boundary</h3>
+${T2([
+["Check-call","You beat his natural bluffs, you don't block them, and the board doesn't smash his betting range — the bluff-catch pays"],
+["Check-fold","His stab range has you beat, you block his bluffs (Day 11), or the card completes his range's draws — the catch is a donation"],
+["The archetype override","Vs players who never bluff (Day 26 list), check-call shrinks to near-nothing; vs aggro-recs who barrel any check, it widens dramatically"]],
+["Line","When"])}
+<h3>Protecting showdown value</h3>
+<p>The two sins against a medium hand: <b>turning it into a bluff</b> (raising 'to find out' — you fold out worse, get action from better) and <b>paying three streets with it</b> (calling down 'because you had top pair once'). Both convert a profitable two-street hand into a disaster. The monk holds the middle: bet or call exactly as much as the hand is worth, then stop.</p>
+${NOTE("the field plays mediums in exactly the two wrong ways: station-types pay three streets, tight-types fold them to the first barrel. The two-street discipline — rare, boring, precise — beats both without ever doing anything spectacular.")}`,
+quiz:[
+{q:"When betting ranges polarize, medium hands:",o:["Bet bigger to compete","Check","Always fold","Turn into bluffs"],a:1,e:"Day 9's mirror: <b>polarized betting means mediums check</b>. A checking range with showdown value collects from bluffs and avoids the bloated-pot disaster."},
+{q:"Most medium-strength hands are worth:",o:["Three streets — always bet","Two streets","One street maximum","Zero — check them down"],a:1,e:"<b>Two streets, chosen deliberately</b>: bet/bet/check when denial matters, bet/check/bet when the middle is dangerous, check-call/check-call as the defender."},
+{q:"Bet flop, check turn, bet river makes sense when:",o:["Never — always bet in order","The turn polarizes against you but rivers are safe","You have the nuts","You're tilted"],a:1,e:"The middle street is where check-raises and bad turns live. <b>Duck the danger, then bill the safe river</b> — two streets extracted, minimum exposure."},
+{q:"Check-call is correct when:",o:["Any time you have a pair — pairs are bluff-catchers by definition","You beat his natural bluffs, don't block them, and the board doesn't smash his betting range","The pot is big","You're in position and closing the action cheaply"],a:1,e:"Day 11's three questions, applied to a line: <b>beat the bluffs, unblock the bluffs, and respect texture</b>. Miss any one and the catch leaks."},
+{q:"Versus a player from the never-bluff list, your check-call range:",o:["Widens — catch him","Shrinks to near-nothing","Stays the same — balance","Becomes check-raise"],a:1,e:"The archetype override outranks the baseline: <b>no bluffs, no bluff-catching</b> (Day 26). Check-fold the mediums and lose the minimum."},
+{q:"'Turning your medium hand into a bluff' means:",o:["Betting it for value","Raising 'to find out where you are'","Checking it back","Folding it"],a:1,e:"The raise achieves the exact opposite of the hand's job: <b>worse folds, better continues</b>. Information that costs a raise-sized bet and returns nothing is not information."},
+{q:"You check-call flop and turn with second pair. The river completes the obvious flush and he bets big. Baseline?",o:["Call — you came this far","Fold","Raise as a bluff","Call and show everyone"],a:1,e:"The boundary moved with the card: <b>rivers that complete everything convert check-call into check-fold</b>. Sunk streets are sunk; the river is a new decision."},
+{q:"The two-street discipline beats both population errors. Which errors?",o:["Betting mediums too small and monsters too big — the sizing tell","Paying three streets with mediums (stations) and folding them to the first barrel (nits)","Bluffing and folding","Overplaying draws and underplaying made hands"],a:1,e:"<b>The field plays mediums at the extremes</b>. Holding the middle — exactly two streets' worth — is boring, precise, and quietly enormous over eight days."}]});
+
+/* ============ DAY 31 ============ */
+L.push({d:31,t:"Facing the unusual: donks, min-raises, overbets",f:"m",obj:"The lines nobody teaches because theory barely uses them — and the population meanings that make each one an open book.",
+body:`
+<h3>Donk leads (betting into the raiser)</h3>
+<p>Population donk bets — especially small ones — mean: <b>weak pair 'seeing where I'm at', a draw betting for cheap, or a blocking bet</b>. Genuinely strong hands check-raise instead; that's what the field was taught. Response plan:</p>
+<ul>
+<li><b>Raise</b> your value and strong draws — the lead range is weak and folds or calls badly.</li>
+<li><b>Call in position</b> with mediums and equity — let the weak lead keep leading into you.</li>
+<li>The exception that proves it: a donk <b>jam</b> or huge lead is usually a made hand panicking about draws — believe size.</li></ul>
+<h3>Min-raises</h3>
+<p>The live min-raise is old-school code, and the code says strength:</p>
+${T2([
+["Preflop min-3-bet (esp. older players)","QQ+/AK announcing itself — proceed as vs an honest premium range"],
+["Flop min-raise of your c-bet","Sets and monsters 'keeping you in' — call with equity and position, fold air, don't re-bluff"],
+["River min-raise","Value begging for a call — the worst price you'll ever be offered to lose"]],
+["Line","Population meaning"])}
+<h3>Facing river overbets</h3>
+<p>Blocker-first analysis (Days 11 and 32): run the three questions, weight the blockers, then apply the population discount — <b>the field's big river bets are value-heavy</b>, and their overbets even more so. Your calls need to block his value, unblock his bluffs, AND face an opponent capable of an overbet bluff at all. Most live opponents aren't; most live overbets are the nuts asking to be paid.</p>
+${NOTE("unusual lines are where the field is MOST honest, not least — weird means true. The min-raise, the sudden donk jam, the river overbet from a passive player: each is a confession wearing a costume. Believe the confession.")}`,
+quiz:[
+{q:"A live player donk-bets small into you, the preflop raiser. Population meaning?",o:["The nuts — leads are strong","Weak pair, cheap draw, or blocking bet","Always a total bluff","Random noise"],a:1,e:"The field was taught to check-raise monsters. <b>The small lead is the weak part of their range</b> announcing itself — raise value, float mediums in position."},
+{q:"Your response to a small donk lead with strong top pair:",o:["Just call — keep him leading","Raise","Fold — respect the lead","Min-raise"],a:1,e:"Weak lead + your strong hand = <b>raise for value</b>. It's the same population honesty exploited in the other direction."},
+{q:"A donk JAM or huge lead usually means:",o:["Air — big means bluff","A made hand panicking about draws","Exactly a gutshot","Fold — always the nuts"],a:1,e:"Panic sizing is honest sizing: <b>two pair or a set that fears the flush card</b> shoves to end the hand. Different animal from the small probe-lead."},
+{q:"An older live player min-3-bets your open. Population read?",o:["Weakness — min means scared","QQ+/AK announcing itself","A random bluff","Suited connectors"],a:1,e:"The min-3-bet is a <b>generational tell</b>: premiums 'keeping you in'. Set-mine at the right price, fold the pretty dominated stuff, give AQ its walking papers."},
+{q:"Your c-bet gets min-raised on the flop. Baseline?",o:["Re-raise — punish the min","Call with equity and position, fold air, never re-bluff","Jam any two","Always fold everything"],a:1,e:"The flop min-raise is the population's slow-play signature. <b>Take your price with real equity; surrender the air</b> — the re-bluff targets a range that never folds."},
+{q:"A river min-raise of your value bet is:",o:["The one raise you can call thin","Value begging for a call","A misclick","Weakness"],a:1,e:"Day 10's rule survives the tiny size: <b>river raises are nutted, and the min-raise doubly so</b> — it's sized to guarantee your crying call. Decline politely."},
+{q:"The three-part gate for calling a river overbet:",o:["Price, position, and whether you beat his value range","Block his value, unblock his bluffs, AND face an opponent actually capable of overbet-bluffing","Have at least one pair","Be getting 2:1 or better — overbets always lay the right calling price"],a:1,e:"Days 11 and 32 supply the blocker math; the population supplies the verdict: <b>most live overbets are the nuts</b>. All three gates or fold."},
+{q:"The unifying principle of unusual lines:",o:["Weird means tricky — assume deception","Weird means true","Unusual lines are always bluffs","Ignore them"],a:1,e:"Deception requires design, and the field doesn't design its odd lines — <b>it blurts them</b>. The min-raise, donk jam, and passive overbet are confessions in costume."}]});
+
+/* ============ DAY 32 ============ */
+L.push({d:32,t:"Blocker science deep dive",f:"g",obj:"The full card-removal system: ranked blocker quality for bluffs, the calling-side mirror, preflop blocker weapons — and the honest limits of the whole science.",
+body:`
+<h3>The two jobs, formalized</h3>
+<p>Day 17 named them; today ranks them. A bluff wants to <b>unblock his folds</b> and <b>block his continues</b>. A call wants the mirror: <b>block his value, unblock his bluffs</b> (Day 11). Every card-removal decision is one of these four effects — name which one you're buying before you pay for it.</p>
+<h3>Bluff blocker quality, ranked</h3>
+${T2([
+["Nut blockers (the A♠ on spade boards, the A on A-high boards)","Elite — you block the exact hand that continues and rep it simultaneously"],
+["Straight-card blockers on four-straight runouts","Strong — holding the key card halves his nut combos"],
+["Secondary blockers (K♠ when the A♠ could be out)","Decent — real but weaker effect; needs other conditions to firm up"],
+["No blockers, good story","Playable only when the range logic is overwhelming (Day 25) — the rep carries what removal doesn't"]],
+["Holding","Bluff quality"])}
+<h3>Preflop blocker weapons</h3>
+<ul>
+<li><b>A5s–A2s</b>: the kings of the 3-bet/4-bet bluff (Days 4, 33) — block AA/AK, make wheels and nut flushes, unblock the junk that folds.</li>
+<li><b>Kx suited wheels (K5s)</b>: second tier — block KK/AK, playable postflop.</li>
+<li>The mirror lesson: <b>AQo is a poor 4-bet-catcher</b> — it blocks the AQ/AK he 4-bet-bluffs with and loses to his value. Blockers explain folds, not just bluffs.</li></ul>
+<h3>The honest limits</h3>
+<p>Blockers move <b>percentages, not certainties</b> — a few combos out of dozens. They are the third question, never the first: range logic and population reads outrank them always. And versus stations they're nearly worthless — card removal can't make a fold button exist. The blocker is a tiebreaker for close decisions, not a license for wild ones.</p>
+${NOTE("the field uses blockers backwards when it uses them at all — hero-calling BECAUSE they hold his missed flush draw (blocking his bluffs, the worst holding to call with). Run Day 11's table again until the direction is reflex.")}`,
+quiz:[
+{q:"The four card-removal effects, paired correctly:",o:["Bluffs: block folds, unblock continues. Calls: block bluffs, unblock value","Bluffs: unblock folds, block continues. Calls: block value, unblock bluffs","All four are the same thing","Blockers only matter preflop"],a:1,e:"<b>Bluffing: don't hold what folds, do hold what continues. Calling: hold his value, don't hold his bluffs.</b> Every decision buys one of these — name it first."},
+{q:"The elite tier of bluff blockers:",o:["Any ace","Nut blockers","Middle pairs","Suited connectors"],a:1,e:"One card, two jobs: <b>his nut flush can't exist AND your line claims it</b>. Day 17 and Day 24 both orbit this card for a reason."},
+{q:"Why is A5s the king of 4-bet bluffs?",o:["It flops the best of any suited ace — pairs, wheels, and nut draws","Blocks AA and AK, makes wheels and nut flushes when called, unblocks the folding junk","It looks impressive at showdown","Its equity edge over A4s–A2s makes it strictly better"],a:1,e:"<b>Triple duty</b>: his continue range shrinks (AA/AK blocked), your disasters-when-called soften (wheel/flush equity), his folds stay intact. Nothing else does all three."},
+{q:"Why does AQo make a POOR catcher versus 4-bets?",o:["It's too weak to continue against any 4-bet at any depth","It blocks the AQ/AK he'd 4-bet-bluff with and loses to his value","It's actually a great call","Offsuit hands can't realize their equity in 4-bet pots"],a:1,e:"The mirror lesson: <b>blockers explain folds too</b>. The hands AQo removes are exactly the ones you beat; what remains is QQ+ that has you crushed."},
+{q:"Blockers rank where in the decision hierarchy?",o:["First — count combos before anything","Third","They ARE the decision","Last resort only in small pots"],a:1,e:"<b>Percentages, not certainties</b>: a blocker shifts a few combos among dozens. When range logic and population priors already agree, no blocker overturns them."},
+{q:"Versus a calling station, blocker-based bluffing is:",o:["Extra effective — his range is wide","Nearly worthless","The only way to bluff him","Mandatory for balance"],a:1,e:"Blockers shape WHICH hands continue — but the station continues with all of them. <b>Gate four (who actually folds?) precedes all blocker math.</b>"},
+{q:"You want to bluff a four-straight river (board shows 6-7-8-9). Best holding?",o:["Two random overcards","The T","A pair of twos","The 6 — bottom card"],a:1,e:"The key straight card is the river's nut blocker: <b>his JT/T-x nut combos shrink and your line claims them</b>. Straight-card blockers are the second tier for a reason."},
+{q:"The field's signature backwards blocker play:",o:["Never thinking about cards at all","Hero-calling BECAUSE they hold his missed flush draw","Folding the nuts","Over-3-betting A5s"],a:1,e:"'I have his flush draw so he can't have it — call!' is <b>exactly inverted</b>: blocking his bluffs makes his bets MORE value-weighted. Day 11's table, drilled until reflex."}]});
+
+/* ============ DAY 33 ============ */
+L.push({d:33,t:"The Foxen tree: 4-bets & 5-bets",f:"g",obj:"The highest-leverage nodes in poker, prepared in advance: 4-bet construction by position and depth, the population's honest escalations, and the tournament-life question.",
+body:`
+<h3>The published jam</h3>
+<p>The model: Foxen's six-bet shove at a $25K — the escalation war taken to its final rung without blinking. The lesson is not the specific cards; it's that <b>the tree was built before the hand</b>. Every rung — open, 3-bet, 4-bet, 5-bet, jam — had a pre-decided answer, so the moment couldn't shake him. Fearless is a preparation, not a personality.</p>
+<h3>4-bet construction</h3>
+${T2([
+["Value","QQ+/AK core; add JJ/AQs versus aggressive 3-bettors — by position: tighter from EP opens, wider from the BTN/blinds war"],
+["Bluffs","A5s–A2s (Day 32's kings); Kx suited wheels second tier — blocker-selected, never random"],
+["Sizing","~2.2–2.5x the 3-bet in position, slightly larger out of position — big enough to deny equity, small enough to fold"],
+["5-bets","At 100bb the 5-bet is essentially a jam. Value: KK+ plus some AK; the A5s bluff 5-bet exists in theory — versus the live field it barely should"]],
+["Node","Construction"])}
+<h3>Depth rewrites the tree</h3>
+<ul>
+<li><b>300bb (Days 1–2):</b> QQ/AK stop being automatic stacks (Day 12) — flat more 4-bets, jam almost never without AA/KK.</li>
+<li><b>100bb:</b> the standard tree above.</li>
+<li><b>40–60bb (Day 15's band):</b> the 5-bet node disappears — the tree collapses to open / 3-bet / jam. Leverage per chip peaks; blocker 3-bet jams print.</li></ul>
+<h3>The tournament-life question</h3>
+<p>Before each level, ask: <b>"If the escalation war happens ONCE today for my tournament life — what are my thresholds?"</b> Decide now: which hands 4-bet-call, which 4-bet-fold, which flat, at this depth, versus these players. The Foxen jam was decided days before it happened. Yours must be too — a freezeout gives no second rig.</p>
+${NOTE("live 4-bets are QQ+/AK and live 5-bets are KK+ — the field simply does not bluff the top of the tree. Two exploits: your A5s 4-bet gets a mountain of credit, and their 5-bet tells you to fold QQ without a tear.")}`,
+quiz:[
+{q:"The real lesson of the published six-bet jam:",o:["Always escalate with premiums","The tree was built before the hand","Six-bets are standard now","Never fold preflop at a $25K"],a:1,e:"<b>Fearless is a preparation, not a personality.</b> The jam was decided in study, days earlier; the table just watched the plan execute."},
+{q:"Standard 4-bet sizing:",o:["Pot or more","~2.2–2.5x the 3-bet IP, slightly larger OOP","Exactly double","Always all-in"],a:1,e:"Day 4's number, now with its logic: <b>big enough to deny the 3-bettor's equity, small enough that your bluffs can release</b> to the 5-bet."},
+{q:"Your 4-bet bluffs come from:",o:["Random suited hands for balance","A5s–A2s first, Kx suited wheels second","Middling pairs","Any two when you feel it"],a:1,e:"Day 32's kings do triple duty at the tree's top: <b>block AA/AK, flop nut-potential when called, unblock the folds</b>. Nothing random survives at this altitude."},
+{q:"At 100bb, the 5-bet is:",o:["A small probing raise","Essentially a jam","Always a fold","Illegal"],a:1,e:"The geometry leaves no room: <b>the fifth bet commits stacks</b>. Value jams it; versus a population that never bluff-4-bets, the bluff 5-bet has no target."},
+{q:"At 45bb effective, the escalation tree becomes:",o:["The same as 100bb","Open / 3-bet / jam","Limp-only","Open / call only"],a:1,e:"Day 15's band collapses the tree: <b>the third raise IS the all-in</b>. Leverage per chip peaks exactly where the Main Event's middle days live."},
+{q:"A live player 5-bets. You hold QQ at 100bb. Population verdict?",o:["Snap call — queens are gold","Fold without a tear","Flip a coin","6-bet bluff"],a:1,e:"The top of the live tree is the most honest place in poker: <b>KK+ weighted so heavily that QQ is a clear fold</b>. The field never bluffs the fifth bet."},
+{q:"Why does your A5s 4-bet get 'a mountain of credit' live?",o:["It doesn't — live players call 4-bets wider, not tighter","The field's own 4-bets are QQ+/AK, so they read yours the same way","Because A5s always wins","Live players hate playing 4-bet pots out of position"],a:1,e:"They assume you escalate like they do. <b>Their honesty is your camouflage</b> — the blocker 4-bet collects folds that theory says shouldn't all come."},
+{q:"The tournament-life question must be answered:",o:["When the 4-bet arrives — read the moment","Before the level","Only at the final table","Never — stay flexible"],a:1,e:"<b>Decide the thresholds before the war starts.</b> Deciding during it, with your tournament life in the pot and adrenaline voting, is how prepared players become former players."}]});
+
+/* ============ DAY 34 — consolidation ============ */
+L.push({d:34,t:"Consolidation gauntlet IV",f:"z",obj:"Twelve questions from Days 28–33: SPR, thin value, pot control, unusual lines, blockers, and the leverage tree. Plus an aggression-frequency sim and the weekly review.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 randomized questions from the week's pools (Days 28–33). Retake until you pass.</li>
+<li><b>75m sim session</b> focused on aggression frequency: count your 3-bets, probes, and raises per orbit. Are the new weapons actually firing?</li>
+<li><b>30m written weekly review:</b> quiz scores, aggression counts, three remaining leaks, one adjustment for the final study week.</li>
+<li><b>Recovery vow:</b> walk, hydrate, long sleep. The last week of the phase sharpens reads and rivers.</li></ul>`,
+pool:{days:[28,29,30,31,32,33],n:12}});
+
+/* ============ DAY 35 ============ */
+L.push({d:35,t:"Hand reading II: live tells & timing",f:"m",obj:"The information layer theory can't see: sizing tells, timing tells, the physical basics — and the reliability ladder that keeps reads in their place.",
+body:`
+<h3>The reliability ladder</h3>
+<p>Not all information is equal. Rank it and never let a lower rung outvote a higher one:</p>
+${T2([
+["1. Betting patterns","What he did with real chips — the most honest data in the room (all of Phase I and II)"],
+["2. Timing","How long decisions take — good data, moderately reliable"],
+["3. Physical","Posture, hands, speech — real but noisy; a tiebreaker, never a foundation"]],
+["Rung","Reliability"])}
+<h3>Sizing tells (the population's handwriting)</h3>
+<ul>
+<li>Baseline rule from Day 8: <b>big means value, small means weak-or-medium</b> — until a specific player shows otherwise.</li>
+<li>The upgrade: <b>deviations from a player's OWN baseline</b> outrank absolutes. The guy who always bets 2/3 suddenly betting 1/3 is saying something; learn each villain's handwriting, then read the misspellings.</li></ul>
+<h3>Timing tells</h3>
+${T2([
+["Insta-call","Draw or weak pair — the hand that never considered raising or folding"],
+["Long tank, then call","Genuine medium — the marginal bucket announcing itself"],
+["Insta-bet/raise","Pre-planned — usually strength that decided before your action"],
+["Long tank, then raise","Strength that used the tank to plan (or to perform reluctance) — believe the raise, not the tank"]],
+["Timing","Population meaning"])}
+<h3>Physical basics (Caro's law survives)</h3>
+<p><b>Strong means weak, weak means strong.</b> Acted reluctance — the sigh, the shrug, the sad call — is strength performing. Genuine stillness and a frozen posture lean bluff (fear of leaking); relaxed chattiness leans value; shaky hands are adrenaline, and adrenaline is almost always a monster, not a bluff.</p>
+<h3>Integration discipline</h3>
+<p>Day 16's law holds: <b>reads adjust the weights inside range logic — they never replace it.</b> A read is worth one bucket boundary (Day 8), one notch of thin-value threshold (Day 29) — not a new range. When a rung-3 twitch contradicts rung-1 betting patterns, the patterns win.</p>
+${NOTE("your own tells matter as much as theirs: routine breathing, one bet motion, one posture, fixed decision cadence. The monk's stillness isn't mysticism — it's denying the table the same data you're harvesting from them.")}`,
+quiz:[
+{q:"The reliability ladder, top to bottom:",o:["Physical, timing, betting patterns","Betting patterns, timing, physical","Timing, physical, betting patterns","All equal — use everything equally"],a:1,e:"<b>Chips talk, clocks whisper, bodies mumble.</b> A twitch never outvotes a betting line; when rungs conflict, the higher rung wins."},
+{q:"The sizing-tell upgrade over Day 8's baseline:",o:["Big now means bluff — the population overcorrected years ago","Deviations from a player's OWN baseline outrank absolute sizes","Sizing tells don't exist","Only river sizes matter — earlier streets are too scripted to read"],a:1,e:"2/3-pot means nothing from a guy who always bets 2/3 — <b>and everything from one who never does</b>. Calibrate per player, then flag deviations."},
+{q:"An opponent insta-calls your turn barrel. Weight his range toward:",o:["Slow-played monsters","Draws and weak pairs","Total air","Exactly top two pair"],a:1,e:"Instant decisions are <b>one-option decisions</b>: no raise considered (not strong), no fold considered (has something). Draws and weak pairs live exactly there."},
+{q:"A long tank followed by a raise means:",o:["Weakness — the tank was real confusion","Strength","Always a bluff","A misclick"],a:1,e:"Population bluffs don't marinate — <b>tank-raises are decided hands staging theater</b> or planning sizes. The action outranks the acting."},
+{q:"Caro's law, in four words:",o:["Big means very big","Strong means weak, weak means strong","Never trust anyone","Bet when they blink"],a:1,e:"<b>Acting is inversion:</b> the sigh-and-call is strength performing weakness; the confident splash is often air performing strength. Genuine states differ from performed ones."},
+{q:"Shaky hands pushing chips forward usually indicate:",o:["A bluff — nerves","A monster","Too much coffee, ignore it","Weakness"],a:1,e:"Bluffs produce <b>freeze</b>, not tremor — the bluffer suppresses everything. The shake is dopamine celebrating early. Respect it."},
+{q:"A physical read contradicts the betting pattern. You follow:",o:["The physical read — bodies don't lie","The betting pattern","Whichever favors calling","Neither — fold"],a:1,e:"The ladder exists for exactly this collision: <b>chips are testimony, twitches are rumor</b>. Reads adjust weights inside range logic; they never overthrow it."},
+{q:"Your own tell-prevention protocol:",o:["Sunglasses, hood, and headphones — remove every visible signal","One breathing routine, one bet motion, one posture, fixed decision cadence","Talk constantly to confuse them","Act weak when strong and strong when weak — run the classics in reverse"],a:1,e:"You can't suppress tells you don't know you have — but you can <b>standardize everything visible</b>. The monk's stillness is counterintelligence, not calm."}]});
+
+/* ============ DAY 36 ============ */
+L.push({d:36,t:"Board coverage & protection",f:"g",obj:"Know when YOUR range is the capped one, keep enough strength in your checking lines to survive attack — and learn when protection betting is real and when it's panic.",
+body:`
+<h3>Capped-range awareness — the mirror skill</h3>
+<p>All phase you've attacked capped ranges (Days 22, 25). Today, the mirror: <b>know when your own line caps YOU.</b> Your flop check-back, your passive flat, your check-check turn — competent opponents read them exactly as you read theirs. The first defense is awareness: entering a big pot with a capped range, out of position, against an uncapped one is the losing seat at the table — don't build big pots from it.</p>
+<h3>Keeping strength in checking ranges</h3>
+<ul>
+<li>On boards where your strategy checks a lot (caller-favoring textures, Day 8), <b>check some strong hands too</b> — sets, two pair — so your checks aren't free money to attack.</li>
+<li><b>But balance is insurance — buy it only against observant opponents.</b> Versus the station who never attacks your checks, checking a set is just a missed value street (Day 29). Versus the aggressive reg who's stabbed your last three check-backs: the trapped strong hand is exactly the medicine.</li></ul>
+<h3>Protection betting — real versus panic</h3>
+${T2([
+["Real protection","Strong-but-vulnerable made hand + live overcards/draws that FOLD to a bet + equity denial worth more than trap value (99 on 872tt; overpairs multiway — Day 23)"],
+["Fake protection","Betting big 'to protect' against a range that only continues with better — you fold out the six-outers and stack off to the sets"],
+["The test","Name what folds that has equity against you. No names, no protection bet — it was panic wearing armor"]],
+["Type","Definition"])}
+<h3>The freezeout overlay</h3>
+<p>Protection rises in value in a freezeout: denying a 25% draw its card matters more when your tournament life is the currency. Vulnerable strong hands bet more, slowplay less — the Main Event punishes the fancy check that gave a free card to six outs.</p>
+${NOTE("the field never protects its checking range against regs and always 'protects' its medium hands into sets. Both errors come from the same blindness: they think about their hand, never about whose range is capped.")}`,
+quiz:[
+{q:"Capped-range awareness means:",o:["Attacking capped opponents only","Knowing when YOUR OWN line has capped you","Never checking anything","A solver setting"],a:1,e:"You've spent the phase attacking confessions (Day 22). <b>Your lines confess too</b> — the first defense is knowing when you're the capped one in a growing pot."},
+{q:"Why keep some sets and two-pairs in your checking range?",o:["Slowplay is always best","So your checks aren't free money","To be unpredictable for its own sake","You shouldn't — always bet strong hands"],a:1,e:"A checking range of pure mediums and give-ups is <b>an open invitation</b> (you accept those invitations yourself — Day 22). The trapped strong hand is the deterrent."},
+{q:"Balance is insurance — meaning:",o:["Always balance everything — you never know who's watching","Pay for protection only against opponents who actually attack","Never balance live — nobody in the field can exploit you anyway","Balance only preflop"],a:1,e:"Insurance against a threat that doesn't exist is waste. <b>Station who never stabs: bet your set (Day 29). Reg who attacks checks: trap him.</b> The opponent decides."},
+{q:"A REAL protection bet requires:",o:["A made hand plus a draw-heavy texture — wetness alone justifies it","A strong-but-vulnerable made hand, plus live equity that actually folds to the bet","Any pair on any wet board — every pair hates free cards","Being out of position"],a:1,e:"<b>The test is naming what folds that has equity against you.</b> 99 on 872tt folds out live overcards — real. If nothing with equity folds, the bet protects nothing."},
+{q:"Fake protection is:",o:["Any small bet — real protection requires real size","Betting big into a range that only continues with better","Checking strong hands on wet boards and letting equity in free","Protection with the nuts"],a:1,e:"The 'protection' that denies 6 outs and funds a set's value raise <b>bought nothing and paid everything</b>. Protection targets live-but-foldable equity, or it's panic in armor."},
+{q:"Why does protection gain value specifically in a freezeout?",o:["It doesn't — freezeouts favor slowplay","Denying a 25% draw its card matters more when tournament life is the currency","The field expects protection bets, so they get instant respect","Freezeout pots are bigger relative to stacks, so charging draws pays double"],a:1,e:"The free card that costs you a 300bb pot in a re-entry costs you <b>the tournament</b> here. Vulnerable strong hands bet more, slowplay less — Main Event law."},
+{q:"An aggressive reg has stabbed your last three flop check-backs. Today you check back a set. This is:",o:["A missed value bet — always bet sets","Exactly the medicine","Too tricky — never do this","Only correct with the nuts"],a:1,e:"He built his stab habit on your capped checks. <b>One trapped set re-prices every future stab</b> — insurance bought precisely when the threat is proven."},
+{q:"The field's twin coverage errors:",o:["Playing too tight preflop and too loose postflop","Never protecting their checking range against regs, and 'protecting' mediums into sets","Betting too small twice","Slowplaying draws and fast-playing made hands"],a:1,e:"Same blindness, two costs: <b>attackable checks versus thinking opponents, and armored panic into monsters</b>. Range-first thinking prevents both at once."}]});
+
+/* ============ DAY 37 ============ */
+L.push({d:37,t:"River raise trees",f:"g",obj:"The rarest weapon and the most honest action: raising rivers for value beyond what calls, bluff-raising with an airtight story — and folding when the raise comes back.",
+body:`
+<h3>Raising the river for value</h3>
+<p>The threshold is not "am I ahead of his betting range" — it's <b>"do I beat the hands that call my raise?"</b> His bet-then-call range is far stronger than his bet range: mediums bet and fold, monsters bet and call. Name the worse hands that pay the raise (Day 10's discipline, one level up). Two pair that beats his value bets but loses to everything that continues is a <b>call</b>, not a raise.</p>
+<h3>The river bluff-raise — poker's rarest weapon</h3>
+<p>All four Deeb questions (Day 25), at maximum stakes. It works when:</p>
+<ul>
+<li><b>His bet is thin or capped</b> — the thin-value bettors of Day 29 are the targets; their KQ-on-K-high cannot call your raise.</li>
+<li><b>Your line reps the nuts credibly</b> — you could actually hold the flush, the straight, the boat (Day 25's corollary).</li>
+<li><b>Your blockers work</b> — you hold the key card (Day 32), and don't hold his missed draws.</li>
+<li><b>He can fold</b> — gate four. Never bluff-raise a station's river bet; it's the purest donation in poker.</li></ul>
+<h3>Facing river raises (the other side, formalized)</h3>
+<p>Days 10, 26, 31 all said it; today it's law: <b>population river raises are near-nuts.</b> Your value bets fold to them without near-nuts of your own. Run the blocker check (do I block his value? unblock his bluffs?) — but expect the answer to be fold, because the bluffs mostly don't exist. The asymmetry is the whole opportunity: <b>they never bluff-raise rivers, and they never expect you to.</b></p>
+${NOTE("the river raise is simultaneously the most under-used +EV play against thinking regs (your bluff-raise gets massive credit) and the most honest action the field takes against you (their raise is the nuts). Exploit the asymmetry in both directions — and never confuse which direction you're facing.")}`,
+quiz:[
+{q:"The threshold question for a river value raise:",o:["Am I ahead of his betting range?","Do I beat the hands that CALL my raise","Is the pot big enough?","Do I have two pair or better?"],a:1,e:"Mediums bet-fold; monsters bet-call. <b>The raise plays only against the calls</b> — beating what he bet is necessary but nowhere near sufficient."},
+{q:"Two pair that beats his value-betting range but loses to his bet-then-call range is:",o:["A raise — you beat his bets","A call","A fold","A jam"],a:1,e:"Day 30's medium-hand sin at the river: <b>the raise turns your winner into a bluff</b> that costs a raise-sized bet. Call, win the showdown, keep the difference."},
+{q:"The ideal TARGET of a river bluff-raise:",o:["A station betting big","A thin-value bettor","A passive player who checked","The chip leader"],a:1,e:"Thin value is capped by definition — <b>he bet a hand that beats mediums, not one that calls raises</b>. The player skilled enough to bet thin is skilled enough to fold it."},
+{q:"The four gates of the river bluff-raise:",o:["Position, price, a credible story, and at least one blocker","His bet is thin/capped, your line reps the nuts, your blockers work, and he can actually fold","Value threshold, bet size, stack depth, and table image","Story, story, story, story"],a:1,e:"Days 25, 29, and 32 converge at the tree's final node: <b>capped target, credible rep, working blockers, existing fold button</b>. All four or don't."},
+{q:"Bluff-raising a station's river bet is:",o:["High variance but fine","The purest donation in poker","Standard for balance","Good if you have blockers"],a:1,e:"Every other gate can pass — <b>the fold button still doesn't exist</b>. Day 25's population gate governs the biggest bluff exactly as it governs the smallest."},
+{q:"You value-bet the river and get raised by an unknown live player. The law:",o:["Call — you bet for value","Fold without near-nuts","Always re-raise","Call to see it"],a:1,e:"Days 10, 26, and 31, now law: <b>their raise is the nuts</b>. Run the blocker check, but expect fold — the bluffs you'd catch mostly don't exist."},
+{q:"Why does YOUR river bluff-raise get so much credit from regs?",o:["It doesn't","They know the population never bluff-raises rivers","Because you're tight","Rivers are lucky"],a:1,e:"Same mechanism as the A5s 4-bet (Day 33): <b>the field's honesty is your disguise</b>. A thinking reg reads your raise through population priors and folds his thin value."},
+{q:"The river-raise asymmetry, in one sentence:",o:["Raises are raises","They never bluff-raise rivers and never expect you to","Always raise rivers","Never raise rivers"],a:1,e:"<b>Two exploits, one node:</b> their raise is a confession (fold), your raise is a costume (fire — at capped, thinking, foldable targets). Never confuse the directions."}]});
+
+/* ============ DAY 38 ============ */
+L.push({d:38,t:"Long-session focus training",f:"z",obj:"The Main Event is five two-hour levels a day for eight days: train the C-game gap closed, track focus lapses like leaks, and install the resets that survive hour ten.",
+body:`
+<h3>The C-game gap</h3>
+<p>Under fatigue you don't rise to your A-game — you <b>fall to your C-game</b>. The two goals of mental training: narrow the gap (make your C-game less catastrophic) and delay the fall (keep B+ quality deeper into the day). Every technical skill from Days 1–37 is only as good as its worst-hour version — <b>the version that plays the Day 4 bubble at midnight.</b></p>
+<h3>Today's protocol: the three-hour sim</h3>
+<ul>
+<li><b>3h continuous play</b> (live, online, or sim). No phone except scheduled breaks. This is a training session for attention, not results.</li>
+<li><b>Track focus lapses per hour.</b> A lapse = any decision made without the checklist: bucket named (Day 8), plan stated, river sentence said (Day 28). Tally them honestly.</li>
+<li><b>Target: fewer than 5 lapses per hour by hour three.</b> Rising lapse counts across hours = your fatigue curve, measured. Now you know when YOUR C-game arrives.</li></ul>
+<h3>The in-game resets</h3>
+${T2([
+["One breath before every decision","The cheapest quality-control device in poker — one breath re-engages the checklist"],
+["The next-hand reset","After any big pot, won or lost: exhale, release it, tag the hand for later review, return to the current hand only"],
+["Blind-change ritual","Every level change: posture, water, one minute of eyes off the table — attention is a muscle with a recovery need"],
+["The C-game alarm","When you catch two lapses in one orbit: stand up at the next opportunity. The walk costs one hand; the C-game costs stacks"]],
+["Reset","Protocol"])}
+<h3>Name your C-game signature</h3>
+<p>Everyone's C-game leaks differently: loose calls from boredom, passive folds from fear, fancy bluffs from frustration, autopilot opens from fatigue. Use today's lapse log to <b>name yours in writing</b> — it joins the Day 1 leak list. You can't guard a door you haven't found.</p>
+${NOTE("Deeb's superpower isn't a secret strategy — it's showing up identical every day, win or lose, hour one or hour ten. The grind IS the weapon; today you start forging it.")}`,
+quiz:[
+{q:"Under fatigue, your play:",o:["Rises to the occasion","Falls to your C-game","Stays exactly the same","Improves from urgency"],a:1,e:"<b>You don't rise; you fall.</b> Every skill from Days 1–37 is only worth its worst-hour version — which is exactly the version the Day 4 midnight bubble will meet."},
+{q:"A focus lapse is defined as:",o:["Any lost pot","Any decision made without the checklist","Looking at your phone","Playing a bad hand"],a:1,e:"Lapses are <b>process failures, not result failures</b> — a won pot played on autopilot still counts. The checklist either ran or it didn't."},
+{q:"The lapse-count target by hour three:",o:["Zero — perfection","Fewer than 5 per hour","Under 20","Lapses don't matter"],a:1,e:"Sub-5 is disciplined-but-human. The real prize is the curve: <b>now you know what hour your C-game arrives</b> — and can schedule its containment."},
+{q:"The one-breath rule:",o:["Breathe once per orbit","One breath before every decision","Hold your breath during big pots","Only breathe on rivers"],a:1,e:"One breath <b>re-engages the checklist</b> and breaks autopilot's momentum. It costs two seconds and catches the lapse before the chips move."},
+{q:"After winning a huge pot, the next-hand reset says:",o:["Ride the momentum — the table fears you and folds more now","Exhale, release it, tag it for review, return to the current hand only","Take a walk immediately — big pots always contaminate the next orbit","Show the table your cards"],a:1,e:"<b>Win-tilt is real:</b> the adrenaline of victory buys loose calls and hero bluffs. The reset treats big wins and big losses identically — both are contamination."},
+{q:"The C-game alarm triggers when:",o:["You lose two pots in a row","You catch two lapses in one orbit","The blinds go up","You feel fine"],a:1,e:"Two lapses in an orbit means the fall has started. <b>Interrupt it physically</b> — attention doesn't argue itself back; it needs the walk."},
+{q:"Why must you NAME your C-game signature in writing?",o:["For your coach's records","You can't guard a door you haven't found","Writing is relaxing","To compare with friends"],a:1,e:"Generic 'focus harder' guards nothing. <b>The named signature — yours specifically — joins the Day 1 leak list</b> and gets its own containment protocol."},
+{q:"The Deeb lesson this day installs:",o:["A secret strategy for tired play","Showing up identical every day and every hour IS the weapon","Sleep is optional for professionals","Coffee replaces discipline"],a:1,e:"The wasteland doesn't reward brilliance that decays by dinner. <b>It rewards the machine that runs hour ten like hour one</b> — and machines are built, not born."}]});
+
+/* ============ DAY 39 ============ */
+L.push({d:39,t:"Published-hand transfer day",f:"z",obj:"Three published hands, three doctrines — Mateos' call, Foxen's jam, Deeb's raise — translated into YOUR game in writing, then synthesized into one paragraph of hybrid style.",
+body:`
+<h3>The three hands, side by side</h3>
+${T2([
+["Mateos — the A♦2♦ river call (Day 11)","Call because the range says so: beat the bluffs, don't block them, and execute under maximum pressure even when this one loses","Process over result — the zen monk's doctrine"],
+["Foxen — the $25K six-bet jam (Day 33)","The escalation tree was built before the hand; every rung pre-decided, so the moment couldn't shake him","Leverage is prepared, not improvised — the gladiator's doctrine"],
+["Deeb — the turn raise (Day 25)","His line contained every straight; villain's couldn't hold one — the raise played the nuts without needing them","Rep only what your line owns — the Mad Max doctrine"]],
+["Hand","The lesson","The doctrine"])}
+<h3>The transfer protocol (write, don't just nod)</h3>
+<p>For each hand, write two things in your log:</p>
+<ol>
+<li><b>The lesson in YOUR words</b> — one sentence, no borrowed phrasing. If you can't rephrase it, you don't own it yet (Day 16's narration test, applied to doctrine).</li>
+<li><b>One spot from YOUR game where it applies</b> — a specific recurring situation, named: "when I face river jams holding mediocre blockers, I run the three questions before touching chips."</li></ol>
+<h3>The synthesis paragraph</h3>
+<p>One paragraph, in your log, that answers: <b>what is my hybrid style?</b> Which third leads at which moments — the gladiator's prepared trees at the leverage nodes, the Mad Max grind and story discipline through the long middle, the monk's range-executed calls under fire? This paragraph becomes your identity card for Phase III, where the wasteland (ICM) will test all three thirds at once.</p>
+${NOTE("knowledge you can't transfer is trivia. The field watches the same streams and reads the same hands you do — the difference is the player who wrote the lesson into his own game before Day 1 of the Main.")}`,
+quiz:[
+{q:"The Mateos hand's doctrine:",o:["Hero-call more rivers","Call because the range says so","Ace-high is underrated","Always call half-pot bets"],a:1,e:"The call <b>beat the bluff region and didn't block it</b> — profitable against the range even when this one lost. Result is noise; process is the signal."},
+{q:"The Foxen hand's doctrine:",o:["Six-bets win pots","Leverage is prepared, not improvised","Never fold preflop","Aggression beats everything"],a:1,e:"<b>Fearless is a preparation</b> (Day 33). The thresholds were decided in study; the table only watched the plan execute."},
+{q:"The Deeb hand's doctrine:",o:["Raise turns more often","Rep only what your line owns","Straights are the best hands","Never call, always raise"],a:1,e:"The four questions in action (Day 25): <b>airtight story, capped victim, working gate</b>. The raise didn't need his cards to be good."},
+{q:"Why must each lesson be rewritten in YOUR words?",o:["Copyright reasons","If you can't rephrase it you don't own it","Coaches require it","To make it shorter"],a:1,e:"Borrowed phrasing is <b>rented knowledge</b>. The rephrase-test catches the difference between recognizing an idea and being able to deploy it exhausted."},
+{q:"The second half of the transfer protocol demands:",o:["A written commitment to review the hand again next week","One NAMED recurring spot from your own game where the lesson applies","Memorizing the hand history action by action until it's automatic","Watching the hand again"],a:1,e:"Doctrine without an address never gets delivered. <b>'When I face X, I do Y'</b> — specific, recurring, yours. That's what survives contact with the felt."},
+{q:"The synthesis paragraph answers:",o:["Which pro is best","What is MY hybrid style","How to play every hand","What stakes to play"],a:1,e:"Gladiator at the leverage nodes, Mad Max through the grind, monk under fire — <b>the paragraph assigns your thirds to their moments</b> and becomes Phase III's identity card."},
+{q:"Which third naturally owns the ICM wasteland ahead (Phase III)?",o:["Only the gladiator — aggression solves ICM","All three at once","Only the monk","None — ICM is pure math"],a:1,e:"The bubble demands <b>prepared thresholds (gladiator), relentless correct folds (Mad Max), and calm under the biggest pressure yet (monk)</b> — the synthesis is the point."},
+{q:"'Knowledge you can't transfer is trivia' means:",o:["Study less","The field reads the same hands you do","Trivia nights are useful","Keep knowledge secret"],a:1,e:"The streams are public; the hands are famous. <b>The transfer — lesson to log to felt — is the private work</b> that turns shared knowledge into a personal edge."}]});
+
+/* ============ DAY 40 — exam ============ */
+L.push({d:40,t:"PHASE II EXAM",f:"z",obj:"Twenty-five questions sampled from all seventeen study days. 85%+ passes the phase. Then grade yourself by street, update the leak list, and set Phase III intentions.",
+body:`
+<h3>Exam protocol</h3>
+<ul>
+<li><b>25 randomized questions</b> from every pool in Phase II. Different sample each attempt.</li>
+<li>Target: <b>85%+</b>. Below that, the misses tell you exactly which day to re-study — do it before advancing.</li>
+<li>After passing: <b>grade yourself by street.</b> Sort your misses: flop concepts (Days 22–24, 36), turn concepts (Days 21, 28), river concepts (Days 26, 29–31, 37). Your weakest street is your Phase III homework tag.</li>
+<li>Update the leak list from Days 1 and 20. Set Phase III intentions: the wasteland — ICM, bubbles, short stacks, survival — begins tomorrow.</li></ul>
+<h3>What Phase II built</h3>
+<p>Turn check-raise trees and the discipline of facing them · probes, delayed c-bets, and the double-check river · multiway collapse rules · paired and monotone mastery · the four questions of repping ranges · the never-bluff list and the big laydown · SPR law and the drift-killer · three-street thin value plans · two-street medium-hand discipline · donks, min-raises, and overbets decoded · the full blocker system · the 4-bet/5-bet tree and the tournament-life question · the reliability ladder of live reads · capped-range awareness and real protection · river raise trees in both directions · the C-game protocol · three doctrines transferred.</p>
+<p>Phase III takes these weapons into the wasteland — where ICM changes what winning means.</p>`,
+pool:{days:[21,22,23,24,25,26,28,29,30,31,32,33,35,36,37,38,39],n:25,exam:true}});
+
+/* ---------- ENGINE ---------- */
+const store=JSON.parse(localStorage.getItem("wsop100.study2")||"{}");
+const save=()=>localStorage.setItem("wsop100.study2",JSON.stringify(store));
+const FCHIP={g:['g','⚔ Gladiator'],m:['m','🏜 Mad Max'],z:['z','◯ Zen Monk']};
+let cur=21, qState=null;
+
+const nav=document.getElementById("daynav"), content=document.getElementById("content");
+
+function badge(d){
+  const s=store["d"+d];
+  if(!s||s.best==null)return"";
+  return s.best>=90?"★":s.best>=80?"✓":"";
+}
+function renderNav(){
+  nav.innerHTML="";
+  L.forEach(x=>{
+    const b=document.createElement("button");
+    b.type="button";
+    const s=store["d"+x.d];
+    b.className="dbtn"+(x.d===cur?" on":"")+(s&&s.best>=90?" star":s&&s.best>=80?" pass":"");
+    b.innerHTML=`${x.d}<small>${x.pool?(x.pool.exam?"exam":"gauntlet"):"drill"}</small><span class="badge">${badge(x.d)}</span>`;
+    b.title=`Day ${x.d} — ${x.t}`;
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    nav.appendChild(b);
+  });
+  const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
+  document.getElementById("stPassed").textContent=scores.filter(v=>v>=80).length;
+  document.getElementById("stMastered").textContent=scores.filter(v=>v>=90).length;
+  document.getElementById("stAvg").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";
+}
+function shufQ(q){
+  // shuffle answer options so the correct index varies every attempt
+  const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {...q,o:idx.map(k=>q.o[k]),a:idx.indexOf(q.a)};
+}
+function getQuiz(day){
+  const x=L.find(l=>l.d===day);
+  if(x.quiz)return x.quiz.map(shufQ);
+  // pooled: sample n random from source days
+  let pool=[];
+  x.pool.days.forEach(sd=>{const s=L.find(l=>l.d===sd);if(s&&s.quiz)pool=pool.concat(s.quiz.map(q=>({...q,src:sd})));});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  return pool.slice(0,x.pool.n).map(shufQ);
+}
+function renderAll(){
+  const x=L.find(l=>l.d===cur);
+  const [fc,fl]=FCHIP[x.f];
+  content.innerHTML=`
+    <div class="dayhead">
+      <span class="dnum">D${String(x.d).padStart(3,"0")}</span>
+      <h2>${x.t}</h2>
+      <span class="focus-chip ${fc}">${fl}</span>
+    </div>
+    <p class="obj">${x.obj}</p>
+    <div class="lesson">${x.body}</div>
+    <div class="quiz" id="quiz"></div>`;
+  renderQuizStart();
+  renderNav();
+}
+function renderQuizStart(){
+  const x=L.find(l=>l.d===cur);
+  const s=store["d"+cur];
+  const label=x.pool?(x.pool.exam?"The Phase Exam":"The Gauntlet"):"The Drill";
+  const n=x.pool?x.pool.n:x.quiz.length;
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead">
+      <h3>${label} — ${n} questions</h3>
+      <span class="bestline">${s&&s.best!=null?`best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}`:"not yet attempted"}</span>
+    </div>
+    <p style="color:var(--dim);font-size:15px;margin:8px 0 16px">Pass at 80%+ · mastery at 90%+${x.pool?" · questions re-sample every attempt":""}. Immediate judgment after every answer.</p>
+    <div class="qnav" style="justify-content:flex-start"><button class="btn" id="qgo" type="button">${s&&s.best!=null?"Retake":"Begin"}</button></div>`;
+  document.getElementById("qgo").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+}
+function showQ(){
+  const q=qState.qs[qState.i];
+  document.getElementById("quiz").innerHTML=`
+    <div class="qmeta">
+      <span class="mono">QUESTION ${qState.i+1} / ${qState.qs.length}</span>
+      <span class="mono">${qState.right} correct${q.src?` · from Day ${q.src}`:""}</span>
+    </div>
+    <p class="qtext">${q.q}</p>
+    <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    <div id="qfb"></div>
+    <div class="qnav" id="qnav"></div>`;
+  document.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(qState.done)return;qState.done=true;
+  const q=qState.qs[qState.i],right=i===q.a;
+  if(right)qState.right++;
+  document.querySelectorAll(".qopt").forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.a)b.classList.add("correct");
+    else if(bi===i)b.classList.add("wrong");
+  });
+  document.getElementById("qfb").innerHTML=`<div class="qexpl"><b>${right?"Struck true.":"A wound — learn from it."}</b> ${q.e}</div>`;
+  document.getElementById("qnav").innerHTML=`<button class="btn" type="button" id="qnext">${qState.i<qState.qs.length-1?"Next":"See result"}</button>`;
+  const nb=document.getElementById("qnext");
+  nb.onclick=()=>{qState.i++;qState.done=false;qState.i<qState.qs.length?showQ():finish();};
+  nb.focus();
+}
+function finish(){
+  const pct=Math.round(qState.right/qState.qs.length*100);
+  const s=store["d"+cur]||{best:null,att:0};
+  s.att++;if(s.best==null||pct>s.best)s.best=pct;
+  store["d"+cur]=s;save();
+  const pass=pct>=80,star=pct>=90;
+  const x=L.find(l=>l.d===cur);
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead"><h3>Result</h3><span class="bestline">best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}</span></div>
+    <div class="result-title ${pass?"pass":""}">${star?"Mastered":pass?"Passed":"Not yet"}</div>
+    <p class="scoreline"><span class="mono">${qState.right} / ${qState.qs.length} — ${pct}%</span> ${star?"— the checkpoint is conquered.":pass?"— solid. Retake for mastery when fresh.":"— re-read the lesson, then come back. The misses named your homework."}</p>
+    <div class="bar ${pass?"pass":""}"><i style="width:${pct}%"></i></div>
+    <div class="qnav" style="justify-content:flex-start;gap:10px">
+      <button class="btn" type="button" id="qretry">${x.pool?"New sample":"Retake"}</button>
+      ${cur<40?`<button class="btn ghost" type="button" id="qadv">Next day →</button>`:""}
+    </div>`;
+  document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+  const adv=document.getElementById("qadv");
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  renderNav();
+}
+renderAll();
+</script>

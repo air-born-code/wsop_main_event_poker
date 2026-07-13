@@ -1,0 +1,791 @@
+<meta charset="utf-8">
+<title>THE HUNDRED — WSOP Main Event 100-Day War Plan</title>
+<style>
+:root{
+  --bg:#171310;
+  --bg2:#1f1a15;
+  --card:#241e18;
+  --ink:#e9dfcc;
+  --ink-dim:#a899804;
+  --dim:#a89980;
+  --faint:#6e6252;
+  --line:#3a3129;
+  --rust:#c65a2e;
+  --rust-deep:#9c4423;
+  --bronze:#c19a4b;
+  --sage:#8fa383;
+  --sage-deep:#6e8263;
+  --good:#8fa383;
+  --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ece3d0;
+    --bg2:#e3d8c2;
+    --card:#f4ecdc;
+    --ink:#241c12;
+    --dim:#5f5442;
+    --faint:#8a7c66;
+    --line:#cfc2a8;
+    --rust:#a8481f;
+    --rust-deep:#8a3a19;
+    --bronze:#8a6a24;
+    --sage:#5c6f50;
+    --sage-deep:#4a5c40;
+    --good:#5c6f50;
+    --bad:#a8481f;
+    --shadow:0 2px 10px rgba(90,70,40,.18);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+  --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+  --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+  --shadow:0 2px 10px rgba(90,70,40,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.disp{
+  font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;
+  font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+a{color:var(--rust)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* ---- nav ---- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto}
+nav .brand{font-size:15px;letter-spacing:.14em;color:var(--rust);margin-right:auto;white-space:nowrap}
+nav a{
+  color:var(--dim);text-decoration:none;font-size:13px;
+  padding:6px 12px;border-radius:2px;white-space:nowrap;
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;
+  text-transform:uppercase;letter-spacing:.1em;font-weight:600;
+}
+nav a:hover{color:var(--ink);background:var(--bg2)}
+nav .navsep{width:1px;align-self:stretch;background:var(--line);margin:0 4px;flex:none}
+nav a.hall{color:var(--bronze)}
+
+/* ---- hero ---- */
+header{
+  padding:72px 0 48px;
+  background:
+    radial-gradient(1200px 400px at 50% -80px, color-mix(in srgb, var(--rust) 14%, transparent), transparent),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.kicker{
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;
+  text-transform:uppercase;letter-spacing:.32em;font-size:13px;font-weight:600;
+  color:var(--bronze);margin:0 0 14px;
+}
+h1{
+  font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;
+  font-weight:800;text-transform:uppercase;
+  font-size:clamp(52px,9vw,104px);line-height:.92;letter-spacing:.01em;
+  margin:0 0 18px;text-wrap:balance;
+}
+h1 .r{color:var(--rust)}
+.sub{max-width:62ch;color:var(--dim);font-size:18px;margin:0 0 34px}
+.trinity{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.tri{background:var(--card);padding:22px 20px}
+.tri .frac{font-size:30px;line-height:1;margin-bottom:8px}
+.tri.g .frac{color:var(--bronze)} .tri.m .frac{color:var(--rust)} .tri.z .frac{color:var(--sage)}
+.tri h3{margin:0 0 2px;font-size:19px;letter-spacing:.08em}
+.tri .who{font-size:13px;color:var(--faint);text-transform:uppercase;letter-spacing:.14em;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;margin-bottom:8px}
+.tri p{margin:0;font-size:14.5px;color:var(--dim);line-height:1.5}
+@media(max-width:720px){.trinity{grid-template-columns:1fr}}
+
+/* ---- sections ---- */
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+h2{
+  font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;
+  font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  font-size:clamp(30px,4.5vw,44px);line-height:1;margin:0 0 8px;text-wrap:balance;
+}
+.lede{color:var(--dim);max-width:66ch;margin:0 0 30px;font-size:16.5px}
+.eyebrow{
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;
+  text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--rust);margin:0 0 10px;
+}
+
+/* ---- doctrine table ---- */
+.tblwrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th{
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;font-size:12px;
+  text-align:left;color:var(--bronze);background:var(--bg2);
+  padding:10px 14px;border-bottom:1px solid var(--line);
+}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+td:first-child{color:var(--ink);white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+tr:last-child td{border-bottom:none}
+.ratio{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:13px;color:var(--rust);white-space:nowrap}
+
+/* ---- progress ---- */
+.progressbox{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:28px;box-shadow:var(--shadow)}
+.progressbox .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bigcount{font-size:40px;font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;color:var(--rust)}
+.bigcount small{font-size:16px;color:var(--faint);font-weight:600;letter-spacing:.08em}
+.bar{height:10px;background:var(--bg2);border:1px solid var(--line);margin-top:12px;position:relative;overflow:hidden}
+.bar>i{position:absolute;inset:0;right:auto;background:linear-gradient(90deg,var(--rust-deep),var(--rust));transition:width .4s ease}
+@media (prefers-reduced-motion: reduce){.bar>i{transition:none}}
+.resetbtn{background:none;border:1px solid var(--line);color:var(--faint);font-size:11px;padding:5px 10px;cursor:pointer;text-transform:uppercase;letter-spacing:.12em;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif}
+.resetbtn:hover{color:var(--bad);border-color:var(--bad)}
+
+/* ---- phases ---- */
+.phasetabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.ptab{
+  background:var(--card);border:1px solid var(--line);color:var(--dim);
+  padding:10px 16px;cursor:pointer;font-size:13px;
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.ptab:hover{color:var(--ink)}
+.ptab.on{background:var(--rust);border-color:var(--rust);color:#fff8ef}
+.ptab .pc{display:block;font-size:10.5px;letter-spacing:.14em;opacity:.75;font-weight:400}
+.phasehead{margin:6px 0 18px}
+.phasehead h3{
+  font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;
+  text-transform:uppercase;font-size:26px;margin:0 0 4px;letter-spacing:.04em;
+}
+.phasehead p{margin:0;color:var(--dim);max-width:70ch;font-size:15.5px}
+.studylink{
+  display:inline-block;margin-top:12px;background:var(--rust);color:#fff8ef;text-decoration:none;
+  padding:9px 18px;font-size:12px;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;
+  font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+}
+.studylink:hover{background:var(--rust-deep)}
+.studylink.soon{background:transparent;border:1px solid var(--line);color:var(--faint);cursor:default}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+details.day{
+  background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--faint);
+}
+details.day.f-g{border-left-color:var(--bronze)}
+details.day.f-m{border-left-color:var(--rust)}
+details.day.f-z{border-left-color:var(--sage)}
+details.day.done{opacity:.62}
+details.day summary{
+  list-style:none;cursor:pointer;padding:13px 14px;
+  display:flex;align-items:center;gap:10px;
+}
+details.day summary::-webkit-details-marker{display:none}
+.dnum{
+  font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--faint);
+  min-width:34px;
+}
+.dtitle{font-size:15px;line-height:1.3;flex:1;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;letter-spacing:.03em}
+.dtime{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:11px;color:var(--faint);white-space:nowrap}
+.dchk{
+  width:20px;height:20px;flex:none;appearance:none;-webkit-appearance:none;
+  border:1.5px solid var(--faint);background:transparent;cursor:pointer;position:relative;margin:0;
+}
+.dchk:checked{background:var(--sage-deep);border-color:var(--sage-deep)}
+.dchk:checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:14px;line-height:19px;text-align:center}
+.dchk:focus-visible,.ptab:focus-visible,.qopt:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.dbody{padding:0 14px 14px 58px;font-size:14px;color:var(--dim)}
+.dbody ul{margin:0 0 10px;padding-left:16px}
+.dbody li{margin-bottom:4px}
+.chkpt{
+  border-top:1px dashed var(--line);padding-top:8px;font-size:13px;
+}
+.chkpt b{color:var(--sage);font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600}
+.coach{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px;font-size:13px;color:var(--dim);font-style:italic}
+.coach b{color:var(--bronze);font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600;font-style:normal}
+.phasehead .rev{margin:8px 0 0;color:var(--dim);font-size:14px;max-width:70ch;font-style:italic}
+.phasehead .rev b{color:var(--bronze);font-style:normal;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600}
+.focus-key{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 20px;font-size:13px;color:var(--dim)}
+.focus-key i{display:inline-block;width:10px;height:10px;margin-right:6px}
+.fk-g i{background:var(--bronze)}.fk-m i{background:var(--rust)}.fk-z i{background:var(--sage)}
+
+/* ---- quiz ---- */
+#quizbox{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:30px;max-width:760px}
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:12px;color:var(--faint)}
+.qdisc{
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;
+  text-transform:uppercase;letter-spacing:.16em;font-size:11px;padding:4px 10px;
+}
+.qdisc.blade{background:color-mix(in srgb,var(--bronze) 18%,transparent);color:var(--bronze)}
+.qdisc.waste{background:color-mix(in srgb,var(--rust) 18%,transparent);color:var(--rust)}
+.qdisc.still{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+.qtext{font-size:19px;line-height:1.45;margin:0 0 20px;text-wrap:balance}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{
+  text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--ink);
+  padding:12px 14px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1.4;
+}
+.qopt:hover:not(:disabled){border-color:var(--rust)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
+.qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qexpl{margin:16px 0 0;padding:14px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
+.qexpl b{color:var(--ink)}
+.qnav{margin-top:20px;display:flex;justify-content:flex-end}
+.btn{
+  background:var(--rust);border:none;color:#fff8ef;padding:12px 26px;font-size:14px;cursor:pointer;
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;
+}
+.btn:hover{background:var(--rust-deep)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--dim)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.verdict{font-size:clamp(30px,5vw,44px);margin:8px 0 4px;font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1;color:var(--rust)}
+.scoreline{font-size:17px;color:var(--dim);margin-bottom:22px}
+.discbars{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.discbar label{display:flex;justify-content:space-between;font-size:13px;text-transform:uppercase;letter-spacing:.12em;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;margin-bottom:5px}
+.discbar .bar{margin-top:0}
+.discbar.b label{color:var(--bronze)} .discbar.b .bar>i{background:var(--bronze)}
+.discbar.w label{color:var(--rust)}   .discbar.w .bar>i{background:var(--rust)}
+.discbar.s label{color:var(--sage)}   .discbar.s .bar>i{background:var(--sage)}
+.weakness{padding:14px;background:var(--bg2);border-left:3px solid var(--rust);font-size:15px;color:var(--dim);margin-bottom:22px}
+
+/* ---- non-negotiables ---- */
+.vows{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.vow{background:var(--card);border:1px solid var(--line);padding:18px}
+.vow .disp{font-size:15px;color:var(--sage);margin-bottom:6px;letter-spacing:.1em}
+.vow p{margin:0;font-size:14px;color:var(--dim)}
+
+footer{padding:44px 0 60px;color:var(--faint);font-size:13.5px}
+footer .creed{
+  font-size:clamp(20px,3vw,28px);color:var(--ink);max-width:30ch;line-height:1.35;
+  font-style:italic;margin:0 0 18px;
+}
+</style>
+
+<nav>
+  <div class="wrap">
+    <span class="brand disp">THE HUNDRED</span>
+    <a href="#doctrine">Doctrine</a>
+    <a href="#war-map">War Map</a>
+    <a href="#plan">100 Days</a>
+    <a href="#trial">The Trial</a>
+    <a href="#vows">Vows</a>
+    <span class="navsep" aria-hidden="true"></span>
+    <a class="hall" data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">Study I</a>
+    <a class="hall" data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc">Study II</a>
+    <a class="hall" data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e">Study III</a>
+  </div>
+</nav>
+<script>
+if(location.protocol==="file:")document.querySelectorAll("nav a[data-local]").forEach(function(a){a.href=a.dataset.local});
+</script>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">WSOP Main Event · $10K Freezeout · 60,000 chips · 120-minute levels</p>
+    <h1>One hundred days<br>to the <span class="r">arena</span></h1>
+    <p class="sub">The Main Event is not a poker tournament. It is a two-week war of patience,
+    pressure and stillness — a freezeout marathon where the bubble doesn't arrive until Day 4.
+    You will train as three fighters in one body.</p>
+    <div class="trinity">
+      <div class="tri g">
+        <div class="frac disp">⅓ Gladiator</div>
+        <div class="who">The Foxen third</div>
+        <h3 class="disp">Trained violence</h3>
+        <p>Theory-forged, fearless at the highest leverage nodes. A six-bet jam is not recklessness
+        when you have studied the tree. Understand — don't memorize — then strike where others freeze.</p>
+      </div>
+      <div class="tri m">
+        <div class="frac disp">⅓ Mad Max</div>
+        <div class="who">The Deeb third</div>
+        <h3 class="disp">Wasteland survival</h3>
+        <p>The freezeout is the wasteland: no re-entry, no second rig. Scavenge chips from weak fields,
+        tell believable stories with your aggression, and show up every day — win or lose.</p>
+      </div>
+      <div class="tri z">
+        <div class="frac disp">⅓ Zen Monk</div>
+        <div class="who">The Mateos third</div>
+        <h3 class="disp">Still water</h3>
+        <p>Feel the emotion and perform anyway. No fixed strategy — adaptive pressure, patient
+        observation, and river calls made because the range says so, not because you want to be right.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="doctrine">
+  <div class="wrap">
+    <p class="eyebrow">Doctrine</p>
+    <h2>Aggressive, but survivalist</h2>
+    <p class="lede">The synthesis of Mateos, Foxen and Deeb rejects robotic poker. Know your baselines,
+    know when structure and ICM change them, know who you're playing against, and keep execution stable
+    across long days. Wide exploitative accumulation early; real courage in leverage spots; tighter
+    stack-offs in the freezeout; credible polarized turn-and-river lines; superior sleep and focus.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Dimension</th><th>Gladiator (Foxen)</th><th>Mad Max (Deeb)</th><th>Zen Monk (Mateos)</th></tr></thead>
+        <tbody>
+          <tr><td>Baseline</td>
+            <td>GTO for foundation, exploit for profit — "understand, don't memorize."</td>
+            <td>Exploit-driven; every bet must tell a story a competent opponent believes.</td>
+            <td>No fixed strategy — aggressive or tight depending on stage and opponents.</td></tr>
+          <tr><td>Signature weapon</td>
+            <td>Fearless high-leverage preflop escalation (the $25K six-bet jam).</td>
+            <td>Credible over-representation of nutted ranges; relentless hand-count grind.</td>
+            <td>Theory-approved bluff-catches under maximum pressure.</td></tr>
+          <tr><td>Steal this</td>
+            <td>Baseline-first understanding and fearless leverage.</td>
+            <td>Grind discipline and believable aggression.</td>
+            <td>The adaptive pressure throttle.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="war-map">
+  <div class="wrap">
+    <p class="eyebrow">The War Map</p>
+    <h2>Survival vs aggression, day by day</h2>
+    <p class="lede">The Main Event rewards phase changes. A player using the same aggression on Day 1,
+    the Day 4 bubble, and a final-table ladder is torching EV. Ratios read survival / aggression.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Ratio</th><th>Mode</th><th>In practice</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1 flights</td><td class="ratio">60 / 40</td><td>Exploit &amp; observe</td>
+            <td>Tag every player in the first orbit. Iso weak limpers bigger, value-bet recreational ranges hard, avoid ego wars with regs at 250bb deep.</td></tr>
+          <tr><td>Day 2</td><td class="ratio">55 / 45</td><td>Selective accumulation</td>
+            <td>Keep exploiting weak opens, trim thin stack-off lines vs solid players, protect stack utility.</td></tr>
+          <tr><td>Day 3</td><td class="ratio">50 / 50</td><td>Pressure with discipline</td>
+            <td>More late-position steals, fewer autopilot flats OOP, enter every hand with a turn-and-river plan.</td></tr>
+          <tr><td>Day 4 bubble</td><td class="ratio">75/25 · 35/65</td><td>Asymmetric ICM war</td>
+            <td>Covered: cut marginal opens, low-variance lines. Covering: steal relentlessly from risk-averse stacks, 3-bet blocker-heavy hands.</td></tr>
+          <tr><td>Day 5</td><td class="ratio">45 / 55</td><td>Re-accelerate</td>
+            <td>Attack players who lock into pay-jump psychology after cashing; punish medium stacks that under-defend.</td></tr>
+          <tr><td>Day 6</td><td class="ratio">50 / 50</td><td>Precision over volume</td>
+            <td>Steal efficiently, no spewy heroics, simplify short-stack decisions. Thin edges beat raw hand count.</td></tr>
+          <tr><td>Days 7–8</td><td class="ratio">65/35 · 40/60</td><td>ICM &amp; leverage</td>
+            <td>Middling stacks avoid collisions with bigger ones; leaders punish capped ranges and risk premiums.</td></tr>
+          <tr><td>Final table</td><td class="ratio">Role-based</td><td>ICM warfare</td>
+            <td>Chip leader applies pressure; middle stacks avoid symmetric disasters; the short stack waits for profitable jam windows but never blinds out.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <p class="eyebrow">The Campaign</p>
+    <h2>The hundred days</h2>
+    <p class="lede">Five phases of twenty days. Roughly 2.5–4.5 hours a day — scale down 40% or up 50%
+    without breaking the sequence. Every seventh day consolidates; every twentieth is an exam.
+    Check days off as you conquer them — progress is saved on this device.</p>
+
+    <div class="progressbox">
+      <div class="row">
+        <div><span class="bigcount" id="dayCount">0</span><span class="bigcount"><small> / 100 DAYS TAKEN</small></span></div>
+        <button class="resetbtn" id="resetProg" type="button">Reset campaign</button>
+      </div>
+      <div class="bar" role="progressbar" aria-label="Days completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progBarWrap"><i id="progBar" style="width:0%"></i></div>
+    </div>
+
+    <div class="focus-key">
+      <span class="fk-g"><i></i>Gladiator — combat technique</span>
+      <span class="fk-m"><i></i>Mad Max — survival &amp; ICM</span>
+      <span class="fk-z"><i></i>Zen Monk — mind, routine, integration</span>
+    </div>
+
+    <div class="phasetabs" id="phasetabs" role="tablist"></div>
+    <div class="phasehead" id="phasehead"></div>
+    <div class="days" id="days"></div>
+  </div>
+</section>
+
+<section id="trial">
+  <div class="wrap">
+    <p class="eyebrow">The Trial</p>
+    <h2>Trial of the three thirds</h2>
+    <p class="lede">Eighteen questions drawn from the doctrine — six for the blade, six for the wasteland,
+    six for the stillness. Take it cold on Day 1, again on Day 50, and again on Day 90. The trial tells
+    you which third of you is weakest.</p>
+    <div id="quizbox"></div>
+  </div>
+</section>
+
+<section id="vows">
+  <div class="wrap">
+    <p class="eyebrow">The Vows</p>
+    <h2>Daily non-negotiables</h2>
+    <p class="lede">Routine compliance beats a perfect but fragile plan. Every day of the hundred,
+    and every day of the Main Event itself:</p>
+    <div class="vows">
+      <div class="vow"><div class="disp">Sleep</div><p>7–9 hours, every night. The monk guards the temple.</p></div>
+      <div class="vow"><div class="disp">Movement</div><p>20–30 min walking or mobility most days; two strength sessions weekly. The gladiator maintains the body.</p></div>
+      <div class="vow"><div class="disp">Water</div><p>At wake-up, between study blocks, at every break. In the wasteland, hydration is fuel.</p></div>
+      <div class="vow"><div class="disp">Breath</div><p>5–10 minutes of breathing, journaling or visualization. Feel the emotion; perform anyway.</p></div>
+      <div class="vow"><div class="disp">Process</div><p>Mark hands, review hands, write one lesson learned. Every single day.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="creed">"Know your ranges, know your ICM role, know your table, and protect your focus
+    for as many days as the event asks of you."</p>
+    <p>Built from the WSOP Main Event Preparation Report — style synthesis of Adrián Mateos, Alex Foxen and Shaun Deeb;
+    structure proxy from official WSOP 2024/2026 materials. Skill level and bankroll unspecified: the plan is modular by design.</p>
+  </div>
+</footer>
+
+<script>
+/* ============ 100-DAY PLAN DATA ============ */
+const PHASES=[
+ {name:"Phase I · Forge the Baseline",range:"Days 1–20",
+  desc:"Preflop discipline and street-by-street foundations at deep stacks. The gladiator is forged before he fights: RFI, 3-bets, c-bet architecture, turn polarization, river logic.",rev:"Reviewed. The baselines are correct and properly tight for a Main Event field. Upgraded with combo counts, vs-3-bet continuance ranges, and full 3-bet constructions — drill Days 2, 4 and 5 until the numbers are boring."},
+ {name:"Phase II · Range Warcraft",range:"Days 21–40",
+  desc:"Advanced postflop combat. Storytelling, blockers, leverage trees, hand reading — the weapons of Foxen and Deeb, sharpened on real hand histories.",rev:"Reviewed. The storytelling and blocker doctrine is exactly the layer experienced amateurs are missing — this phase is the program's teeth. Upgraded Day 21 with a fully worked, combo-counted check-raise range; use it as the template for writing your own."},
+ {name:"Phase III · The Wasteland",range:"Days 41–60",
+  desc:"ICM and survival. The freezeout has no second rig: bubble asymmetry, short-stack precision, ladder logic, final-table roles. Where Main Events are won and lost.",rev:"Reviewed. The covered/covering asymmetry is the phase's spine, correctly so. Upgraded Day 46 with the written-out 20bb reshove and call-off grid and Day 48 with jam percentages — ranges, not vibes, at every depth."},
+ {name:"Phase IV · Live-Field Raids",range:"Days 61–80",
+  desc:"Take the doctrine into the field. Live sessions, player profiling, endurance, tilt armor, bankroll architecture, and the tournament-day machine.",rev:"Coach's brief: the poker for this phase already lives in the halls — these twenty days are about executing it in a body under stress. My note on each day below (&#9873;)."},
+ {name:"Phase V · The Stillness",range:"Days 81–100",
+  desc:"Integration and taper. Write the playbook, run full-day simulations, patch the last leaks, then sharpen and rest. Arrive at the arena fresher, not fuller.",rev:"Coach's brief: the taper is sacred and the playbook chapters must be range grids, not essays. My note on each day below (&#9873;)."}
+];
+/* f: g=gladiator, m=madmax, z=zen */
+const DAYS=[
+ // ---- PHASE I (1-20) ----
+ {t:"Orientation & leak audit",f:"m",h:"3h",i:["Read the official WSOP structure proxy: 60k stack, 120-min levels, freezeout, four flights, Day 4 bubble","Write personal notes on what a freezeout marathon changes about aggression","Self-audit: build your Top-10 leak list across preflop, postflop, ICM, mental game"],c:"Recite the structure from memory in under 5 minutes; leak list written."},
+ {t:"RFI baselines: LJ/HJ/CO/BTN",f:"g",h:"3h15",i:["75m position-by-position open review with 40bb+ frameworks","45m flashcard drill on HJ/CO/BTN opens","30m note common live deviations from baseline"],c:"85%+ on 50 RFI quiz spots."},
+ {t:"RFI: early position & blind-vs-blind",f:"g",h:"3h",i:["60m UTG/LJ open discipline — tighter than feels natural","60m SB strategy: raise-first-in vs limp-mix","45m BvB dynamics notes"],c:"85%+ on 40 EP/BvB spots."},
+ {t:"3-bet architecture",f:"g",h:"3h15",i:["60m linear vs polarized 3-betting by position","45m blocker 3-bet selection (Ax/Kx suited)","60m build response plans vs 3-bets"],c:"40 spots reviewed; 3-bet cheat sheet drafted."},
+ {t:"Big blind defense",f:"m",h:"3h",i:["60m defend thresholds vs open sizes","45m shallow-defense adjustments","45m live-field exploit: most fields under-defend — note when you shouldn't"],c:"One-page BB defense sheet complete."},
+ {t:"Flop c-bets: dry boards",f:"g",h:"3h",i:["60m small frequent c-bets on dry A-high textures you dominate","45m range advantage vs nut advantage classification","45m sizing family discipline"],c:"80%+ board-classification on 30 flops."},
+ {t:"Consolidation & mini-sim",f:"z",h:"2h45",i:["60m cumulative quiz across the week","60m one-table live or simulated session","45m written review + extended sleep tonight"],c:"Week completion ≥85%; three biggest leaks updated."},
+ {t:"Flop: connected boards & defending c-bets",f:"m",h:"3h15",i:["60m low connected boards where the caller owns the nuts — check more","75m the bucket framework: nuts / near-nuts / pairs / strong draws / weak draws / overcards / trash","30m speed drill"],c:"Bucket 30 hands in under 10 seconds each."},
+ {t:"Turn polarization",f:"g",h:"3h15",i:["60m turn sizing study — pressure and future SPR, not 'can worse call'","45m brick-turn barreling: value + blocker-rich semibluffs only","60m write bet/check/overbet plans for 15 turn nodes"],c:"15-node worksheet done; zero 'I guessed' entries."},
+ {t:"River value thresholds",f:"g",h:"3h",i:["60m thin value rules by opponent type","60m sizing tells a story — match size to repped range","45m value-bet vs check-back drill"],c:"12 river value spots solved with written reasons."},
+ {t:"River bluff-catching — the Mateos call",f:"z",h:"3h",i:["60m study the published Mateos A♦2♦ river call: beat the bluffs, don't block them","60m the three questions: What value beats me? What bluffs do I beat? Which blockers matter?","45m exploit notes vs under-bluffers"],c:"12 bluff-catch spots with the blocker reason written for each."},
+ {t:"Deep-stack play 60bb+",f:"g",h:"3h",i:["60m full opens IP, more flatting vs mistakes, fewer preflop stack-offs","60m position + player-quality edge exercises","45m impatience audit — big deep-stack errors come from boredom"],c:"85%+ on 30 deep-stack spots."},
+ {t:"Iso-raises, squeezes & limpers",f:"g",h:"3h",i:["60m iso weak limpers bigger — the Day 1 bread and butter","60m squeeze sizing and candidate selection","45m multiway preflop discipline"],c:"20 iso/squeeze spots solved."},
+ {t:"Consolidation & sim",f:"z",h:"2h45",i:["75m mixed quiz: preflop through river","60m 90-minute simulated session","30m written review"],c:"Quiz ≥80%; review filed."},
+ {t:"The 40–60bb band",f:"m",h:"3h",i:["60m trim low-quality flats OOP","60m open/call vs open/fold vs 3-bet clarity","45m exploit limpers and opener-folder types"],c:"85%+ on 30 mid-band spots."},
+ {t:"Hand reading I",f:"z",h:"3h",i:["75m range narrowing street by street on 10 recorded hands","45m combo counting drills","45m narrate villain ranges out loud — if you can't say it, you don't know it"],c:"10 hands narrated start to finish."},
+ {t:"Barrels & blockers II",f:"g",h:"3h",i:["60m double-barrel selection when turns brick","60m remove weakest semibluffs from range","45m turn cards that shift nut advantage"],c:"20 barrel decisions with blocker logic written."},
+ {t:"Live archetype notebook",f:"m",h:"3h",i:["60m build archetypes: rec / weak reg / reg / nit / aggro rec / splashy","60m response plans vs each archetype's opens","45m first-orbit tagging system design"],c:"12 exploit notes; tagging system on one page."},
+ {t:"Overbets & river SPR setups",f:"g",h:"3h",i:["60m polarized overbet trees","60m engineering river SPR from the turn","45m when the middle of range isn't betting thin, size up"],c:"15 overbet nodes solved."},
+ {t:"PHASE I EXAM",f:"z",h:"3h30",i:["100-question mixed exam: RFI, 3-bet, defense, flop, turn, river","Rewrite the Top-10 leak list against Day 1's version","Plan Phase II emphasis from the gaps"],c:"≥85% overall; top-3 remaining leaks named."},
+ // ---- PHASE II (21-40) ----
+ {t:"Turn check-raise trees",f:"g",h:"3h",i:["60m check-raise value and bluff construction","60m facing turn check-raises — continue ranges","45m drill 15 nodes"],c:"15 check-raise nodes with written combos."},
+ {t:"Probes & delayed c-bets",f:"g",h:"3h",i:["60m probe betting when checked to twice","60m delayed c-bet candidates","45m OOP turn leads after flop checks through"],c:"20 probe/delay spots solved."},
+ {t:"Multiway postflop discipline",f:"m",h:"3h15",i:["75m multiway c-bet ranges collapse — tighten drastically","60m who owns the nuts multiway","40m thin value dies multiway: recalibrate"],c:"85%+ on 25 multiway spots."},
+ {t:"Paired & monotone textures",f:"m",h:"3h",i:["60m paired boards: range vs range interaction","60m monotone: who has the flushes","45m sizing down on wet static textures"],c:"30 texture classifications at speed."},
+ {t:"The Deeb doctrine: repping ranges",f:"g",h:"3h15",i:["75m study the published Deeb turn-raise: he could hold every straight, villain couldn't","60m the four questions: What am I repping? Why can I have it? Why can't villain? Who actually folds?","40m identify your own credible raise lines"],c:"Write the four questions on a card; apply to 8 hands."},
+ {t:"Exploiting under-bluffers",f:"m",h:"3h",i:["60m live fields under-bluff rivers — fold more vs passive lines","60m population reads: which lines are never bluffs","45m the discipline of the big laydown"],c:"12 'never bluff' population notes written."},
+ {t:"Consolidation & sim",f:"z",h:"2h45",i:["60m cumulative postflop quiz","75m simulated session, mark 10 hands","30m review + long sleep"],c:"Completion ≥85%."},
+ {t:"SPR planning",f:"z",h:"3h",i:["60m start every turn decision with the river SPR it creates","60m commitment thresholds by stack depth","45m avoid drifting into dominated bluff-catches"],c:"15 hands re-planned from SPR first."},
+ {t:"Thin value mastery",f:"g",h:"3h",i:["60m value-bet thresholds vs each archetype","60m recreational calling ranges — bet harder","45m three-street value planning"],c:"20 thin-value spots graded."},
+ {t:"Pot control & check-call lines",f:"z",h:"3h",i:["60m medium-strength hands check more as ranges polarize","60m check-call vs check-fold boundaries","45m showdown value protection"],c:"15 pot-control decisions solved."},
+ {t:"Facing the unusual: donks, min-raises, overbets",f:"m",h:"3h",i:["60m donk leads — what live donks mean by population","60m min-raise responses","45m facing river overbets: blocker-first analysis"],c:"12 unusual-line responses written."},
+ {t:"Blocker science deep dive",f:"g",h:"3h15",i:["75m blocker effects on bluff and call selection","60m unblocking villain's folds when bluffing","40m blocker-heavy 3-bets under pressure"],c:"Blocker one-pager complete."},
+ {t:"The Foxen tree: 4-bets & 5-bets",f:"g",h:"3h30",i:["75m study the published Foxen six-bet jam at the $25K — 18 left","75m 4-bet/5-bet construction by position and stack","30m 'Am I ready if it happens once for my tournament life?'"],c:"20 leverage-tree spots solved."},
+ {t:"Consolidation & sim",f:"z",h:"2h45",i:["60m mixed quiz including leverage trees","75m sim session focused on aggression frequency","30m review"],c:"Quiz ≥80%."},
+ {t:"Hand reading II: live tells & timing",f:"m",h:"3h",i:["60m bet-sizing tells in live pools","60m timing and physical-composure basics","45m integrate reads with range logic — reads adjust, never replace"],c:"10 hands re-read with live-info layer added."},
+ {t:"Board coverage & protection",f:"g",h:"3h",i:["60m keeping strong hands in checking ranges","60m protection betting — when equity denial matters","45m capped-range awareness"],c:"15 coverage spots solved."},
+ {t:"River raise trees",f:"g",h:"3h",i:["60m river raise value thresholds","60m river bluff-raise candidates — story first","45m facing river raises: population under-bluffs massively"],c:"12 river-raise decisions written."},
+ {t:"Long-session focus training",f:"z",h:"3h30",i:["3h continuous sim — no phone except scheduled breaks","Track focus lapses per hour","15m debrief: when did your C-game leak in?"],c:"Focus-lapse log complete; lapses < 5/hour by hour three."},
+ {t:"Published-hand transfer day",f:"z",h:"3h30",i:["60m Mateos river call — write the lesson for your game","60m Foxen six-bet jam — write the lesson","60m Deeb turn raise — write the lesson","30m synthesis: one paragraph on your hybrid style"],c:"Three lessons + synthesis paragraph filed."},
+ {t:"PHASE II EXAM",f:"z",h:"3h30",i:["100-question postflop war exam","Grade by street: flop / turn / river accuracy","Update leak list; set Phase III intentions"],c:"≥85%; weakest street identified."},
+ // ---- PHASE III (41-60) ----
+ {t:"ICM fundamentals & risk premium",f:"m",h:"3h30",i:["60m ICM intro study — why chips won ≠ chips lost","60m risk premium notes by stack matchup","60m equal-stack bubble vs chipEV comparison","30m summary sheet"],c:"Explain ICM to another human in plain language."},
+ {t:"Bubble factor: covered vs covering",f:"m",h:"3h",i:["60m quantify how ranges shrink when covered","60m how ranges widen when covering","45m build the covered/covering instinct drill"],c:"Glossary done: risk premium, bubble factor, covered, covering, leverage."},
+ {t:"Bubble asymmetry I: playing covered",f:"m",h:"3h15",i:["75m covered on the bubble: cut marginal opens, avoid domination traps","60m lower-variance preflop line selection","40m card-dead patience rehearsal"],c:"Write your personal 'covered bubble' rules — 75/25 mode."},
+ {t:"Bubble asymmetry II: playing the warlord",f:"g",h:"3h15",i:["75m covering stack: steal relentlessly from risk-averse stacks","60m 3-bet blocker-heavy hands vs stressed openers","40m don't cross the line into spew — targets matter"],c:"Write your 'covering bubble' rules — 35/65 mode."},
+ {t:"25–40bb simplification",f:"m",h:"3h15",i:["60m fewer speculative flats — clarity between open/fold, open/call, 3-bet","60m 'pretty' suited hands stop realizing — release them","45m river SPR question on every turn"],c:"85%+ on 30 mid-stack spots."},
+ {t:"15–25bb: reshove & call-off",f:"m",h:"3h30",i:["75m reshove chart work","60m call-off thresholds cold","45m covered-vs-covering adjustments in the band"],c:"40 reshove spots; 80%+ correct; triggers page built."},
+ {t:"Consolidation & bubble sim",f:"z",h:"2h45",i:["75m mixed ICM quiz","60m bubble simulation — alternate covered and covering seats","30m written review"],c:"ICM quiz ≥80%."},
+ {t:"10–15bb push-fold",f:"m",h:"2h45",i:["75m push-fold review — the band where chart study pays instant ROI","45m blind-vs-blind short-stack drill","45m future-game awareness notes"],c:"90%+ on 30 jam/fold spots."},
+ {t:"Under 10bb: the last canteen",f:"m",h:"2h45",i:["60m jam-or-fold core with ante math","60m first-in aggression — never bleed to 5bb from fear","45m BvB jam wars"],c:"90%+ on 30 sub-10bb spots."},
+ {t:"DAY 50 — HALFWAY TRIAL",f:"z",h:"3h30",i:["Retake the Trial of the Three Thirds (the quiz below) and log the score","90m full-spectrum exam: deep, mid, short, ICM","Write the halfway letter: what has changed since Day 1?"],c:"Trial score logged; halfway letter written."},
+ {t:"Ladders & pay-jump logic",f:"m",h:"3h",i:["60m simplified ICM at ladder points","60m when to fold huge hands near jumps — and when that's a leak","45m exploit opponents who ladder too hard"],c:"10 ladder spots by role solved."},
+ {t:"Final table roles: the warlord's seat",f:"g",h:"3h",i:["60m chip-leader pressure frameworks","60m punishing capped defends and risk premiums","45m don't donate the crown: leader risk discipline"],c:"One-page 'FT leader guide'."},
+ {t:"Final table roles: middle & short",f:"m",h:"3h",i:["60m middling stacks avoid collisions with covering stacks","60m shortest stack: profitable jam windows, never blind out","45m role-transition awareness as stacks shift"],c:"One-page 'FT middle/short guide'."},
+ {t:"Consolidation & FT sim",f:"z",h:"2h45",i:["60m ICM quiz marathon block one","75m final-table sim rotating roles","30m review"],c:"Quiz ≥80%; role errors logged."},
+ {t:"Post-bubble re-acceleration",f:"g",h:"3h",i:["60m the field relaxes wrongly after cashing — attack it","60m reopen mixed aggression vs medium stacks that under-defend","45m Day 5 mindset: 45/55"],c:"Post-bubble attack plan written."},
+ {t:"Card-dead deep-run rehearsal",f:"z",h:"3h",i:["60m rehearse running deep but card-dead — the monk's test","60m maintaining fold discipline without tightening into oblivion","45m stealing enough to survive without cards"],c:"Card-dead script written and rehearsed."},
+ {t:"ICM quiz marathon",f:"m",h:"3h",i:["3 × 45m timed ICM quiz blocks with breaks","Log every miss with the reason class: math / role / fear"],c:"Final block ≥85%."},
+ {t:"Structure math across the days",f:"m",h:"3h",i:["60m blind/ante progression — five 120-min levels per day","60m stack-depth forecasting: where will the field be by Day 3?","45m late-registration implications"],c:"Level-by-level depth map drafted."},
+ {t:"Satellite & mixed-field ICM lab",f:"m",h:"3h",i:["75m satellite bubbles are pure ICM — the sharpest training ground","60m play or sim a satellite structure","45m notes: what transfers to the Main?"],c:"Satellite session played or simmed; notes filed."},
+ {t:"PHASE III EXAM",f:"z",h:"3h30",i:["100-question wasteland exam: ICM, bubble, short stacks, roles","Grade covered-play vs covering-play accuracy separately","Update leak list"],c:"≥85%; asymmetry gap measured."},
+ // ---- PHASE IV (61-80) ----
+ {t:"Day 1 game plan",f:"m",h:"3h15",i:["45m re-read structure notes","60m first-orbit observation template + tagging drill","60m rec-exploit plan for 250bb play","30m opening-day session script"],c:"Day 1 playbook on one page.",n:"Your Day 1 edge is 90% seat-map. Within two orbits you should know which two seats are funding your day. Range note: vs full-stack recs, widen the value 3-bets and delete the bluff 3-bets entirely."},
+ {t:"Day 2 game plan",f:"g",h:"3h",i:["60m selective accumulation: keep exploiting, trim thin stack-offs vs regs","60m table-draw evaluation: who to target, who to avoid","45m stack-utility protection notes"],c:"Day 2 playbook on one page.",n:"Table-draw evaluation is underrated — a bad Day 2 draw quietly costs a stack. Write a 'tough table' variant: tighter opens, zero thin 4-bet bluffs, more IP flats."},
+ {t:"Day 3 game plan",f:"g",h:"3h",i:["60m pressure with discipline: steal wider, flat less OOP","60m every entry gets a turn-and-river plan","45m stronger-field adjustments"],c:"Day 3 playbook on one page.",n:"The field's Day 3 leak is autopilot 25–40bb play. Re-read the Day 45 tree the night before, and drop your steal size to 2.2x as the antes bite."},
+ {t:"Day 4 bubble script",f:"m",h:"3h15",i:["75m the full bubble script: covered mode and covering mode side by side","60m hand-for-hand psychology and pace","40m min-cash math: what $15K does to the table"],c:"Both bubble scripts rehearsed aloud.",n:"Rehearse the hand-for-hand pacing physically — the stalling, the counting, the waiting. The covered script must name the exact hands you open from each seat at 25bb; vagueness dies here."},
+ {t:"Days 5–8 deep-run plan",f:"g",h:"3h",i:["60m re-acceleration, then precision over volume","60m pay-jump protection without passivity","45m fatigue management for the second week"],c:"State the aggression curve Day 1→FT from memory.",n:"Post-bubble call-offs vs shorts come from the chart, not the mood. Write the call-off grid for 10/15/20bb jams into this plan before the live sessions."},
+ {t:"LIVE SESSION I — deep-stack rules",f:"g",h:"4h",i:["Play a live session (or long online deep MTT) using Day 1/2 rules only","Mark at least 15 hands in real time","Full routine: warm-up, breaks, hydration"],c:"15+ marked hands with one-sentence tags.",n:"Grade decisions, never results. If you mark fewer than 15 hands you were not concentrating — the marking IS the drill."},
+ {t:"Raid debrief & consolidation",f:"z",h:"2h45",i:["90m written review of every marked hand","45m archetype notes from the session","30m weekly review"],c:"All marked hands written up.",n:"For every marked hand, write villain's full range street by street, not just the river. Range narration is the highest-ROI review habit in poker."},
+ {t:"Tilt armor",f:"z",h:"2h45",i:["30m build the reset script: breath pattern, posture, next-hand cue","45m bad-beat recovery rehearsal — simulate the gut punch","60m focus & phone-discipline plan","30m identify your personal tilt triggers"],c:"Reset script done; recovery under 5 minutes in rehearsal.",n:"Simulate the exact worst case: aces cracked for a 200bb pot at Level 3 of the Main. If the reset script does not survive imagination, it will not survive Vegas."},
+ {t:"Sleep & wake alignment",f:"z",h:"2h30",i:["45m shift sleep window toward tournament schedule (wake 3.5–4.5h before start)","45m wind-down routine design","60m light study only"],c:"Sleep plan set; tonight is night one.",n:"Non-negotiable. Every hour of sleep debt taxes exactly the C-game math from Day 38 — the wasteland charts do not fire tired."},
+ {t:"Fuel logistics",f:"z",h:"2h30",i:["45m meal timing for 12-hour days","45m snack-bag plan — no random casino food","45m hydration schedule by level","15m caffeine strategy"],c:"Full fuel plan on one card.",n:"Slow carbs at lunch, protein snacks between; the 9pm sugar crash is where stacks die. Last caffeine 8+ hours before target sleep."},
+ {t:"LIVE SESSION II — full routine rehearsal",f:"m",h:"4h30",i:["Complete tournament-day rehearsal: wake time, meal, warm-up, arrival, session, breaks","Run the reset script live at least once","Bag-and-debrief ritual at the end"],c:"Routine executed start-to-finish without improvising.",n:"The rehearsal matters more than the poker today. Any routine element that felt improvised gets its own rehearsal this week."},
+ {t:"Hesitation log",f:"z",h:"2h45",i:["90m review every spot you hesitated in Session II","45m classify: knowledge gap vs fear vs fatigue","30m assign each hesitation a drill"],c:"Hesitation log built; drills scheduled.",n:"Hesitations are range holes — each one names a node where your ranges are not finished. Feed them straight into the Day 81 playbook chapters."},
+ {t:"Bankroll & series architecture",f:"m",h:"2h30",i:["45m bankroll framework: poker roll ≠ life roll","45m satellite / sold-action / package options","30m series budget with stop-adding threshold","30m must-play / maybe-play / no-play method"],c:"Bankroll template complete; risk plan written.",n:"Never play the Main with money that changes your call-offs. Scared money cannot execute the Day 46 charts — sell action before you shrink ranges."},
+ {t:"Image & meta-game",f:"g",h:"3h",i:["60m how your table image shifts after showdowns","60m weaponizing a tight image; repairing a wild one","45m seat-change and table-change awareness"],c:"Image playbook notes done.",n:"After two shown bluffs your value range gets paid triple. Track your own shown range as carefully as you track theirs."},
+ {t:"LIVE SESSION III — mixed depth",f:"g",h:"4h",i:["Live or long online session through mixed stack depths","Practice the aggression throttle as depth changes","Mark 15 hands, focus on transitions"],c:"15+ marked hands; throttle changes noted.",n:"Transitions are the whole test: log the exact hand where your 60bb game should have become your 35bb game — and whether it did."},
+ {t:"Raid debrief & consolidation",f:"z",h:"2h45",i:["90m written session review","45m compare Session I vs III decision quality","30m weekly review"],c:"Measurable improvement named — or the gap diagnosed.",n:"Compare Session I vs III with numbers: VPIP by depth band, steals per orbit, call-off errors. Feelings lie; counts do not."},
+ {t:"Physical peak week",f:"z",h:"2h30",i:["Strength session + 30m cardio today","45m mobility for long sitting","60m light flashcard study only"],c:"Both vows hit: strength + movement.",n:"Keep it. The final table is hour sixty-plus of a two-week grind — the body is the platform the ranges run on."},
+ {t:"Exploit vs GTO balance card",f:"z",h:"3h15",i:["45m baseline review — where theory protects you","45m live exploit review — where deviation prints","60m player-type adaptation rules","45m write the card: 'When I exploit; when I hold the line'"],c:"One-page exploit/GTO card complete.",n:"Make the card range-specific: 'vs unknown, Day 5 BB defense baseline; after two showdowns confirming station, add two value tiers and delete every bluff-catcher.' That level of precision or it is decoration."},
+ {t:"HALF-DAY MAIN EVENT SIM",f:"m",h:"5h",i:["Full mock: warm-up, structure review, first-orbit tagging, 3+ hour session","Two scheduled break reviews with water and walking","End-of-day bag-and-debrief"],c:"Self-grade: ≥70% A/B-game share.",n:"Grade A/B/C per level, not per session — the decay curve matters more than the average."},
+ {t:"PHASE IV EXAM + debrief",f:"z",h:"3h",i:["75m field-craft exam: game plans, bubble scripts, routines, bankroll","60m sim debrief deep-dive","45m Phase V planning from remaining gaps"],c:"≥85%; final leak list frozen at top 3.",n:"Freeze the top three leaks honestly. Phase V patches three, not ten — triage is the skill."},
+ // ---- PHASE V (81-100) ----
+ {t:"Playbook I: preflop chapters",f:"z",h:"3h",i:["Write your personal playbook — preflop: opens, 3-bets, defends by depth","Covered vs covering variants for each","Keep it to pages you can re-read in 20 minutes"],c:"Preflop chapters drafted.",n:"Write ranges as grids, not prose: six depth bands by nine positions, plus covered/covering variants at 25bb and 15bb. This is the range detail everything else hangs on."},
+ {t:"Playbook II: postflop chapters",f:"z",h:"3h",i:["Postflop chapters: c-bet families, turn polarization, river logic","The three river questions and the four bluff questions verbatim","Blocker rules condensed"],c:"Postflop chapters drafted.",n:"Every c-bet family needs its board list and its range split written out. 'A72r: range-bet 1/3' is a complete sentence; 'bet dry boards' is not."},
+ {t:"Playbook III: the war map",f:"z",h:"3h",i:["ICM chapters: bubble scripts, ladder logic, FT roles","The survival/aggression curve day by day","Tournament-day routine as an appendix"],c:"Playbook complete, ≤ 12 pages.",n:"The bubble scripts get exact ranges — covered at 25bb: open 66+, ATs+, AJo+, KQs from the LJ. That precision, or it is not a script."},
+ {t:"FULL MAIN EVENT DAY SIM",f:"m",h:"5h",i:["Five simulated levels with real break timing","Full fuel plan, no phone outside breaks","Reset script on demand"],c:"≥70% A/B-game; routine held all day.",n:"Five levels, real break timing, no phone. Today you find out whether the routine is real or aspirational."},
+ {t:"Leak patch I",f:"z",h:"3h",i:["Top remaining leak gets 90 minutes of focused drilling","45m re-test the exact failure spots","45m write the correction rule into the playbook"],c:"Leak #1 has a concrete correction rule.",n:"Drill the exact failure spots, not the topic. If the leak is 'calls river raises', the drill is fifty river-raise decisions — not a river theory review."},
+ {t:"Leak patch II",f:"g",h:"3h",i:["Leak #2 gets 90 minutes of drilling","45m re-test","45m playbook update — have a partner or coach challenge your fix if available"],c:"Leak #2 has a concrete correction rule.",n:"A fix you cannot state as a one-line rule is not a fix yet."},
+ {t:"Consolidation",f:"z",h:"2h45",i:["60m mixed quiz across the whole program","60m light sim","45m weekly review"],c:"Quiz ≥85%.",n:"Below 85% on the mixed quiz this late means the weak phase takes ALL remaining drill hours. Reallocate ruthlessly."},
+ {t:"Speed drills: snap classification",f:"g",h:"2h45",i:["45m board classification at speed","45m bucket sorting at speed","45m jam/fold at speed","30m review misses only"],c:"90% accuracy with sub-10-second decisions.",n:"Ten seconds is generous — the Main gives you thirty, but tank time is information you leak. Speed exposes which ranges you memorized versus understood."},
+ {t:"Pressure under fatigue",f:"m",h:"2h45",i:["Run tonight's session late, deliberately tired","45m ICM quiz in the final hour","Log where fatigue bent your decisions"],c:"Fatigue-error map written.",n:"Do it once, properly, then never again. The point is the map, not the suffering."},
+ {t:"DAY 90 — FINAL TRIAL",f:"z",h:"3h",i:["Retake the Trial of the Three Thirds; compare Day 1 and Day 50 scores","60m final full-spectrum exam","Write the Day-90 readiness verdict honestly"],c:"All three trial scores logged; weakest third gets the last drills.",n:"The weakest third gets the final ten days. Be brutal — the trial's entire value is diagnostic."},
+ {t:"LIVE SESSION IV — A-game grading",f:"g",h:"4h",i:["Final live or online session","Grade A/B/C-game share by hour","Run every routine element as if it's Day 1 of the Main"],c:"≥75% A/B-game share.",n:"A-game share is the only stat today. Play stakes small enough that money noise is zero."},
+ {t:"Review & playbook revision",f:"z",h:"2h45",i:["90m session review","45m final playbook edits from real evidence","30m print or bind the playbook"],c:"Playbook final. No more edits after today.",n:"Edits from evidence only — no new theory this late. Then freeze it."},
+ {t:"Tournament-day dress rehearsal",f:"z",h:"2h45",i:["Full routine at the real start time: wake, meal, warm-up, arrival simulation","30m mental warm-up repetition","45m venue break strategy walkthrough"],c:"Routine runs start-to-finish without improvising.",n:"Run it at the REAL start time, commute included. Surprises found today are free; found on Day 1 they cost blinds."},
+ {t:"Logistics lockdown",f:"m",h:"2h30",i:["Travel, lodging, registration windows, flight choice (which Day 1?)","Seat-draw and table-change procedures","Expenses sheet and buy-in source confirmed"],c:"Every logistic on the checklist has an answer.",n:"Pick your flight once, on sleep-schedule grounds, then never revisit — decision residue is fatigue you cannot afford."},
+ {t:"Light drills & visualization",f:"z",h:"2h",i:["30m flashcards — greatest hits only","45m visualization: first orbit, bubble hand, big river call","45m easy walk"],c:"Calm. That's the checkpoint.",n:"Visualize the bad outcomes too. Losing a flip for the tournament calmly is a skill you can pre-load."},
+ {t:"Final sim: bubble & FT scenarios",f:"m",h:"3h",i:["90m bubble-only scenario reps, both roles","60m FT role scenarios","30m close the training log"],c:"Bubble scripts fire automatically — no deliberation.",n:"The scripts must fire without deliberation now. Still computing bubble factors from scratch? Re-run Day 42, not this sim."},
+ {t:"Taper I",f:"z",h:"1h30",i:["30m flashcards","30m bubble notes re-read","30m routine review — then stop. No marathon study."],c:"Finish feeling fresher, not more loaded.",n:"Trust the taper. The urge to cram is anxiety wearing a study plan."},
+ {t:"Taper II: the read-aloud",f:"z",h:"1h30",i:["Read the entire playbook aloud, once","30m first-day mental script rehearsal","Early night"],c:"Playbook internalized; lights out early.",n:"Reading aloud finds the passages you do not actually believe. Cut or fix them tonight."},
+ {t:"Rest day",f:"z",h:"45m",i:["Walk. Breathe. Pack the snack bag.","No poker content today","Sleep is the only assignment"],c:"7–9 hours, nothing else matters.",n:"The discipline of doing nothing is still discipline."},
+ {t:"ARENA EVE",f:"z",h:"30m",i:["30 minutes maximum: structure summary + Day 1 script, once","Confirm wake time: 3.5–4.5 hours before cards fly","You are the gladiator, the road warrior, and the monk. Sleep."],c:"The hundred days are complete. Walk in calm, hunt patiently, strike without fear.",n:"The work is done and the ranges live in your hands now. Walk in and let them play."}
+];
+
+/* ============ RENDER PLAN ============ */
+const doneKey="wsop100.done";
+let done=new Set(JSON.parse(localStorage.getItem(doneKey)||"[]"));
+let curPhase=0;
+const tabsEl=document.getElementById("phasetabs");
+const daysEl=document.getElementById("days");
+const headEl=document.getElementById("phasehead");
+
+function saveDone(){localStorage.setItem(doneKey,JSON.stringify([...done]))}
+function phaseOf(d){return Math.floor((d-1)/20)}
+function updateProgress(){
+  const n=done.size;
+  document.getElementById("dayCount").textContent=n;
+  document.getElementById("progBar").style.width=n+"%";
+  document.getElementById("progBarWrap").setAttribute("aria-valuenow",n);
+  tabsEl.querySelectorAll(".ptab").forEach((b,i)=>{
+    const c=[...done].filter(d=>phaseOf(d)===i).length;
+    b.querySelector(".pc").textContent=c+" / 20";
+  });
+}
+function renderTabs(){
+  tabsEl.innerHTML="";
+  PHASES.forEach((p,i)=>{
+    const b=document.createElement("button");
+    b.type="button";b.className="ptab"+(i===curPhase?" on":"");
+    b.setAttribute("role","tab");
+    b.innerHTML=`${p.name.split("·")[0].trim()}<span class="pc"></span>`;
+    b.title=p.name;
+    b.onclick=()=>{curPhase=i;renderTabs();renderPhase();};
+    tabsEl.appendChild(b);
+  });
+  updateProgress();
+}
+/* Study halls: [artifact URL, local filename]. Local file links are used when this page is opened from disk. */
+const STUDY=[
+  ["https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c","wsop-phase1-study.html"],
+  ["https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc","wsop-phase2-study.html"],
+  ["https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e","wsop-phase3-study.html"],
+  null,null
+];
+function studyBtn(pi){
+  const s=STUDY[pi];
+  if(!s)return `<span class="studylink soon">Study hall — coming soon</span>`;
+  const href=location.protocol==="file:"?s[1]:s[0];
+  return `<a class="studylink" href="${href}">Open the Phase ${["I","II","III","IV","V"][pi]} study hall — lessons &amp; quizzes →</a>`;
+}
+function renderPhase(){
+  const p=PHASES[curPhase];
+  headEl.innerHTML=`<h3>${p.name} <span style="color:var(--faint);font-size:16px;letter-spacing:.1em">— ${p.range}</span></h3><p>${p.desc}</p>${p.rev?`<p class="rev"><b>&#9873; Holz review</b> — ${p.rev}</p>`:""}${studyBtn(curPhase)}`;
+  daysEl.innerHTML="";
+  for(let i=curPhase*20;i<curPhase*20+20;i++){
+    const d=DAYS[i],num=i+1;
+    const det=document.createElement("details");
+    det.className=`day f-${d.f}`+(done.has(num)?" done":"");
+    det.innerHTML=`
+      <summary>
+        <input type="checkbox" class="dchk" ${done.has(num)?"checked":""} aria-label="Mark day ${num} complete">
+        <span class="dnum">D${String(num).padStart(3,"0")}</span>
+        <span class="dtitle">${d.t}</span>
+        <span class="dtime">${d.h}</span>
+      </summary>
+      <div class="dbody">
+        <ul>${d.i.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <div class="chkpt"><b>Checkpoint</b> — ${d.c}</div>${d.n?`<div class="coach"><b>&#9873; Holz</b> — ${d.n}</div>`:""}
+      </div>`;
+    const chk=det.querySelector(".dchk");
+    chk.addEventListener("click",e=>e.stopPropagation());
+    chk.addEventListener("change",()=>{
+      chk.checked?done.add(num):done.delete(num);
+      det.classList.toggle("done",chk.checked);
+      saveDone();updateProgress();
+    });
+    daysEl.appendChild(det);
+  }
+}
+document.getElementById("resetProg").onclick=()=>{
+  if(confirm("Reset all 100 days of progress?")){done.clear();saveDone();renderTabs();renderPhase();}
+};
+renderTabs();renderPhase();
+
+/* ============ QUIZ ============ */
+const QUIZ=[
+ // BLADE (gladiator)
+ {d:"blade",q:"Day 1, 250 big blinds deep. A weak recreational player limps in middle position and you hold A♠9♠ on the button. Your default?",
+  o:["Limp behind and keep the pot small","Iso-raise, and size it bigger than your standard raise","Fold — A9s is dominated territory","Min-raise to keep his whole range in"],a:1,
+  e:"Isoing weak limpers <b>bigger</b> is the Day 1 bread and butter: you buy position, initiative, and a dominated calling range from the player type that pays off the whole field."},
+ {d:"blade",q:"You c-bet the flop and the turn is a total brick. Which hands keep barreling?",
+  o:["Every draw — keep the pressure on","Only your value hands; give up all bluffs","Value hands plus the best blocker-rich semibluffs","Whatever your gut says — the brick changes nothing"],a:2,
+  e:"When the turn bricks, continue with <b>value plus the best semibluffs and blocker-rich gutshots</b> — not every draw in sight. Turn barreling is selective violence."},
+ {d:"blade",q:"Compared to flop betting, your turn betting range should generally become…",
+  o:["Wider and smaller — keep everyone in","More polarized and more river-aware","More merged — bet all your medium hands","Identical; consistency is key"],a:1,
+  e:"By the turn, strategy <b>polarizes</b>: strong value and robust bluffs continue while medium-strength hands check more. Turn sizing is about pressure and the river SPR you're creating."},
+ {d:"blade",q:"The lesson from Foxen's six-bet jam with 18 left in a WSOP $25K is…",
+  o:["Six-bet jam more often — aggression always wins","Never play big preflop pots without the nuts","Study rare high-leverage trees, because when one arises it's for your tournament life","Only elite pros should 4-bet bluff"],a:2,
+  e:"The right prep question isn't 'how often will this happen?' but <b>'am I ready if it happens once for my tournament life?'</b> Deep leverage nodes are the highest-EV spots most players never study."},
+ {d:"blade",q:"Before you raise the turn as a bluff, Deeb's doctrine demands you answer: what am I repping, why can I have it, why can't villain — and…?",
+  o:["How much of my stack does it risk?","Which opponent type actually folds?","What are the pot odds?","Will the table respect me after?"],a:1,
+  e:"Bluffs must tell a <b>believable story to an opponent capable of folding</b>. If the answer to 'who folds?' is an unknown calling station — save the chips."},
+ {d:"blade",q:"You face a big river bet. The best bluff-catchers are hands that…",
+  o:["Block villain's value and block his bluffs","Beat his bluff region and don't heavily block his natural bluffs","Have the best absolute strength, full stop","Beat at least half his value range"],a:1,
+  e:"The Mateos model: his A♦2♦ call was right because it <b>beat the bluffs and didn't block them</b> — profitable against the range even though it lost the actual hand. Call because the range says so."},
+ // WASTELAND (mad max)
+ {d:"waste",q:"The Main Event is a freezeout — no re-entry. Versus a re-entry event, your stack-off thresholds should be…",
+  o:["Identical — chips are chips","Looser: you must accumulate while you can","Tighter: tournament life carries extra value all event long","Tighter only at the final table"],a:2,
+  e:"No second rig in the wasteland. In a freezeout, <b>preserve tournament life more carefully</b> — ICM pressure compounds from Day 1, and the survival premium never switches off."},
+ {d:"waste",q:"Day 4 money bubble. Every stack at your table covers you. Your mode?",
+  o:["75/25 survival: cut marginal opens, avoid domination traps, take low-variance lines","50/50: play your normal game, ignore the bubble","35/65: attack — they least expect it","Fold everything except aces until the bubble bursts"],a:0,
+  e:"Covered on the bubble = <b>75/25 survival mode</b>. Cut the marginal opens and dominated spots — but note the wrong answer isn't 'fold everything': blinding off has a cost too."},
+ {d:"waste",q:"Same bubble, but now you're the big stack covering a table of risk-averse mid-stacks. Your mode?",
+  o:["Stay tight — protect the lead you built","Steal relentlessly and 3-bet blocker-heavy hands more often","Only play premiums; variance is the enemy","Limp more to see cheap flops"],a:1,
+  e:"Covering on the bubble = <b>35/65 warlord mode</b>. Their risk premium is your license to raid: relentless steals and blocker-heavy 3-bets against players who cannot fight back."},
+ {d:"waste",q:"At 15–25 big blinds, which hands gain value?",
+  o:["Small suited connectors — cheap flops, big paydays","High-card and Broadway hands; suited connectors lose value","Small pairs — set mining is stack-depth-proof","All hands equally; depth doesn't change values"],a:1,
+  e:"Short, the game turns <b>preflop-centric</b>: high-card and Broadway hands dominate jam/reshove ranges while speculative suited hands stop realizing their equity. Live players overplay 'pretty' hands here."},
+ {d:"waste",q:"Under 10 big blinds, the core discipline is…",
+  o:["Limp-trap your big hands to double up","Jam-or-fold, preserving first-in fold equity — never bleed down from fear","Call more to see flops cheaply with the ante boost","Wait for a premium regardless of blind pressure"],a:1,
+  e:"<b>Jam-or-fold core.</b> The fatal live leak is passivity — bleeding to 5bb without first-in aggression. Fold equity is the last canteen of water; don't let it evaporate."},
+ {d:"waste",q:"The bubble bursts and $15K min-cashes are locked. The field typically…",
+  o:["Tightens up — the money makes everyone careful","Plays perfectly — relief clears the mind","Relaxes incorrectly; you should re-accelerate and attack pay-jump psychology","Becomes unreadable chaos; sit tight"],a:2,
+  e:"Post-bubble is a raid window: <b>45/55, re-accelerate</b>. Players lock into pay-jump psychology after cashing — attack the medium stacks that stop defending."},
+ // STILLNESS (zen)
+ {d:"still",q:"Your nightly sleep target for all 100 days and the event itself:",
+  o:["5–6 hours — grinders adapt","6–7 hours with weekend catch-up","7–9 hours, consistently","Whatever feels right; sleep is individual"],a:2,
+  e:"<b>7 to 9 hours</b>, per the health baselines the plan is built on. In a multi-day marathon, sleep is a strategic weapon, not recovery admin."},
+ {d:"still",q:"The weekly physical baseline in the program:",
+  o:["150 minutes moderate activity plus two strength sessions","A daily 10K run — cardio is king","Gym only on rest days from study","None required; poker is mental"],a:0,
+  e:"<b>150 minutes of moderate activity plus two muscle-strengthening sessions</b> — the adult baseline, matching how pros like Kornuth prepare. The gladiator maintains the body that carries the mind."},
+ {d:"still",q:"Brutal bad beat, Level 9, cameras nearby. Your first move?",
+  o:["Fire back next hand — reassert dominance immediately","Run your reset script: breathing pattern, posture, next-hand focus","Leave the table for 20 minutes to cool off","Tighten up for the next hour to be safe"],a:1,
+  e:"The monk's answer: <b>feel the emotion and still perform</b>. A rehearsed reset script — breath, posture, next-hand cue — recovers you in minutes. Both 'fight back' and 'hide' are tilt in disguise."},
+ {d:"still",q:"After every session, the thing you grade is…",
+  o:["Profit and loss — the only truth","Decision quality: your A/B/C-game share, plus marked hands","How many pots you won","Your table image at close"],a:1,
+  e:"Track <b>decision quality, not outcomes</b>. Self-grade A/B/C-game, mark hands, review the pattern. Results lie for weeks; process tells the truth daily."},
+ {d:"still",q:"You sit down for Day 1, Level 1. Priority one, first orbit:",
+  o:["Raise your first playable hand to set an aggressive image","Tag every player at the table by archetype","Play ultra-tight and just watch for an hour","Chat everyone up to gather intel"],a:1,
+  e:"<b>Tag every player in the first orbit</b> — rec, reg, nit, aggro rec, unknown. Observation is the monk's opening move; the exploitation that follows is built on it."},
+ {d:"still",q:"On tournament day, you wake…",
+  o:["90 minutes before cards fly — maximize sleep","3.5 to 4.5 hours before start: hydrate, move, mental warm-up, arrive early","Whenever, as long as you make Level 1","5+ hours early for a long study session"],a:1,
+  e:"<b>3.5–4.5 hours before start.</b> Hydration, light movement, a ten-minute mental warm-up, structure review, early arrival. The routine is the armor you put on before the arena."}
+];
+const DISC={blade:{label:"The Blade — Gladiator",cls:"b"},waste:{label:"The Wasteland — Mad Max",cls:"w"},still:{label:"The Stillness — Zen Monk",cls:"s"}};
+const DISCNAME={blade:"blade",waste:"wasteland",still:"stillness"};
+const qbox=document.getElementById("quizbox");
+let qi=0,score={blade:0,waste:0,still:0},answered=false;
+
+function quizStart(){
+  qi=0;score={blade:0,waste:0,still:0};
+  qbox.innerHTML=`
+    <p class="eyebrow">Enter the arena</p>
+    <p class="qtext">Eighteen questions. No timer, no mercy, immediate judgment after every answer.
+    Your verdict names the weakest of your three thirds.</p>
+    <div class="qnav" style="justify-content:flex-start"><button class="btn" id="qgo" type="button">Begin the trial</button></div>`;
+  document.getElementById("qgo").onclick=showQ;
+}
+function showQ(){
+  answered=false;
+  const q=QUIZ[qi],d=DISC[q.d];
+  qbox.innerHTML=`
+    <div class="qmeta">
+      <span class="mono">QUESTION ${qi+1} / ${QUIZ.length}</span>
+      <span class="qdisc ${q.d}">${d.label}</span>
+    </div>
+    <p class="qtext">${q.q}</p>
+    <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    <div id="qfb"></div>
+    <div class="qnav" id="qnav"></div>`;
+  qbox.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(answered)return;answered=true;
+  const q=QUIZ[qi],right=i===q.a;
+  if(right)score[q.d]++;
+  qbox.querySelectorAll(".qopt").forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.a)b.classList.add("correct");
+    else if(bi===i)b.classList.add("wrong");
+  });
+  document.getElementById("qfb").innerHTML=
+    `<div class="qexpl"><b>${right?"Struck true.":"A wound — learn from it."}</b> ${q.e}</div>`;
+  document.getElementById("qnav").innerHTML=
+    `<button class="btn" type="button" id="qnext">${qi<QUIZ.length-1?"Next":"See the verdict"}</button>`;
+  document.getElementById("qnext").onclick=()=>{qi++;qi<QUIZ.length?showQ():verdict();};
+  document.getElementById("qnext").focus();
+}
+function verdict(){
+  const total=score.blade+score.waste+score.still;
+  let title,line;
+  if(total>=16){title="Warrior · Warlord · Monk";line="All three thirds answer as one. You are ready for the long war — protect the routine and walk in.";}
+  else if(total>=12){title="Road-worthy";line="The rig runs and the blade holds an edge. Drill your weakest third daily until Day 90's retest.";}
+  else if(total>=8){title="Initiate of the arena";line="The doctrine hasn't hardened into instinct yet. Re-read the war map, then let the hundred days do their work.";}
+  else{title="Back to the dojo";line="The wasteland eats the unprepared. Start at Day 1, take the vows seriously, and retake this trial in a week.";}
+  const weakest=Object.entries(score).sort((a,b)=>a[1]-b[1])[0][0];
+  qbox.innerHTML=`
+    <p class="eyebrow">The verdict</p>
+    <div class="verdict">${title}</div>
+    <p class="scoreline"><span class="mono">${total} / ${QUIZ.length}</span> — ${line}</p>
+    <div class="discbars">
+      ${["blade","waste","still"].map(k=>`
+        <div class="discbar ${DISC[k].cls}">
+          <label><span>${DISC[k].label}</span><span class="mono">${score[k]} / 6</span></label>
+          <div class="bar"><i style="width:${score[k]/6*100}%"></i></div>
+        </div>`).join("")}
+    </div>
+    <div class="weakness">Your weakest third is <b>the ${DISCNAME[weakest]}</b>.
+    ${weakest==="blade"?"Live in Phases I–II: barrels, blockers, leverage trees. The violence must be trained, not improvised."
+      :weakest==="waste"?"Live in Phase III: ICM, bubble asymmetry, short-stack precision. Survival is a skill, not a mood."
+      :"Live in the vows and Phase V: sleep, reset scripts, routine. Technique without stillness collapses on Day 6."}</div>
+    <div class="qnav" style="justify-content:flex-start;gap:10px">
+      <button class="btn" type="button" id="qretry">Retake the trial</button>
+      <button class="btn ghost" type="button" id="qplan">Go to the hundred days</button>
+    </div>`;
+  document.getElementById("qretry").onclick=quizStart;
+  document.getElementById("qplan").onclick=()=>document.getElementById("plan").scrollIntoView({behavior:"smooth"});
+}
+quizStart();
+</script>

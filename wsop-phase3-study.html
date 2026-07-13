@@ -1,0 +1,807 @@
+<meta charset="utf-8">
+<title>PHASE III STUDY HALL — The Wasteland (Days 41–60)</title>
+<style>
+:root{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+    --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+    --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+    --shadow:0 2px 10px rgba(90,70,40,.18);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+  --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+  --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+  --shadow:0 2px 10px rgba(90,70,40,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1000px 320px at 50% -60px, color-mix(in srgb, var(--rust) 13%, transparent), transparent), var(--bg)}
+.kicker{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:12px;font-weight:600;color:var(--bronze);margin:0 0 10px}
+h1{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(38px,7vw,68px);line-height:.95;margin:0 0 12px;text-wrap:balance}
+h1 .r{color:var(--rust)}
+.sub{max-width:64ch;color:var(--dim);font-size:16.5px;margin:0}
+.dash{display:flex;gap:26px;align-items:baseline;margin-top:20px;flex-wrap:wrap}
+.dash .stat{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--faint)}
+.dash .stat b{display:block;font-size:30px;color:var(--rust);letter-spacing:0}
+.dash .stat.z b{color:var(--sage)}
+
+/* day grid */
+.daynav{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media(max-width:720px){.daynav{grid-template-columns:repeat(5,1fr)}}
+.dbtn{position:relative;background:var(--card);border:1px solid var(--line);color:var(--dim);cursor:pointer;
+  padding:9px 2px 7px;text-align:center;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em}
+.dbtn small{display:block;font-size:9px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.dbtn:hover{color:var(--ink);border-color:var(--faint)}
+.dbtn.on{background:var(--rust);border-color:var(--rust);color:#fff8ef}
+.dbtn.on small{color:#f4d9c8}
+.dbtn.pass{border-bottom:3px solid var(--sage-deep)}
+.dbtn.star{border-bottom:3px solid var(--bronze)}
+.dbtn .badge{position:absolute;top:3px;right:5px;font-size:10px}
+.dbtn:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+
+/* lesson */
+main{padding:34px 0 70px}
+.dayhead{margin-bottom:6px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dayhead .dnum{font-family:"SF Mono",ui-monospace,Menlo,monospace;color:var(--faint);font-size:14px}
+h2{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(28px,4.5vw,40px);line-height:1;margin:0}
+.focus-chip{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:11px;padding:4px 10px}
+.focus-chip.g{background:color-mix(in srgb,var(--bronze) 18%,transparent);color:var(--bronze)}
+.focus-chip.m{background:color-mix(in srgb,var(--rust) 18%,transparent);color:var(--rust)}
+.focus-chip.z{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+.obj{color:var(--dim);max-width:68ch;margin:10px 0 26px;font-size:16.5px}
+.lesson{max-width:760px}
+.lesson h3{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:16px;color:var(--bronze);margin:30px 0 8px}
+.lesson p{margin:0 0 12px;color:var(--ink)}
+.lesson p b{color:var(--ink)}
+.lesson ul{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson ol{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson li{margin-bottom:6px}
+.lesson .note{border-left:3px solid var(--sage-deep);background:var(--card);padding:12px 14px;font-size:15px;color:var(--dim);margin:14px 0}
+.lesson .note b{color:var(--sage)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 16px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;text-align:left;color:var(--bronze);background:var(--bg2);padding:9px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+td:first-child{color:var(--ink);white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+
+/* quiz */
+.quiz{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;max-width:760px;margin-top:36px}
+.quiz .qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.quiz h3{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:22px;margin:0;letter-spacing:.05em}
+.bestline{font-size:12px;color:var(--faint);font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin:14px 0 12px;font-size:12px;color:var(--faint)}
+.qtext{font-size:18px;line-height:1.45;margin:0 0 16px;text-wrap:balance}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 13px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1.4}
+.qopt:hover:not(:disabled){border-color:var(--rust)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
+.qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qexpl{margin:14px 0 0;padding:13px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
+.qexpl b{color:var(--ink)}
+.qnav{margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
+.btn{background:var(--rust);border:none;color:#fff8ef;padding:11px 24px;font-size:13px;cursor:pointer;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.btn:hover{background:var(--rust-deep)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--dim)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.result-title{font-size:clamp(26px,4vw,36px);font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1;margin:6px 0 6px;color:var(--rust)}
+.result-title.pass{color:var(--sage)}
+.scoreline{font-size:16px;color:var(--dim);margin-bottom:16px}
+.bar{height:9px;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden;margin:6px 0 18px}
+.bar>i{position:absolute;inset:0;right:auto;background:linear-gradient(90deg,var(--rust-deep),var(--rust))}
+.bar.pass>i{background:linear-gradient(90deg,var(--sage-deep),var(--sage))}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);font-size:13.5px}
+
+/* site nav */
+.sitenav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.sitenav .wrap{display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto}
+.sitenav .brand{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--rust);margin-right:auto;white-space:nowrap}
+.sitenav a,.sitenav .soon{color:var(--dim);text-decoration:none;font-size:12.5px;padding:6px 12px;white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.sitenav a:hover{color:var(--ink);background:var(--bg2)}
+.sitenav a.here{background:var(--rust);color:#fff8ef}
+.sitenav .soon{color:var(--faint)}
+</style>
+
+<nav class="sitenav" aria-label="The Hundred">
+  <div class="wrap">
+    <span class="brand">THE HUNDRED</span>
+    <a data-local="wsop-100-day-plan.html" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8">&#8962; War plan</a>
+    <a data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">I &middot; Forge</a>
+    <a data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc">II &middot; Warcraft</a>
+    <a data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e" class="here">III &middot; Wasteland</a>
+    <span class="soon">IV &middot; Raids</span>
+    <span class="soon">V &middot; Taper</span>
+  </div>
+</nav>
+<script>
+if(location.protocol==="file:")document.querySelectorAll(".sitenav a[data-local]").forEach(function(a){a.href=a.dataset.local});
+</script>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">The Hundred · Phase III · Days 41–60</p>
+    <h1>The <span class="r">wasteland</span></h1>
+    <p class="sub">Twenty days of ICM and survival: risk premium, bubble asymmetry, short-stack precision,
+    ladder logic, and final-table roles — where Main Events are won and lost. Read the lesson, then take
+    the drill. Pass at 80%+, mastery at 90%+. Days 47 and 54 are gauntlets, Day 50 is the Halfway Trial,
+    Day 57 is the quiz marathon, Day 60 is the exam. Best scores save on this device.</p>
+    <div class="dash">
+      <div class="stat"><b id="stPassed">0</b>days passed</div>
+      <div class="stat z"><b id="stMastered">0</b>mastered</div>
+      <div class="stat"><b id="stAvg">—</b>avg best score</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><nav class="daynav" id="daynav" aria-label="Days 41 to 60"></nav></div>
+
+<main><div class="wrap" id="content"></div></main>
+
+<footer><div class="wrap">
+  Phase III of THE HUNDRED — companion to the <a id="planlink" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8" style="color:var(--rust)">100-day war plan</a>,
+  sequel to <a id="p1link" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c" style="color:var(--rust)">Phase I</a> and
+  <a id="p2link" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc" style="color:var(--rust)">Phase II</a>. ICM numbers here are simplified
+  live defaults for a Main Event field, not solver gospel: learn the pattern, then adapt to the table.
+</div></footer>
+<script>
+if(location.protocol==="file:"){
+  document.getElementById("planlink").href="wsop-100-day-plan.html";
+  document.getElementById("p1link").href="wsop-phase1-study.html";
+  document.getElementById("p2link").href="wsop-phase2-study.html";
+}
+</script>
+
+<script>
+/* ---------- helpers ---------- */
+const T2=(rows,head)=>`<div class="tblwrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const NOTE=s=>`<div class="note"><b>Live leak to exploit —</b> ${s}</div>`;
+
+/* ---------- LESSON + QUIZ DATA ---------- */
+const L=[];
+
+/* ============ DAY 41 ============ */
+L.push({d:41,t:"ICM fundamentals & risk premium",f:"m",obj:"Why a chip won is worth less than a chip lost, what that does to every all-in, and the risk premium you must now charge on top of raw equity.",
+body:`
+<h3>Two currencies</h3>
+<p>Chips are not money. Your stack converts to <b>tournament equity</b> — your fair share of the prize pool — and the conversion is not linear: <b>doubling your chips never doubles your equity.</b> The Independent Chip Model (ICM) estimates that conversion, and its one-sentence consequence rules the rest of this phase: <b>a chip you win is worth less than a chip you lose.</b></p>
+<h3>The equal-stack proof</h3>
+<p>Four players, equal stacks, three paid (50/30/20). Everyone's equity: 25% of the pool. Two of them flip for stacks. The winner now holds <b>half the chips — but only ~38% of the pool</b> (he still can't win more than first place). The loser has 0%. The flip destroyed equity and shipped it to the two players who <b>folded</b>: they moved closer to the money without risking a chip. In chipEV the flip was neutral; in ICM it was a disaster shared by both.</p>
+<h3>Risk premium</h3>
+<p>The gap between the equity a call needs in chips and the equity it needs in money. If a chipEV call needs 50% and ICM says you need 58%, your <b>risk premium is 8 points</b>. It rises when:</p>
+<ul>
+<li><b>The bubble or a pay jump is near</b> — survival pays more.</li>
+<li><b>Your opponent covers you</b> — losing costs your tournament; winning just builds a stack.</li>
+<li><b>The field is soft</b> — future edge makes your tournament life worth more than the math alone says.</li></ul>
+<h3>The asymmetry that follows</h3>
+<p>Risk premium punishes the <b>caller</b>, not the shover: the shover wins the pot when everyone folds, the caller only realizes equity by risking elimination. That's why the wasteland's aggression rules are asymmetric — jamming ranges stay wide while calling ranges shrink. Aggression is cheap; curiosity is expensive.</p>
+${NOTE("most of the Main Event field has never once computed a risk premium — they call bubbles with the same range as Day 1. Every point of premium they ignore is equity they hand to the players who charge it.")}`,
+quiz:[
+{q:"The one-sentence consequence of ICM:",o:["Chips are money — play chipEV always","A chip you win is worth less than a chip you lose","Big stacks should never fold","Folding is always safest"],a:1,e:"Equity per chip <b>declines as your stack grows</b> — you can't cash twice. Every wasteland rule flows from this asymmetry."},
+{q:"Four equal stacks, three paid. Two players flip; one doubles. The doubler's equity:",o:["Doubles to 50% of the pool","Rises to only ~38%","Stays at 25%","Falls"],a:1,e:"He still can't collect more than first place. <b>The flip destroyed equity</b> and gifted it to the two folders, who ladder without risking a chip."},
+{q:"In that flip, who profited?",o:["The winner","The two players who folded","The house","Nobody"],a:1,e:"Both flippers lost ICM equity the moment the chips went in. <b>Watching rivals collide is the wasteland's purest income.</b>"},
+{q:"Risk premium is:",o:["The extra equity a freezeout entry carries over a re-entry","The gap between the equity a call needs in chips and the equity it needs in money","The insurance value of keeping a stack that covers the table","The rake"],a:1,e:"ChipEV says 50%, ICM says 58% → <b>8-point premium</b>. It's a real surcharge on every call — pay it knowingly or not at all."},
+{q:"Which situation carries the HIGHEST risk premium?",o:["Day 1, deep stacks, no antes","Covered on the money bubble","Heads-up for the bracelet","A chipEV cash game"],a:1,e:"Bubble + covered is the maximum: <b>losing ends your tournament just before the money</b>; winning merely builds chips. Premiums there can demand 65%+ equity for a 'flip'."},
+{q:"Why does risk premium punish the caller more than the shover?",o:["It doesn't — the same chips go in either way, so both pay the same","The shover wins outright when everyone folds; the caller can only realize equity by risking elimination","Callers are behind by definition — you only get called by better","Shoving is against the rules"],a:1,e:"Fold equity is <b>ICM-free profit</b>. The caller pays the full survival surcharge — which is why jamming ranges stay wide while calling ranges shrink."},
+{q:"A soft field RAISES your risk premium because:",o:["Soft fields play better","Your future edge makes your tournament life worth more than the raw math says","It lowers it, actually — bad opponents make every gamble cheaper","Soft fields call too much, so your all-ins get worse prices"],a:1,e:"Every hour you survive in a soft field prints EV. <b>Marginal gambles burn that future edge</b> — the better you are than the field, the more survival is worth."},
+{q:"Your Day 41 checkpoint — explaining ICM 'to another human' — exists because:",o:["Teaching is a nice gesture","If you can't say it plainly, you don't own it","Humans like poker stories","It's required by the structure sheet"],a:1,e:"<b>Articulation is the test</b> (Days 16, 39). The player who can explain why chips aren't money is the player who'll charge the premium at midnight on Day 4."}]});
+
+/* ============ DAY 42 ============ */
+L.push({d:42,t:"Bubble factor: covered vs covering",f:"m",obj:"Quantify the asymmetry: the bubble factor number, how it moves with stack matchups, and the glossary that turns fear into arithmetic.",
+body:`
+<h3>The number</h3>
+<p><b>Bubble factor = what you lose by losing ÷ what you gain by winning</b> (in tournament equity). ChipEV poker has a bubble factor of 1.0 — a chip is a chip. In a tournament it's almost always above 1, and the required equity for a call follows directly:</p>
+${T2([
+["1.0 (cash game)","50% — a pure flip is fine"],
+["1.25 (normal midphase)","~56%"],
+["1.5 (pay jump near)","60%"],
+["2.0 (bubble, covered)","~67% — a 'flip' now needs two-to-one"],
+["3.0+ (extreme: satellite bubble)","75%+ — fold nearly everything (Day 59)"]],
+["Bubble factor","Equity needed to call all-in"])}
+<p>The formula: required equity = <b>BF ÷ (BF + 1)</b>. You won't compute it at the table — you'll carry the table above as instinct.</p>
+<h3>It depends on WHO, not just when</h3>
+<p>Your bubble factor is different against every stack at the table:</p>
+<ul>
+<li><b>Versus a stack that covers you:</b> highest — losing is elimination. Ranges shrink hard.</li>
+<li><b>Versus a stack you cover:</b> lowest — losing hurts but you survive. Ranges stay closest to chipEV.</li>
+<li><b>Versus a near-equal stack:</b> high both ways — equal-stack collisions are the wasteland's classic disaster (Day 41's flip). Both players should be avoiding each other.</li></ul>
+<h3>The glossary (checkpoint)</h3>
+${T2([
+["Risk premium","Extra equity ICM demands beyond chipEV (Day 41)"],
+["Bubble factor","Equity lost losing ÷ equity gained winning — the asymmetry as one number"],
+["Covered","An opponent's stack is bigger than yours: he can eliminate you"],
+["Covering","Your stack is bigger: you threaten elimination and pay less premium"],
+["Leverage","Using their risk premium as a weapon — your bets charge fear, not just chips"]],
+["Term","Meaning"])}
+${NOTE("the field feels the bubble as one global mood — 'tighten up.' It's not a mood; it's a per-opponent number. The player who knows his bubble factor versus each seat attacks the fearful and dodges the dangerous while the mood-players just tighten everywhere.")}`,
+quiz:[
+{q:"Bubble factor is defined as:",o:["Chips in play divided by players left","Equity lost by losing divided by equity gained by winning","Your stack divided by the average","The number of players until the money"],a:1,e:"<b>The asymmetry as one number.</b> BF 1.0 means chips are money (cash game); everything above 1.0 is survival surcharge."},
+{q:"At bubble factor 2.0, calling an all-in needs roughly:",o:["50% equity","55% equity","67% equity","90% equity"],a:2,e:"2 ÷ 3 = <b>~67%</b>. The hand that was a snap-call flip on Day 1 is now a clear fold — same cards, different currency."},
+{q:"Your bubble factor is highest against:",o:["The shortest stack at the table","A stack that covers you","A stack you cover","The player on your right"],a:1,e:"<b>Coverage decides the price of losing.</b> Versus the covering stack, the downside is your tournament; versus a covered stack, it's just chips."},
+{q:"Against a stack you cover, your calling ranges:",o:["Shrink to the nuts","Stay closest to chipEV","Widen beyond chipEV","Don't exist"],a:1,e:"You can't be eliminated, so the survival surcharge is smallest. <b>The covering player buys his gambles at the closest thing to list price.</b>"},
+{q:"Two near-equal big stacks on the bubble should:",o:["Play huge pots — they can afford it","Avoid each other","Always flip once","Merge their chips"],a:1,e:"Day 41's proof, seat-specific: <b>the equal-stack collision is the wasteland's classic disaster</b> — every folder at the table profits from it."},
+{q:"'Leverage' in the wasteland glossary means:",o:["Borrowing chips","Using opponents' risk premium as a weapon","Physical reach at the table","Betting big every hand"],a:1,e:"When his call must clear 65% instead of 50%, <b>your jam is worth 15 free points of fold equity</b>. Phase III aggression is built on charging that premium."},
+{q:"Why is 'tighten up on the bubble' — the field's version — a leak?",o:["Tightening is always wrong — bubbles reward maximum aggression from every seat","It's one global mood applied to what is really a per-opponent number","Bubbles reward loose play everywhere","Min-cashes are irrelevant next to the top-heavy payouts"],a:1,e:"The correct player is <b>simultaneously tighter (versus coverers) and looser (versus the covered)</b> — a per-seat calculation the mood-players never make."},
+{q:"You won't compute BF ÷ (BF+1) at the table. Instead you:",o:["Guess randomly","Carry the reference table as instinct","Ask the dealer","Use your phone"],a:1,e:"Like the Phase I baselines, ICM is <b>studied as a chart, deployed as a reflex</b>. Day 57's marathon exists to burn the table in."}]});
+
+/* ============ DAY 43 ============ */
+L.push({d:43,t:"Bubble asymmetry I: playing covered",f:"m",obj:"The 75/25 discipline: which opens to cut, which traps to refuse, whose blinds are still yours — and how to be patient without rotting.",
+body:`
+<h3>The covered mandate</h3>
+<p>Covered on the bubble, your survival/aggression ratio goes to <b>75/25</b>. Not 100/0 — you are a disciplined survivor, not a corpse. The chips you defend are worth more than the chips you'd win; every decision passes through that filter first.</p>
+<h3>What gets cut</h3>
+<ul>
+<li><b>Marginal opens</b> — the bottom tier of every Phase I range goes: KQo from early seats, weak suited aces, pretty connectors from the hijack. Each marginal open risks a reshove you can't call.</li>
+<li><b>Domination traps</b> — AJo/KQ-type hands facing raises are the covered player's graveyard: when the money goes in you're dominated, and the money going in is what you can't afford.</li>
+<li><b>Flips</b> — at bubble factor 2.0 a flip needs 67% (Day 42). You don't have 67% in a flip. Fold.</li>
+<li><b>OOP speculative calls</b> — the implied odds that justified them assume you can stack off when you hit. Covered, you often still can't.</li></ul>
+<h3>What stays</h3>
+<ul>
+<li><b>Steals from other covered stacks</b> — their premium is as high as yours; their blinds still fold. Target the fearful mediums, never the big stack's blinds.</li>
+<li><b>Premium aggression</b> — QQ+/AK still plays for stacks; survival discipline isn't nut-camping. The corpse who folds aces to 'wait for the money' pays a different tax.</li>
+<li><b>Position</b> — the cheapest edge left. Play your remaining hands in position and the variance drops for free.</li></ul>
+<h3>Card-dead patience rehearsal</h3>
+<p>Covered and card-dead is the wasteland's psychological test (Day 56 trains it fully). Today's rehearsal: fold 40 hands in a sim <b>without one loosening deviation</b>, while tracking that your posture, breathing, and tagging discipline (Day 18) never degrade. Patience is an active skill — the monk guards the temple even when nothing happens.</p>
+${NOTE("covered players in live fields leak in one of two ways: they either splash off their stack in frustration or fold themselves down to a blind-off. Both are emotional failures, not strategic ones — the 75/25 player just keeps charging fearful mediums for their blinds.")}`,
+quiz:[
+{q:"Covered on the bubble, your target ratio is:",o:["100/0 — pure survival","75/25","50/50 — never change","35/65 — attack"],a:1,e:"<b>75/25</b>: the war map's covered-bubble setting. Survival leads, but the 25 keeps you stealing from the equally fearful."},
+{q:"First opens to cut when covered:",o:["Premium pairs","The bottom tier of every range","Button opens entirely","All opens"],a:1,e:"Marginal opens have marginal margins. Covered, <b>the reshove tax makes them losers</b> — trim the tier, keep the core."},
+{q:"Why are AJo/KQ-type hands 'domination traps' for the covered player?",o:["They're unlucky hands","When serious money goes in you're dominated","They never win","They're only traps deep-stacked"],a:1,e:"Day 12's domination math plus bubble premium: <b>the pots these hands lose big are the pots that end your tournament.</b>"},
+{q:"A covered player is offered a classic race (52/48). At bubble factor 2.0:",o:["Take it — slight favorite","Fold","Take it only in position","Flip a coin about flipping"],a:1,e:"52% against a 67% requirement is <b>a 15-point deficit</b>. The Day 1 snap-call is the Day 4 disaster — same hand, different currency."},
+{q:"Whose blinds does the covered player still attack?",o:["The big stack's — he expects folds","Other covered stacks'","Nobody's — no steals at 75/25","Only the shortest stack's"],a:1,e:"The 25 in 75/25: <b>fearful mediums pay you exactly as they pay the big stack.</b> The one blind you never touch is the stack that can end you."},
+{q:"Covered with QQ+/AK, the plan is:",o:["Fold — survival above all","Play them for stacks","Limp them","Min-raise and fold to action"],a:1,e:"75/25 cuts the <b>marginal</b>, not the premium. Blinding off while folding monsters is just a slower elimination."},
+{q:"The card-dead rehearsal measures:",o:["How many hands you can win without cards","Whether discipline degrades","Your patience for long sessions","Fold speed"],a:1,e:"Patience is <b>active</b>: the folds are easy, the undegraded observation discipline is the skill. Day 56 builds the full deep-run version."},
+{q:"The two covered-player failure modes in live fields:",o:["Too tight and too loose — pick one","Frustration splash-off and fear blind-off","Calling too much and raising too much","Neither exists"],a:1,e:"Same diagnosis as every mental-game leak: <b>the strategy survives; the emotions defect.</b> The 75/25 player just keeps working the fearful seats."}]});
+
+/* ============ DAY 44 ============ */
+L.push({d:44,t:"Bubble asymmetry II: playing the warlord",f:"g",obj:"The 35/65 covering game: relentless steals priced by their fear, blocker 3-bets against stressed openers, target selection that separates pressure from spew.",
+body:`
+<h3>The covering mandate</h3>
+<p>When you cover the table on the bubble, their risk premium becomes <b>your income</b>. Every fold they're forced into is equity flowing uphill. Ratio: <b>35/65</b> — the most aggressive setting in the entire hundred days. This is the warlord's hour, and it lasts exactly as long as the bubble does.</p>
+<h3>The weapons</h3>
+<ul>
+<li><b>Relentless steals</b> — open small (2.1–2.3x) and often. Their defense needs ~equity they're not allowed to take; your price for the blinds and antes is a discount against players who must overfold.</li>
+<li><b>Blocker 3-bets versus stressed openers</b> — the medium stack who opens and faces your 3-bet must either fold or play a covered pot. A5s–A2s and Kx-wheel hands (Days 4, 32, 33) print here at their lifetime peak: he folds hands he'd normally defend.</li>
+<li><b>Coverage pressure postflop</b> — barrels that threaten stacks carry premium-charged fold equity on every street. The turn barrel that risks his tournament gets folds no chipEV line buys.</li></ul>
+<h3>Target selection — pressure, not spew</h3>
+${T2([
+["Medium covered stacks (20–40bb)","THE target: enough chips to lose, too few to fight — maximum premium, maximum folds"],
+["Short stacks (under ~12bb)","Poor steal targets: their premium is small, their correct play is calling or jamming wide — expect action, attack them only with real hands"],
+["Other big stacks","Not targets: mutual high bubble factor (Day 42) — mutual avoidance, unless they fold too much to be excused"],
+["The one who won't fold","Some players refuse the script. Stop bluffing that seat immediately — gate four never sleeps (Day 25)"]],
+["Target","Verdict"])}
+<h3>The spew line</h3>
+<p>Pressure becomes spew when: you attack shorts who can't fold, you call reshoves without odds "to defend your image", or you pay off playback because momentum felt good. The warlord's discipline: <b>steal wide, but respond to resistance like ICM still exists — because for your marginal hands, it does.</b> Getting reshoved on and folding is not a defeat; it's the cost of a business that prints.</p>
+${NOTE("watch big stacks on live bubbles open to 3x — charging themselves extra for steals that 2.1x buys — then call reshoves with A9o 'because I'm the big stack'. The warlord opens smaller, steals more, and folds the junk to playback without a flicker of ego.")}`,
+quiz:[
+{q:"Covering the table on the bubble, your ratio and posture:",o:["75/25 — protect the lead","35/65","50/50 — stay balanced","10/90 — all-in every hand"],a:1,e:"<b>The warlord's hour.</b> Every fold their risk premium forces is equity flowing uphill — and it lasts exactly as long as the bubble."},
+{q:"Optimal steal sizing as the covering stack:",o:["3x+ — make it hurt","2.1–2.3x","Always jam","Limp for deception"],a:1,e:"Their fold frequency is premium-inflated regardless of your size. <b>Buy the same folds at the smaller price</b> — bigger sizing just charges yourself."},
+{q:"Why do blocker 3-bets peak on the bubble?",o:["Blockers get stronger near the money","The stressed opener must fold or play a covered pot","3-bets are always good","They don't peak"],a:1,e:"Days 4/32/33's weapon plus maximum premium: <b>his continue range shrinks twice</b> — once for the blockers, once for the fear."},
+{q:"THE prime steal target on the bubble:",o:["Short stacks under 12bb","Medium covered stacks (20–40bb)","Other big stacks","The big blind, whoever it is"],a:1,e:"Maximum premium meets maximum foldability. <b>Shorts call correctly wide; bigs fight back; mediums surrender</b> — aim where the fear lives."},
+{q:"Why are short stacks POOR steal targets?",o:["Their desperation makes them fold everything while waiting for premiums","Their bubble factor is small and their correct play is jamming or calling wide","The chips you win from them are too few to move your stack","They fold too much"],a:1,e:"Under ~12bb the math forces them wide: <b>they're supposed to look you up</b>. The warlord steals from fear, not from desperation."},
+{q:"A medium stack reshoves your third steal attempt. Holding Q9s, you:",o:["Call — defend the image","Fold without a flicker","Jam over the top","Show the fold and complain"],a:1,e:"Steal wide, <b>respond to resistance like ICM still exists</b> — because for Q9s it does. The steals already paid for this fold many times over."},
+{q:"Pressure crosses into spew when:",o:["You steal more than once per orbit — frequency itself is the line","You bluff the seats that don't fold, call reshoves without odds, or pay off playback for ego","You 3-bet with blockers","Your opens get so small they price the whole table in"],a:1,e:"The warlord's discipline is <b>selective relentlessness</b>: wide theft, honest respect for resistance, and gate four (who actually folds?) never sleeps."},
+{q:"Two big stacks flank the bubble table. Their correct relationship:",o:["War — biggest stack wins","Mutual avoidance","Chop the blinds secretly","Whoever attacks first wins"],a:1,e:"Day 42's matchup math: <b>the equal-big-stack collision gifts equity to the whole table</b>. Farm parallel fields; don't fight the other warlord."}]});
+
+/* ============ DAY 45 ============ */
+L.push({d:45,t:"25–40bb simplification",f:"m",obj:"The Main Event's middle-day workhorse depth: trees collapse to three decisions, pretty hands get released, and every turn starts from the river SPR.",
+body:`
+<h3>Where you'll actually live</h3>
+<p>By Days 2–4 of the Main, most of your hours are played at <b>25–40bb</b> — deeper than push-fold, far too shallow for Phase I's implied-odds game. Day 15 introduced this band's cousin (40–60bb); today's version is sharper because ICM now rides along.</p>
+<h3>The tree collapses</h3>
+<ul>
+<li>Every preflop hand resolves to <b>open/fold, open/call, or 3-bet</b> — the speculative middle is gone. At 30bb a 3-bet threatens ~a third of stacks; there is no room for cute lines.</li>
+<li><b>Speculative flats die almost completely.</b> Set-mining wants ~15–20x behind (Day 13) — at 30bb versus a 2.5x open it isn't there. OOP suited-gapper flats were dead at 45bb (Day 15); at 30bb they're not even a temptation.</li>
+<li><b>3-bets polarize hard:</b> value plus blocker hands, sized ~3x, with a pre-decided answer to a jam. Never 3-bet a hand you can't act for stacks with — the 4-bet at this depth IS all-in.</li></ul>
+<h3>Release the pretty hands</h3>
+<p>QTs, J9s, KJo — hands that printed at 150bb — stop realizing at 30bb: the stack can't pay their draws, and their pairs are dominated in every big pot. The discipline is emotional, not technical: <b>they look playable, and they aren't.</b> Fold them and feel nothing.</p>
+<h3>The river SPR question, every turn</h3>
+<p>At this depth Day 28's law is at its most literal: pot 6bb on the flop at 32bb effective means <b>one standard bet and the turn decision is a commitment decision</b>. Say the sentence before every turn chip: "if called, the river is X into Y" — at 25–40bb, Y is usually zero.</p>
+${NOTE("the field plays 30bb with 150bb habits — flatting QTs out of position, set-mining without odds, 3-betting hands they fold to jams. Every habit they didn't update is a blind you steal or a 3-bet they can't answer.")}`,
+quiz:[
+{q:"The 25–40bb band matters because:",o:["It's rare in the Main — the slow structure keeps everyone deep past Day 3","It's where most of your Days 2–4 hours will actually be played","Push-fold charts cover it, so preparation is pure memorization","Stacks never get that shallow"],a:1,e:"The Main's structure funnels the field here for days. <b>Master the band you'll live in</b>, not just the extremes on either side."},
+{q:"At 30bb, every preflop hand resolves to:",o:["Limp, call, or raise","Open/fold, open/call, or 3-bet","Jam or fold","Whatever feels right"],a:1,e:"Day 15's simplification, sharpened by depth and ICM: <b>three clean decisions</b>, executed fast, with no cute lines between them."},
+{q:"Set-mining a 2.5x open at 30bb effective:",o:["Automatic — sets win stacks","Dead","Better than at 100bb","Only in position"],a:1,e:"Day 13's math with a hard depth floor: <b>the payoff can't exist</b>. Small pairs become 3-bet-or-fold candidates instead."},
+{q:"The rule for 3-betting at 25–40bb:",o:["3-bet anything suited","Never 3-bet a hand you can't act for stacks with","Only 3-bet aces","Min-3-bet everything"],a:1,e:"A 3-bet here threatens a third of stacks and invites a jam. <b>Pre-decide the jam answer or don't 3-bet</b> — Day 33's tree, collapsed."},
+{q:"QTs at 30bb facing a hijack open. The wasteland verdict:",o:["Flat — suited broadway","Fold (or rarely 3-bet a foldy opener)","Always 3-bet","Jam"],a:1,e:"The pots QTs wins are small; the pots it loses are dominated and big. <b>It looks playable and it isn't</b> — the release is emotional discipline."},
+{q:"Pot 6bb on the flop, 30bb effective. The turn decision is really:",o:["A normal betting decision","A commitment decision","Unimportant — rivers decide","A check every time"],a:1,e:"Day 28's law at its most literal depth: <b>the turn chip chooses the river jam</b>. Say the sentence before it moves."},
+{q:"What does ICM add to this band that Day 15's version lacked?",o:["Nothing — same band, same rules","Coverage awareness rides every decision: the same 30bb plays tighter covered, looser covering","A blanket tightening — every range in the band shrinks one tier","Deeper effective stacks from the growing antes"],a:1,e:"The tree collapse is structural; <b>the thresholds inside it move with the matchup</b> (Days 42–44). Same skeleton, wasteland-priced."},
+{q:"The field's signature 25–40bb error:",o:["Playing too tight","Playing 30bb with 150bb habits","Jamming too much","Refusing to open"],a:1,e:"No depth update = <b>two exploits</b>: steal from ranges built for a stack they don't have, and 3-bet players who haven't pre-decided their jam answers."}]});
+
+/* ============ DAY 46 ============ */
+L.push({d:46,t:"15–25bb: reshove & call-off",f:"m",obj:"The leverage band: jamming over opens as a primary weapon, call-off thresholds decided before the hand, and how coverage moves every number.",
+body:`
+<h3>The band where the jam is king</h3>
+<p>At 15–25bb, the reshove — <b>jamming all-in over an open</b> — becomes your primary 3-bet. It puts the opener to a decision for a meaningful stack, it can't be bluffed off its equity, and it charges his marginal opens the full price of their marginality. The opener risked 2.3bb to win the pot; you're charging him 20 to continue.</p>
+<h3>Reshove construction (simplified live defaults)</h3>
+${T2([
+["Versus late-position opens (CO/BTN)","Wide: 22+, A7s+/A9o+, KTs+/KJo+, QJs, some suited connectors as the stack shortens — their open range is wide, your jam charges it"],
+["Versus early-position opens","Tight: 88+/AQ+ territory — their range is honest (live EP opens especially, Day 5)"],
+["The blocker widener","Ax hands jump tiers: blocking AA/AK shrinks the call-off range that beats you (Day 32 at maximum stakes)"],
+["The fold-equity floor","Below ~15bb the reshove threatens too little; above ~25bb it risks too much — this band is the weapon's home"]],
+["Spot","Range"])}
+<h3>Call-off thresholds — decided cold, before the hand</h3>
+<ul>
+<li>Facing a reshove after you open: your call-off range is <b>far tighter than your open</b> — that's the whole point of their jam. Opening A9o and folding it to a jam is correct, not weak.</li>
+<li>The caller needs a <b>stronger range than the jammer</b>: he has no fold equity, only showdown. Add the risk premium when covered (Days 41–42) and 'obvious calls' become folds: AJo versus a 20bb jam, covered on the bubble, is usually a fold at BF 1.5+.</li></ul>
+<h3>Coverage moves every number</h3>
+<p>Covering: reshove wider (their call-off pays premium), call off closer to chipEV. Covered: reshove tighter but still real (fold equity is premium-boosted — they must fold more), call off much tighter. <b>The band's discipline: know your numbers for both seats before the level starts</b> (Day 33's tournament-life question, shallow edition).</p>
+<h3>Range depth — the 20bb reshove, written out</h3>
+${T2([
+["BTN reshove vs CO 2.3x","66+ (54 combos), A9s+ (20), AJo+ (36), KQs (4), KQo (12) → ~126 combos ≈ 9.5%"],
+["CO's correct call-off","~99+, AQ+ (68 combos) out of a ~360-combo open — he folds roughly 4 times in 5"],
+["The arithmetic","You risk ~20bb to pick up ~4.8bb (open + blinds + antes) uncontested. At ~80% folds the jam prints before your showdown equity is even counted — and the bottom of the range still runs 30%+ when called"],
+["Covered on the bubble","Trim to 88+, ATs+, AQo+ — both thresholds move with the premium"],
+["Covering","Add 55+, A7s+, KJs, QJs — his call-off shrinks under premium while your fold equity grows"]],
+["Piece","Numbers"])}
+<p>Learn this one grid cold and derive the rest: reshove ranges track <b>the open range they attack</b> (Day 46's first law), so vs a BTN open you add two tiers, vs an UTG open you strip to 88+/AQ+. The combo counts are the point — 'jam pretty wide' is not a range; <b>126 combos is a range.</b></p>
+${NOTE("the field open-folds 20bb stacks to reshoves correctly but keeps OPENING the hands it can't continue with — bleeding 2.3bb a cycle to anyone who jams. Be the one jamming: their marginal opens are your rent collection.")}`,
+quiz:[
+{q:"At 15–25bb, your primary 3-bet becomes:",o:["A small 3-bet to 3x","The reshove","The min-raise","Flatting"],a:1,e:"The jam <b>can't be bluffed off its equity and charges marginal opens full price</b>. Small 3-bets at this depth just invite jams back at you."},
+{q:"Reshoving versus a cutoff open versus an UTG open:",o:["Same range — a jam is a jam","Much wider versus the CO","Wider versus UTG","Never reshove either"],a:1,e:"The reshove range mirrors <b>the open range it attacks</b>. Wide steal opens pay wide jams; honest EP opens demand 88+/AQ+ discipline."},
+{q:"Why do Ax hands jump reshove tiers?",o:["Aces are pretty","Blocking AA/AK shrinks the calling range that beats you","They flop well","They don't"],a:1,e:"The hands that call your jam are heavy with AA/AK/AQ. <b>Holding an ace deletes combos of exactly those</b> — A7s jams where 87s can't."},
+{q:"Why must the CALLER of a jam be stronger than the jammer?",o:["Tradition","The caller has zero fold equity","The jammer is desperate","He mustn't — call wider"],a:1,e:"The jammer wins all the folds; the caller only wins showdowns. <b>No fold equity + survival surcharge = a visibly tighter range</b>, always."},
+{q:"You open A9o at 22bb and face a reshove. Baseline?",o:["Call — you opened it for a reason","Fold","Call because of the ace blocker","Never open A9o again"],a:1,e:"Open ranges and continue ranges are different tools. <b>The 2.3bb you surrender is the designed cost</b> — paying 20 more with a dominated ace is the real leak."},
+{q:"AJo facing a 20bb jam while covered on the bubble (BF 1.5+):",o:["Snap call — too strong to fold","Usually a fold","Always call any ace","Re-jam"],a:1,e:"ChipEV might say close; <b>BF 1.5 demands ~60%</b> and AJo doesn't have it versus real jamming ranges. The wasteland turns 'obvious calls' into folds."},
+{q:"Covering the table, your reshove and call-off adjustments:",o:["Both tighten — big stacks protect their leverage by avoiding showdowns","Reshove wider (their call-off pays premium) and call off closer to chipEV","Both loosen infinitely","Stop reshoving — flat and dominate postflop with position instead"],a:1,e:"Days 42–44 applied to the band: <b>the covering seat pays wholesale</b>. Covered, the same numbers shift tight — know both columns before the level."},
+{q:"The field's 15–25bb signature leak:",o:["Jamming so wide their reshoves stop earning respect","Opening hands they can't continue with, then open-folding to reshoves","Calling reshoves too tight and letting jammers print uncontested","Never opening"],a:1,e:"They fold correctly but <b>open incorrectly</b> — an ATM for the player reshoving on schedule. Their marginal opens are your rent collection."}]});
+
+/* ============ DAY 47 — consolidation ============ */
+L.push({d:47,t:"Consolidation gauntlet V",f:"z",obj:"Twelve questions sampled from Days 41–46. Then a bubble simulation alternating covered and covering seats, and the written review. Long sleep tonight.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 questions drawn at random from the week's pools (Days 41–46). Different every attempt — retake until you pass.</li>
+<li><b>60m bubble simulation:</b> alternate seats — one orbit as the covered medium, one as the covering big stack. Feel the same cards play differently.</li>
+<li><b>30m written review:</b> where did the covered seat feel too tight? Where did the covering seat feel like spew? Those feelings are your calibration errors — name them.</li>
+<li><b>Recovery vow:</b> extended sleep plus a walk. The short-stack bands await.</li></ul>`,
+pool:{days:[41,42,43,44,45,46],n:12}});
+
+/* ============ DAY 48 ============ */
+L.push({d:48,t:"10–15bb push-fold",f:"m",obj:"The band where chart study pays instant ROI: first-in shove discipline by position, the blind-vs-blind war, and protecting the fold equity you have left.",
+body:`
+<h3>Why this band pays instantly</h3>
+<p>At 10–15bb, postflop play has almost vanished — the game is <b>first-in shove or fold</b>, and correct ranges are knowable in a way deep poker never is. Every hour of chart work converts directly to EV, because the field's errors here are enormous and yours are about to be zero.</p>
+<h3>First-in shove tiers (12bb, 9-handed, antes — simplified live defaults)</h3>
+${T2([
+["Early position","Tight: 66+, A9s+, ATo+, KQs (~126 combos ≈ 9.5%) — eight players can wake up behind you"],
+["Middle position","Medium: 44+, A5s+, A9o+, KJs+, KQo (~182 combos ≈ 14%)"],
+["Cutoff / Button","Wide: any pair, any suited ace, A2o+, K7s+/KTo+, Q9s+, JTs, T9s (~350 combos ≈ 26% in the CO, stretching past 40% ≈ 530 combos on the button as the kings and queens join) — the blinds must fold too much for this to be wrong"],
+["Small blind (vs BB only)","Very wide: ~any pair, any ace, most kings, most suited (~55%+ ≈ 730 combos) — one opponent, dead antes, maximum leverage"]],
+["Seat","~12bb first-in jam range"])}
+<p>These widen as the stack shrinks and tighten slightly as it grows toward 15bb (where a small-raise game returns versus foldy tables).</p>
+<h3>The two commandments</h3>
+<ul>
+<li><b>Never bleed to 5bb from fear.</b> Every orbit you fold playable jams, the blinds and antes eat ~1.5bb and your next jam threatens less. First-in aggression IS the survival play — the deaths in this band are passive, not aggressive.</li>
+<li><b>No limping, no min-raising</b> (with rare SB exceptions) — both lines invite the flop your stack can't play and leak the fold equity that is your entire remaining weapon.</li></ul>
+<h3>Future-game awareness</h3>
+<p>A 14bb stack that jams and collects blinds twice is a 19bb stack that can reshove (Day 46); a 14bb stack that waits is a 9bb stack whose jam scares no one. <b>Fold equity compounds or decays — nothing in this band stands still.</b></p>
+${NOTE("the field treats 12bb as 'wait for a hand' mode — open-folding A7s on the button while blinding out. The button jam they're afraid of is the single most study-provable +EV move in tournament poker. Make it on schedule.")}`,
+quiz:[
+{q:"Why does chart study pay 'instant ROI' at 10–15bb?",o:["Short-stack charts are simpler to memorize than preflop grids","The game reduces to first-in shove-or-fold, where correct ranges are actually knowable","The field knows the charts, so deviations get punished instantly","It doesn't"],a:1,e:"Deep poker resists certainty; <b>push-fold barely does</b>. The gap between the field's enormous errors and your zero is pure income."},
+{q:"At 12bb on the button, first-in with A4o:",o:["Fold — weak ace","Jam","Min-raise","Limp"],a:1,e:"BTN 12bb jams are <b>wide by design</b>: any pair, any suited ace, A2o+, decent kings. Two players left, antes dead, leverage maximal."},
+{q:"The same A4o under the gun at 12bb:",o:["Jam — a jam is a jam","Fold","Limp to trap","Call the clock on yourself"],a:1,e:"Position governs jams exactly as it governed opens (Day 2): <b>eight chances someone wakes up</b> demands the tight tier."},
+{q:"'Never bleed to 5bb from fear' because:",o:["The blinds double soon, and 5bb becomes 2bb through no fault of yours","Each passive orbit costs ~1.5bb in blinds and antes AND shrinks the fold equity of every future jam","You should bleed to 3bb instead","Waiting preserves your tournament life, which carries a freezeout premium"],a:1,e:"Fold equity <b>compounds or decays</b>. The 14bb stack that jams on schedule becomes 19bb and dangerous; the one that waits becomes 9bb and ignored."},
+{q:"Limping or min-raising at 11bb is banned because:",o:["It's against etiquette","Both invite a flop your stack can't play and leak the fold equity that is your entire remaining weapon","It commits you anyway, so you may as well see all five cards","The charts don't cover mixed lines, so errors compound unseen"],a:1,e:"With one bet behind, postflop is a trap you set for yourself. <b>The jam uses your whole stack as one clean weapon</b>; the half-measures waste it."},
+{q:"The small blind at 12bb, folded to you:",o:["Fold — worst position","Jam very wide","Complete and see a flop","Only jam premiums"],a:1,e:"BvB first-in is the widest jam on the chart: <b>one player to beat and he needs a real hand to look you up</b>. This war is won by whoever jams first."},
+{q:"As your stack shrinks from 15bb toward 8bb, first-in jam ranges:",o:["Tighten — protect what's left","Widen","Stay identical","Become irrelevant"],a:1,e:"The shorter the stack, the more each blind-steal matters and the less future-game a fold preserves. <b>Ranges widen as depth falls</b> — the math is monotonic."},
+{q:"The field's signature error in this band:",o:["Jamming too wide","'Waiting for a hand'","Calling jams too tight","Studying too many charts"],a:1,e:"The button jam with A7s is <b>the most study-provable +EV move in tournament poker</b> — and the field's fear of it is your edge. Make it on schedule."}]});
+
+/* ============ DAY 49 ============ */
+L.push({d:49,t:"Under 10bb: the last canteen",f:"m",obj:"The stack everyone else gives up on: ante math that keeps fold equity alive at 6bb, first-in ranges that refuse to die politely, and the blind-vs-blind knife fight.",
+body:`
+<h3>The stack is small; the math isn't over</h3>
+<p>Under 10bb feels like the end. It isn't — <b>with antes, even a 5–6bb jam collects ~2.5bb of dead money when it gets through</b>, nearly half your stack per steal. The players who die at this depth die of resignation: they stop jamming, blind to 3bb, and get called by everything. The last canteen still has water; ration it with violence.</p>
+<h3>First-in jam ranges (sub-10bb, with antes)</h3>
+${T2([
+["8–10bb","A notch wider than Day 48's tiers at every seat — the ante share is huge relative to your stack"],
+["5–7bb","Very wide from any late seat: any pair, any ace, any two broadways, most suited hands. Callers still need real hands — your fold equity is smaller but alive"],
+["Under 5bb","Near any-two first-in from the CO/BTN/SB; you're buying the antes with a hand nobody can profitably fold everything to"],
+["The dead line","Never open-fold the SB under 7bb without a read — the BB folds enough for almost any two to print"]],
+["Depth","First-in posture"])}
+<h3>Calling all-ins at this depth</h3>
+<p>Your calls widen too — but less than you'd think: <b>the jammer's range is wide, but you still can't win folds</b>. In the big blind getting huge prices, calls widen dramatically (any pair, any ace, decent kings versus late jams); out of the blinds, discipline holds.</p>
+<h3>BvB jam wars</h3>
+<p>Blind-versus-blind under 10bb is the purest knife fight in poker: <b>first-in wins</b>. SB jams near any-two at 6bb; BB calls wide but not wide enough (the field's BB folds too much even here). When YOU are the BB facing the SB's desperation jam: call by the chart, not by frustration — A8o is a call, K4s usually isn't at 8bb+.</p>
+${NOTE("the field's sub-10bb death ritual: fold, fold, fold, blind to 4bb, then call off with J8o in the big blind 'because I'm pot-committed'. Every part of it is backwards — jam first while the stack still threatens, and die (if you must) as the aggressor holding fold equity, not as the caller holding regret.")}`,
+quiz:[
+{q:"Why does a 6bb jam still have real fold equity with antes?",o:["It doesn't — 6bb scares no one","Getting through collects ~2.5bb of dead money","Because opponents are polite","Only if you have aces"],a:1,e:"The ante share is enormous <b>relative to a short stack</b>. Two clean steals rebuild 6bb to 11bb — the canteen refills if you keep drinking violently."},
+{q:"The typical sub-10bb death is caused by:",o:["Bad luck","Resignation","Jamming too much","The antes"],a:1,e:"Every step of the ritual is backwards. <b>Die (if you must) as the aggressor holding fold equity</b>, not as the caller holding regret."},
+{q:"At 6bb in the cutoff, first-in with K8s:",o:["Fold — wait for an ace","Jam","Limp","Min-raise to induce"],a:1,e:"Your steal buys ~40% of your stack in dead money and callers still need real hands. <b>The wide jam IS the disciplined play</b> at this depth."},
+{q:"The 'dead line' rule for the small blind:",o:["Always fold the SB short","Never open-fold the SB under 7bb without a read","Only jam aces from the SB","Complete every SB"],a:1,e:"One opponent, full ante share, and a BB who folds too much: <b>the SB open-fold at 6bb is burning the last canteen</b> in the sand."},
+{q:"Sub-10bb, your CALLING ranges versus jams:",o:["Any two — you're short","Wider than normal but still disciplined","Tighter than at 30bb","Exactly the jamming ranges"],a:1,e:"Day 46's law survives to the end: <b>callers need showdown value</b>. Big-blind prices widen calls dramatically; elsewhere the discipline holds."},
+{q:"BvB at 6bb, you're SB. The doctrine:",o:["Complete and play a flop","First-in wins","Fold and preserve 5.5bb","Min-raise"],a:1,e:"The purest knife fight: <b>whoever moves first owns the dead money</b>. The field's BB still overfolds even at these prices — collect."},
+{q:"You're BB at 9bb; the 5bb SB jams into you. K4s is:",o:["A snap call — he has any two","Usually a fold at this depth","An insta-muck without looking","A re-jam"],a:1,e:"His range is wide but <b>K4s still runs ~40% against it</b> and the price isn't quite there at 8bb+. Frustration calls are how 9bb becomes 0."},
+{q:"The zen of the last canteen:",o:["Accept elimination gracefully","The stack is small but the math isn't over","Wait for aces — they come","Ask for a table change"],a:1,e:"Sub-10bb is a solvable game the field forfeits. <b>Ration the water with violence</b> — resignation, not variance, is what kills short stacks."}]});
+
+/* ============ DAY 50 — halfway trial ============ */
+L.push({d:50,t:"THE HALFWAY TRIAL",f:"z",obj:"Fifteen questions across the wasteland's first nine days, plus the ritual: retake the Trial of the Three Thirds, sit the full-spectrum exam, and write the halfway letter.",
+body:`
+<h3>Trial protocol</h3>
+<ul>
+<li><b>The trial below:</b> 15 randomized questions from Days 41–49 — ICM foundations through the last canteen. Pass at 80%+.</li>
+<li><b>Retake the Trial of the Three Thirds</b> — the gladiator/Mad Max/zen monk quiz in the war plan. Log the score next to your Day 1 result: which third is still weakest?</li>
+<li><b>90m full-spectrum exam:</b> retake the Phase I and Phase II exams in their study halls (Day 20 and Day 40 tabs). Deep, mid, short, ICM — all four altitudes in one sitting.</li>
+<li><b>The halfway letter:</b> write one page to your Day 1 self. What do you know now that you didn't? Which leaks from the original Top-10 are dead? Which survived? What must the next fifty days kill?</li></ul>
+<h3>The halfway standard</h3>
+<p>Fifty days in, you should hold: every Phase I baseline as reflex · Phase II's weapons with their gates · ICM as arithmetic, not mood · covered/covering as separate playbooks · jam charts for every band below 25bb. The letter is where you check the inventory honestly — <b>the second fifty days build execution on whatever the first fifty actually laid down.</b></p>`,
+pool:{days:[41,42,43,44,45,46,48,49],n:15,exam:true,label:"The Halfway Trial",tag:"trial"}});
+
+/* ============ DAY 51 ============ */
+L.push({d:51,t:"Ladders & pay-jump logic",f:"m",obj:"When folding huge hands near a jump is discipline, when it's a leak, and how to farm the players who ladder too hard.",
+body:`
+<h3>Ladders are real — and small</h3>
+<p>After the bubble, pay jumps arrive in waves — and near each one, mini-bubbles form. The ICM logic is identical to Day 42, at lower intensity: <b>risk premium spikes as a jump approaches, especially with short stacks about to bust.</b> But calibrate the size: early post-bubble jumps are often tiny (a few percent of your equity), while the top of the Main Event is brutally top-heavy — the real money lives in the last three seats. <b>Respect the ladder; worship only the crown.</b></p>
+<h3>When folding a monster is right</h3>
+<ul>
+<li>Extreme, rare spots: two shorter stacks already all-in in front of you, a huge jump pending, and your hand merely a favorite — not a lock. Passing a small edge to guarantee laddering through <b>two eliminations</b> can be correct.</li>
+<li>The test is Day 41's arithmetic, not fear: compute (or instinct-check) whether the jump equity beats the pot equity. If you can't articulate the math, you're not laddering — you're hiding.</li></ul>
+<h3>When it's a leak</h3>
+<ul>
+<li>Folding big hands to <b>single</b> confrontations with covered stacks at minor jumps — the premium is nowhere near fold-your-monster territory.</li>
+<li>Passing profitable steals and reshoves 'until the jump passes' — the jump might be an hour away; your blinds aren't.</li>
+<li>The tell that it's fear wearing a strategy: you ladder against <b>everyone</b>, not just the coverers (Day 42's per-seat lesson again).</li></ul>
+<h3>Farming the ladder-obsessed</h3>
+<p>Players visibly hand-counting the payouts board are announcing their risk premium. <b>Attack them exactly like bubble mediums</b> (Day 44): steal their blinds, 3-bet their opens, barrel their capped defends. Their laddering is real EV for them sometimes — and reliable rent for you always.</p>
+${NOTE("every live pay jump produces the same theater: the board-watchers tighten for two orbits, the shortest stack stalls, and one player pays for everyone's dinner by attacking all of it. Hold the knife, not the fork — be the attacker.")}`,
+quiz:[
+{q:"The correct posture toward pay jumps:",o:["Ignore them — chips are chips","Respect the ladder, worship only the crown","Ladder at every jump maximally","Only the bubble matters"],a:1,e:"Early jumps move your equity by slivers; <b>the last three seats hold the real money</b>. Calibrated respect, not reflexive fear."},
+{q:"Folding a huge hand near a jump is defensible when:",o:["Any time a jump is close","Rarely","Whenever you're covered","Never — always play your hand"],a:1,e:"The two-eliminations-guaranteed spot is the classic: <b>laddering through multiple busts can outweigh a small edge</b>. It's arithmetic, not anxiety."},
+{q:"The test that separates laddering from hiding:",o:["How you feel about it","Whether you can articulate the math","What the table would think","Whether you've cashed before"],a:1,e:"Day 41's arithmetic is the license. <b>If you can't state why the jump beats the pot, you're not laddering — you're hiding</b> behind ICM's vocabulary."},
+{q:"Folding QQ to a single covered confrontation at a minor pay jump is:",o:["Disciplined ICM","A leak","Standard","Only correct in position"],a:1,e:"Monster folds need <b>extreme</b> conditions (multiple all-ins, massive jumps). At routine jumps the premium shaves edges; it doesn't delete premiums."},
+{q:"'Passing steals until the jump passes' fails because:",o:["Opponents defend wider near jumps, expecting exactly this attack","The jump may be an hour away while your blinds come every orbit","Jumps never pass","It doesn't fail"],a:1,e:"Day 48's bleed logic at every depth: <b>waiting has a per-orbit price</b>. The ladder-waiters pay it all the way to a smaller stack at the same jump."},
+{q:"The tell that laddering is fear wearing a strategy:",o:["Folding to the chip leader","Laddering against EVERYONE","Checking the payout board once","Playing fewer hands"],a:1,e:"Real ICM is per-matchup (Day 42). <b>Uniform tightening is mood, not math</b> — the same diagnosis as the field's bubble play."},
+{q:"How do you farm the ladder-obsessed?",o:["Show them one bluff so they start calling you down","Exactly like bubble mediums: steal their blinds, 3-bet their opens, barrel their capped defends","Avoid them — their tightness means every entry is a premium","Offer a deal"],a:1,e:"The payout-board watchers <b>publish their fold frequency</b>. Day 44's warlord playbook applies at every jump, not just the bubble."},
+{q:"The shortest stack stalls near a jump. Your response as a healthy stack:",o:["Stall too — protect your own ladder while his clock runs","Keep attacking the mediums: the stall extends exactly the window where their premium is highest","Call the clock immediately, always","Tighten until he busts — no reason to risk chips during the window"],a:1,e:"His stall <b>lengthens the fear window</b> — more orbits of mediums who can't fight back. The attacker collects rent for as long as the theater runs."}]});
+
+/* ============ DAY 52 ============ */
+L.push({d:52,t:"Final table roles: the warlord's seat",f:"g",obj:"Chip-leader pressure at the table where every pot is a pay jump: the frameworks, the capped-defend punishments, and the discipline that keeps the crown.",
+body:`
+<h3>The seat where ICM works FOR you</h3>
+<p>At a final table, every elimination is a jump, every middling stack carries a premium against you, and <b>you carry almost none against them</b>. The leader's game is Day 44's warlord hour extended across an entire table: their fear is a permanent discount on everything you do.</p>
+<h3>The pressure frameworks</h3>
+<ul>
+<li><b>Open small, open often</b> — 2.1–2.2x from every late seat, into stacks that must overfold. You're not stealing blinds; you're taxing the table's premium every orbit.</li>
+<li><b>Attack the second and third stacks hardest</b> — counterintuitive but core: they have the most to lose from you (their premium versus you is maximal) and the most to gain by waiting for the shorts to bust. Their correct strategy is folding — charge them for it.</li>
+<li><b>Punish capped defends</b> — when premiums force flats instead of 3-bets, their postflop ranges arrive capped. Your c-bets and barrels (Phase II's whole arsenal) collect at premium-boosted rates.</li></ul>
+<h3>Don't donate the crown</h3>
+${T2([
+["No flips with the 2nd stack","The one collision that can transfer the whole regime — mutual avoidance unless the edge is real (Day 42)"],
+["Respect the shorts' jams","Sub-12bb stacks call and jam correctly wide (Day 44) — steal around them, not through them"],
+["Playback discipline","When a middling stack finally fights back, believe it — their premium means their resistance is real hands (Day 26's list, ICM edition)"],
+["Keep the ratio","Pressure ≠ carnage: the leader who plays 70% of hands converts a structural edge into variance. Wide, not wild"]],
+["Rule","Why"])}
+<h3>The leader's tempo</h3>
+<p>Your ideal final table is <b>long and boring</b>: every orbit of small steals compounds, every elimination ladders you free equity, and every hour the mediums spend waiting is rent paid to you. Rushing is the amateur leader's tell — the structure is already working for you; let it.</p>
+${NOTE("watch live FT chip leaders limp behind, check back monsters 'to keep the pot small', and flip with the second stack out of boredom. The crown is a machine that prints while its owner does almost nothing dramatic — the discipline is letting it.")}`,
+quiz:[
+{q:"Why is the final table the leader's maximum-leverage environment?",o:["Cards run better for big stacks","Every middling stack carries premium against you while you carry almost none against them","The blinds and antes are at their largest, so every steal is worth more","It isn't"],a:1,e:"Every pot is a pay jump for them and pocket change for you. <b>The asymmetry is structural</b> — the leader's job is to tax it every orbit."},
+{q:"The leader's open sizing:",o:["3x — make them pay","2.1–2.2x, relentlessly","Pot every time","Limp for balance"],a:1,e:"Day 44's wholesale principle, made permanent: <b>the fear does the work; the sizing just sets your cost.</b>"},
+{q:"Which stacks does the leader attack HARDEST?",o:["The shortest — easiest to bust","The second and third stacks","Whoever posted the big blind","Nobody — wait for hands"],a:1,e:"Counterintuitive and core: <b>the healthy mediums are the most handcuffed players at the table</b>. Their discipline is your dividend."},
+{q:"Why do capped defends pay the leader so well?",o:["They don't","Premiums force flats instead of 3-bets, so their postflop ranges arrive capped","Capped players always fold rivers to a third barrel","The antes subsidize every c-bet you fire"],a:1,e:"ICM disarms their preflop aggression; <b>your c-bet/barrel arsenal (Days 21–40) then meets ranges that can't fight back</b> at fear-inflated fold rates."},
+{q:"The one collision that can transfer the whole regime:",o:["Any pot with a short stack","A flip with the second stack","Blind versus blind","Calling a 5bb jam"],a:1,e:"Day 42's equal-stack disaster at its most expensive address: <b>lose that flip and the crown, the discount, and the tempo all change owners.</b>"},
+{q:"Sub-12bb stacks at your final table should be:",o:["Bullied constantly — they're scared","Stolen around, not through","Ignored entirely","Offered a deal"],a:1,e:"Day 44's short-stack rule survives: <b>desperation plays correctly wide</b>. The fear you're farming lives in the mediums, not the shorts."},
+{q:"A handcuffed middling stack finally 3-bets you. Read?",o:["He cracked — attack","Real hands","Automatic 4-bet bluff","Meaningless"],a:1,e:"When folding is someone's correct strategy, <b>his deviations are screams of strength</b>. Day 26's discipline pays the leader too."},
+{q:"The leader's ideal final table is:",o:["Fast and violent — end it quickly","Long and boring","Decided by one huge pot","A quick deal"],a:1,e:"The structure already works for you; <b>rushing converts a machine into a coin flip</b>. Amateur leaders gamble; warlords collect."}]});
+
+/* ============ DAY 53 ============ */
+L.push({d:53,t:"Final table roles: middle & short",f:"m",obj:"The two hardest seats in poker: the handcuffed middle that must dodge the warlord, and the short stack that ladders without ever blinding out.",
+body:`
+<h3>The middle: poker's worst seat</h3>
+<p>Middling stacks at a final table are squeezed from both sides: <b>the leader taxes you</b> (you're his prime target — Day 52) and <b>the shorts constrain you</b> (every pot you lose drops you toward their fate while they ladder). The doctrine:</p>
+<ul>
+<li><b>Avoid the covering stacks</b> — no marginal confrontations with anyone who can eliminate you. The leader's opens take your blinds; mostly let them go. Your counterattacks are premium-heavy and sized to end the hand.</li>
+<li><b>Attack the OTHER mediums and the mid-shorts</b> — seats that fear you the way you fear the leader. Your premium versus them is modest; theirs versus you is real.</li>
+<li><b>Patience with a trigger</b> — the middle seat's income is laddering past impatient rivals plus the occasional double through the leader's wide range. Wait actively: tag, plan, and strike the moment a real hand meets his 2.1x steal.</li></ul>
+<h3>The short: ladder without dying</h3>
+<ul>
+<li><b>The jam windows never close</b> — Days 48–49 charts still rule. First-in aggression at the right seats is how shorts become mediums; the FT premium makes opponents' calls even tighter than the charts assume.</li>
+<li><b>Ladder deliberately, not passively</b> — when another stack is shorter and blinding out, tighten a notch and let him bust first. When YOU are shortest, the waiting game is over: jam on schedule (Day 49's resignation warning, at maximum stakes).</li>
+<li><b>Never blind below threat level</b> — the stack that can't hurt anyone gets called by everything; your fold equity is your tournament.</li></ul>
+<h3>Role-transition awareness</h3>
+<p>FT stacks move violently: one double and the middle becomes the leader; one lost pot and it's the short. <b>Re-read your role every orbit</b> — the playbook that was correct twenty minutes ago may now belong to a different seat. The three guides (Days 52–53) are one laminated card in your mind; the skill is knowing which side faces up.</p>
+${NOTE("the field plays FT middles as if they were leaders (splashing into coverage) or as if they were shorts (folding to everything). Both misread the seat: the middle is a sniper's chair — long stillness, sudden precision, and never a knife fight with the man who owns the table.")}`,
+quiz:[
+{q:"Why is the FT middle stack 'poker's worst seat'?",o:["It gets the worst cards","Squeezed both ways: the leader taxes you as his prime target while the shorts ladder as you risk falling to their fate","The blinds force it to play while the shorts get walks","It isn't — middles hold both a ladder cushion and room to maneuver"],a:1,e:"Maximum premium against the coverers, real losses to anyone — <b>handcuffed above, hunted from below</b>. The seat demands its own playbook."},
+{q:"The middle's posture toward the leader's relentless 2.1x steals:",o:["Defend every blind — surrendering trains him to steal forever","Mostly release them; counterattack premium-heavy and sized to end the hand","3-bet him light — his wide steals can't stand real pressure","Call and play flops"],a:1,e:"Fighting wide versus the one stack that can eliminate you is the classic middle-seat suicide. <b>Fold the rent; strike with hands that end hands.</b>"},
+{q:"Who does the middle stack attack?",o:["The leader — hit the biggest","Other mediums and mid-shorts","The shortest stack about to bust","Nobody"],a:1,e:"Premium flows downhill: <b>your fear points up; your income points down and sideways</b>. Farm the seats where you're the warlord."},
+{q:"'Patience with a trigger' means:",o:["Fold everything until aces","Wait actively","Play fast when bored","Never play a pot"],a:1,e:"The middle's double-up comes from <b>the leader's wideness meeting your prepared premium</b>. Passive waiting misses it; active waiting owns it."},
+{q:"As the FT short stack, first-in jams are:",o:["Desperate — avoid them","Still the whole game","Only for the chip leader","Replaced by limping"],a:1,e:"Days 48–49 at maximum stakes: <b>FT fear widens your effective fold equity</b>. Shorts become mediums by jamming on schedule, never by waiting."},
+{q:"Another stack is shorter than you and blinding out. Adjustment?",o:["None — play your game","Tighten a notch and let him bust first","Loosen — race him to double","Stall every hand"],a:1,e:"<b>Laddering is a tool, not a lifestyle</b>: one notch while someone else dies, then back to violence. Passive laddering past that window is Day 49's resignation."},
+{q:"'Never blind below threat level' because:",o:["Small stacks are embarrassing","The stack that can't hurt anyone gets called by everything","The antes eat a bigger share of each remaining orbit","A slow death leaves you fewer orbits to find a premium"],a:1,e:"A 4bb jam threatens nobody and gets looked up by everybody. <b>Jam while the stack still scares</b> — the threat is the asset."},
+{q:"Role-transition awareness demands:",o:["Choosing one role and committing","Re-reading your role every orbit","Asking the table what to do","Ignoring stack sizes"],a:1,e:"FT stacks move violently. <b>The guide that was correct twenty minutes ago may belong to a different seat now</b> — check which side of the card faces up."}]});
+
+/* ============ DAY 54 — consolidation ============ */
+L.push({d:54,t:"Consolidation gauntlet VI",f:"z",obj:"Twelve questions from Days 48–53: push-fold bands, ladders, and the three final-table seats. Then a role-rotating FT sim and the review.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 randomized questions from the week's pools (Days 48, 49, 51, 52, 53). Retake until you pass.</li>
+<li><b>75m final-table sim rotating roles:</b> play orbits as leader, middle, and short. Log every hand where you used the wrong seat's playbook.</li>
+<li><b>30m review:</b> your role errors are the homework — which seat's doctrine hasn't landed yet?</li>
+<li><b>Recovery vow:</b> walk, hydrate, long sleep. The deep-run mindset days are next.</li></ul>`,
+pool:{days:[48,49,51,52,53],n:12}});
+
+/* ============ DAY 55 ============ */
+L.push({d:55,t:"Post-bubble re-acceleration",f:"g",obj:"The bubble bursts and the field exhales — incorrectly, in both directions. The 45/55 attack plan for the most exploitable hour in the tournament.",
+body:`
+<h3>The exhale</h3>
+<p>The instant the bubble bursts, the Main Event field splits into two wrong postures:</p>
+<ul>
+<li><b>The relieved gamblers</b> — short and medium stacks who 'made the money' and now jam or call absurdly wide, treating the min-cash as the finish line. Their ranges loosen by whole tiers within an orbit.</li>
+<li><b>The new nits</b> — players who transfer their bubble fear to the next pay jump and keep playing 75/25 in a 45/55 world, under-defending everything.</li></ul>
+<p>Both are exploitable <b>immediately</b> — and the window is short. Your ratio: <b>45/55, the war map's Day 5 setting</b> — the sharpest aggression spike of the whole tournament outside the covering bubble.</p>
+<h3>The attack plan</h3>
+${T2([
+["Versus the relieved gamblers","Tighten your call-offs to their REAL new ranges — wide and merged. Your premium hands get paid like never before; your marginal calls beat ranges that used to be nutted (Day 26's list temporarily suspends for this hour — their jams really are wide)"],
+["Versus the new nits","Steal and 3-bet relentlessly — they're paying bubble premiums that no longer exist. Their blinds, their opens, their capped defends: all discounted"],
+["Versus fellow sharps","The few who re-accelerated with you: stay out of the way — the field is the feast; don't duel the other wolves"]],
+["Target","Plan"])}
+<h3>Re-tag the whole table</h3>
+<p>Every Day 18 tag is provisional again: the nit who cashed may be a relieved gambler now; the splashy rec may nit up to protect his ladder. <b>The first orbit after the bubble is a new first orbit.</b> Watch showdowns, re-tag fast, and route the aggression accordingly.</p>
+${NOTE("post-bubble is the one hour where the population's jams genuinely widen — the 'never-bluff' calibration relaxes a notch for stacks that just cashed. It re-tightens within a level as reality returns. Exploit the window; don't overstay it.")}`,
+quiz:[
+{q:"The two wrong postures the field takes when the bubble bursts:",o:["Everyone tightens — the next pay jump instantly replaces the bubble","Relieved gamblers (jamming absurdly wide post-cash) and new nits (still paying premiums that no longer exist)","Everyone recalibrates correctly within an orbit or two","Everyone leaves"],a:1,e:"The exhale breaks the field in <b>both directions at once</b> — and each direction has its own dedicated exploit."},
+{q:"Your ratio immediately post-bubble:",o:["75/25 — jumps are coming","45/55","50/50 forever","10/90"],a:1,e:"<b>Day 5's setting</b>: re-accelerate while the field is split between gamblers and ghosts. The window is one of the most profitable hours of the event."},
+{q:"Versus the relieved gamblers, the adjustment is:",o:["Bluff them more","Recalibrate call-offs to their REAL new ranges","Avoid them","Identical to bubble play"],a:1,e:"Their jams genuinely widened by tiers. <b>Ranges that were nutted an hour ago are merged now</b> — the calibration must move with them, fast."},
+{q:"Why does the never-bluff list 'temporarily suspend' post-bubble?",o:["It never suspends — population priors hold through every phase","The one population moment where big aggression genuinely widens","ICM pressure ends at the money, so every population read resets","The list was wrong all along"],a:1,e:"Day 26's priors describe normal conditions; <b>post-cash euphoria is a documented exception</b> — and it re-tightens within a level. Time-boxed exploitation."},
+{q:"Versus the new nits:",o:["Wait for premiums","Steal and 3-bet relentlessly","Show them the payout board","Play their game"],a:1,e:"Fear outliving its cause is <b>pure rent</b>: their folds are priced for a bubble that already burst. The warlord's playbook applies without the warlord's risk."},
+{q:"Why re-tag the entire table after the bubble?",o:["Tags never change","The bubble reshuffles psychology","To pass the time","Only new players need tags"],a:1,e:"Day 18's pencil rule at its most urgent: <b>one event just changed everyone's incentives at once</b>. Showdowns re-tag faster than theories."},
+{q:"Your posture toward the other players who re-accelerated correctly:",o:["Attack them — beat the best","Stay out of the way","Form an alliance","Copy their every move"],a:1,e:"Day 18's strong-reg rule scaled up: <b>edges versus sharps are thin while the exhaling field is fat</b>. Route aggression where the errors are."},
+{q:"The window's expiry:",o:["It lasts until the final table","About a level","It never expires","Ten minutes exactly"],a:1,e:"Post-cash euphoria is a <b>decaying asset</b>. The player still calling 'wide gambler ranges' two levels later is paying for a party that ended."}]});
+
+/* ============ DAY 56 ============ */
+L.push({d:56,t:"Card-dead deep-run rehearsal",f:"z",obj:"The monk's test: hours of nothing playable while the tournament of your life continues — fold discipline without rot, theft without cards, and the emotional leaks that end deep runs.",
+body:`
+<h3>The test that decides deep runs</h3>
+<p>Somewhere in Days 3–6 of the Main, it will happen: <b>four hours, no pairs, no aces, nothing</b> — while pay jumps pass and your stack erodes. Card-dead stretches end more deep runs than coolers do, because the deaths are self-inflicted: boredom calls, frustration jams, or the slow rot into a stack too short to matter (Day 49's resignation, in slow motion).</p>
+<h3>The card-dead script (write it today, run it then)</h3>
+<ul>
+<li><b>The cards don't know you're card-dead.</b> Every decision is still just a decision — the 40th consecutive fold is exactly as correct as the first. No hand owes you anything.</li>
+<li><b>Steal by conditions, not by cards</b> — position, foldy blinds, a tight opener to 3-bet with blockers: the Phase I/II steal conditions don't require good cards, only good targets. Your quota: roughly <b>one steal attempt per orbit when any legitimate condition appears</b>. That's enough to hold the stack near level without ever splashing.</li>
+<li><b>Spend the image</b> — three hours of folding buys maximum credit. Your rare aggression now gets more folds than it ever will again: that's an asset the card-dead stretch itself created. Use it deliberately, not resentfully.</li>
+<li><b>Guard the trigger points</b> — the moments rot becomes action: right after a near-miss fold, right after losing a blind battle, right when the average stack chart updates. One breath (Day 38), name the feeling, fold the impulse.</li></ul>
+<h3>Fold discipline without tightening into oblivion</h3>
+<p>The opposite failure is real too: card-dead players stop <b>seeing</b> spots — the profitable BTN jam, the mandatory BB defend, the obvious reshove — because 'nothing playable' became an identity. The script's other half: <b>run the checklists anyway.</b> Every fold must still be a decision, not a reflex. The moment folding becomes automatic, you're leaking in the other direction.</p>
+${NOTE("watch the table when a tight player finally opens after two silent hours — the entire field folds, faces first. The card-dead stretch loads a weapon; most players never notice they're holding it because they're too busy feeling unlucky.")}`,
+quiz:[
+{q:"Why do card-dead stretches end more deep runs than coolers?",o:["They don't — coolers cost whole stacks while droughts only cost blinds","The deaths are self-inflicted: boredom calls, frustration jams, or the slow rot into irrelevance","Card-dead means bad luck forever","Coolers are rarer than droughts across an eight-day event"],a:1,e:"Coolers are variance; <b>card-dead deaths are choices</b>. The monk's test is refusing every one of them for hours."},
+{q:"'The cards don't know you're card-dead' means:",o:["Luck evens out — a heater is statistically due after a drought","The 40th consecutive fold is exactly as correct as the first","Change seats to change luck","Play the next hand blind"],a:1,e:"Each decision is independent of the drought around it. <b>The moment history starts voting, the leak has begun.</b>"},
+{q:"Card-dead stealing works because:",o:["Any two cards win eventually","The steal conditions","Dealers favor active players","It doesn't work"],a:1,e:"Phase I/II steals were <b>condition-driven all along</b>. The drought removes your showdown hands, not your targets — the quota keeps the stack level."},
+{q:"The card-dead steal quota:",o:["Every button — position alone is condition enough","Roughly one attempt per orbit when a legitimate condition appears","Zero — stealing without cards is spew dressed up as discipline","Ten per orbit"],a:1,e:"One conditioned steal per orbit ≈ blinds-and-antes neutrality. <b>The stack holds level on theft alone</b> — no desperation required."},
+{q:"'Spend the image' refers to:",o:["Dressing well","Three hours of visible folding buys maximum fold equity","Talking about your folds","Showing your big folds"],a:1,e:"The drought itself <b>manufactures an asset</b>: credit. The tight player's first open clears the table — that's a weapon, not a consolation prize."},
+{q:"The trigger points to guard:",o:["Blind increases — the moments the math visibly worsens","Right after a near-miss fold, a lost blind battle, or a stack-average update","Dinner breaks","There are none"],a:1,e:"Rot doesn't act randomly; <b>it acts at provocations</b>. One breath, name the feeling, fold the impulse — Day 38's protocol at its exact use case."},
+{q:"The OPPOSITE card-dead failure:",o:["Playing too many hands","Folding becoming automatic","Stealing too much","Leaving the table"],a:1,e:"Every fold must remain a <b>decision that ran the checklist</b>. Reflex-folding leaks in the quiet direction — invisible, and just as expensive."},
+{q:"Why is this the MONK'S test specifically?",o:["Monks like folding","Feel the boredom, the injustice, the fear","It requires meditation retreats","It's the easiest test"],a:1,e:"Day 11's doctrine generalized: <b>feel it, then do what the process says</b>. Four silent hours of correct decisions is the purest form of the skill."}]});
+
+/* ============ DAY 57 — marathon ============ */
+L.push({d:57,t:"ICM quiz marathon",f:"m",obj:"Three timed blocks with breaks — the wasteland's knowledge under fatigue. Log every miss by its reason class: math, role, or fear.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>Three timed blocks:</b> run the marathon below three times — 45 minutes apart, with real breaks (walk, water, no screens). The engine re-samples 15 fresh questions each block from every study day so far this phase.</li>
+<li><b>Log every miss with its reason class:</b> <b>math</b> (didn't know the number), <b>role</b> (used the wrong seat's playbook), or <b>fear</b> (knew the answer, flinched anyway). Three misses of the same class = that class is your remaining homework.</li>
+<li><b>Target: final block ≥85%</b> — knowledge that survives the third hour is knowledge that will survive Day 4 of the Main.</li></ul>
+<h3>Why fatigue-test knowledge</h3>
+<p>Day 38 proved your C-game exists; today measures whether the wasteland doctrine has sunk below the fatigue line. ICM under pressure fails in a specific order: <b>fear corrupts first, roles blur second, math goes last</b>. Where your misses cluster tells you which layer needs another pass before the exam.</p>`,
+pool:{days:[41,42,43,44,45,46,48,49,51,52,53,55,56],n:15,label:"Marathon Block",tag:"marathon"}});
+
+/* ============ DAY 58 ============ */
+L.push({d:58,t:"Structure math across the days",f:"m",obj:"Forecast the battlefield: how five 120-minute levels a day move the field's depth, which phase of your training governs which day, and what late registration really means.",
+body:`
+<h3>The structure as terrain</h3>
+<p>The Main Event proxy: <b>60,000 chips, 120-minute levels, ~five levels per day</b>, blinds rising roughly 25–50% per level. That progression is a terrain map you can read in advance: it tells you what the average stack in big blinds will be on every future day — and therefore <b>which of your trained games will be running</b>.</p>
+<h3>The depth forecast (approximate, field averages)</h3>
+${T2([
+["Day 1","~300bb falling to ~150bb — Phase I's world: deep, patient, position and implied odds"],
+["Day 2","~150bb falling to ~80bb — Phase II's world: postflop warcraft at full leverage"],
+["Day 3","~80bb falling to ~50bb — the 25–40bb band (Day 45) arrives for half the field"],
+["Day 4 (bubble ~L17)","Average ~60–70bb but median far lower — a third of the field under 30bb: reshove and push-fold bands everywhere, plus maximum ICM"],
+["Days 5–8","Averages hover 40–60bb as eliminations refill the pool — every band coexists; role-reading (Days 52–53) governs"]],
+["Day","Field depth & governing game"])}
+<p>The personal corollary: <b>your stack in bb, not the level number, decides which playbook is open.</b> The forecast just tells you which games your OPPONENTS will be playing badly around you.</p>
+<h3>The average is a lie (a useful one)</h3>
+<p>Averages hide the spread: by Day 3 the table has a 120bb warlord and an 18bb reshover at the same felt. <b>Effective stacks rule every decision</b> — you play the shorter stack's game in every confrontation. The forecast's real use: knowing that from Day 3 onward, <b>most pots you play will be governed by wasteland math, not deep-stack art.</b></p>
+<h3>Late registration</h3>
+<p>The Main allows entry into early Day 2 levels. A fresh 60k stack then is ~40–75bb — <b>born directly into the mid-stack bands</b>. If you ever fire a late flight: skip the deep-stack warmup mentally; you arrive on Day 45's terrain, and your first orbit is already a reshove-band orbit for the shorts around you.</p>
+${NOTE("almost nobody at a live table has forecast the structure — they discover 'suddenly everyone's short' on Day 3 like weather. You knew in advance: the bands arrive on schedule, and your training calendar was built to match the terrain calendar.")}`,
+quiz:[
+{q:"The structure proxy in one line:",o:["60,000 chips, 60-minute levels, ten per day, doubling blinds","60,000 chips, 120-minute levels, ~five per day, blinds rising ~25–50% per level","100k stack, 30-minute turbo levels","It changes every year beyond recognition"],a:1,e:"The terrain constants (Day 1's orientation, now weaponized): <b>slow, deep, forecastable</b> — which makes depth prediction a genuine edge."},
+{q:"Day 1's governing game:",o:["Push-fold","Phase I's deep world","The reshove band","Pure ICM"],a:1,e:"Nothing about Day 1 is shallow. <b>The Phase I baselines govern all five levels</b> — the player using Day 3 tactics on Day 1 is early and wrong."},
+{q:"By Day 3, roughly where is the field?",o:["Still 200bb+","~80bb falling toward ~50bb, with half the field entering the 25–40bb band","Everyone under 10bb","Holding near 100bb as eliminations offset the rising blinds"],a:1,e:"The bands arrive <b>on schedule</b>: Day 45's tree-collapse world becomes the field's main game two days before the bubble."},
+{q:"Why is the Day 4 average (~60–70bb) misleading?",o:["It's too low","The median is far lower","Averages are always exact","Because of late registration"],a:1,e:"The spread hides behind the mean: <b>warlords and reshovers share every felt</b>. Median depth, not average, names the governing game."},
+{q:"What decides which playbook is open in any given pot?",o:["The level number","Effective stacks","The average stack","Your mood"],a:1,e:"A 120bb stack versus an 18bb jammer is playing <b>an 18bb pot</b>. The forecast predicts the field; effective stacks rule the hand."},
+{q:"A fresh 60k late entry on early Day 2 is born at:",o:["300bb — same as Day 1","~40–75bb","Under 10bb","Exactly the average"],a:1,e:"Late flights arrive on <b>Day 45's terrain</b>: no deep-stack warmup, immediate tree-collapse poker, and reshove-band shorts already circling."},
+{q:"The forecast's real strategic use:",o:["Predicting your own cards","Knowing which games your opponents will be playing badly on each day","Choosing when to skip dinner","None — effective stacks make any forecast obsolete hand to hand"],a:1,e:"You trained deep→postflop→wasteland <b>in the order the tournament will demand them</b>. The field discovers each terrain by surprise; you scheduled for it."},
+{q:"From Day 3 onward, most pots you play are governed by:",o:["Deep-stack artistry","Wasteland math","Pure bluffing","Physical tells"],a:1,e:"The deep game is two days of an eight-day war. <b>Phase III is the Main Event's native language</b> from Day 3 to the final table."}]});
+
+/* ============ DAY 59 ============ */
+L.push({d:59,t:"Satellite & mixed-field ICM lab",f:"m",obj:"The sharpest ICM training ground in poker: satellite bubbles where a chip and a dollar fully divorce — including the spot where folding aces is simply correct.",
+body:`
+<h3>Why satellites train the Main</h3>
+<p>In a satellite, every seat pays <b>the same prize</b> — first place and tenth place win identical packages. That means chip accumulation beyond a locked seat is worth <b>exactly zero</b>: the purest ICM environment that exists. Training here overcorrects your instincts on purpose — after satellite bubbles, Main Event premiums feel easy to respect.</p>
+<h3>The famous fold</h3>
+<p>Eleven players, ten identical seats. You're second in chips; two short stacks are already all-in in front of you. You look down at <b>AA</b>. The correct play is a fold — and it isn't close:</p>
+<ul>
+<li>Fold: a short stack busts most of the time, and you win a seat <b>now</b> with ~zero risk.</li>
+<li>Call: you win the pot ~65–80% — and the times you lose, you've converted a locked seat into elimination. The chips you'd win are worth nothing; the chips you'd lose are worth everything.</li></ul>
+<p>Bubble factor here approaches <b>infinity</b>: no gain from winning, total loss from losing. Aces are a hand; the seat is the tournament.</p>
+<h3>Satellite bubble doctrine</h3>
+${T2([
+["Covered & near the seat line","Fold almost everything — including monsters — when calling risks a locked or near-locked seat"],
+["Big stack","Jam relentlessly into stacks that literally cannot call — the leverage is beyond even the Main's bubble"],
+["Short & below the line","The inverse: you must gamble — target the mediums who can't call, race while your chips still buy folds"],
+["Stall wars","Satellite endgames feature open stalling; know the rules, keep your own pace legal, and count hands-per-level like everyone else"]],
+["Seat","Doctrine"])}
+<h3>What transfers to the Main (and what doesn't)</h3>
+<p><b>Transfers:</b> the felt sense that chips and money are different currencies; per-seat bubble factors as instinct; the discipline of folding huge hands ON ARITHMETIC (Day 51's test). <b>Doesn't transfer:</b> the absolute numbers — the Main's top-heavy payouts mean accumulation always retains real value (Day 51: worship the crown). Run a satellite structure this week, live or simmed, and file the notes.</p>
+${NOTE("satellite regs are the most ICM-literate population in poker — and even THEY call too much on seat bubbles. The field you'll meet in a Main Event mega-satellite plays these spots catastrophically: if you fire satellites for your seat, this day is direct profit.")}`,
+quiz:[
+{q:"Why are satellites the purest ICM environment?",o:["The buy-ins are smaller, so survival instincts dominate naturally","Every seat pays identically, so chips beyond a locked seat are worth exactly zero","Their fast structures force push-fold ICM from the first level","They aren't"],a:1,e:"When first and tenth win the same package, <b>accumulation past the seat line has literally no value</b> — ICM with the training wheels ripped off."},
+{q:"Eleven players, ten seats, two shorts all-in ahead, you're 2nd in chips with AA:",o:["Snap call — aces are aces","Fold","Call for the bragging rights","Min-raise"],a:1,e:"The chips you'd win are worth <b>nothing</b>; the chips you'd lose are worth <b>everything</b>. Bubble factor near infinity makes AA a trivial fold — the seat is the tournament."},
+{q:"The satellite big stack near the seat line should:",o:["Coast — the seat is safe","Jam relentlessly into stacks that literally cannot call","Fold everything too","Make deals"],a:1,e:"When calling can cost opponents a locked seat, <b>their calling ranges approach zero</b>. The warlord's hour (Day 44) at its theoretical maximum."},
+{q:"The short stack BELOW the seat line must:",o:["Fold and pray","Gamble deliberately","Stall forever","Wait for aces"],a:1,e:"The inverse seat inverts the doctrine: <b>survival at your depth is losing</b>. The premium works against the mediums, and you're the one who must weaponize it."},
+{q:"Bubble factor on a satellite seat bubble, covered and near the line:",o:["About 1.2","Approaching infinity","Exactly 2.0","Below 1"],a:1,e:"Day 42's table tops out here: <b>the ratio's numerator is your tournament and its denominator is nothing</b>. Every marginal call is pure destruction."},
+{q:"What TRANSFERS from satellite training to the Main?",o:["The exact folding ranges — a fold correct in one is correct in the other","The felt sense of two currencies, per-seat bubble factors as instinct, and folding monsters on arithmetic","The stalling techniques only","Nothing"],a:1,e:"The instincts transfer; <b>the absolute numbers don't</b> — the Main's top-heavy payouts keep accumulation valuable (worship the crown, Day 51)."},
+{q:"What does NOT transfer?",o:["The discipline","The absolute numbers","The concept of coverage","The fold button"],a:1,e:"Satellite doctrine says chips stop mattering; <b>Main Event doctrine never does</b>. Import the respect for premiums, not the worship of survival."},
+{q:"If you fire a mega-satellite for your Main seat, this day is:",o:["Optional trivia","Direct profit","Only useful if you win","Bad luck to study"],a:1,e:"Even satellite regs call too much on seat bubbles; <b>mega-satellite fields are far worse</b>. The doctrine above is the exact edge, immediately cashable."}]});
+
+/* ============ DAY 60 — exam ============ */
+L.push({d:60,t:"PHASE III EXAM",f:"z",obj:"Twenty-five questions sampled from all fifteen study days of the wasteland. 85%+ passes. Then grade your covered-play versus covering-play accuracy separately and update the leak list.",
+body:`
+<h3>Exam protocol</h3>
+<ul>
+<li><b>25 randomized questions</b> from every pool in Phase III. Different sample each attempt.</li>
+<li>Target: <b>85%+</b>. Below that, the misses name the day to re-study — do it before advancing.</li>
+<li>After passing: <b>grade the asymmetry.</b> Sort your misses into covered-play errors (Days 43, 45, 46, 51, 53) versus covering-play errors (Days 44, 52, 55). Most players have a gap — measure yours, because Phase IV's live-field raids will punish whichever side is weaker.</li>
+<li>Update the leak list from Days 1, 20, and 40. Set Phase IV intentions: the live-field raids — table presence, live reads at full speed, session craft — begin tomorrow.</li></ul>
+<h3>What Phase III built</h3>
+<p>ICM as arithmetic and the risk premium · bubble factor by matchup · the covered 75/25 playbook · the covering 35/65 warlord hour · the 25–40bb tree collapse · reshove and call-off discipline at 15–25bb · push-fold precision at 10–15bb · the last canteen under 10bb · ladder logic and the farming of the ladder-obsessed · all three final-table seats · post-bubble re-acceleration · the card-dead script · structure forecasting · satellite ICM at its purest.</p>
+<p>The wasteland is mapped. Phase IV takes the whole arsenal into live fire.</p>`,
+pool:{days:[41,42,43,44,45,46,48,49,51,52,53,55,56,58,59],n:25,exam:true}});
+
+/* ---------- ENGINE ---------- */
+const store=JSON.parse(localStorage.getItem("wsop100.study3")||"{}");
+const save=()=>localStorage.setItem("wsop100.study3",JSON.stringify(store));
+const FCHIP={g:['g','⚔ Gladiator'],m:['m','🏜 Mad Max'],z:['z','◯ Zen Monk']};
+let cur=41, qState=null;
+
+const nav=document.getElementById("daynav"), content=document.getElementById("content");
+
+function badge(d){
+  const s=store["d"+d];
+  if(!s||s.best==null)return"";
+  return s.best>=90?"★":s.best>=80?"✓":"";
+}
+function renderNav(){
+  nav.innerHTML="";
+  L.forEach(x=>{
+    const b=document.createElement("button");
+    b.type="button";
+    const s=store["d"+x.d];
+    b.className="dbtn"+(x.d===cur?" on":"")+(s&&s.best>=90?" star":s&&s.best>=80?" pass":"");
+    const tag=x.pool?(x.pool.tag||(x.pool.exam?"exam":"gauntlet")):"drill";
+    b.innerHTML=`${x.d}<small>${tag}</small><span class="badge">${badge(x.d)}</span>`;
+    b.title=`Day ${x.d} — ${x.t}`;
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    nav.appendChild(b);
+  });
+  const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
+  document.getElementById("stPassed").textContent=scores.filter(v=>v>=80).length;
+  document.getElementById("stMastered").textContent=scores.filter(v=>v>=90).length;
+  document.getElementById("stAvg").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";
+}
+function shufQ(q){
+  // shuffle answer options so the correct index varies every attempt
+  const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {...q,o:idx.map(k=>q.o[k]),a:idx.indexOf(q.a)};
+}
+function getQuiz(day){
+  const x=L.find(l=>l.d===day);
+  if(x.quiz)return x.quiz.map(shufQ);
+  // pooled: sample n random from source days
+  let pool=[];
+  x.pool.days.forEach(sd=>{const s=L.find(l=>l.d===sd);if(s&&s.quiz)pool=pool.concat(s.quiz.map(q=>({...q,src:sd})));});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  return pool.slice(0,x.pool.n).map(shufQ);
+}
+function renderAll(){
+  const x=L.find(l=>l.d===cur);
+  const [fc,fl]=FCHIP[x.f];
+  content.innerHTML=`
+    <div class="dayhead">
+      <span class="dnum">D${String(x.d).padStart(3,"0")}</span>
+      <h2>${x.t}</h2>
+      <span class="focus-chip ${fc}">${fl}</span>
+    </div>
+    <p class="obj">${x.obj}</p>
+    <div class="lesson">${x.body}</div>
+    <div class="quiz" id="quiz"></div>`;
+  renderQuizStart();
+  renderNav();
+}
+function renderQuizStart(){
+  const x=L.find(l=>l.d===cur);
+  const s=store["d"+cur];
+  const label=x.pool?(x.pool.label||(x.pool.exam?"The Phase Exam":"The Gauntlet")):"The Drill";
+  const n=x.pool?x.pool.n:x.quiz.length;
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead">
+      <h3>${label} — ${n} questions</h3>
+      <span class="bestline">${s&&s.best!=null?`best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}`:"not yet attempted"}</span>
+    </div>
+    <p style="color:var(--dim);font-size:15px;margin:8px 0 16px">Pass at 80%+ · mastery at 90%+${x.pool?" · questions re-sample every attempt":""}. Immediate judgment after every answer.</p>
+    <div class="qnav" style="justify-content:flex-start"><button class="btn" id="qgo" type="button">${s&&s.best!=null?"Retake":"Begin"}</button></div>`;
+  document.getElementById("qgo").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+}
+function showQ(){
+  const q=qState.qs[qState.i];
+  document.getElementById("quiz").innerHTML=`
+    <div class="qmeta">
+      <span class="mono">QUESTION ${qState.i+1} / ${qState.qs.length}</span>
+      <span class="mono">${qState.right} correct${q.src?` · from Day ${q.src}`:""}</span>
+    </div>
+    <p class="qtext">${q.q}</p>
+    <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    <div id="qfb"></div>
+    <div class="qnav" id="qnav"></div>`;
+  document.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(qState.done)return;qState.done=true;
+  const q=qState.qs[qState.i],right=i===q.a;
+  if(right)qState.right++;
+  document.querySelectorAll(".qopt").forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.a)b.classList.add("correct");
+    else if(bi===i)b.classList.add("wrong");
+  });
+  document.getElementById("qfb").innerHTML=`<div class="qexpl"><b>${right?"Struck true.":"A wound — learn from it."}</b> ${q.e}</div>`;
+  document.getElementById("qnav").innerHTML=`<button class="btn" type="button" id="qnext">${qState.i<qState.qs.length-1?"Next":"See result"}</button>`;
+  const nb=document.getElementById("qnext");
+  nb.onclick=()=>{qState.i++;qState.done=false;qState.i<qState.qs.length?showQ():finish();};
+  nb.focus();
+}
+function finish(){
+  const pct=Math.round(qState.right/qState.qs.length*100);
+  const s=store["d"+cur]||{best:null,att:0};
+  s.att++;if(s.best==null||pct>s.best)s.best=pct;
+  store["d"+cur]=s;save();
+  const pass=pct>=80,star=pct>=90;
+  const x=L.find(l=>l.d===cur);
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead"><h3>Result</h3><span class="bestline">best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}</span></div>
+    <div class="result-title ${pass?"pass":""}">${star?"Mastered":pass?"Passed":"Not yet"}</div>
+    <p class="scoreline"><span class="mono">${qState.right} / ${qState.qs.length} — ${pct}%</span> ${star?"— the checkpoint is conquered.":pass?"— solid. Retake for mastery when fresh.":"— re-read the lesson, then come back. The misses named your homework."}</p>
+    <div class="bar ${pass?"pass":""}"><i style="width:${pct}%"></i></div>
+    <div class="qnav" style="justify-content:flex-start;gap:10px">
+      <button class="btn" type="button" id="qretry">${x.pool?"New sample":"Retake"}</button>
+      ${cur<60?`<button class="btn ghost" type="button" id="qadv">Next day →</button>`:""}
+    </div>`;
+  document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+  const adv=document.getElementById("qadv");
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  renderNav();
+}
+renderAll();
+</script>
