@@ -97,6 +97,8 @@ tr:last-child td{border-bottom:none}
 .qopt:disabled{cursor:default}
 .qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
 .qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qlegend{margin:12px 0 0;padding:9px 12px;background:var(--bg2);border:1px dashed var(--line);font-size:12.5px;line-height:1.5;color:var(--faint)}
+.qlegend b{color:var(--bronze)}
 .qexpl{margin:14px 0 0;padding:13px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
 .qexpl b{color:var(--ink)}
 .qnav{margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
@@ -267,7 +269,7 @@ quiz:[
 {q:"Out of position at 60bb, your loose flats become:",o:["Leaks — the clean decisions are 3-bet or fold","Still fine — 60bb carries enough implied odds to flat","Better than 3-betting, which just bloats OOP pots","Correct only with suited hands that flop well"],a:0,e:"Day 45's tree collapse arriving: <b>OOP, the flat is the exception, not the reflex</b>. 60bb isn't deep enough to chase implied odds against a good field, and folding the junk beats both flatting and loose 3-betting it."},
 {q:"The Day-3 non-negotiable before entering any pot:",o:["A turn-and-river plan for good, bad, and blank runouts","A read on the specific opponent you're up against","Position on the preflop raiser","A hand that can keep barreling on most turns"],a:0,e:"Reads, position, and barrel-ability all help — but the day's rule is the <b>plan</b>. No entering a pot to 'see what happens'; you know your line on every street before the first chip goes in, because the field is too good to freelance against."},
 {q:"The strategic purpose of Day-3 aggression:",o:["To arrive at the bubble covering, not covered","To build a fearsome image before hand-for-hand","To bust as many recs as possible before Day 4","To bank enough to fold through the whole bubble"],a:0,e:"Day 3 builds ammunition for the bubble script (Day 64). <b>Stack accumulation now decides whether you're the warlord (35/65) or the survivor (75/25)</b> — not whether you can fold through, which just blinds you down."},
-{q:"'50/50' on the war map means:",o:["Full aggression governed by a plan","A range that bluffs and value-bets in equal measure","Playing roughly half the hands you're dealt","Mixing survival and gambling fifty-fifty"],a:0,e:"The most misread setting — it's not a balance ratio or a hand-count. <b>Disciplined full pressure applies MORE real force than the maniac</b>, because it's credible and its disasters are engineered out."},
+{q:"'50/50' on the war map means:",o:["Equal weight on survival and aggression — balanced, disciplined pressure","A range that bluffs and value-bets in equal measure","Playing roughly half the hands you're dealt","Splitting your game half survival, half gambling"],a:0,e:"<b>50/50 = 50% survival, 50% aggression</b> — a balanced setting. But 'balanced' isn't a betting range or a hand-count, and the aggression half is disciplined pressure, not gambling: that credible, planned force applies MORE than the maniac's, with its disasters engineered out."},
 {q:"Why does the disciplined Day-3 aggressor out-pressure the maniac?",o:["His aggression is credible and his big disasters are engineered out","He simply puts action into more pots per orbit","He targets only the weakest players and avoids the rest","He runs a perfectly balanced, unexploitable strategy"],a:0,e:"Not raw volume, not target-selection alone, not solver-perfection: <b>believable force without the tournament-ending spew</b>. Wide steals plus OOP-junk folds plus street-by-street plans make the pressure the kind that actually folds people."},
 {q:"The Day-3 field's exploitable tightening:",o:["Regs tighten a day early, folding blinds to protect a 50bb stack","Regs start attacking wildly to build a bubble stack","The field plays textbook ICM a full day ahead of the bubble","Short stacks refuse to jam, clinging to their fold equity"],a:0,e:"Premature caution — not wild aggression or textbook ICM — is the standing invitation. <b>Steal their blinds now, while they're already playing the bubble a day before it arrives</b>; their fear is your rent."}]});
 
@@ -306,6 +308,7 @@ body:`
 <h3>The mandate: re-accelerate, then precision</h3>
 <p>The bubble burst; you're in the money. The deep run is now a multi-day campaign with its own rhythm. <b>Day 5: 45/55</b> — re-accelerate and attack the post-cash exhale (Day 55). <b>Days 6–8: 50/50 shifting to precision over volume</b> — as the field shrinks and pay jumps steepen, efficiency replaces raw frequency. Fewer, better spots; no heroics.</p>
 <h3>The full aggression curve (memorize it)</h3>
+<p>Every ratio below is <b>survival / aggression</b> — the first number is the weight on survival. So <b>60/40</b> is cautious (60% survival), <b>50/50</b> is balanced, and <b>35/65</b> is a full-attack warlord setting (only 35% survival).</p>
 ${T2([
 ["Day 1","60/40 — exploit &amp; observe"],
 ["Day 2","55/45 — selective accumulation"],
@@ -323,7 +326,7 @@ ${T2([
 <p>By Days 5–8 you've played 50+ hours of the highest-pressure poker of your life. Fatigue is now a genuine opponent (Days 38, 89): your C-game leaks in late in long sessions, and the field's does too. Manage it deliberately — sleep is non-negotiable (Day 69), fuel is scheduled (Day 70), and the reset script (Day 68) runs on demand. <b>The deep run is won partly at the table and partly in the hotel room</b> — the player who sleeps and eats out-lasts the equally skilled player who doesn't.</p>
 ${NOTE("post-cash, half the field either over-celebrates a min-cash and gambles off their stack, or clutches every pay jump and folds into irrelevance. The precision player attacks the gamblers' loose ranges and steals the clutchers' blinds — the same two exploits that live at every pay jump for the rest of the event.")}`,
 quiz:[
-{q:"Your ratio on Day 5, immediately post-bubble:",o:["45/55 — re-accelerate into the post-cash exhale","50/50 — return to your steady Day 3 pressure","35/65 — the field's scared, so go full warlord","60/40 — bank the cash and pick spots carefully"],a:0,e:"<b>45/55</b> (Day 55): the field splits into relieved gamblers and new nits — one of the most profitable windows of the event. Sliding back to 50/50 or 60/40 misses it; 35/65 is the covering-bubble setting, not this."},
+{q:"Your ratio on Day 5, immediately post-bubble:",o:["45/55 — re-accelerate into the post-cash exhale","50/50 — return to your steady Day 3 pressure","35/65 — the field's scared, so go full warlord","60/40 — bank the cash and pick spots carefully"],a:0,e:"<b>45/55</b> — 45% survival, 55% aggression, so slightly aggression-leaning. Post-bubble (Day 55) the field splits into relieved gamblers and new nits, so you re-accelerate into one of the event's most profitable windows. 50/50 and 60/40 are too passive; 35/65 is the covering-bubble setting, not this."},
 {q:"The mode shift for Days 6–8:",o:["Precision over volume — fewer, better spots as jumps steepen","Maximum aggression — the shrinking field folds even more","Pure survival — protect your equity to the final table","Keep Day 5's re-acceleration running the whole way"],a:0,e:"As the field shrinks and jumps steepen, <b>efficiency replaces frequency</b>: no heroics, no autopilot, every spot chosen. Not max aggression, not a survival shell, and not Day 5's throttle held forever."},
 {q:"On Days 7–8, the middling stack plays:",o:["65/35 — dodge collisions with covering stacks, still steal","40/60 — leverage fold equity and attack aggressively","50/50 — a balanced game regardless of stack","75/25 — fold your way toward the pay jumps"],a:0,e:"Middling = <b>65/35</b>: avoid the big-stack collisions that ladder you down while still stealing to survive. 40/60 is the big stack's setting; folding toward jumps just blinds you out."},
 {q:"The Day 65 checkpoint is to:",o:["Recite the full Day 1→FT aggression curve from memory","Post a winning result in a long live session","Memorize the sub-15bb push-fold charts cold","Name every pay jump from the min-cash to first"],a:0,e:"The curve is <b>the strategic spine of the event</b>. Saying it cold means you play the right game on the right day by reflex, not calculation — a chart or a result isn't the point here."},
@@ -790,6 +793,10 @@ function renderQuizStart(){
 }
 function showQ(){
   const q=qState.qs[qState.i];
+  // Show the war-map ratio legend whenever this question uses survival/aggression ratios
+  const ratioLegend=/\d\d\/\d\d/.test(q.q+" "+q.o.join(" "))
+    ? `<p class="qlegend">Ratios are <b>survival / aggression</b> — the first number is how much you weight survival. So <b>60/40</b> = 60% survival, 40% aggression (cautious); <b>50/50</b> = balanced; <b>35/65</b> = mostly aggression (full attack).</p>`
+    : "";
   document.getElementById("quiz").innerHTML=`
     <div class="qmeta">
       <span class="mono">QUESTION ${qState.i+1} / ${qState.qs.length}</span>
@@ -797,6 +804,7 @@ function showQ(){
     </div>
     <p class="qtext">${q.q}</p>
     <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    ${ratioLegend}
     <div id="qfb"></div>
     <div class="qnav" id="qnav"></div>`;
   document.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
