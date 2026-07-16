@@ -1,0 +1,841 @@
+<meta charset="utf-8">
+<title>PHASE IV STUDY HALL — Live-Field Raids (Days 61–80)</title>
+<style>
+:root{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+    --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+    --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+    --shadow:0 2px 10px rgba(90,70,40,.18);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+  --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+  --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+  --shadow:0 2px 10px rgba(90,70,40,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1000px 320px at 50% -60px, color-mix(in srgb, var(--rust) 13%, transparent), transparent), var(--bg)}
+.kicker{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:12px;font-weight:600;color:var(--bronze);margin:0 0 10px}
+h1{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(38px,7vw,68px);line-height:.95;margin:0 0 12px;text-wrap:balance}
+h1 .r{color:var(--rust)}
+.sub{max-width:64ch;color:var(--dim);font-size:16.5px;margin:0}
+.dash{display:flex;gap:26px;align-items:baseline;margin-top:20px;flex-wrap:wrap}
+.dash .stat{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--faint)}
+.dash .stat b{display:block;font-size:30px;color:var(--rust);letter-spacing:0}
+.dash .stat.z b{color:var(--sage)}
+
+/* day grid */
+.daynav{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media(max-width:720px){.daynav{grid-template-columns:repeat(5,1fr)}}
+.dbtn{position:relative;background:var(--card);border:1px solid var(--line);color:var(--dim);cursor:pointer;
+  padding:9px 2px 7px;text-align:center;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em}
+.dbtn small{display:block;font-size:9px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.dbtn:hover{color:var(--ink);border-color:var(--faint)}
+.dbtn.on{background:var(--rust);border-color:var(--rust);color:#fff8ef}
+.dbtn.on small{color:#f4d9c8}
+.dbtn.pass{border-bottom:3px solid var(--sage-deep)}
+.dbtn.star{border-bottom:3px solid var(--bronze)}
+.dbtn .badge{position:absolute;top:3px;right:5px;font-size:10px}
+.dbtn:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+
+/* lesson */
+main{padding:34px 0 70px}
+.dayhead{margin-bottom:6px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dayhead .dnum{font-family:"SF Mono",ui-monospace,Menlo,monospace;color:var(--faint);font-size:14px}
+h2{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(28px,4.5vw,40px);line-height:1;margin:0}
+.focus-chip{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:11px;padding:4px 10px}
+.focus-chip.g{background:color-mix(in srgb,var(--bronze) 18%,transparent);color:var(--bronze)}
+.focus-chip.m{background:color-mix(in srgb,var(--rust) 18%,transparent);color:var(--rust)}
+.focus-chip.z{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+.obj{color:var(--dim);max-width:68ch;margin:10px 0 26px;font-size:16.5px}
+.lesson{max-width:760px}
+.lesson h3{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:16px;color:var(--bronze);margin:30px 0 8px}
+.lesson p{margin:0 0 12px;color:var(--ink)}
+.lesson p b{color:var(--ink)}
+.lesson ul{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson ol{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson li{margin-bottom:6px}
+.lesson .note{border-left:3px solid var(--sage-deep);background:var(--card);padding:12px 14px;font-size:15px;color:var(--dim);margin:14px 0}
+.lesson .note b{color:var(--sage)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 16px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;text-align:left;color:var(--bronze);background:var(--bg2);padding:9px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+td:first-child{color:var(--ink);white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+
+/* quiz */
+.quiz{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;max-width:760px;margin-top:36px}
+.quiz .qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.quiz h3{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:22px;margin:0;letter-spacing:.05em}
+.bestline{font-size:12px;color:var(--faint);font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin:14px 0 12px;font-size:12px;color:var(--faint)}
+.qtext{font-size:18px;line-height:1.45;margin:0 0 16px;text-wrap:balance}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 13px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1.4}
+.qopt:hover:not(:disabled){border-color:var(--rust)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
+.qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qexpl{margin:14px 0 0;padding:13px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
+.qexpl b{color:var(--ink)}
+.qnav{margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
+.btn{background:var(--rust);border:none;color:#fff8ef;padding:11px 24px;font-size:13px;cursor:pointer;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.btn:hover{background:var(--rust-deep)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--dim)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.result-title{font-size:clamp(26px,4vw,36px);font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1;margin:6px 0 6px;color:var(--rust)}
+.result-title.pass{color:var(--sage)}
+.scoreline{font-size:16px;color:var(--dim);margin-bottom:16px}
+.bar{height:9px;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden;margin:6px 0 18px}
+.bar>i{position:absolute;inset:0;right:auto;background:linear-gradient(90deg,var(--rust-deep),var(--rust))}
+.bar.pass>i{background:linear-gradient(90deg,var(--sage-deep),var(--sage))}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);font-size:13.5px}
+
+/* site nav */
+.sitenav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.sitenav .wrap{display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto}
+.sitenav .brand{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--rust);margin-right:auto;white-space:nowrap}
+.sitenav a,.sitenav .soon{color:var(--dim);text-decoration:none;font-size:12.5px;padding:6px 12px;white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.sitenav a:hover{color:var(--ink);background:var(--bg2)}
+.sitenav a.here{background:var(--rust);color:#fff8ef}
+.sitenav .soon{color:var(--faint)}
+</style>
+
+<nav class="sitenav" aria-label="The Hundred">
+  <div class="wrap">
+    <span class="brand">THE HUNDRED</span>
+    <a data-local="wsop-100-day-plan.html" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8">&#8962; War plan</a>
+    <a data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">I &middot; Forge</a>
+    <a data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc">II &middot; Warcraft</a>
+    <a data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e">III &middot; Wasteland</a>
+    <a data-local="wsop-phase4-study.html" href="#" class="here">IV &middot; Raids</a>
+    <span class="soon">V &middot; Taper</span>
+  </div>
+</nav>
+<script>
+if(location.protocol==="file:")document.querySelectorAll(".sitenav a[data-local]").forEach(function(a){a.href=a.dataset.local});
+</script>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">The Hundred · Phase IV · Days 61–80</p>
+    <h1>Live-field <span class="r">raids</span></h1>
+    <p class="sub">Twenty days of taking the whole arsenal into live fire: the day-by-day game plans,
+    the bubble script rehearsed aloud, live sessions with marked hands, tilt armor, sleep and fuel
+    logistics, bankroll architecture, table image, and the half-day Main Event simulation. Read the
+    lesson, then take the drill. Pass at 80%+, mastery at 90%+. Days 67 and 76 are raid-debrief
+    gauntlets, Day 80 is the exam. Best scores save on this device.</p>
+    <div class="dash">
+      <div class="stat"><b id="stPassed">0</b>days passed</div>
+      <div class="stat z"><b id="stMastered">0</b>mastered</div>
+      <div class="stat"><b id="stAvg">—</b>avg best score</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><nav class="daynav" id="daynav" aria-label="Days 61 to 80"></nav></div>
+
+<main><div class="wrap" id="content"></div></main>
+
+<footer><div class="wrap">
+  Phase IV of THE HUNDRED — companion to the <a id="planlink" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8" style="color:var(--rust)">100-day war plan</a>,
+  sequel to <a id="p1link" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c" style="color:var(--rust)">Phase I</a>,
+  <a id="p2link" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc" style="color:var(--rust)">Phase II</a> and
+  <a id="p3link" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e" style="color:var(--rust)">Phase III</a>. Field craft, routines
+  and bankroll frameworks here are training scaffolding, not financial advice: build the machine, then run it in your own conditions.
+</div></footer>
+<script>
+if(location.protocol==="file:"){
+  document.getElementById("planlink").href="wsop-100-day-plan.html";
+  document.getElementById("p1link").href="wsop-phase1-study.html";
+  document.getElementById("p2link").href="wsop-phase2-study.html";
+  document.getElementById("p3link").href="wsop-phase3-study.html";
+}
+</script>
+
+<script>
+/* ---------- helpers ---------- */
+const T2=(rows,head)=>`<div class="tblwrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const NOTE=s=>`<div class="note"><b>Live leak to exploit —</b> ${s}</div>`;
+
+/* ---------- LESSON + QUIZ DATA ---------- */
+const L=[];
+
+/* ============ DAY 61 ============ */
+L.push({d:61,t:"Day 1 game plan",f:"m",obj:"The opening-day machine: 60/40 exploit-and-observe, first-orbit tagging, the 250bb rec-exploit plan, and a session script you can run without improvising.",
+body:`
+<h3>The mandate: 60/40, exploit &amp; observe</h3>
+<p>Day 1 of the Main is not the day you win the tournament — it's the day you <b>gather the intelligence that wins it later</b> and avoid the disasters that end it early. War-map setting: <b>60/40 survival/aggression</b>. You are ~250bb deep against a table you've never seen. Two jobs, in order: tag every player, and value-town the recreational money without ever fighting a reg for 250bb of chips you don't need to risk.</p>
+<h3>First-orbit tagging (Day 18, deployed live)</h3>
+<p>Before your first raise means anything, the table has already told you who everyone is. Run the archetype template from your Day 18 notebook on every seat in the first orbit:</p>
+${T2([
+["Rec / weak rec","Limps, calls too much, plays face-up — iso bigger, value hard, never bluff-raise"],
+["Splashy / aggro rec","Raises light, barrels wide, spews — trap with strong hands, let him bet your value"],
+["Nit","Opens tight, folds to pressure, pays off nothing — steal his blinds, fold to his aggression"],
+["Weak reg","Knows ranges, no exploits, foldy under pressure — attack with position and initiative"],
+["Reg / strong reg","Solid, thinking, dangerous at 250bb — avoid ego wars, keep pots small, pick spots"],
+["Unknown","No read yet — play straightforwardly, tag by the first showdown"]],
+["Archetype","First-orbit response"])}
+<h3>The 250bb rec-exploit plan</h3>
+<ul>
+<li><b>Iso weak limpers bigger</b> — the Day 1 bread and butter (Day 13). A limper who plays face-up is the softest money in the room; size up to isolate and to build a pot you'll win postflop.</li>
+<li><b>Value-bet relentlessly vs stations</b> — recs under-fold, so thin value prints (Day 29). Bet the hands you'd check against a reg.</li>
+<li><b>No ego wars with regs at 250bb</b> — the deepest stacks make the biggest mistakes worth the most; a marginal 250bb stack-off against a thinking player is exactly the disaster the 60 in 60/40 exists to prevent.</li>
+<li><b>Position is the free edge</b> — deep, position compounds. Play more pots in it, fewer out of it.</li></ul>
+<h3>The session script</h3>
+<p>Run the same opening sequence every time so the poker is the only variable: arrive early, warm up (Day 93), water at your seat, tag the table for one orbit before committing chips, mark every non-standard hand in real time (Day 66), take every scheduled break to walk and hydrate. The script is armor — you don't invent it at the table, you execute it.</p>
+${NOTE("most of the Day 1 field either sits down bored and splashes off deep-stack chips in the first level, or plays terrified and folds its edge away. The player who quietly tags everyone and value-towns the recs for six levels wakes up on Day 2 with a stack and a full notebook.")}`,
+quiz:[
+{q:"Your survival/aggression ratio on Day 1 of the Main:",o:["55/45 — start accumulating selectively at once","60/40 — exploit and observe","50/50 — you're deep, so keep it balanced","65/35 — the freezeout premium bites from hand one"],a:1,e:"<b>60/40</b>: the deep-stack opening setting. The freezeout premium is real, but Day 1 isn't maximum survival — you exploit and observe, and the aggression climbs as the field shortens. 55/45 is Day 2's setting."},
+{q:"Priority one in your first orbit:",o:["Iso the first weak limper to start value-towning early","Tag every seat by archetype before you force a pot","Set a loose-aggressive image while the stacks are deep","Play a tight-solid orbit and let others reveal themselves"],a:1,e:"Day 18's pencil rule live: <b>observation is the opening move</b>, and it's active, not the passive tight-solid orbit. Isoing limpers comes right after — but the tags are what every later exploit is built on."},
+{q:"A weak rec limps in front of you and you hold A9s on the button. Your default:",o:["Iso-raise larger than your standard open","Iso-raise to your standard open size for discipline","Call and play a controlled pot in position","Iso only with hands that flop well multiway"],a:0,e:"Isoing weak limpers <b>bigger</b> is the Day 1 bread and butter (Day 13): the oversize buys initiative and a dominated calling range from the softest money in the room — a standard-size iso leaves too much of his junk in cheaply."},
+{q:"Facing a strong reg in a marginal 250bb spot, the plan is:",o:["Keep the pot small and refuse the ego war","3-bet to seize initiative before he outplays you postflop","Flat and use position to outplay him on later streets","Stack off — folding just trains the table to attack you"],a:0,e:"The deepest stacks lose the most in reg-vs-reg wars. <b>The 60 in 60/40 exists to refuse exactly this pot</b> — inflating it by 3-bet or deep flat is the trap; no chip here is worth your tournament life on Day 1."},
+{q:"Against a recreational station, your value-betting should be:",o:["Thinner and more relentless than versus a reg","Tighter — a caller who never folds only pays your strong hands","The same as versus a reg; value is value","Polarized — big with the nuts, check everything medium"],a:0,e:"'Tighten up versus a caller' is the intuitive trap: recs under-fold, so <b>thin value prints</b> (Day 29). Bet the medium hands you'd check against a thinking player — his calling range pays off the whole table."},
+{q:"Why does position matter MORE at 250bb?",o:["It compounds across more streets of a bigger pot","It matters less — deep stacks realize equity fine out of position","It only sets the pot size you can win, not your edge","It's the same at every depth; a seat is a seat"],a:0,e:"With 250bb behind, a positional edge <b>compounds through three streets of a big pot</b> — the opposite of the common idea that depth lets you play comfortably OOP. Play more pots in position, fewer out of it."},
+{q:"The purpose of a fixed session script is:",o:["So the poker is the only thing you're thinking about — the routine runs on autopilot","To project discipline and a solid image to the table","To pace you so you don't play too many hands early","To make sure you never miss a thin value bet"],a:0,e:"Warm-up, water, tag-the-table, mark hands, take every break: <b>the routine is rehearsed so decisions get your full attention</b>. You don't improvise the armor at the table."},
+{q:"The two failure modes that define the Day 1 field:",o:["Bored deep-stack splashing and terrified edge-folding","Over-tightening for the bubble and over-flatting OOP","Spewing in 3-bet pots and under-defending the big blind","Card-dead frustration and over-valuing top pair"],a:0,e:"All four are real leaks — but the <b>Day 1</b> signatures are emotional: boredom at depth and fear of the big field. Bubble, BB, and 3-bet leaks belong to later days; here the disciplined tagger builds a stack while both extremes self-destruct."}]});
+
+/* ============ DAY 62 ============ */
+L.push({d:62,t:"Day 2 game plan",f:"g",obj:"Selective accumulation at 55/45: keep exploiting weak opens, trim the thin stack-offs against regs, read the new table draw, and protect stack utility.",
+body:`
+<h3>The mandate: 55/45, selective accumulation</h3>
+<p>Day 2 the field has thinned, stacks have compressed toward <b>80–150bb</b> (Day 58's forecast), and you've been re-drawn to a new table of strangers. Setting: <b>55/45</b> — a notch more aggressive than Day 1, but the word is <b>selective</b>. Keep printing against the weak; stop donating against the strong.</p>
+<h3>Read the new draw first</h3>
+<p>A new table is a new first orbit (Day 61). Before you force anything, answer three questions:</p>
+${T2([
+["Where is the money?","Which one or two seats are the recs? Position yourself to play pots in position against them"],
+["Where are the sharks?","Who covers you and thinks? Those are the pots you keep small"],
+["Who's short, who's deep?","Effective stacks (Day 58) decide every confrontation — know the map before you raise"]],
+["Question","Why it governs the session"])}
+<h3>Keep exploiting, trim the thin stack-offs</h3>
+<ul>
+<li><b>Weak opens are still free money</b> — iso the limpers, 3-bet the foldy openers, attack the nits' blinds. The exploits from Day 1 don't expire; the targets just sit in new seats.</li>
+<li><b>Trim thin stack-offs versus solid players</b> — at 100bb, the marginal top-pair stack-off that felt fine in a cash game is where good regs stack you. Against thinking players, keep the big pots for big hands.</li>
+<li><b>Stack utility, not just size</b> — a 120bb stack is a weapon: it covers most of the field and threatens everyone's tournament life. Don't fritter it away in coin-flips; <b>a big stack's value is the pressure it applies, not the pot it wins.</b></li></ul>
+<h3>Accumulate without gambling</h3>
+<p>Selective accumulation means chips come from <b>edges, not variance</b>: stealing from the fearful, value-towning the recs, applying pressure with the coverage your stack gives you. The player who "accumulates" by flipping is just gambling with extra steps — Phase III's whole lesson is that those flips leak equity even when you win them.</p>
+${NOTE("Day 2 tables are full of Day-1 survivors who now think they're due to 'make a move'. They over-3-bet, over-flip, and over-value one-pair. Sit back, keep your big pots for big hands, and let the accumulation-by-gambling crowd bust to each other.")}`,
+quiz:[
+{q:"Your ratio on Day 2 of the Main:",o:["60/40 — carry Day 1's setting forward","55/45 — selective accumulation","50/50 — the field's tougher, so match it with balance","65/35 — middling stacks avoid collisions"],a:1,e:"<b>55/45</b>: a notch more aggressive than Day 1, but the operative word is selective — print against the weak, stop donating to the strong. 50/50 is Day 3; 65/35 is the Day 7–8 middling-stack setting."},
+{q:"First task at a new Day 2 table:",o:["Re-run the first orbit — map the money, the sharks, and the stacks","Open aggressively early to stake out an image before reads form","Flat more hands to see cheap flops and buy showdowns","Continue the exact strategy that was working at your Day 1 table"],a:0,e:"A new draw is a new first orbit (Day 61) — your old table's dynamics and image don't travel. <b>Locate the recs, the coverers, and the effective stacks</b> before you commit a chip; the whole session plan flows from it."},
+{q:"'Selective accumulation' means chips should come from:",o:["Edges — steals, thin value, and coverage pressure","The biggest pots available, played for stacks when you're ahead","Well-chosen flips where you're a slight favorite","Raw aggression volume — more raises means more chips"],a:0,e:"Accumulation by gambling is just gambling, even the slight-favorite flips (Phase III's whole lesson). <b>Real accumulation is edge-driven</b> — the fearful, the recs, and the pressure your stack applies."},
+{q:"Against a solid reg at 100bb, the thin top-pair stack-off is:",o:["The exact spot thinking players stack you — trim it","Standard — top pair at 100bb is a stack-off hand","Fine as long as you hold position and the initiative","Correct against everyone except the shortest stacks"],a:0,e:"At depth, marginal stack-offs bleed to players who value-bet you thin and hard. Position doesn't rescue a dominated one-pair pot for stacks — <b>keep the big pots for big hands</b> versus regs."},
+{q:"The primary value of a 120bb stack is:",o:["The leverage and coverage it applies to the whole table","The size of the pot it can win when it gets it all in","The cushion it gives you to gamble more freely","The extra speculative hands it can profitably play"],a:0,e:"A big stack is a weapon of leverage: <b>it covers the field and threatens tournament lives</b>. Reading it as a 'cushion to gamble' is exactly how big stacks get frittered into flips — its value is applied pressure, not one pot."},
+{q:"The Day-1 exploits (iso limpers, 3-bet foldy openers) on Day 2:",o:["Still print — the archetypes just sit in new seats","Fade — the surviving field is too strong to exploit","Only work against the remaining short stacks","Should be balanced away now to avoid being countered"],a:0,e:"Weak opens are weak opens on any day, and most Day 2 survivors aren't the tough minority. <b>The exploits don't expire</b> — you re-locate the archetypes at the new table and keep collecting."},
+{q:"Effective stacks matter on Day 2 because:",o:["The shorter stack in a pot governs how that pot must be played","The average stack tells you which band the whole table is in","Your own stack alone sets your options in every hand","The deepest stack always dictates terms to the shorter ones"],a:0,e:"Day 58's law: a 120bb stack versus a 40bb stack is playing a <b>40bb pot</b> — the shorter stack caps it, not the average and not the deep stack's wishes. Know the stack map before you raise."},
+{q:"The signature Day-2 field leak to exploit:",o:["Survivors deciding they're 'due to make a move' and over-gambling","Survivors tightening into a shell to protect the cash to come","The whole field ganging up to knock down the big stacks","Widespread passive flatting and refusal to take initiative"],a:0,e:"Day-1 survivors mistake survival for a mandate to gamble — over-3-betting, over-flipping, over-valuing one pair. <b>Keep your big pots for big hands and let them bust to each other</b>; accumulation by variance is a gift to the disciplined."}]});
+
+/* ============ DAY 63 ============ */
+L.push({d:63,t:"Day 3 game plan",f:"g",obj:"Pressure with discipline at 50/50: steal wider, flat less out of position, and enter every hand with a turn-and-river plan as the field sharpens and shortens toward the bubble.",
+body:`
+<h3>The mandate: 50/50, pressure with discipline</h3>
+<p>Day 3 the tournament changes character. Stacks have compressed to <b>50–80bb and falling</b> (Day 58), the bubble is now visible on the horizon, and the field left is tougher — the pure recs are mostly gone. Setting: <b>50/50</b>. Full, balanced pressure — but every ounce of it disciplined.</p>
+<h3>The three adjustments</h3>
+<ul>
+<li><b>Steal wider from late position</b> — antes are meaningful now and the shortening field folds more. Late-position opens are the engine of a Day 3 stack; open the button and cutoff relentlessly against tight blinds.</li>
+<li><b>Fewer autopilot OOP flats</b> — the loose out-of-position calls that were cheap deep are now leaks. Out of position at 60bb, the clean decisions are 3-bet or fold; the flat is the exception, not the reflex (Day 45's tree collapse arriving).</li>
+<li><b>A turn-and-river plan on every entry</b> — this is the day's non-negotiable. Before you put in the first chip of any hand, you know what you do on good turns, bad turns, and rivers. No entering a pot to "see what happens" — the field is too good to freelance against.</li></ul>
+<h3>The bubble is coming — position for it</h3>
+<p>Everything you build on Day 3 is ammunition for the Day 4 bubble script (Day 64). A stack that covers the table becomes a warlord's weapon (35/65); a short stack becomes a survival problem. <b>Day 3 aggression is not for its own sake — it's to arrive at the bubble as the coverer, not the covered.</b></p>
+<h3>Discipline is what makes the pressure work</h3>
+<p>50/50 is the most misread setting on the war map. It does not mean "gamble half the time" — it means full aggression <b>governed</b> by a plan. The Day 3 player who steals wide AND folds his OOP junk AND plans every street is applying more real pressure than the maniac, because his aggression is credible and his disasters are avoided.</p>
+${NOTE("Day 3 regs tighten up 'because the bubble is close' a full day early — folding their blinds and their marginal defends to preserve a stack that's still 50bb deep. That premature caution is a license: steal their blinds now, before the bubble even arrives, while they're already playing scared.")}`,
+quiz:[
+{q:"Your ratio on Day 3 of the Main:",o:["55/45 — keep the Day 2 accumulation going","50/50 — pressure with discipline","60/40 — the sharper field demands more caution","45/55 — start re-accelerating for the pay jumps"],a:1,e:"<b>50/50</b>: full balanced pressure, every ounce of it disciplined. The field sharpens and the bubble appears — but you don't retreat to 60/40, and 45/55 is Day 5's post-cash setting, not now."},
+{q:"The Day-3 adjustment to late-position opens:",o:["Steal wider — antes are meaningful and the field over-folds","Tighten them — the surviving field defends better","Keep them unchanged; depth hasn't shifted much","Switch to limping late to control the pot"],a:0,e:"The intuitive 'tougher field, so tighten' is wrong here: antes now matter and the shortening field <b>over</b>-folds ahead of the bubble. Late-position steals are the engine of a Day 3 stack — hammer the button and cutoff versus tight blinds."},
+{q:"Out of position at 60bb, your loose flats become:",o:["Leaks — the clean decisions are 3-bet or fold","Still fine — 60bb carries enough implied odds to flat","Better than 3-betting, which just bloats OOP pots","Correct only with suited hands that flop well"],a:0,e:"Day 45's tree collapse arriving: <b>OOP, the flat is the exception, not the reflex</b>. 60bb isn't deep enough to chase implied odds against a good field, and folding the junk beats both flatting and loose 3-betting it."},
+{q:"The Day-3 non-negotiable before entering any pot:",o:["A turn-and-river plan for good, bad, and blank runouts","A read on the specific opponent you're up against","Position on the preflop raiser","A hand that can keep barreling on most turns"],a:0,e:"Reads, position, and barrel-ability all help — but the day's rule is the <b>plan</b>. No entering a pot to 'see what happens'; you know your line on every street before the first chip goes in, because the field is too good to freelance against."},
+{q:"The strategic purpose of Day-3 aggression:",o:["To arrive at the bubble covering, not covered","To build a fearsome image before hand-for-hand","To bust as many recs as possible before Day 4","To bank enough to fold through the whole bubble"],a:0,e:"Day 3 builds ammunition for the bubble script (Day 64). <b>Stack accumulation now decides whether you're the warlord (35/65) or the survivor (75/25)</b> — not whether you can fold through, which just blinds you down."},
+{q:"'50/50' on the war map means:",o:["Full aggression governed by a plan","A range that bluffs and value-bets in equal measure","Playing roughly half the hands you're dealt","Mixing survival and gambling fifty-fifty"],a:0,e:"The most misread setting — it's not a balance ratio or a hand-count. <b>Disciplined full pressure applies MORE real force than the maniac</b>, because it's credible and its disasters are engineered out."},
+{q:"Why does the disciplined Day-3 aggressor out-pressure the maniac?",o:["His aggression is credible and his big disasters are engineered out","He simply puts action into more pots per orbit","He targets only the weakest players and avoids the rest","He runs a perfectly balanced, unexploitable strategy"],a:0,e:"Not raw volume, not target-selection alone, not solver-perfection: <b>believable force without the tournament-ending spew</b>. Wide steals plus OOP-junk folds plus street-by-street plans make the pressure the kind that actually folds people."},
+{q:"The Day-3 field's exploitable tightening:",o:["Regs tighten a day early, folding blinds to protect a 50bb stack","Regs start attacking wildly to build a bubble stack","The field plays textbook ICM a full day ahead of the bubble","Short stacks refuse to jam, clinging to their fold equity"],a:0,e:"Premature caution — not wild aggression or textbook ICM — is the standing invitation. <b>Steal their blinds now, while they're already playing the bubble a day before it arrives</b>; their fear is your rent."}]});
+
+/* ============ DAY 64 ============ */
+L.push({d:64,t:"Day 4 bubble script",f:"m",obj:"The full hand-for-hand script, both modes side by side: the covered 75/25 survivor and the covering 35/65 warlord, the psychology of the pause, and what a min-cash does to the table.",
+body:`
+<h3>The moment the wasteland becomes real</h3>
+<p>Everything in Phase III was preparation for this: the money bubble, hand-for-hand, typically around Level 17 on Day 4. This is the single highest-leverage hour of the Main Event, and it plays out differently from every seat. Today you rehearse <b>both scripts aloud</b> until they fire without deliberation.</p>
+<h3>The two scripts, side by side</h3>
+${T2([
+["Ratio","Covered: 75/25 survival · Covering: 35/65 warlord"],
+["Opens","Covered: cut the marginal tier, premiums and steals-of-the-fearful only · Covering: open small (2.1–2.3x) and relentlessly"],
+["3-bets","Covered: value and blocker-jams you can commit with · Covering: blocker 3-bets against every stressed medium (Ax-wheel, Kx-wheel)"],
+["Flips","Covered: fold — a 'flip' needs ~67% at bubble factor 2.0 · Covering: you don't need to flip; you win by making them fold"],
+["Targets","Covered: steal from other fearful mediums, never the coverer · Covering: medium 20–40bb stacks — never the shorts, never the other big stack"],
+["The trap","Covered: frustration splash-off or fear blind-off · Covering: attacking shorts who can't fold, calling reshoves 'for image'"]],
+["Dimension","Covered  vs  Covering"])}
+<h3>Hand-for-hand psychology and pace</h3>
+<p>Hand-for-hand slows the game to a crawl — every table waits for the slowest. This does two things: it <b>amplifies the leverage</b> (more time for the fearful to feel their fear) and it tests your patience directly. Keep your own pace steady and legal; don't let the stalling around you rush or bore you into a bad decision. The covered player uses the slow pace to fold in peace; the covering player uses it to apply maximum pressure per orbit.</p>
+<h3>What a min-cash does to the table</h3>
+<p>The Main's min-cash (~$15K) is life-changing money to most of the field — which is exactly why the bubble is so exploitable and the burst so violent. Understand the number's grip: the mediums clutching toward it will fold almost anything, and the moment it locks, that grip releases into the post-bubble raid window (Day 55). <b>Know what the money means to your specific opponents</b> — the pro two seats over feels the $15K very differently than the satellite qualifier playing the biggest tournament of his life.</p>
+${NOTE("on the live bubble, watch which mediums physically lean back and stop making eye contact — they've decided to fold into the money and they will not stop you. The covering warlord raises those exact seats every orbit; the fearful body language is the tell that the risk premium is fully priced in.")}`,
+quiz:[
+{q:"Covered on the Day 4 bubble, your mode:",o:["75/25 survival — cut marginal opens and domination traps","60/40 — a touch more careful than your Day 3 game","90/10 — fold everything but premiums until it bursts","50/50 — the bubble doesn't change a good player's game"],a:0,e:"Covered = <b>75/25 survival</b>, not a mild trim and not a full shutdown. Cut the marginal tier and the flips; keep premiums and steals of the fearful. 'The bubble changes nothing' and 'fold everything' are both losing extremes."},
+{q:"Covering the table on the bubble, your mode:",o:["35/65 warlord — steal relentlessly, 3-bet blocker-heavy","50/50 — press a modest edge without risking the lead","60/40 — protect the stack you worked so hard to build","45/55 — attack, but keep survival in reserve"],a:0,e:"Covering = <b>35/65 warlord</b>, the most aggressive setting in the hundred days. Their risk premium is your income — every forced fold is equity flowing uphill. Protecting the lead by tightening forfeits exactly that income."},
+{q:"A classic race (52/48) offered to the COVERED player at bubble factor 2.0:",o:["Fold — 52% falls far short of the ~67% required","Take it — a favorite is a favorite; chips are chips","Take it only if it's the covering big stack racing you","Take it in position, fold it out of position"],a:0,e:"52% versus a 67% requirement is a 15-point deficit (Days 42–43), and racing the stack that covers you is the <b>worst</b> version, not a reason to call. Same cards as Day 1, different currency: the snap-call becomes the disaster."},
+{q:"THE prime steal target for the covering warlord:",o:["Medium 20–40bb stacks","The shortest stacks, desperate to survive","The other big stack, who has the most to lose","The tightest nit, whatever his stack"],a:0,e:"Maximum premium meets maximum foldability (Day 44). Shorts call correctly wide, the other big stack fights back, and even a nit's stack size decides his fear — <b>the trembling mediums surrender</b>, so aim there."},
+{q:"Why does hand-for-hand's slow pace amplify the bubble?",o:["It gives the risk premium time to work on the fearful","It cuts the hand count, so each premium matters less","It mostly pressures the short stacks who are low on time","It hurries the burst, shortening the danger window"],a:0,e:"The crawl lets the risk premium sink in — <b>the covered player folds in peace, the warlord applies maximum pressure per slow orbit</b>. Fewer hands doesn't dilute the premium; the slow tension is the weapon."},
+{q:"The ~$15K min-cash matters strategically because:",o:["It's life-changing to most of the field — the grip that makes the bubble exploitable","It resets everyone at the table to the same survival mindset","It matters mainly to the short stacks nearest to busting","It's tiny next to first place, so strong players ignore it"],a:0,e:"The grip is real but <b>unequal</b> — that's the edge. The mediums clutching toward it fold almost anything; a pro and a satellite qualifier feel the same $15K completely differently. Know what it means to each specific seat."},
+{q:"The covered player's two failure modes on the bubble:",o:["Frustration splash-off and fear blind-off","Over-folding premiums and under-folding marginal aces","Calling reshoves too wide and 3-betting too thin","Stalling too long and drawing table penalties"],a:0,e:"Same diagnosis as every mental leak: <b>the strategy survives, the emotions defect</b> (Day 43). The failures aren't technical mis-sizings — they're the frustrated splash and the frightened blind-off; the 75/25 player just keeps working the fearful seats."},
+{q:"The covering warlord crosses into spew when he:",o:["Attacks shorts who can't fold, or calls reshoves 'for image'","Opens too small and prices the blinds into the pot","3-bets light with blocker hands a bit too often","Folds his junk to a medium stack's reshove"],a:0,e:"Selective relentlessness (Day 44): steal wide, but <b>respond to resistance like ICM still exists</b>. Attacking the un-foldable and calling to save face are the spew; folding junk to a reshove is correct, not weakness."}]});
+
+/* ============ DAY 65 ============ */
+L.push({d:65,t:"Days 5–8 deep-run plan",f:"g",obj:"Life after the money: re-accelerate then shift to precision over volume, protect pay-jumps without going passive, and manage the fatigue of week two. State the aggression curve from memory.",
+body:`
+<h3>The mandate: re-accelerate, then precision</h3>
+<p>The bubble burst; you're in the money. The deep run is now a multi-day campaign with its own rhythm. <b>Day 5: 45/55</b> — re-accelerate and attack the post-cash exhale (Day 55). <b>Days 6–8: 50/50 shifting to precision over volume</b> — as the field shrinks and pay jumps steepen, efficiency replaces raw frequency. Fewer, better spots; no heroics.</p>
+<h3>The full aggression curve (memorize it)</h3>
+${T2([
+["Day 1","60/40 — exploit &amp; observe"],
+["Day 2","55/45 — selective accumulation"],
+["Day 3","50/50 — pressure with discipline"],
+["Day 4 bubble","75/25 covered · 35/65 covering — asymmetric ICM war"],
+["Day 5","45/55 — re-accelerate post-cash"],
+["Day 6","50/50 — precision over volume"],
+["Days 7–8","65/35 middling · 40/60 big stack — ICM &amp; leverage"],
+["Final table","Role-based — leader pressures, middle avoids, short waits for jams"]],
+["Day","Ratio &amp; mode"])}
+<p>The checkpoint is to <b>recite this curve from memory</b>. It's the strategic spine of the whole event — the day you can say it cold is the day you'll play the right game on the right day without thinking about it.</p>
+<h3>Pay-jump protection without passivity</h3>
+<p>Deep-run pay jumps are real money and real ICM (Days 51, 41) — but the leak is over-respecting them. Middling stacks avoid collisions with the covering stacks (65/35); they do <b>not</b> fold themselves into oblivion. Protect against the disasters that ladder you down; keep stealing and applying the pressure that ladders you up. <b>ICM caution is a scalpel, not a blanket.</b></p>
+<h3>Week-two fatigue is a strategy variable</h3>
+<p>By Days 5–8 you've played 50+ hours of the highest-pressure poker of your life. Fatigue is now a genuine opponent (Days 38, 89): your C-game leaks in late in long sessions, and the field's does too. Manage it deliberately — sleep is non-negotiable (Day 69), fuel is scheduled (Day 70), and the reset script (Day 68) runs on demand. <b>The deep run is won partly at the table and partly in the hotel room</b> — the player who sleeps and eats out-lasts the equally skilled player who doesn't.</p>
+${NOTE("post-cash, half the field either over-celebrates a min-cash and gambles off their stack, or clutches every pay jump and folds into irrelevance. The precision player attacks the gamblers' loose ranges and steals the clutchers' blinds — the same two exploits that live at every pay jump for the rest of the event.")}`,
+quiz:[
+{q:"Your ratio on Day 5, immediately post-bubble:",o:["45/55 — re-accelerate into the post-cash exhale","50/50 — return to your steady Day 3 pressure","35/65 — the field's scared, so go full warlord","60/40 — bank the cash and pick spots carefully"],a:0,e:"<b>45/55</b> (Day 55): the field splits into relieved gamblers and new nits — one of the most profitable windows of the event. Sliding back to 50/50 or 60/40 misses it; 35/65 is the covering-bubble setting, not this."},
+{q:"The mode shift for Days 6–8:",o:["Precision over volume — fewer, better spots as jumps steepen","Maximum aggression — the shrinking field folds even more","Pure survival — protect your equity to the final table","Keep Day 5's re-acceleration running the whole way"],a:0,e:"As the field shrinks and jumps steepen, <b>efficiency replaces frequency</b>: no heroics, no autopilot, every spot chosen. Not max aggression, not a survival shell, and not Day 5's throttle held forever."},
+{q:"On Days 7–8, the middling stack plays:",o:["65/35 — dodge collisions with covering stacks, still steal","40/60 — leverage fold equity and attack aggressively","50/50 — a balanced game regardless of stack","75/25 — fold your way toward the pay jumps"],a:0,e:"Middling = <b>65/35</b>: avoid the big-stack collisions that ladder you down while still stealing to survive. 40/60 is the big stack's setting; folding toward jumps just blinds you out."},
+{q:"The Day 65 checkpoint is to:",o:["Recite the full Day 1→FT aggression curve from memory","Post a winning result in a long live session","Memorize the sub-15bb push-fold charts cold","Name every pay jump from the min-cash to first"],a:0,e:"The curve is <b>the strategic spine of the event</b>. Saying it cold means you play the right game on the right day by reflex, not calculation — a chart or a result isn't the point here."},
+{q:"Pay-jump caution should be:",o:["A scalpel — dodge ladder-down disasters, keep ladder-up pressure","A blanket — tighten every marginal spot near a jump","Irrelevant post-bubble — the jumps stay small until the FT","Maximal — every jump is worth folding a marginal edge for"],a:0,e:"Both extremes leak: over-respecting jumps folds you into oblivion, ignoring them costs real equity. <b>Protect against collisions, keep stealing</b> — ICM caution is targeted, not universal (Days 51, 53)."},
+{q:"By Days 5–8, fatigue is:",o:["A genuine strategy variable — your C-game and the field's leak in late","Manageable purely with caffeine and adrenaline","A concern only once you reach the final table","Offset by the excitement of being deep"],a:0,e:"50+ hours of max-pressure poker makes fatigue an opponent (Days 38, 89). Caffeine and adrenaline paper over it, not fix it — <b>sleep, fuel, and the reset script are strategy</b>, and the deep run is won partly in the hotel room."},
+{q:"The big stack's setting on Days 7–8:",o:["40/60 — punish capped ranges and risk premiums","65/35 — protect the lead you built","50/50 — stay balanced and unexploitable","35/65 — full warlord, exactly like the bubble"],a:0,e:"<b>40/60</b>: the big stack leverages everyone else's ICM pressure — capped defends and risk-averse mediums are its feeding ground. 65/35 belongs to the middling stack, and the bubble's 35/65 eases once the money's locked."},
+{q:"The recurring two-sided pay-jump exploit:",o:["Attack the over-celebrating gamblers AND steal the clutchers' blinds","Bluff universally — a tightening field folds to everything","Target only the short stacks who must gamble to survive","Sit back and let the gamblers and clutchers bust each other"],a:0,e:"Every pay jump splits the field into gamblers and clutchers, and <b>the precision player farms both</b> — loose call-offs on one side, free blinds on the other. Universal bluffing ignores the gamblers; sitting back forfeits the free blinds."}]});
+
+/* ============ DAY 66 ============ */
+L.push({d:66,t:"Live Session I — deep-stack rules",f:"g",obj:"The first raid: play a real session under Day 1/2 rules only, mark fifteen hands in real time, and run the full routine. The drill sharpens the rules and the marking discipline you'll execute live.",
+body:`
+<h3>The assignment</h3>
+<p>Today you leave the classroom. Play a live session — or a long online deep MTT — using <b>Day 1/2 rules only</b>: 60/40 to 55/45, exploit and observe, iso the limpers, value-town the recs, no ego wars deep. Mark at least <b>15 hands</b> in real time. Run the full routine: warm-up, scheduled breaks, hydration. This is a rehearsal of the Main's opening, executed under real conditions.</p>
+<h3>Deep-stack rules recap — the raid card</h3>
+${T2([
+["Preflop","Full opens IP, iso weak limpers bigger, 3-bet foldy openers, fewer OOP flats, no marginal 250bb stack-offs"],
+["Tagging","First orbit before force; archetype every seat; re-tag on every showdown"],
+["Postflop","Position compounds — play more pots in it; keep big pots for big hands vs regs; value thin vs stations"],
+["Discipline","The 60 in 60/40 is disaster-avoidance — the deepest chips are the most expensive to lose"]],
+["Layer","Rule to execute live"])}
+<h3>Hand-marking discipline</h3>
+<p>Marking is the bridge between playing and improving. A marked hand is any hand where you were <b>unsure, surprised, or made a non-standard decision</b> — not just the big pots. Note it fast and move on: villain type, stacks, action, and your one-word feeling (unsure / tilted / guessed / proud). You are not solving it at the table; you're capturing it for the Day 67 debrief. The rule: <b>if a hand made you pause, it gets marked — the pause is the signal.</b></p>
+<h3>Grade process, not results</h3>
+<p>You will win or lose money today, and it means almost nothing (Day 16, Day 76). What you grade is <b>decision quality</b>: your A/B/C-game share and the quality of the 15 marked hands. A losing session of all-A decisions is a triumph; a winning session of C-game gambles is a warning. Results lie for weeks; the marked hands tell the truth tonight.</p>
+${NOTE("most players 'review' a session by remembering the pots they lost — a highlight reel of bad beats that teaches nothing. The marked-hand method captures the DECISIONS instead, including the ones in pots you won badly. Tonight's marks are tomorrow's lesson plan.")}`,
+quiz:[
+{q:"The ruleset for Live Session I:",o:["Day 1/2 rules only — 60/40 to 55/45, exploit and observe","Whatever line each specific opponent invites","The full range of bands, to rehearse the whole tournament","Push-fold, to drill the highest-ROI short game first"],a:0,e:"The first raid rehearses the Main's <b>opening</b>: deep-stack discipline, tagging, selective accumulation. Mixing every band is Day 75's assignment, not this one — Session I is a single, focused depth."},
+{q:"What qualifies a hand for marking?",o:["Any hand where you were unsure, surprised, or non-standard","The biggest pots of the session, won or lost","The hands where you took a clear bad beat","Your bluffs, so you can review your frequency"],a:0,e:"The pause is the signal — <b>if a hand made you pause, mark it</b>. Big pots and bad beats are obvious and often teach nothing; the quiet uncertain spots are where the real leaks hide."},
+{q:"At the table, a marked hand should be:",o:["Captured fast — villain, stacks, action, feeling — reviewed later","Reasoned through fully before you play the next hand","Talked over quietly with the player beside you","Left to memory; writing it down breaks your focus"],a:0,e:"You capture, you don't solve, at the table — and you don't trust memory. <b>The Day 67 debrief is where the analysis happens</b>; real-time solving costs you the next three hands."},
+{q:"The thing you grade after the session:",o:["Decision quality — your A/B/C-game share and the marked hands","Net profit — the only measure that compounds over time","Pots won versus pots lost across the session","Whether you executed your pre-session game plan exactly"],a:0,e:"Results lie for weeks (Days 16, 76). You grade <b>decision quality</b>, which includes correct deviations from your plan — a losing all-A session is a triumph; a winning C-game session is a warning."},
+{q:"Playing more pots in position when deep is correct because:",o:["The deeper the stacks, the more a positional edge compounds across streets","It lets you see more flops at a cheaper price","Out-of-position ranges realize equity poorly at any depth","Deep pots are decided on the river, where acting last is mandatory"],a:0,e:"Day 61's rule, executed: <b>250bb magnifies position through three streets of a big pot</b>. It's the compounding across a deep pot specifically — not a blanket claim about OOP at all depths."},
+{q:"Against a solid reg deep, you keep big pots for:",o:["Big hands only — the marginal stack-off feeds thinking players","Top pair or better, which is a stack-off hand deep","Any hand where you hold position and the betting lead","Strong draws that can barrel all three streets"],a:0,e:"Deep, marginal stack-offs — including top pair — bleed to players who value-bet you thin (Day 62). <b>Big pots for big hands</b>; position and initiative don't rescue a dominated one-pair pot for stacks."},
+{q:"The full routine you run in Session I includes:",o:["Warm-up, scheduled breaks, hydration — the tournament-day conditions","Extra volume — skip breaks to see more hands per hour","A running results log so you can track your win rate","A relaxed approach, since it's only a practice session"],a:0,e:"The session rehearses <b>conditions, not just cards</b>. Warm-up, breaks, and water are the machine you'll run on Day 1 (Days 71, 93) — treating it as casual practice defeats the rehearsal."},
+{q:"Why is the marked-hand method better than 'remembering the pots you lost'?",o:["It captures decisions — including pots you won badly — not a bad-beat reel","It's simply a faster way to recall the session afterward","It focuses your review on the hands that cost you money","It leaves a record you can show a coach later"],a:0,e:"The lost-pots reel teaches self-pity; 'the hands that cost me money' IS that reel. <b>Marks capture the choices</b> — the win-badly hands are often the most instructive, and tonight's marks are tomorrow's lesson plan."}]});
+
+/* ============ DAY 67 — consolidation ============ */
+L.push({d:67,t:"Raid debrief & consolidation I",f:"z",obj:"Twelve questions drawn from Days 61–66. Then the written debrief of every marked hand from Live Session I, archetype notes, and the weekly review.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 questions sampled at random from the week's pools (Days 61–66). Different every attempt — retake until you pass.</li>
+<li><b>90m marked-hand debrief:</b> take every hand you marked in Session I and write it up. For each: what you did, what the range logic says, and the one-word feeling — was it a knowledge gap, a fear, or fatigue? (This is the seed of the Day 72 hesitation log.)</li>
+<li><b>45m archetype notes:</b> update your Day 18 notebook with every player type you actually met live. Which reads were right? Which surprised you?</li>
+<li><b>30m weekly review + long sleep:</b> name your three biggest leaks from the raid, then recover.</li></ul>`,
+pool:{days:[61,62,63,64,65,66],n:12}});
+
+/* ============ DAY 68 ============ */
+L.push({d:68,t:"Tilt armor",f:"z",obj:"Build the reset script — breath, posture, next-hand cue — rehearse the bad-beat recovery until it runs in minutes, lock down phone and focus discipline, and name your personal tilt triggers.",
+body:`
+<h3>Feel it, then perform</h3>
+<p>The monk's doctrine (Day 11) generalized to the mental game: you will not eliminate emotion, and trying to is its own leak. The goal is to <b>feel the bad beat, the injustice, the fear — and still make the next decision correctly.</b> That capacity is not willpower; it's a rehearsed script. Both fighting back and hiding are tilt in disguise; the reset is the third door.</p>
+<h3>The reset script (build it today, one card)</h3>
+${T2([
+["Breath","A fixed pattern — e.g. 4 in, 6 out, three cycles. Physiological, not mystical: it drops your heart rate and reopens the prefrontal cortex"],
+["Posture","A deliberate reset — sit back, shoulders down, unclench. The body leads the mind out of the fight-or-flight loop"],
+["Next-hand cue","A single sentence that reorients you — 'the next decision is independent' or 'process, not results'. The cue that ends the rumination and starts the poker"]],
+["Element","What it does"])}
+<h3>Rehearse the gut punch</h3>
+<p>Don't wait for Level 9 with cameras nearby to run the script for the first time. <b>Simulate the bad beat now</b> — visualize the two-outer that ends a 40bb pot, feel the drop in your stomach, and run breath → posture → cue. Rehearse until recovery is <b>under five minutes</b>. The rehearsed player recovers in one orbit; the unrehearsed player donates the next hour.</p>
+<h3>Focus &amp; phone discipline</h3>
+<p>Tilt's quieter cousin is disengagement. The phone is the enemy: every glance costs you tags, reads, and the thread of the table. Rule for the Main: <b>phone in the pocket except on scheduled breaks</b> (Day 38's focus training). Attention is the resource that decays first over a 12-hour day; protect it like the stack.</p>
+<h3>Name your triggers</h3>
+<p>Tilt is personal. Write your specific list: the coolers, the needle from a certain player type, running card-dead (Day 56), losing a flip you 'knew' you'd win, a big fold that turns out wrong. <b>Named triggers lose most of their power</b> — you can't script a response to an ambush you refuse to admit exists.</p>
+${NOTE("watch a strong player take a brutal beat: he pauses, breathes, and is playing normally within one hand — while the table waits for him to melt down. Weaker players read that composure as 'he doesn't care'. He cares exactly as much; he's just running a script they never built.")}`,
+quiz:[
+{q:"The goal of tilt control is to:",o:["Feel the emotion and still make the next decision correctly","Suppress the emotion so it can't reach your decisions","Train yourself not to feel bad beats at all","Detach emotionally so results stop affecting you"],a:0,e:"The monk's doctrine (Day 11): <b>feel it, then perform</b>. Suppression, numbness, and detachment are all leaks of their own — the skill is deciding well while the emotion is present, via a rehearsed script."},
+{q:"After a brutal bad beat with cameras nearby, your first move:",o:["Run the reset script — breath, posture, next-hand cue","Take a five-minute walk to clear your head","Play tight for an orbit until the emotion passes","Re-engage immediately with a small aggressive move"],a:0,e:"You recover <b>at the table</b>, in an orbit, via the script. Walking away and waiting-it-out-tight are passive tilt; firing back is active tilt — the rehearsed reset is the third door between fight and flight."},
+{q:"The three elements of the reset script:",o:["Breath pattern, posture reset, next-hand cue","Deep breath, a sip of water, a glance at the payouts","Stand up, stretch, and re-rack your chips","Recount the hand, accept the variance, then move on"],a:0,e:"Breath drops the heart rate, posture leads the mind out of fight-or-flight, and the <b>cue ends the rumination and restarts the poker</b>. Re-counting the hand keeps you in the spiral; the script is physiological first, then cognitive."},
+{q:"Why rehearse the bad beat BEFORE it happens for real?",o:["So recovery is a drilled reflex, not something you improvise under the lights","So the beat itself stings noticeably less when it lands","So observers can see that you're unshakeable","So you can predict which beats will tilt you worst"],a:0,e:"Don't debut the script at Level 9 with cameras rolling. <b>A script drilled to under five minutes recovers you in an orbit; unrehearsed, you donate the next hour</b> — the aim is trained recovery, not a smaller sting."},
+{q:"The 'next-hand cue' is:",o:["A single sentence that reorients you to the next decision","A slow breathing count you run before you act","A physical gesture that signals reset to your body","A pause long enough to let the emotion drain away"],a:0,e:"Breath and posture are the other two elements; the cue specifically is the <b>cognitive off-ramp</b> — one sentence like 'the next decision is independent' that ends the rumination and starts the poker."},
+{q:"Phone discipline during the Main:",o:["In the pocket except on scheduled breaks","Fine for quick glances that reset your focus between hands","Allowed only for tracking stacks and payout jumps","A minor issue next to actual strategic mistakes"],a:0,e:"Tilt's quiet cousin is disengagement, and 'a quick glance resets me' is the rationalization. <b>Every glance costs tags, reads, and the table thread</b> (Day 38) — attention decays first over a 12-hour day; guard it like the stack."},
+{q:"The value of writing your personal tilt triggers:",o:["Named triggers lose their power — you can pre-script the ambush","It builds a database of your worst downswings over time","It lets you steer clear of the opponents who tilt you","It proves to a coach that you're self-aware"],a:0,e:"Tilt is personal and specific, and you can't always avoid the players who needle you. <b>Naming the coolers, the needle, the card-dead rot</b> (Day 56) turns an ambush into an expected event you've already scripted a response to."},
+{q:"A strong player's one-hand recovery reads to weaker players as:",o:["'He doesn't care' — though he feels it fully and is just running a script","Proof that top players are simply born unemotional","A sign he wasn't really invested in that pot to begin with","Luck that his temperament happens to run calm"],a:0,e:"Composure isn't detachment, indifference, or a lucky temperament — <b>it's a built script the table never made</b>. He feels the beat fully and is back to normal in an orbit while they wait for a meltdown that never comes."}]});
+
+/* ============ DAY 69 ============ */
+L.push({d:69,t:"Sleep & wake alignment",f:"z",obj:"Shift the sleep window toward the tournament schedule, design the wind-down routine, and treat sleep as the strategic weapon it is across a multi-day marathon. Tonight is night one.",
+body:`
+<h3>Sleep is a strategic weapon</h3>
+<p>The health baseline is <b>7–9 hours, every night</b> — one of the five vows, and not negotiable across a multi-day event. In a marathon that can last eight days, the sleep-deprived player's C-game arrives earlier each day and never leaves. Sleep is not recovery admin; it is the single highest-leverage non-poker input to your results. The rested player out-lasts the equally skilled tired one, every time.</p>
+<h3>Align the window now</h3>
+<p>The Main starts at a fixed time (often noon or so), and you wake <b>3.5–4.5 hours before cards fly</b> (Day 93) — for hydration, movement, a mental warm-up, structure review, and early arrival. Do the arithmetic backward: a noon start means a ~7:30–8:00am wake, which means a ~11:00pm–midnight bedtime for a full night. <b>Start shifting your sleep window toward that schedule today</b>, not the night before Day 1 — the body needs days, not hours, to move its clock.</p>
+${T2([
+["Cards fly","~12:00 noon (structure proxy)"],
+["Wake","~7:30–8:00am (3.5–4.5h before)"],
+["Asleep","~11:00pm–12:00am (for 7–9 hours)"],
+["Wind-down begins","~10:00pm — no screens, no poker content, no late study"]],
+["Anchor","Target time"])}
+<h3>The wind-down routine</h3>
+<p>You can't sprint from a study session or a screen straight into deep sleep. Design a fixed wind-down: <b>study and screens off ~an hour before bed</b>, then a low-stimulation routine — reading on paper, light stretching, the breathing pattern from your reset script (Day 68). Consistency is the whole point; the routine becomes the cue that tells your body it's time.</p>
+<h3>Guard it during the event</h3>
+<p>The deep-run threat to sleep is the adrenaline of a big day and the temptation to review hands until 2am. Discipline: a <b>short</b> debrief (mark the hands, note one lesson), then wind down. The full analysis waits for a rest day. <b>Bagging a big stack and then sleeping four hours is how deep runs quietly end on Day 6</b> — protect the window as fiercely as the chips.</p>
+${NOTE("late in a multi-day event, half the remaining field is running on fumes — reviewing hands till 2am, over-caffeinating, sleeping five hours. Their decision quality visibly craters by the dinner break. The player who simply sleeps 8 hours has a fresh A-game against a table of exhausted C-games — an edge that costs nothing but discipline.")}`,
+quiz:[
+{q:"Your nightly sleep target for the prep and the event:",o:["7–9 hours, consistently","6–8 hours, more on the days you bust early","As much as you can, topped up with naps on breaks","7 hours on average, banking extra before the event"],a:0,e:"<b>7–9 hours, consistently</b> — one of the five vows. Sleep doesn't bank ahead and break-naps don't substitute; in a multi-day marathon it's the single highest-leverage non-poker input, and the rested player out-lasts the tired one every day."},
+{q:"On tournament day you wake:",o:["3.5–4.5 hours before cards fly","2 hours before — enough to eat and arrive on time","5–6 hours before, for a full warm-up and study block","As late as possible, to bank maximum sleep"],a:0,e:"<b>3.5–4.5 hours before</b> (Day 93): hydration, movement, mental warm-up, structure review, early arrival. Two hours is too rushed to run the routine; five-plus is over-cramming — the window is the armor, not a study session."},
+{q:"When should you start shifting your sleep window?",o:["Days ahead — the circadian clock moves over days, not hours","The night before Day 1, so it peaks fresh for the start","Only if your natural schedule is far from the start time","Gradually during the event itself, as the days demand"],a:0,e:"You can't jump the clock overnight, and mid-event is too late. <b>Start the shift now</b> — tonight is night one — so the window is aligned and stable before the Main, whatever your usual schedule."},
+{q:"The wind-down routine requires:",o:["Screens and study off ~an hour before bed, then low-stimulation activity","A light workout to burn off the day's adrenaline","A nightcap or two to take the edge off","Reviewing the day's hands until you feel resolved"],a:0,e:"You can't sprint from a screen into deep sleep — and a late workout, alcohol, and a hand-review all wreck sleep quality or onset. <b>Screens off an hour early, then a consistent low-stim routine</b> that becomes the cue to sleep."},
+{q:"The deep-run threat to sleep is:",o:["Adrenaline plus the urge to review hands until 2am","The unfamiliar hotel bed and the surrounding noise","Waking too early from pre-game nerves","The late finish times pushing your bedtime back"],a:0,e:"The others are real annoyances, but the <b>controllable, self-inflicted</b> threat is the big bagged stack tempting a 2am review. Discipline: a short debrief, then wind down — four hours of sleep is how deep runs quietly end."},
+{q:"Why is the rested player's edge 'costing nothing but discipline'?",o:["Late in the event the field is exhausted; a fresh A-game beats tired C-games for free","Sleep is the cheapest form of study you can do","Rested players get dealt better cards by playing more hands","The well-slept tilt less, so they lose fewer pots outright"],a:0,e:"By the dinner break of a long day, the fume-runners' decisions crater. <b>Simply sleeping 8 hours buys an A-game-versus-C-game edge</b> — no talent required, only the discipline to go to bed. It's not study, luck, or just tilt-reduction."},
+{q:"Working backward from a noon start, your bedtime is roughly:",o:["11:00pm–midnight, for a full 7–9 hours before a ~7:30am wake","1:00am — you only really need to be up by wake time","10:00pm sharp every night, regardless of the start time","Whenever you get tired; the wake time is all that matters"],a:0,e:"Noon cards → ~7:30–8:00am wake (3.5–4.5h before) → <b>~11pm–midnight asleep</b> for a full night. Anchoring only to the wake time forgets the 7–9 hours that have to fit before it."},
+{q:"The correct deep-run debrief discipline is:",o:["A short debrief — mark hands, one lesson — then wind down","A full solver review while the hands are still fresh","No review at all — protect the sleep window at any cost","A detailed written analysis, but capped at 45 minutes"],a:0,e:"Protect the window as fiercely as the chips, without over-correcting to zero. <b>Short capture now, full analysis on a rest day</b> — even a 45-minute write-up is too stimulating near bed, and the 2am deep-dive trades tomorrow's A-game for tonight's closure."}]});
+
+/* ============ DAY 70 ============ */
+L.push({d:70,t:"Fuel logistics",f:"z",obj:"Engineer the body's inputs for 12-hour days: meal timing that avoids the crash, a snack bag that replaces casino food, a hydration schedule by level, and a caffeine strategy with a plan for the taper.",
+body:`
+<h3>The body carries the mind</h3>
+<p>A Main Event day is a 12-hour cognitive endurance event, and your brain runs on what you feed it. Random casino food and skipped meals produce blood-sugar crashes that arrive — reliably — during the highest-pressure levels of the late evening. Fuel is not comfort; it is <b>C-game prevention</b>. The whole plan fits on one card.</p>
+<h3>Meal timing</h3>
+<ul>
+<li><b>Pre-session:</b> a real, balanced meal 1.5–2 hours before cards fly — protein and complex carbs, not a sugar spike that crashes at Level 2.</li>
+<li><b>Dinner break:</b> eat <b>moderately</b>, not the giant casino buffet that sends blood to your gut and fog to your head for the crucial post-dinner levels. Light protein and vegetables over a heavy, heavy plate.</li>
+<li><b>The principle:</b> steady energy beats peaks and crashes. Every big meal is followed by a trough — schedule around the levels that matter.</li></ul>
+<h3>The snack bag</h3>
+<p>Pack it yourself; don't gamble on what the casino sells. Nuts, jerky, fruit, dark chocolate, a protein bar — <b>steady-release fuel you can eat at the table between hands</b>. The snack bag replaces the vending-machine sugar-and-crash cycle with a controlled drip of energy. (It's also the Day 99 packing assignment — build the template now.)</p>
+<h3>Hydration by level</h3>
+${T2([
+["Wake-up","A full glass immediately — you dehydrate overnight"],
+["Every level","Water at your seat, sipped through the level — not a gallon at the break"],
+["Every break","A full glass, plus movement (Day 77)"],
+["The rule","Thirst is already dehydration — drink on a schedule, not on a signal"]],
+["When","Hydration action"])}
+<h3>Caffeine strategy</h3>
+<p>Caffeine is a tool, not a lifestyle. Use it <b>deliberately</b> — a measured dose to lift focus for a key stretch, not a constant drip that spikes anxiety and wrecks the sleep window (Day 69). Know your dose and your timing (nothing late that steals your 7–9 hours). And taper it in the final week so a normal tournament-day dose still works — a tolerance built to four cups makes one cup useless when you need it.</p>
+${NOTE("watch the field after the dinner break: half of them just ate an enormous buffet plate and are visibly foggy for two levels — exactly when the bubble pressure peaks. The player who ate light and hydrated on schedule is sharp while the table digests. Fuel discipline is a quiet, repeatable edge every single day.")}`,
+quiz:[
+{q:"Fuel logistics matter because:",o:["A 12-hour day is cognitive endurance; crashes hit during the late high-pressure levels","Good nutrition improves your long-term health and recovery","A full stomach keeps you calm and patient at the table","Eating well signals professionalism to the other players"],a:0,e:"Long-term health is real but beside the point, and a full stomach actually fogs you. <b>Fuel is C-game prevention</b>: random food and skipped meals produce blood-sugar crashes on a schedule — reliably at the worst moments."},
+{q:"The dinner-break move:",o:["Eat moderately — a big meal fogs the crucial post-dinner levels","Eat a large meal now; it's your main fuel for the night","Skip it and rely on your snack bag to stay light","Carb-load for sustained late-session energy"],a:0,e:"A heavy or carb-heavy meal sends blood to your gut and a crash to your head for the post-dinner levels; skipping leaves you empty. <b>Light protein and vegetables</b> keep you sharp while the table digests."},
+{q:"The snack bag exists to:",o:["Replace the sugar-and-crash cycle with a steady-release drip of fuel","Make sure you never have to leave the table hungry","Save the cost and the time of buying casino food","Give you something to do during dead stretches"],a:0,e:"Pack it yourself — nuts, jerky, fruit, dark chocolate. The purpose is <b>steady energy between hands</b> instead of the vending-machine sugar spike; convenience and cost are incidental. It's your Day 99 packing template too."},
+{q:"The hydration rule:",o:["Drink on a schedule — thirst is already dehydration","Drink a large amount at each break to catch up","Match your water intake to your caffeine intake","Sip only once you feel your focus start slipping"],a:0,e:"<b>Thirst — like slipping focus — is a lagging signal</b>, and gulping at breaks just cycles you wet-then-dry. Full glass at wake-up, sip through every level, drink at every break: hydrate on a schedule, not on a symptom."},
+{q:"The pre-session meal should be:",o:["Balanced protein and complex carbs, 1.5–2 hours before cards fly","A large meal right before you sit, so hunger never hits","A quick high-sugar breakfast for fast early energy","Light and carb-heavy, eaten just as the cards fly"],a:0,e:"A sugar spike crashes by Level 2, a big meal right before fogs you, and carbs at the felt crash mid-level. <b>Protein and complex carbs, 1.5–2 hours ahead</b> give steady energy through the opening levels without the trough."},
+{q:"Caffeine should be used:",o:["Deliberately — a measured dose for a key stretch, timed to protect sleep","Steadily through the day to hold a constant level","Front-loaded in the morning for an all-day effect","Only once you feel fatigue clearly setting in"],a:0,e:"A tool, not a drip and not a reaction. <b>Measured, timed, nothing late</b> that steals your 7–9 hours (Day 69) — a constant or front-loaded supply spikes anxiety and wrecks sleep, and waiting for fatigue is already too late."},
+{q:"Why taper caffeine in the final week?",o:["So a normal tournament-day dose still lifts focus — high tolerance makes it useless","To detox your body for a cleaner performance","To lose the jitters that could hurt your live tells","To save money in the run-up to the buy-in"],a:0,e:"A tolerance built to four cups makes one cup do nothing. <b>Taper so the Main-day dose actually works</b> — the tool has to lift focus on the one day it matters most."},
+{q:"The overall fuel principle:",o:["Steady energy beats peaks and crashes — schedule inputs around the key levels","Maximize calories to power through a long endurance day","Eat and drink minimally to stay light and alert","Front-load your fuel early so you can coast the back half"],a:0,e:"Every peak has a trough, so neither maximizing nor minimizing works. <b>Steady, scheduled inputs</b> — moderate meals, a snack drip, timed water and caffeine — keep the A-game online for all 12 hours."}]});
+
+/* ============ DAY 71 ============ */
+L.push({d:71,t:"Live Session II — full routine rehearsal",f:"m",obj:"The complete tournament-day dress rehearsal end to end: wake time, meal, warm-up, arrival, session, breaks — and the reset script run live at least once. Bag and debrief. No improvising.",
+body:`
+<h3>Rehearse the whole machine</h3>
+<p>Session I tested the poker under real conditions; Session II tests <b>everything around the poker</b>. Today you run a complete tournament-day rehearsal, from wake to bag, exactly as it will go on Day 1 of the Main. The point is to execute the routine <b>without improvising a single element</b> — because the day you improvise is the day you forget the water, skip the warm-up, and arrive rattled.</p>
+<h3>The full sequence</h3>
+${T2([
+["Wake","At the aligned time (Day 69), 3.5–4.5h before your simulated start"],
+["Fuel","The pre-session meal (Day 70), hydration begun at wake-up"],
+["Warm-up","Movement, breathing, mental warm-up, structure review (Day 93)"],
+["Arrival","Early — settled at the seat before cards, snack bag packed (Day 70)"],
+["Session","Play the day; tag the table; mark 15 hands; run every band's rules"],
+["Breaks","Take every one — walk, water, a moment of the reset script"],
+["Bag &amp; debrief","End with the bagging ritual and a short written debrief (Day 69's discipline)"]],
+["Phase","What you execute"])}
+<h3>Run the reset script live</h3>
+<p>Today you deliberately <b>run the reset script (Day 68) at least once</b> — after a real setback if one comes, or a simulated one if the session is smooth. The reset can't stay theoretical; it has to be a live rep before the Main, so that when the two-outer hits under the lights it fires as muscle memory, not a thing you remember you were supposed to have built.</p>
+<h3>The point is the seams, not the poker</h3>
+<p>You already know how to play. What this rehearsal stress-tests is the <b>seams</b> — the transitions where routines fail. Did you actually warm up, or skip it because you felt fine? Did the phone stay in your pocket (Day 68)? Did you eat light at the break (Day 70) or cave to the buffet? Did you bag and debrief, or just leave? <b>The seams are where tournament days come apart</b> — rehearse them until they hold under no pressure, so they hold under maximum pressure.</p>
+${NOTE("almost no amateur ever rehearses the full tournament day — they practice poker and wing the logistics, then wonder why Day 1 of a big event feels chaotic and they play their C-game for two levels. The player who has run the complete machine three times sits down on the real Day 1 already home, because the day is just a rerun of a rehearsal.")}`,
+quiz:[
+{q:"What does Live Session II test that Session I did not?",o:["Everything around the poker — the full tournament-day routine, end to end","Your play across a wider spread of stack depths","Your endurance over a much longer continuous session","Your discipline against a tougher, more aggressive field"],a:0,e:"Session I tested the poker under real conditions; <b>Session II is the dress rehearsal of the whole machine</b> — wake, fuel, warm-up, arrival, session, breaks, bag. The mixed-depth test is Day 75, not this."},
+{q:"The core instruction for the routine rehearsal:",o:["Execute every element of the routine without improvising one","Keep the routine loose so you can adapt on the day","Rehearse only the parts you tend to forget","Prioritize the poker and let the routine flex around it"],a:0,e:"The day you improvise is the day you forget the water and skip the warm-up. <b>Run the routine exactly as planned</b>, so Day 1 of the Main is a rerun — 'stay loose to adapt' is how the seams fail under real pressure."},
+{q:"You must run the reset script at least once today because:",o:["It can't stay theoretical — it needs a live rep to fire as muscle memory","You're likely to take a real bad beat over a long session","It reassures you the script works before the Main","It's the only way to time how long recovery takes"],a:0,e:"After a real setback or a simulated one, <b>rep the reset live</b> (Day 68). Under the lights the two-outer must trigger muscle memory — the rep is about ingraining the reflex, not reassurance or a stopwatch."},
+{q:"What this rehearsal primarily stress-tests:",o:["The seams — the routine transitions where tournament days come apart","Your stamina across an unbroken multi-hour session","Your ability to adapt the routine to the venue","Your poker under simulated tournament pressure"],a:0,e:"You already know how to play, and poker-under-pressure is Session I / Day 79's job. <b>The seams fail first</b>: skipped warm-ups, phone glances, buffet caves, no debrief — rehearse the transitions until they hold with no pressure on them."},
+{q:"The session ends with:",o:["The bagging ritual and a short written debrief","A full review of every marked hand while it's fresh","Packing up and heading straight home to rest","A tally of your net result for the session"],a:0,e:"End as you'll end the Main: <b>bag-and-debrief</b> (Day 69's discipline) — a short capture now, deep analysis on a rest day. The full fresh review is the 2am trap, and a net-result tally grades the wrong thing."},
+{q:"During the rehearsal, the phone should:",o:["Stay in the pocket except on scheduled breaks","Be silenced but kept out for tracking time and stacks","Be off entirely, even during the breaks","Be used briefly between hands to stay loose"],a:0,e:"Phone discipline (Day 68) is a seam under test. <b>In the pocket except on scheduled breaks</b> — 'out but just for time and stacks' is the rationalized leak, and breaks are the one place it's fine."},
+{q:"Why rehearse the full day when you already know how to play?",o:["Logistics failures make you play your C-game for two levels on the real Day 1","It's the only reliable way to discover new leaks in your game","The repetition builds the stamina a 12-hour day requires","The routine ultimately matters more than the poker itself"],a:0,e:"Amateurs practice poker and wing the logistics, then play chaotic on Day 1. <b>Three full rehearsals mean you sit down already home</b> — the routine serves the poker, it doesn't outrank it, and this isn't a leak-finding or stamina drill."},
+{q:"The pre-session and break fuel in the rehearsal follow:",o:["The Day 70 plan — balanced pre-meal, light at the break, scheduled water","A lighter version, since it's only a rehearsal","Whatever keeps your energy highest for the session","A strict fast, to test playing through hunger"],a:0,e:"The rehearsal proves the <b>fuel plan (Day 70)</b> under session conditions: did you eat light at the break or cave to the buffet? Cutting corners because 'it's only practice' is exactly the seam you're here to test."}]});
+
+/* ============ DAY 72 ============ */
+L.push({d:72,t:"Hesitation log",f:"z",obj:"Mine Session II for every spot you hesitated, classify each by root cause — knowledge gap, fear, or fatigue — and assign each class its own targeted drill. Turn uncertainty into a curriculum.",
+body:`
+<h3>Hesitation is data</h3>
+<p>Every time you paused at the table — the moment of 'I'm not sure' — your game handed you a diagnostic. The marked hands (Day 66) captured the spots; today you <b>diagnose them</b>. A hesitation is never random: it points at a specific, fixable weakness. The log turns a vague feeling of 'I was uncertain out there' into a concrete list of homework.</p>
+<h3>The three root causes</h3>
+${T2([
+["Knowledge gap","You didn't know the correct play — a range, a number, a line. Fixable by STUDY: the specific chart, band, or node"],
+["Fear","You knew the play and flinched — the ICM fold you didn't make, the value bet you checked back. Fixable by REHEARSAL: the reset script, the pre-committed line"],
+["Fatigue","The decision was fine early and mush late — a focus lapse, not a knowledge or nerve problem. Fixable by CONDITIONING: sleep, fuel, session stamina (Days 69, 70, 89)"]],
+["Cause","Signature &amp; fix"])}
+<h3>The classification discipline</h3>
+<p>The whole value is in <b>honest sorting</b>. It's comfortable to file every mistake as a 'knowledge gap' — study feels productive and safe. But if the real cause was fear (you knew AJo was a fold and called anyway) or fatigue (you were sharp at Level 3 and mush at Level 9), more study fixes nothing. Ask of each hesitation: <b>did I not know, did I know and flinch, or was I simply spent?</b> The answer routes the fix.</p>
+<h3>Assign the drills</h3>
+<p>Each classified hesitation gets a concrete assignment: the knowledge gaps get a re-study day (revisit the exact Phase I–III lesson), the fears get reset-script and pre-commitment reps (Day 68), the fatigue spots get conditioning work (Day 89's pressure-under-fatigue training). <b>Three misses of the same class = that class is your priority homework</b> — the log doesn't just record leaks, it schedules their repair.</p>
+${NOTE("most players who 'work on their game' only ever study — because study is the fixable-feeling response to every mistake. But a huge share of live errors are fear and fatigue, which no amount of chart drilling touches. The player who correctly sorts his own hesitations fixes leaks the pure-study crowd will carry into the Main untouched.")}`,
+quiz:[
+{q:"A hesitation at the table is:",o:["Data — a diagnostic pointing at a specific, fixable weakness","A signal to slow down and play the spot more cautiously","A normal part of thinking a tough decision through","Usually just a knowledge gap you can study away"],a:0,e:"The pause is never random and rarely just one cause. <b>It points at a fixable weakness</b> — the log turns 'I was uncertain out there' into a concrete list of homework, once you diagnose which of three causes it was."},
+{q:"The three root causes of a hesitation:",o:["Knowledge gap, fear, and fatigue","Inexperience, bad reads, and variance","Nerves, distraction, and impatience","Tiredness, hunger, and tilt"],a:0,e:"Every hesitation is one of three: <b>you didn't know (study), you flinched (rehearsal), or you were spent (conditioning)</b>. The near-miss lists overlap with these but blur the clean fix each real cause points to."},
+{q:"A 'fear' hesitation is fixed by:",o:["Rehearsal — the reset script and pre-committed lines","Studying the theory of the spot more deeply","Playing more volume until the spot feels routine","Reminding yourself the money doesn't really matter"],a:0,e:"Fear means you knew the play and flinched — the ICM fold you didn't make. <b>Study fixes nothing here</b>, and 'the money doesn't matter' is a denial, not a reset; reps of the script and pre-commitment (Day 68) do the work."},
+{q:"The danger in classifying hesitations:",o:["Filing everything as a knowledge gap because study feels safe","Recording so many that the log becomes unusable","Being too harsh and labeling good decisions as errors","Classifying before you've cooled down from the session"],a:0,e:"Study is the comfortable answer to every mistake, so <b>fear and fatigue get mislabeled as knowledge gaps</b> and never fixed. Honest sorting — not volume, harshness, or timing — is the whole value of the exercise."},
+{q:"A decision that was fine at Level 3 and mush at Level 9 is a:",o:["Fatigue problem, fixed by conditioning","Knowledge gap that only surfaces under pressure","Fear response to the deeper stage of the day","Focus lapse best fixed with more study reps"],a:0,e:"Same decision, degraded by hour — that's <b>fatigue, not knowledge or nerve</b> (Days 69, 70, 89). If you knew it at Level 3 you know it; conditioning fixes the late-day mush, a re-study day aims at the wrong target."},
+{q:"Three hesitations of the same class means:",o:["That class is your priority homework — the log schedules the repair","You have a broad, serious weakness across that area","It's probably variance clustering; keep collecting data","You should drill all three causes equally, to be safe"],a:0,e:"The log doesn't just flag an area, it <b>schedules a specific repair</b> — the cluster routes the next block to study, rehearsal, or conditioning. Spreading effort evenly wastes the diagnosis the sorting just gave you."},
+{q:"The question to ask of each hesitation:",o:["'Did I not know, did I know and flinch, or was I simply spent?'","'What would a solver do in this exact spot?'","'How much did this mistake cost me in chips?'","'Have I seen a situation like this before?'"],a:0,e:"Only that question <b>sorts the cause and routes the fix</b>. The solver, the chip cost, and the familiarity are all review questions that leave you without a repair plan."},
+{q:"Why does the pure-study crowd carry leaks into the Main untouched?",o:["Much of live error is fear and fatigue, which chart drilling never touches","They study material that's too advanced for their level","They review theory but never play enough live volume","They memorize charts without understanding the reasons"],a:0,e:"Study is the fixable-feeling response to everything, so <b>fear and fatigue go undiagnosed</b> — correct self-sorting fixes the leaks study-only players never even see as leaks. The other options are real issues, but not why the sorting matters."}]});
+
+/* ============ DAY 73 ============ */
+L.push({d:73,t:"Bankroll & series architecture",f:"m",obj:"The money scaffolding: separate the poker roll from the life roll, understand the ways into a $10K seat, set a series budget with a stop-adding threshold, and sort the schedule into must / maybe / no-play. Framework, not financial advice.",
+body:`
+<h3>A framework, not advice</h3>
+<p>This day builds a <b>structure for thinking</b> about the money — it is explicitly not financial or investment advice, and the numbers are yours to set with your own risk tolerance. What matters is that you walk into the Main with the money question <b>already answered</b>, so it never occupies a single thought at the table. A player worried about the buy-in plays scared; a player who settled it weeks ago plays free.</p>
+<h3>Poker roll ≠ life roll</h3>
+<p>The first principle: the money you play with is <b>walled off</b> from rent, savings, and obligations. A $10K freezeout is a high-variance event; sizing it against your life roll instead of a dedicated poker roll is how one tournament becomes a life problem. The wall protects your decisions as much as your finances — chips you can afford to lose are chips you can play correctly (the freezeout survival premium, Day 7, is about tournament life; this is about actual life).</p>
+<h3>Ways into the seat</h3>
+${T2([
+["Direct buy-in","Simplest — full $10K from a dedicated poker roll sized to absorb the variance"],
+["Satellites","Win the seat for a fraction (Day 59) — pure-ICM training and a cheaper entry in one"],
+["Selling action","Sell a percentage to reduce your own variance — at a markup you and your backers agree, in writing"],
+["Packages / staking","Formal backing arrangements — understand the terms cold before you sign anything"]],
+["Route","What it is"])}
+<h3>The series budget and the stop-adding line</h3>
+<p>If you're playing more than the Main, set a <b>total series budget</b> before you arrive — and a hard <b>stop-adding threshold</b>: the point past which you do not reload, re-enter, or fire another event, no matter how good you're running or how bad. The threshold exists precisely for the moments emotion will scream to cross it. <b>Decide it cold, honor it hot.</b> The re-entry temptation after a Day 1 bust is a leak the budget was built to refuse.</p>
+<h3>Must / maybe / no-play</h3>
+<p>Sort the schedule in advance into three buckets: <b>must-play</b> (the Main, and any event central to your trip), <b>maybe-play</b> (fire only if bankroll and energy allow, decided by rule not impulse), and <b>no-play</b> (off the table entirely — too expensive, too draining, or a distraction from the Main). The sort protects both your roll and your <b>focus</b>: every 'maybe' you fire on a whim is energy stolen from the event that matters.</p>
+${NOTE("the classic amateur series arc: bust the Main on Day 1, tilt-register three side events 'to salvage the trip', and leave broke and exhausted having played all of them badly. The player with a pre-set stop-adding line and a must/maybe/no-play sort simply goes home, roll intact, edge preserved for next time. The budget is a tilt-control device as much as a financial one.")}`,
+quiz:[
+{q:"This day's material is:",o:["A framework for thinking, with numbers you set to your own risk tolerance","A recommended bankroll size for playing the Main safely","A set of rules every serious player should follow exactly","General guidance to apply once you've built a big roll"],a:0,e:"Explicitly <b>a structure, not advice</b> — it prescribes no numbers and waits for no minimum roll. The goal is to walk into the Main with the money question already answered, so it never costs you a thought at the table."},
+{q:"The first bankroll principle:",o:["Wall the poker roll off from the life roll","Keep enough buy-ins in reserve to absorb the variance","Only play stakes you could rebuy into several times","Diversify across events to smooth out your results"],a:0,e:"The others are real bankroll ideas, but the <b>first</b> principle is the wall: a $10K freezeout is high-variance, and sizing it against your life roll is how one tournament becomes a life problem."},
+{q:"Why does the poker/life wall protect your DECISIONS?",o:["Chips you can afford to lose are chips you can play correctly","It caps how much any single event can hurt your finances","It keeps your emotions steady through a long downswing","It lets you take shots at bigger events without fear"],a:0,e:"Money you can't afford to lose distorts every close spot. The wall's edge isn't just financial damage-capping — <b>it lets you make correct high-variance decisions</b> without your life roll flinching at the table."},
+{q:"The 'stop-adding threshold' is:",o:["A hard line past which you don't reload, re-enter, or fire another event","The most you're willing to lose across the whole series","A budget cap you adjust upward when you're running well","The point at which you switch to selling more action"],a:0,e:"Set it cold, honor it hot — and never move it mid-heater. <b>It exists precisely for the moments emotion will scream to cross it</b>; the post-bust re-entry temptation is exactly what it refuses."},
+{q:"'Selling action' means:",o:["Selling a percentage of your own entry to reduce your variance","Buying pieces of other players to spread your risk around","Selling your seat if you find you can't play the event","Backing another player in exchange for a share of winnings"],a:0,e:"You sell a share of <b>yourself</b> — at an agreed markup, in writing — to lower your variance. Buying pieces and backing a horse are the opposite side of the deal; it's one of several routes into the seat."},
+{q:"The must / maybe / no-play sort protects:",o:["Both your roll and your focus — a whim 'maybe' steals energy from the Main","Your bankroll, by capping the number of events you enter","Your schedule, so you don't double-book overlapping events","Your win rate, by keeping you in your strongest formats"],a:0,e:"Decide the buckets by rule, not impulse. The sort guards more than money: <b>a 'maybe' fired on a whim is energy stolen from the event that matters</b> — it protects attention as much as the roll."},
+{q:"The classic amateur series arc the budget prevents:",o:["Bust the Main, tilt-register side events 'to salvage the trip', leave broke","Over-sell your action and then resent it after a deep run","Play too conservatively and skip the +EV side events","Satellite in cheaply, then play the seat scared"],a:0,e:"The pre-set stop-adding line and the play-sort turn a bust into 'go home, roll intact'. <b>The budget is a tilt-control device</b> — the doomsday arc it blocks is the emotional re-registration spiral, not mere caution or over-selling."},
+{q:"Satellites appear in both this day and Day 59 because they are:",o:["A cheaper entry route AND the sharpest ICM training in one","Lower variance than paying the direct buy-in","A way to practice against the actual Main Event field","A lock on a guaranteed min-cash if you bust the Main"],a:0,e:"A satellite wins the seat for a fraction while being <b>the sharpest ICM training ground in poker</b> (Day 59) — the same session serves the roll and the game. It buys no min-cash and isn't lower-variance."}]});
+
+/* ============ DAY 74 ============ */
+L.push({d:74,t:"Image & meta-game",f:"g",obj:"Play the player's model of you: read how your image shifts after each showdown, weaponize a tight image and repair a wild one, and reset your read every time a seat or table change scrambles the dynamic.",
+body:`
+<h3>They're playing a version of you</h3>
+<p>Meta-game is the layer above the cards: your opponents act not on your actual range but on <b>their model of your range</b> — the image you've projected through your showdowns and your frequencies. The advanced player manages that model deliberately, betting into the picture the table has of him rather than the reality. Image is a resource; most players spend it by accident.</p>
+<h3>Image moves at every showdown</h3>
+<p>Each hand you table rewrites your image. Show a big bluff and get caught: your value now gets paid, your future bluffs get called. Show down three nutted hands: your bets gain credibility and your bluffs gain fold equity — but your value dries up as they fold. <b>Track your own image the way you track theirs</b> — after every showdown, ask 'what do they think I am now?' and adjust before they do.</p>
+<h3>Weaponize tight, repair wild</h3>
+${T2([
+["Tight image","Your bluffs and steals get maximum respect — press them: 3-bet more, barrel more, steal wider. The credibility you banked by folding is now spendable"],
+["Wild image","Your value gets paid off huge, but your bluffs get snapped — so value-bet relentlessly and thin, and shelve the bluffs until the picture resets"],
+["The repair","A wild image self-corrects with a few tight showdowns; don't fight it — feed it value hands and let the credibility rebuild"],
+["The trap","Playing your image instead of the situation — bluffing because you 'have a tight image' when the specific villain never folds (gate four, Day 25)"]],
+["Image","How to use it"])}
+<h3>The seat and table change resets everything</h3>
+<p>Image is <b>local and perishable</b>. A table change hands you a clean slate — the new table has no read on you, so the tight image you built is worthless capital and the wild one is a forgiven sin. A seat change alters who acts before and after you, scrambling the dynamics you'd set. When either happens: <b>drop your assumptions, re-run the first orbit (Day 61), and rebuild the read from zero.</b> The player who keeps 'playing his image' after a table change is playing a picture no one at the new table can see.</p>
+${NOTE("live players constantly misread a fresh table change — they walk in and try to run the aggressive meta-game they'd earned two tables ago, against opponents who have zero read on them and just see a stranger raising a lot. Image is capital you can only spend where you earned it; after a move, you're an unknown again, and unknowns get looked up.")}`,
+quiz:[
+{q:"Meta-game is:",o:["Playing the opponent's model of your range, not just your actual cards","Adjusting your ranges to be balanced and unexploitable","Reading physical tells to narrow your opponent's holdings","Shifting between tight and loose based on the table's mood"],a:0,e:"The layer above the cards: opponents act on <b>their model of you</b>, and the advanced player manages that model deliberately. Balancing ranges is GTO, tells are reads — meta-game is playing the picture they hold of you."},
+{q:"After you show a big bluff that got caught:",o:["Your value gets paid but future bluffs get called — lean toward value","Your image is now balanced, so keep bluffing at the same rate","You look weak now, so tighten up until it's forgotten","It's neutral — a single hand doesn't move a table's read"],a:0,e:"Each showdown rewrites your image, and a caught bluff spends credibility: <b>lean into value, shelve the bluffs</b>. It's not balance and it's not neutral — they've seen you can bluff, and they'll call lighter."},
+{q:"With a tight image, you should:",o:["Press your bluffs and steals — the banked respect is spendable","Keep tightening to bank even more credibility","Value-bet thinner, since a tight player still gets paid","Mix in some loose calls to stay balanced"],a:0,e:"A tight image is <b>banked credibility to spend</b>: 3-bet more, barrel more, steal wider. Value doesn't get thinner — the respect makes them FOLD, so it's the bluffs and steals that cash in the image, not thin value."},
+{q:"With a wild image, the adjustment is:",o:["Value-bet relentlessly and thin; shelve the bluffs until it resets","Bluff more — a wild image makes any story believable","Tighten hard and wait for premiums to get paid off","Keep playing identically; the image is in their heads, not yours"],a:0,e:"A wild image means <b>your value gets paid and your bluffs get snapped</b> — so feed the callers value and park the bluffs. Bluffing more runs straight into their calls; tightening forfeits the paid-off value."},
+{q:"The meta-game trap:",o:["Playing your image instead of the situation — bluffing a station on 'a tight image'","Adjusting your play after every single showdown","Building an image without a plan to cash it in","Caring about image at all in a table full of unknowns"],a:0,e:"Image informs, it doesn't override — and adjusting after showdowns is correct, not a trap. <b>Gate four still rules (Day 25)</b>: if the specific villain never folds, your tight image is irrelevant and bluffing him is spew with a story."},
+{q:"A table change does what to your image?",o:["Resets it to zero — the new table has no read on you","Weakens it, but a strong reputation still carries over","Freezes it until you show down a hand at the new table","Inverts it — a tight image reads as loose to strangers"],a:0,e:"Image is <b>local and perishable</b>. A move hands you a clean slate — no read carries, nothing freezes or inverts: the tight image is now worthless capital and the wild one a forgiven sin. Rebuild from the first orbit (Day 61)."},
+{q:"After a seat or table change, you should:",o:["Drop your assumptions and re-run the first orbit to rebuild the read","Open aggressively to stamp a new image before reads form","Keep your winning strategy running; only the faces changed","Play tight for an orbit to gather tells safely"],a:0,e:"New opponents, new dynamics — a seat change even reorders who acts before and after you. <b>Actively re-tag from zero</b>; both 'keep the old strategy' and a passive tight orbit fail to rebuild the read the new table requires."},
+{q:"Why do stranger-at-a-new-table raises get looked up?",o:["An unknown has no credibility yet — image is capital you spend only where you earned it","New arrivals are usually short stacks desperate to double","Tables reflexively test any newcomer's early raises","A stranger's opening range is simply wider, so calling is correct"],a:0,e:"After a move you're an unknown, and <b>unknowns get called</b> — not because you're short, tested, or provably wide, but because you've banked no credibility. The aggressive meta-game needs an image the new table can see."}]});
+
+/* ============ DAY 75 ============ */
+L.push({d:75,t:"Live Session III — mixed depth",f:"g",obj:"The third raid, across the whole stack spectrum: practice the aggression throttle as depth changes within one session, mark fifteen hands with a focus on the transitions, and set up the Session I-vs-III comparison.",
+body:`
+<h3>The throttle, live</h3>
+<p>Sessions I and II lived mostly in one depth. Today's raid deliberately spans the <b>whole spectrum</b> — deep to mid to short and maybe back — and the skill under test is the <b>aggression throttle</b>: shifting your game as the effective stack changes, sometimes hand to hand. Deep, you play position and implied odds; at 30bb the tree collapses to three decisions (Day 45); at 15bb the reshove becomes king (Day 46); under 10bb it's jam-or-fold (Days 48–49). One session, every gear.</p>
+<h3>The transition zones are the exam</h3>
+<p>Anyone can play a fixed depth they've studied. The errors live in the <b>transitions</b> — the moment your stack (or the effective stack in a given pot) crosses a threshold and the correct game changes. Mark 15 hands today with a specific focus on these seams:</p>
+${T2([
+["~40bb → ~30bb","Speculative flats die; pretty hands get released; 3-bet-or-fold sharpens"],
+["~25bb → ~15bb","The reshove replaces the small 3-bet as your primary weapon"],
+["~15bb → ~10bb","Postflop vanishes; first-in jam-or-fold takes over; fold equity is everything"],
+["Effective-stack pots","A deep stack vs a short jammer plays the SHORT game — throttle to the shorter stack, not your own"]],
+["Transition","What must change"])}
+<h3>Throttle to the effective stack, not your own</h3>
+<p>The subtle rep: your <b>own</b> stack isn't always the governing number. Against a 14bb stack you're in a reshove-band pot even if you have 80bb (Day 58). The throttle reads the <b>effective</b> stack in each specific confrontation and selects the right gear for that pot. Missing this is the deep player's classic error — trying to play a 250bb game against a stack that can only play for 14.</p>
+<h3>Set up the comparison</h3>
+<p>Tomorrow you compare Session I and Session III decision quality (Day 76). So mark with that in mind: is your throttle smoother than it was? Are the transition errors fewer? This session is not just practice — it's the <b>measurement</b> of two weeks of field work. Play it, mark it, and leave the judgment for the debrief.</p>
+${NOTE("the tell of an unstudied player is a game that never changes gear — he plays his 15bb stack with the same loose flatting he'd use at 100bb, or clings to a deep-stack pot-control mindset when the effective stack screams jam-or-fold. The throttle is a live skill precisely because depth shifts constantly; the player who shifts with it is invisible, and the one who doesn't leaks at every threshold.")}`,
+quiz:[
+{q:"The skill under test in Live Session III:",o:["The aggression throttle — shifting gears as effective stack changes within a session","Deep-stack play, the depth most amateurs practice least","Short-stack push-fold execution under real pressure","Table selection across different game types"],a:0,e:"The session spans the whole spectrum — <b>deep→mid→short and back, sometimes hand to hand</b>. It isn't any single depth in isolation; the throttle is the skill of selecting the right game for the current one."},
+{q:"The errors in mixed-depth play live in:",o:["The transition zones where the correct game changes at a stack threshold","The shortest pots, where mistakes cost the most chips","The deepest pots, which contain the most decisions","Preflop, where the depth for the whole hand is set"],a:0,e:"Anyone can play a studied fixed depth. <b>The seams are the exam</b> — mark 15 hands focused on the moments your stack crosses 40, 25, 15, and 10bb, not on any one depth's pots."},
+{q:"With 80bb against a 14bb all-in, you are playing:",o:["A 14bb pot — throttle to the effective (shorter) stack","An 80bb pot — your deep stack sets the terms","A pot somewhere between the two stack sizes","Whatever depth suits the strength of your hand"],a:0,e:"Day 58's law: <b>the effective stack governs, not your own</b>. Against a 14bb jammer it's a reshove-band pot even with 80bb behind — 'my deep stack sets the terms' is the exact error."},
+{q:"Crossing from ~40bb to ~30bb, what changes?",o:["Speculative flats die, pretty hands get released, 3-bet-or-fold sharpens","You add more reshoves and cut your open-raises","Set-mining improves as the pots get more committed","Little changes — 30bb still plays much like a deep stack"],a:0,e:"Day 45's tree collapse arrives: <b>the speculative middle disappears</b>. Set-mining gets worse without depth, and the reshove-heavy game is the next band down (25→15); here the flat simply becomes the exception."},
+{q:"At the ~25bb → ~15bb transition, your primary weapon becomes:",o:["The reshove — jamming over opens","The small 3-bet, to induce preflop folds","The flat, to keep the pot small and see a flop","The limp, to trap with your short stack"],a:0,e:"Day 46's band: the <b>reshove replaces the small 3-bet</b>. It can't be bluffed off its equity and charges marginal opens full price — a small 3-bet here just invites a jam back at you."},
+{q:"The deep player's classic transition error:",o:["Playing a 250bb game against a stack that can only play for 14bb","Jamming too wide the moment his own stack gets short","Folding marginal hands he should be flatting when deep","3-betting light against players who simply won't fold"],a:0,e:"Missing the effective-stack read: <b>deep-stack pot-control against a short jammer</b> is playing the wrong game entirely. The throttle reads the pot's effective depth, not your own chip count."},
+{q:"You mark Session III hands with a focus on:",o:["The transitions — is the throttle smoother, are the seam errors fewer?","The biggest pots, where the most chips changed hands","The hands you misplayed, so you can correct them tonight","Your bluffs, to confirm they stayed balanced"],a:0,e:"The marks feed tomorrow's Session I-vs-III comparison (Day 76). <b>Mark the transitions, leave the judgment for the debrief</b> — you don't solve or correct at the table, and pot size isn't the signal."},
+{q:"The tell of an unstudied player in mixed-depth play:",o:["A game that never changes gear — 15bb with 100bb habits, or deep pot-control when it's jam-or-fold","He plays too many hands regardless of his position","He only really knows how to play a big stack aggressively","He folds too often once his stack gets short"],a:0,e:"Depth shifts constantly, so a fixed gear leaks at every threshold. <b>The player who shifts with the effective stack is invisible</b>; the one stuck in one gear donates at every seam, whichever gear it is."}]});
+
+/* ============ DAY 76 — consolidation ============ */
+L.push({d:76,t:"Raid debrief & consolidation II",f:"z",obj:"Twelve questions from Days 68–75. Then the written debrief of Session III, the Session I-vs-III decision-quality comparison, and the weekly review. Name the improvement — or diagnose the gap.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 questions sampled at random from the second-week pools (Days 68–75). Different every attempt — retake until you pass.</li>
+<li><b>90m Session III debrief:</b> write up every marked hand, classifying each hesitation by root cause (Day 72's method): knowledge, fear, or fatigue.</li>
+<li><b>45m Session I vs III comparison:</b> put the two sessions side by side. Is the throttle smoother? Are there fewer transition errors? Fewer fear-folds and fatigue-mush spots? <b>Name a measurable improvement — or diagnose exactly where the gap still lives.</b></li>
+<li><b>30m weekly review + long sleep.</b> The half-day sim (Day 79) and the phase exam (Day 80) are close.</li></ul>`,
+pool:{days:[68,69,70,71,72,73,74,75],n:12}});
+
+/* ============ DAY 77 ============ */
+L.push({d:77,t:"Physical peak week",f:"z",obj:"Hit both physical vows deliberately — a strength session plus cardio, and mobility work for the punishment of long sitting — while keeping poker study light. The gladiator maintains the body that carries the mind.",
+body:`
+<h3>The body carries the mind</h3>
+<p>Elite poker endurance is physical. The weekly baseline (one of the five vows) is <b>150 minutes of moderate activity plus two strength sessions</b> — the adult health standard, and the way pros like Kornuth actually prepare for multi-day marathons. Today you hit both vows deliberately: a <b>strength session plus 30 minutes of cardio</b>. A conditioned body holds focus, posture, and mood across a 12-hour day that breaks the unconditioned one by the dinner break.</p>
+<h3>Mobility for the chair</h3>
+<p>A Main Event day is, physically, <b>hours of static sitting</b> — the specific stress that stiffens hips, tightens the lower back, and degrades circulation and alertness. Build a mobility routine aimed at exactly that:</p>
+${T2([
+["Hips &amp; hip flexors","The prime victims of long sitting — open them daily"],
+["Lower back &amp; spine","Gentle extension and rotation to counter the hunched-forward hours"],
+["Neck &amp; shoulders","Where table tension and phone-glances accumulate"],
+["Movement at every break","Stand, walk, and mobilize — don't sit through the breaks too (Days 70, 84)"]],
+["Target","Why it matters at the table"])}
+<h3>Keep the poker light</h3>
+<p>This is a <b>peak-week</b> session, not a cram session. The physical work is the point today; poker study stays light — greatest-hits flashcards only, no heavy new material. You're entering the phase where the goal shifts from loading to sharpening and resting (the Phase V logic begins here). Overtraining the mind this week costs you the freshness the taper is designed to build.</p>
+<h3>Movement is also a mental tool</h3>
+<p>The cardio and mobility aren't only about the body — <b>movement clears the mind</b>, resets stress, and is a core element of the between-block and between-break routine (Days 70, 95). The walk at the break isn't a luxury; it's part of the same machine as the reset script and the hydration schedule. The gladiator trains the vessel so the monk can keep the focus and the road warrior can keep grinding.</p>
+${NOTE("the field's physical condition is visibly worse each day of a long event — slumped posture, glazed eyes, no movement on breaks, running on buffet food and caffeine. The player who trained the body and moves on every break is still sitting upright and alert on Day 5 while the table wilts. It's the least secret and least copied edge in tournament poker.")}`,
+quiz:[
+{q:"The weekly physical baseline in the program:",o:["150 minutes moderate activity plus two strength sessions","A daily run to build cardiovascular endurance","Whatever keeps you feeling fresh for study","Strength training three times a week, cardio optional"],a:0,e:"<b>150 minutes plus two strength sessions</b> — the adult health standard, matching how pros like Kornuth prepare. Not a daily grind and not cardio-only; the gladiator maintains the body that carries the mind."},
+{q:"Today's specific assignment:",o:["A strength session plus 30 minutes of cardio — both vows deliberately","A full rest day to recover for the sim ahead","Your longest, heaviest study block of the week","Light mobility only, conserving energy for the sim"],a:0,e:"Peak-week means hitting the physical vows hard: <b>strength + cardio today</b>. This is the training, not a rest or a cram — a conditioned body holds focus and posture across the 12-hour day that breaks the unconditioned one."},
+{q:"Mobility work targets the stress of:",o:["Hours of static sitting — hips, lower back, neck and shoulders","The mental tension of high-pressure decisions","General fitness and cardiovascular conditioning","The strain of long walks around a huge venue"],a:0,e:"A Main Event day is hours in a chair. <b>Open the hips, mobilize the spine, release the neck</b> — the specific damage of static forward-hunched sitting, not decision-stress or walking, countered daily and at every break."},
+{q:"Why keep poker study LIGHT this week?",o:["It's peak-week — shift from loading to sharpening; overtraining the mind costs taper freshness","The material is fully learned, so any review is now pointless","Physical work this week simply matters more than study does","Cramming now would only confuse your established habits"],a:0,e:"The Phase V logic begins here: <b>sharpen and rest, don't cram</b>. Light greatest-hits review still has value — the reason is protecting freshness, not that you've learned everything or that study suddenly stopped mattering."},
+{q:"Movement at the breaks is:",o:["Part of the machine — it clears the mind and resets stress, with hydration and the reset","Useful mainly for keeping your body physically loose","A good chance to quietly review the last level's hands","Optional once you're deep and need to conserve energy"],a:0,e:"The break walk isn't optional and isn't just physical (Days 70, 95). <b>Movement clears the mind and resets stress</b> — the same system as the reset script and the water schedule; the break is for resetting, not hand analysis."},
+{q:"The prime physical victims of long tournament sitting:",o:["Hips, lower back, neck and shoulders","The lower legs and circulation to the feet","The eyes and neck, from focusing on cards","The back and wrists, from the table posture"],a:0,e:"Static forward-hunched sitting stiffens the <b>hips and lower back</b> and loads the <b>neck and shoulders</b> — the mobility routine targets exactly these to keep circulation and alertness up across the day."},
+{q:"By Day 5 of a long event, the conditioned player's edge shows as:",o:["Upright posture and alertness while the untrained field wilts by dinner","Fewer bad beats, because sharp focus prevents them","A visible physical confidence that pressures opponents","More raw stamina to play the late levels aggressively"],a:0,e:"Physical condition degrades visibly across a long event. <b>The trained body still holds focus on Day 5</b> — focus prevents your own errors, not opponents' cards, and the edge is sustained sharpness, not intimidation or aggression."},
+{q:"'The gladiator trains the vessel so the monk can…' — the day's synthesis is that physical conditioning is:",o:["The platform for sustained focus and endurance — mental training by another route","A recovery tool that keeps you healthy through the grind","A discipline that builds the willpower poker demands","Important, but ultimately secondary to the strategic work"],a:0,e:"The three thirds are one system: <b>the conditioned body is the platform for sustained focus and endurance</b>. It's not a side concern, a mere recovery aid, or a willpower drill — physical training IS mental-game training, by another route."}]});
+
+/* ============ DAY 78 ============ */
+L.push({d:78,t:"Exploit vs GTO balance card",f:"z",obj:"Draw the line between theory and exploitation: know where GTO protects you, where deviation prints against a live field, and how to adapt by player type — then write the one-page card that decides which mode you're in.",
+body:`
+<h3>The two engines</h3>
+<p>Your game runs on two engines, and mastery is knowing which one to use when. <b>GTO (game theory optimal)</b> is your unexploitable baseline — the strategy that can't be beaten even by a perfect opponent, your protection when you don't know the villain or he's good enough to punish deviations. <b>Exploitation</b> is where the money actually is against a live Main Event field — deliberate deviations that print against specific, predictable mistakes. Foxen's doctrine: understand the baseline, then deviate for profit. The card you write today makes that choice conscious instead of accidental.</p>
+<h3>Where theory protects you</h3>
+<ul>
+<li><b>Against unknowns and strong regs</b> — no reliable read means no reliable exploit; the baseline is your armor (Days 1, 61).</li>
+<li><b>In high-variance, high-leverage spots</b> — 4-bet/5-bet trees, big river decisions where being unbalanced is expensive (Day 33).</li>
+<li><b>When you're tired or tilted</b> — the baseline is the safe default when your read-making is compromised (Days 68, 89). Fall back to theory when the exploit-engine is offline.</li></ul>
+<h3>Where deviation prints</h3>
+${T2([
+["Live under-bluffing rivers","The population's biggest tell — over-fold to passive-line big bets (Day 26)"],
+["Recreational stations","Value-bet far thinner and wider; drop bluffs to zero (Days 29, 61)"],
+["The fearful on the bubble","Over-steal and over-3-bet — their risk premium licenses it (Day 44)"],
+["Nits &amp; foldy regs","Steal their blinds relentlessly; fold to their rare aggression"],
+["Post-cash euphoria","Widen call-offs vs the relieved gamblers for one level (Day 55)"]],
+["Live population read","The deviation it justifies"])}
+<h3>The adaptation rule</h3>
+<p>The synthesis of the whole program: <b>hold the line versus the unknown and the strong; deviate hard versus the known and the weak.</b> GTO is the floor you never fall below; exploitation is the ceiling you reach when the read is real. The error in both directions is real — the pure-theory player leaves money on the table against a soft field, and the pure-exploit player gets destroyed the moment his read is wrong or his opponent adjusts.</p>
+<h3>Write the card</h3>
+<p>One page, in your words: <b>'When I exploit; when I hold the line.'</b> On one side, the live population reads and the deviations they justify (the table above, personalized). On the other, the spots where you default to the baseline no matter what. This card is a Phase V playbook chapter in embryo — the distilled instruction for choosing your engine at the table, when there's no time to reason it out from scratch.</p>
+${NOTE("two failure modes flank the correct player. The theory purist runs a solver-perfect strategy against a table of stations who fold too much and never bluff — leaving a fortune in un-taken exploits on the felt. The exploit junkie deviates on a read that isn't there, or keeps hammering an adjustment his opponent already adapted to. The balance card is the map between the two ditches.")}`,
+quiz:[
+{q:"The two engines your game runs on:",o:["GTO baseline and exploitation","A value-heavy game and a bluff-heavy game","Preflop discipline and postflop aggression","A tight core with occasional big bluffs"],a:0,e:"<b>GTO is the unexploitable floor; exploitation is the profit ceiling.</b> Foxen's doctrine: understand the baseline, then deviate for profit. The card makes that choice conscious — it isn't a value/bluff or pre/post split."},
+{q:"You hold the GTO line primarily against:",o:["Unknowns and strong regs — no reliable read means no reliable exploit","Recreational stations, who punish any fancy play","Short stacks, where a mistake costs the least","The whole field on Day 1, because it's a freezeout"],a:0,e:"The baseline is armor when you can't read or can be punished (Days 1, 61). Stations are the most exploitable, not the least — <b>you hold the line against the unknown and the strong</b>, and deviate everywhere the read is real."},
+{q:"Where does exploitative deviation print most against a live field?",o:["The population's predictable mistakes — under-bluffing, stations, the fearful, post-cash","Against the other strong regs, where the edges are thinnest","In the marginal spots where GTO is close to indifferent","Anywhere you happen to hold position and the initiative"],a:0,e:"The live population's predictable mistakes (Days 26, 29, 44, 55) are <b>where the money actually is</b> — each read justifies a specific, printable deviation. Reg-vs-reg edges are thinnest, not richest."},
+{q:"When you're tired or tilted, you should:",o:["Fall back to the GTO baseline — the safe default when read-making is off","Tighten up and play only clearly premium hands","Exploit harder, to force simpler decisions on yourself","Take a break until your reads sharpen back up"],a:0,e:"The exploit-engine needs clear reads it can't produce tired (Days 68, 89). <b>The baseline is the safe default</b> when read-making is offline — an exploitably tight nit-game and 'exploit harder' both make it worse; theory catches you when exploitation can't run."},
+{q:"The adaptation rule in one line:",o:["Hold the line vs the unknown and strong; deviate hard vs the known and weak","Exploit whenever you can, and default to GTO the rest of the time","Play GTO preflop and switch to exploitation postflop","Deviate only once you have a large sample on a player"],a:0,e:"<b>GTO is the floor you never fall below; exploitation is the ceiling you reach with a real read.</b> The strength of the opponent — not just how much data you have — decides which engine runs; both purist extremes leak."},
+{q:"The pure-theory player's error against a soft field:",o:["Leaving money on the table — un-taken exploits vs stations who fold too much and never bluff","Getting run over by aggressive recreational players","Being too predictable, so the regs adjust to him","Playing too tight and slowly blinding down"],a:0,e:"A solver-perfect strategy is unexploitable, so he isn't run over or read out — his error is <b>forfeiting a fortune in un-taken exploits</b>. Against predictable mistakes, refusing to deviate is itself the leak."},
+{q:"The pure-exploit player's error:",o:["Deviating on a read that isn't there, or after the villain already adapted","Being too balanced to ever extract maximum value","Bluffing far too often against the whole field","Folding too much whenever he faces real aggression"],a:0,e:"Exploitation without a real read — or continued after the villain adapts — <b>gets destroyed</b>. 'Too balanced' is the theory purist's problem; the exploit junkie's is deviating when the read is stale or imaginary."},
+{q:"The balance card is:",o:["A one-page 'when I exploit; when I hold the line' — a Phase V playbook chapter in embryo","A ranked list of the field's most common leaks","A decision tree covering every preflop spot","A running record of the reads you took each session"],a:0,e:"Distilled, personalized instruction for <b>choosing your engine at the table with no time to reason it out</b> — live reads and their deviations on one side, hard baseline defaults on the other. A leak list is only half of it."}]});
+
+/* ============ DAY 79 ============ */
+L.push({d:79,t:"Half-day Main Event sim",f:"m",obj:"The full dress rehearsal of the arena: warm-up, structure review, first-orbit tagging, a 3+ hour session with two scheduled break reviews, and the bag-and-debrief. Self-grade for A/B-game share.",
+body:`
+<h3>The complete rehearsal</h3>
+<p>This is the capstone of the phase: a <b>half-day Main Event simulation</b> that assembles every element you've built into one continuous run. Not a study session with breaks — a <b>rehearsal of the real thing</b>, executed as if the cameras are on and it's Day 1 of the Main. Everything you've trained gets one integrated dress run before the exam closes the phase.</p>
+<h3>The full sequence</h3>
+${T2([
+["Warm-up","Movement, breathing, mental warm-up (Days 77, 93) — arrive ready, not cold"],
+["Structure review","Re-read the proxy: 60k, 120-min levels, the bubble on Day 4 (Days 1, 58)"],
+["First orbit","Tag every seat before forcing anything (Days 61, 18)"],
+["3+ hour session","Play continuously; run the throttle across depths (Day 75); mark hands live"],
+["Two break reviews","Scheduled breaks with water, walking, and a quick marked-hand pass (Days 70, 77)"],
+["Bag &amp; debrief","End with the bagging ritual and the written debrief (Days 69, 76)"]],
+["Phase","What you execute"])}
+<h3>Self-grade: the A/B/C-game share</h3>
+<p>The checkpoint is a hard number: <b>≥70% A/B-game share</b>. Grade every stretch of the session honestly — A-game (your best, fully-present decisions), B-game (solid, minor imprecision), C-game (autopilot, fatigue, tilt, or spew). The target isn't 100% A-game; that's not human over 3+ hours. It's <b>keeping the C-game below ~30%</b> — because in the Main, the C-game stretches are where deep runs die (Days 38, 89). This session measures whether your C-game share is under control before the real thing.</p>
+<h3>Grade the machine, not just the cards</h3>
+<p>Beyond the poker, grade the <b>routine's integrity</b>: did every seam hold (Day 71)? Warm-up done, phone away, breaks taken with water and movement, reset script fired if needed, bag-and-debrief completed? A session where the poker was sharp but the routine leaked is a warning — under the real pressure of Day 1, the routine leaks first. <b>The sim tests the whole machine running under load</b>, which is exactly what the Main will demand for five straight levels.</p>
+${NOTE("the gap between amateurs and pros is rarely the peak of their A-game — it's the floor of their C-game and how much of the session lives there. The player who has rehearsed a full session and measured his C-game share knows his own floor and has trained to raise it; the one who never simulates discovers his floor for the first time on Day 1 of the Main, under the lights, for $10K.")}`,
+quiz:[
+{q:"The Day 79 sim is:",o:["A full dress rehearsal of a Main Event day — every element in one continuous run","A final study session with realistic break timing","A long live session to grind out extra volume","A stress test of your short-stack game specifically"],a:0,e:"The capstone of the phase: <b>a rehearsal of the real thing</b>, executed as if it's Day 1 under the lights. Every trained element gets one integrated dress run — not a study block, a volume grind, or a single-depth drill."},
+{q:"The self-grade checkpoint:",o:["≥70% A/B-game share — keeping the C-game below ~30%","A perfect A-game held across the whole session","Zero clearly-losing hands played all day","A positive result from the simulated session"],a:0,e:"100% A-game isn't human over 3+ hours, and results aren't the grade. The real target is <b>keeping the C-game under ~30%</b> — because the C-game stretches are where deep runs die (Days 38, 89)."},
+{q:"Why is C-game share the metric that matters?",o:["In the Main, C-game stretches are where deep runs die — the floor beats the peak","It's simply the easiest part of your game to measure honestly","Your A-game is already good enough not to need any work","Cutting C-game is a faster route to profit than raising A-game"],a:0,e:"The amateur/pro gap is rarely the A-game peak — it's <b>the C-game floor and how much of the session lives there</b>. It's not about ease of measurement or a shortcut; the floor is what busts deep runs."},
+{q:"Beyond the poker, you also grade:",o:["The routine's integrity — did every seam hold?","Your win rate across the simulated levels","How well you adjusted to each new opponent","The quality of your table image by the end"],a:0,e:"Grade the machine (Day 71): warm-up, phone away, breaks with water and movement, reset script, bag-and-debrief. Opponent adjustment is poker; the extra layer here is whether <b>the routine leaks before the poker does</b> under pressure."},
+{q:"The session opens with:",o:["Warm-up, structure review, and first-orbit tagging","A quick review of your leak list and playbook","Sitting down and playing your first strong hand","A caffeine dose and a scan of the payout ladder"],a:0,e:"Arrive ready, not cold: <b>warm-up (Days 77, 93), structure review (Days 1, 58), then tag the table (Day 61)</b> before forcing a single chip — the same opening as the real Day 1, not a study or a payout scan."},
+{q:"The two break reviews should include:",o:["Water, walking, and a quick marked-hand pass","A full analysis of the level you just played","A check of the other tables' chip counts","Focused study of the spots you're unsure about"],a:0,e:"The breaks rehearse the real thing (Days 70, 77): <b>hydrate, move, and a quick capture of marked hands</b>. A full analysis or a study block belongs to the bag-and-debrief and the rest day, not a live break."},
+{q:"A session with sharp poker but a leaky routine is:",o:["A warning — under Day 1 pressure, the routine leaks first","Acceptable — the poker is what actually wins the pots","A sign to spend the taper on more physical work","Normal, since routines only really matter over multiple days"],a:0,e:"The routine is the foundation the poker stands on. <b>If the seams leak with no pressure on them, they'll fail under the lights</b> — the machine has to run clean under load, from the very first day."},
+{q:"Grading A/B/C means A-game is:",o:["Your best, fully-present decisions — whether or not the pot was won","The decisions you made in the pots you ended up winning","Your disciplined play through a long card-dead stretch","Any hand where you followed your pre-game plan exactly"],a:0,e:"Grade decision quality, not results (Days 16, 66). <b>A-game is fully-present best decisions</b> — a lost pot played all-A is still A-game, a won pot spewed is C, and a correct deviation from the plan is A-game too."}]});
+
+/* ============ DAY 80 — exam ============ */
+L.push({d:80,t:"Phase IV Exam + debrief",f:"z",obj:"Twenty-five questions sampled from every study day of the live-field raids. 85%+ passes. Then the deep sim debrief and Phase V planning from the remaining gaps — the final leak list frozen at three.",
+body:`
+<h3>Exam protocol</h3>
+<ul>
+<li><b>25 randomized questions</b> from every drill pool in Phase IV. Different sample each attempt.</li>
+<li>Target: <b>85%+</b>. Below that, the misses name the day to re-study — do it before advancing to the taper.</li>
+<li>After passing: <b>the deep sim debrief.</b> Take the Day 79 half-day simulation and dissect it fully — the A/B/C-game share by stretch, the routine seams, the marked hands, the throttle transitions. This is the richest single data source in the whole program: a full dress rehearsal, graded.</li>
+<li><b>Freeze the leak list at three.</b> From Days 1, 20, 40, 60, and now the field work, name your final top-three leaks. Phase V is not for discovering new ones — it's for patching these exact three, writing the playbook, and tapering to arrive fresh.</li></ul>
+<h3>What Phase IV built</h3>
+<p>The day-by-day game plans, Day 1 through the deep run · the bubble script in both modes, rehearsed aloud · three live raids with marked hands and debriefs · tilt armor and the reset script · sleep and wake alignment · fuel logistics for the 12-hour day · the hesitation log's diagnostic method · bankroll and series architecture · table image and the meta-game · the aggression throttle across mixed depths · physical peak conditioning · the exploit-vs-GTO balance card · and the half-day Main Event simulation, self-graded.</p>
+<p>The doctrine has been tested in the field. Phase V — The Stillness — is integration and taper: write the playbook, run the full-day sims, patch the last three leaks, then sharpen and rest. Arrive at the arena fresher, not fuller.</p>`,
+pool:{days:[61,62,63,64,65,66,68,69,70,71,72,73,74,75,77,78,79],n:25,exam:true}});
+
+/* ---------- ENGINE ---------- */
+const store=JSON.parse(localStorage.getItem("wsop100.study4")||"{}");
+const save=()=>localStorage.setItem("wsop100.study4",JSON.stringify(store));
+const FCHIP={g:['g','⚔ Gladiator'],m:['m','🏜 Mad Max'],z:['z','◯ Zen Monk']};
+let cur=61, qState=null;
+
+const nav=document.getElementById("daynav"), content=document.getElementById("content");
+
+function badge(d){
+  const s=store["d"+d];
+  if(!s||s.best==null)return"";
+  return s.best>=90?"★":s.best>=80?"✓":"";
+}
+function renderNav(){
+  nav.innerHTML="";
+  L.forEach(x=>{
+    const b=document.createElement("button");
+    b.type="button";
+    const s=store["d"+x.d];
+    b.className="dbtn"+(x.d===cur?" on":"")+(s&&s.best>=90?" star":s&&s.best>=80?" pass":"");
+    const tag=x.pool?(x.pool.tag||(x.pool.exam?"exam":"gauntlet")):"drill";
+    b.innerHTML=`${x.d}<small>${tag}</small><span class="badge">${badge(x.d)}</span>`;
+    b.title=`Day ${x.d} — ${x.t}`;
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    nav.appendChild(b);
+  });
+  const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
+  document.getElementById("stPassed").textContent=scores.filter(v=>v>=80).length;
+  document.getElementById("stMastered").textContent=scores.filter(v=>v>=90).length;
+  document.getElementById("stAvg").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";
+}
+function shufQ(q){
+  // shuffle answer options so the correct index varies every attempt
+  const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {...q,o:idx.map(k=>q.o[k]),a:idx.indexOf(q.a)};
+}
+function getQuiz(day){
+  const x=L.find(l=>l.d===day);
+  if(x.quiz)return x.quiz.map(shufQ);
+  // pooled: sample n random from source days
+  let pool=[];
+  x.pool.days.forEach(sd=>{const s=L.find(l=>l.d===sd);if(s&&s.quiz)pool=pool.concat(s.quiz.map(q=>({...q,src:sd})));});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  return pool.slice(0,x.pool.n).map(shufQ);
+}
+function renderAll(){
+  const x=L.find(l=>l.d===cur);
+  const [fc,fl]=FCHIP[x.f];
+  content.innerHTML=`
+    <div class="dayhead">
+      <span class="dnum">D${String(x.d).padStart(3,"0")}</span>
+      <h2>${x.t}</h2>
+      <span class="focus-chip ${fc}">${fl}</span>
+    </div>
+    <p class="obj">${x.obj}</p>
+    <div class="lesson">${x.body}</div>
+    <div class="quiz" id="quiz"></div>`;
+  renderQuizStart();
+  renderNav();
+}
+function renderQuizStart(){
+  const x=L.find(l=>l.d===cur);
+  const s=store["d"+cur];
+  const label=x.pool?(x.pool.label||(x.pool.exam?"The Phase Exam":"The Gauntlet")):"The Drill";
+  const n=x.pool?x.pool.n:x.quiz.length;
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead">
+      <h3>${label} — ${n} questions</h3>
+      <span class="bestline">${s&&s.best!=null?`best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}`:"not yet attempted"}</span>
+    </div>
+    <p style="color:var(--dim);font-size:15px;margin:8px 0 16px">Pass at 80%+ · mastery at 90%+${x.pool?" · questions re-sample every attempt":""}. Immediate judgment after every answer.</p>
+    <div class="qnav" style="justify-content:flex-start"><button class="btn" id="qgo" type="button">${s&&s.best!=null?"Retake":"Begin"}</button></div>`;
+  document.getElementById("qgo").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+}
+function showQ(){
+  const q=qState.qs[qState.i];
+  document.getElementById("quiz").innerHTML=`
+    <div class="qmeta">
+      <span class="mono">QUESTION ${qState.i+1} / ${qState.qs.length}</span>
+      <span class="mono">${qState.right} correct${q.src?` · from Day ${q.src}`:""}</span>
+    </div>
+    <p class="qtext">${q.q}</p>
+    <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    <div id="qfb"></div>
+    <div class="qnav" id="qnav"></div>`;
+  document.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(qState.done)return;qState.done=true;
+  const q=qState.qs[qState.i],right=i===q.a;
+  if(right)qState.right++;
+  document.querySelectorAll(".qopt").forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.a)b.classList.add("correct");
+    else if(bi===i)b.classList.add("wrong");
+  });
+  document.getElementById("qfb").innerHTML=`<div class="qexpl"><b>${right?"Struck true.":"A wound — learn from it."}</b> ${q.e}</div>`;
+  document.getElementById("qnav").innerHTML=`<button class="btn" type="button" id="qnext">${qState.i<qState.qs.length-1?"Next":"See result"}</button>`;
+  const nb=document.getElementById("qnext");
+  nb.onclick=()=>{qState.i++;qState.done=false;qState.i<qState.qs.length?showQ():finish();};
+  nb.focus();
+}
+function finish(){
+  const pct=Math.round(qState.right/qState.qs.length*100);
+  const s=store["d"+cur]||{best:null,att:0};
+  s.att++;if(s.best==null||pct>s.best)s.best=pct;
+  store["d"+cur]=s;save();
+  const pass=pct>=80,star=pct>=90;
+  const x=L.find(l=>l.d===cur);
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead"><h3>Result</h3><span class="bestline">best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}</span></div>
+    <div class="result-title ${pass?"pass":""}">${star?"Mastered":pass?"Passed":"Not yet"}</div>
+    <p class="scoreline"><span class="mono">${qState.right} / ${qState.qs.length} — ${pct}%</span> ${star?"— the checkpoint is conquered.":pass?"— solid. Retake for mastery when fresh.":"— re-read the lesson, then come back. The misses named your homework."}</p>
+    <div class="bar ${pass?"pass":""}"><i style="width:${pct}%"></i></div>
+    <div class="qnav" style="justify-content:flex-start;gap:10px">
+      <button class="btn" type="button" id="qretry">${x.pool?"New sample":"Retake"}</button>
+      ${cur<80?`<button class="btn ghost" type="button" id="qadv">Next day →</button>`:""}
+    </div>`;
+  document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+  const adv=document.getElementById("qadv");
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  renderNav();
+}
+renderAll();
+</script>

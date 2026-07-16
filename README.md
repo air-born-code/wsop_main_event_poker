@@ -10,10 +10,11 @@ A complete 100-day training program for the WSOP Main Event, built for **experie
 | [`wsop-phase1-study.html`](wsop-phase1-study.html) | **Phase I study hall (Days 1–20)** — Forge the Baseline: RFI/3-bet/BB-defense ranges with combo counts, c-bet architecture, turn polarization, river logic |
 | [`wsop-phase2-study.html`](wsop-phase2-study.html) | **Phase II study hall (Days 21–40)** — Range Warcraft: check-raise trees, probes, multiway, repping ranges, blockers, 4-bet/5-bet leverage, live reads |
 | [`wsop-phase3-study.html`](wsop-phase3-study.html) | **Phase III study hall (Days 41–60)** — The Wasteland: ICM, bubble factor, covered/covering asymmetry, reshove and push-fold charts, final-table roles |
+| [`wsop-phase4-study.html`](wsop-phase4-study.html) | **Phase IV study hall (Days 61–80)** — Live-Field Raids: day-by-day game plans, the bubble script in both modes, live sessions with marked hands, tilt armor, sleep/fuel logistics, bankroll architecture, table image, and the half-day Main Event sim |
 | `wsop-100-day-plan.md` | Markdown source of the war plan |
 | `wsop-claude-prompt.md` | The original generation prompt |
 
-Phases IV (Live-Field Raids, Days 61–80) and V (The Stillness, Days 81–100) live in the master plan with per-day coach commentary; their interactive study halls are not yet built.
+Phase V (The Stillness, Days 81–100) lives in the master plan with per-day coach commentary; its interactive study hall is not yet built.
 
 ## How to use
 
