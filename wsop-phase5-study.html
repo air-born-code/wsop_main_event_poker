@@ -819,3 +819,15 @@ function finish(){
 }
 renderAll();
 </script>
+<script>
+(function(){
+function goHash(){
+  try{
+    var m=location.hash.match(/^#d(\d+)$/);
+    if(m&&L.some(function(x){return x.d===+m[1]})){cur=+m[1];qState=null;renderAll();document.getElementById("content").scrollIntoView();}
+  }catch(e){}
+}
+window.addEventListener("hashchange",goHash);
+goHash();
+})();
+</script>
