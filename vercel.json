@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/wsop-100-day-plan.html", "permanent": false }
+  ]
+}
