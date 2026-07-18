@@ -272,6 +272,19 @@ footer .creed{
   font-size:clamp(20px,3vw,28px);color:var(--ink);max-width:30ch;line-height:1.35;
   font-style:italic;margin:0 0 18px;
 }
+
+/* study halls dropdown */
+.hallsdd{flex:none}
+#hallsbtn{background:var(--card);border:1px solid var(--line);color:var(--bronze);padding:6px 12px;cursor:pointer;
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;white-space:nowrap}
+#hallsbtn:hover{border-color:var(--bronze)}
+#hallsmenu{position:fixed;z-index:999;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px rgba(0,0,0,.35);min-width:240px}
+#hallsmenu a{display:block;padding:11px 16px;border-bottom:1px solid var(--line);color:var(--ink);font-size:14.5px}
+#hallsmenu a:last-child{border-bottom:none}
+#hallsmenu a:hover{background:color-mix(in srgb,var(--rust) 10%,var(--card));color:var(--rust)}
+nav{position:relative}
+nav .wrap{padding-right:150px}
+.hallsdd{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
 </style>
 
 <nav>
@@ -282,14 +295,31 @@ footer .creed{
     <a href="#plan">100 Days</a>
     <a href="#trial">The Trial</a>
     <a href="#vows">Vows</a>
-    <span class="navsep" aria-hidden="true"></span>
-    <a class="hall" data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">Study I</a>
-    <a class="hall" data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc">Study II</a>
-    <a class="hall" data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e">Study III</a>
-    <a class="hall" data-local="wsop-phase4-study.html" href="wsop-phase4-study.html">Study IV</a>
-    <a class="hall" data-local="wsop-phase5-study.html" href="wsop-phase5-study.html">Study V</a>
   </div>
-</nav>
+  <div class="hallsdd">
+      <button type="button" id="hallsbtn" aria-haspopup="true" aria-expanded="false">&#9776; Study Halls</button>
+      <div id="hallsmenu" hidden>
+        <a href="wsop-phase1-study.html">Study I &middot; Forge the Baseline</a>
+        <a href="wsop-phase2-study.html">Study II &middot; Range Warcraft</a>
+        <a href="wsop-phase3-study.html">Study III &middot; The Wasteland</a>
+        <a href="wsop-phase4-study.html">Study IV &middot; Live-Field Raids</a>
+        <a href="wsop-phase5-study.html">Study V &middot; The Stillness</a>
+      </div>
+    </div>
+  </nav>
+<script>
+(function(){
+var b=document.getElementById("hallsbtn"),m=document.getElementById("hallsmenu");
+function close(){m.hidden=true;b.setAttribute("aria-expanded","false");}
+b.addEventListener("click",function(e){e.stopPropagation();
+  if(m.hidden){var r=b.getBoundingClientRect();m.style.top=(r.bottom+6)+"px";
+    m.style.right=Math.max(8,window.innerWidth-r.right)+"px";m.hidden=false;b.setAttribute("aria-expanded","true");}
+  else close();});
+document.addEventListener("click",function(e){if(!m.hidden&&!m.contains(e.target))close();});
+window.addEventListener("scroll",close,{passive:true});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
+})();
+</script>
 <script>
 if(location.protocol==="file:")document.querySelectorAll("nav a[data-local]").forEach(function(a){a.href=a.dataset.local});
 </script>
@@ -611,9 +641,9 @@ function renderTabs(){
 }
 /* Study halls: [artifact URL, local filename]. Local file links are used when this page is opened from disk. */
 const STUDY=[
-  ["https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c","wsop-phase1-study.html"],
-  ["https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc","wsop-phase2-study.html"],
-  ["https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e","wsop-phase3-study.html"],
+  ["wsop-phase1-study.html","wsop-phase1-study.html"],
+  ["wsop-phase2-study.html","wsop-phase2-study.html"],
+  ["wsop-phase3-study.html","wsop-phase3-study.html"],
   ["wsop-phase4-study.html","wsop-phase4-study.html"],
   ["wsop-phase5-study.html","wsop-phase5-study.html"]
 ];
