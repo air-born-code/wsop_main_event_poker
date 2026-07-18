@@ -1,0 +1,809 @@
+<meta charset="utf-8">
+<title>PHASE V STUDY HALL — The Stillness (Days 81–100)</title>
+<style>
+:root{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+    --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+    --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+    --shadow:0 2px 10px rgba(90,70,40,.18);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310; --bg2:#1f1a15; --card:#241e18; --ink:#e9dfcc; --dim:#a89980;
+  --faint:#6e6252; --line:#3a3129; --rust:#c65a2e; --rust-deep:#9c4423;
+  --bronze:#c19a4b; --sage:#8fa383; --sage-deep:#6e8263; --good:#8fa383; --bad:#c65a2e;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#ece3d0; --bg2:#e3d8c2; --card:#f4ecdc; --ink:#241c12; --dim:#5f5442;
+  --faint:#8a7c66; --line:#cfc2a8; --rust:#a8481f; --rust-deep:#8a3a19;
+  --bronze:#8a6a24; --sage:#5c6f50; --sage-deep:#4a5c40; --good:#5c6f50; --bad:#a8481f;
+  --shadow:0 2px 10px rgba(90,70,40,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1000px 320px at 50% -60px, color-mix(in srgb, var(--sage) 14%, transparent), transparent), var(--bg)}
+.kicker{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.3em;font-size:12px;font-weight:600;color:var(--bronze);margin:0 0 10px}
+h1{font-family:"Avenir Next Condensed","HelveticaNeue-CondensedBold","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(38px,7vw,68px);line-height:.95;margin:0 0 12px;text-wrap:balance}
+h1 .r{color:var(--sage)}
+.sub{max-width:64ch;color:var(--dim);font-size:16.5px;margin:0}
+.dash{display:flex;gap:26px;align-items:baseline;margin-top:20px;flex-wrap:wrap}
+.dash .stat{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--faint)}
+.dash .stat b{display:block;font-size:30px;color:var(--sage);letter-spacing:0}
+.dash .stat.r b{color:var(--rust)}
+
+/* day grid */
+.daynav{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media(max-width:720px){.daynav{grid-template-columns:repeat(5,1fr)}}
+.dbtn{position:relative;background:var(--card);border:1px solid var(--line);color:var(--dim);cursor:pointer;
+  padding:9px 2px 7px;text-align:center;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:14px;letter-spacing:.04em}
+.dbtn small{display:block;font-size:9px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.dbtn:hover{color:var(--ink);border-color:var(--faint)}
+.dbtn.on{background:var(--sage-deep);border-color:var(--sage-deep);color:#f5f7f0}
+.dbtn.on small{color:#dce6d4}
+.dbtn.pass{border-bottom:3px solid var(--sage-deep)}
+.dbtn.star{border-bottom:3px solid var(--bronze)}
+.dbtn .badge{position:absolute;top:3px;right:5px;font-size:10px}
+.dbtn:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+
+/* lesson */
+main{padding:34px 0 70px}
+.dayhead{margin-bottom:6px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dayhead .dnum{font-family:"SF Mono",ui-monospace,Menlo,monospace;color:var(--faint);font-size:14px}
+h2{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(28px,4.5vw,40px);line-height:1;margin:0}
+.focus-chip{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:11px;padding:4px 10px}
+.focus-chip.g{background:color-mix(in srgb,var(--bronze) 18%,transparent);color:var(--bronze)}
+.focus-chip.m{background:color-mix(in srgb,var(--rust) 18%,transparent);color:var(--rust)}
+.focus-chip.z{background:color-mix(in srgb,var(--sage) 18%,transparent);color:var(--sage)}
+.obj{color:var(--dim);max-width:68ch;margin:10px 0 26px;font-size:16.5px}
+.lesson{max-width:760px}
+.lesson h3{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:16px;color:var(--bronze);margin:30px 0 8px}
+.lesson p{margin:0 0 12px;color:var(--ink)}
+.lesson p b{color:var(--ink)}
+.lesson ul{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson ol{margin:0 0 12px;padding-left:20px;color:var(--ink)}
+.lesson li{margin-bottom:6px}
+.lesson .note{border-left:3px solid var(--sage-deep);background:var(--card);padding:12px 14px;font-size:15px;color:var(--dim);margin:14px 0}
+.lesson .note b{color:var(--sage)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 16px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;text-align:left;color:var(--bronze);background:var(--bg2);padding:9px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+td:first-child{color:var(--ink);white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+
+/* quiz */
+.quiz{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;max-width:760px;margin-top:36px}
+.quiz .qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.quiz h3{font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:22px;margin:0;letter-spacing:.05em}
+.bestline{font-size:12px;color:var(--faint);font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin:14px 0 12px;font-size:12px;color:var(--faint)}
+.qtext{font-size:18px;line-height:1.45;margin:0 0 16px;text-wrap:balance}
+.qopts{display:flex;flex-direction:column;gap:8px}
+.qopt{text-align:left;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 13px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1.4}
+.qopt:hover:not(:disabled){border-color:var(--sage)}
+.qopt:disabled{cursor:default}
+.qopt.correct{border-color:var(--good);background:color-mix(in srgb,var(--sage) 16%,var(--bg2))}
+.qopt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--rust) 14%,var(--bg2))}
+.qlegend{margin:12px 0 0;padding:10px 13px;background:var(--bg2);border:1px dashed var(--line);font-size:13px;color:var(--dim);line-height:1.5}
+.qlegend b{color:var(--bronze);font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px}
+.qexpl{margin:14px 0 0;padding:13px;background:var(--bg2);border-left:3px solid var(--bronze);font-size:14.5px;color:var(--dim)}
+.qexpl b{color:var(--ink)}
+.qnav{margin-top:18px;display:flex;justify-content:flex-end;gap:10px}
+.btn{background:var(--sage-deep);border:none;color:#f5f7f0;padding:11px 24px;font-size:13px;cursor:pointer;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.btn:hover{background:var(--sage)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--dim)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--ink)}
+.result-title{font-size:clamp(26px,4vw,36px);font-family:"Avenir Next Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1;margin:6px 0 6px;color:var(--rust)}
+.result-title.pass{color:var(--sage)}
+.scoreline{font-size:16px;color:var(--dim);margin-bottom:16px}
+.bar{height:9px;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden;margin:6px 0 18px}
+.bar>i{position:absolute;inset:0;right:auto;background:linear-gradient(90deg,var(--rust-deep),var(--rust))}
+.bar.pass>i{background:linear-gradient(90deg,var(--sage-deep),var(--sage))}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);font-size:13.5px}
+
+/* site nav */
+.sitenav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.sitenav .wrap{display:flex;align-items:center;gap:6px;padding:10px 20px;overflow-x:auto}
+.sitenav .brand{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--sage);margin-right:auto;white-space:nowrap}
+.sitenav a,.sitenav .soon{color:var(--dim);text-decoration:none;font-size:12.5px;padding:6px 12px;white-space:nowrap;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.sitenav a:hover{color:var(--ink);background:var(--bg2)}
+.sitenav a.here{background:var(--sage-deep);color:#f5f7f0}
+</style>
+
+<nav class="sitenav" aria-label="The Hundred">
+  <div class="wrap">
+    <span class="brand">THE HUNDRED</span>
+    <a data-local="wsop-100-day-plan.html" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8">&#8962; War plan</a>
+    <a data-local="wsop-phase1-study.html" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c">I &middot; Forge</a>
+    <a data-local="wsop-phase2-study.html" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc">II &middot; Warcraft</a>
+    <a data-local="wsop-phase3-study.html" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e">III &middot; Wasteland</a>
+    <a data-local="wsop-phase4-study.html" href="wsop-phase4-study.html">IV &middot; Raids</a>
+    <a data-local="wsop-phase5-study.html" href="#" class="here">V &middot; Taper</a>
+  </div>
+</nav>
+<script>
+if(location.protocol==="file:")document.querySelectorAll(".sitenav a[data-local]").forEach(function(a){a.href=a.dataset.local});
+</script>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">The Hundred · Phase V · Days 81–100</p>
+    <h1>The <span class="r">stillness</span></h1>
+    <p class="sub">The last twenty days: integration and taper. Write the personal playbook, run the full
+    Main Event day simulations, patch the final leaks, then sharpen and rest. The enemy is no longer the
+    field — it's the urge to cram, over-edit, and arrive full instead of fresh. Read the lesson, then take
+    the drill. Pass at 80%+, mastery at 90%+. Day 87 is a gauntlet, Day 90 is the Final Trial, Day 100 is
+    Arena Eve. Best scores save on this device.</p>
+    <div class="dash">
+      <div class="stat"><b id="stPassed">0</b>days passed</div>
+      <div class="stat r"><b id="stMastered">0</b>mastered</div>
+      <div class="stat"><b id="stAvg">—</b>avg best score</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><nav class="daynav" id="daynav" aria-label="Days 81 to 100"></nav></div>
+
+<main><div class="wrap" id="content"></div></main>
+
+<footer><div class="wrap">
+  Phase V of THE HUNDRED — companion to the <a id="planlink" href="https://claude.ai/code/artifact/f55455e0-7f19-4081-a96e-52c5a7ae7ff8" style="color:var(--sage)">100-day war plan</a>,
+  sequel to <a id="p1link" href="https://claude.ai/code/artifact/619ff767-7e25-4f4c-947b-9beddd62621c" style="color:var(--sage)">Phase I</a>,
+  <a id="p2link" href="https://claude.ai/code/artifact/ef931915-517d-4448-9a4b-5be8a83952dc" style="color:var(--sage)">II</a>,
+  <a id="p3link" href="https://claude.ai/code/artifact/ae5907fe-a4c6-4bb8-ae93-cec7d169334e" style="color:var(--sage)">III</a> and
+  <a id="p4link" href="wsop-phase4-study.html" style="color:var(--sage)">IV</a>. The taper is sacred: everything here is about arriving at the arena
+  fresher, not fuller. Not financial advice — the playbook and logistics frameworks are training scaffolding.
+</div></footer>
+<script>
+if(location.protocol==="file:"){
+  document.getElementById("planlink").href="wsop-100-day-plan.html";
+  document.getElementById("p1link").href="wsop-phase1-study.html";
+  document.getElementById("p2link").href="wsop-phase2-study.html";
+  document.getElementById("p3link").href="wsop-phase3-study.html";
+  document.getElementById("p4link").href="wsop-phase4-study.html";
+}
+</script>
+
+<script>
+/* ---------- helpers ---------- */
+const T2=(rows,head)=>`<div class="tblwrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const NOTE=s=>`<div class="note"><b>The quiet danger —</b> ${s}</div>`;
+
+/* ---------- LESSON + QUIZ DATA ---------- */
+const L=[];
+
+/* ============ DAY 81 ============ */
+L.push({d:81,t:"Playbook I: preflop chapters",f:"z",obj:"Turn eighty days of preflop study into a personal playbook you can re-read in twenty minutes: opens, 3-bets, and defends by depth, each with covered and covering variants.",
+body:`
+<h3>Why write it down at all</h3>
+<p>A hundred days of study lives scattered across notebooks, quizzes, and memory. The playbook <b>externalizes it into one reference</b> so that on game day your ranges are a matter of retrieval, not reconstruction. The player rebuilding his 3-bet range from first principles at the table is spending bandwidth he needs for the read; the player who wrote it down months ago just recalls it. The playbook is also your pre-tournament ritual — a document short enough to re-read the morning of each Day.</p>
+<h3>The preflop chapters</h3>
+<ul>
+<li><b>Opens (RFI)</b> by position and depth — the Phase I baselines as grids, tightening as you move to early position and as stacks shorten.</li>
+<li><b>3-bets</b> — linear versus polarized by spot, the blocker-hand selection (Ax/Kx-wheel), and a pre-decided answer to the 4-bet at each depth.</li>
+<li><b>Defends</b> — BB defense thresholds by open size, and the flat-versus-3-bet-versus-fold clarity that sharpens as depth falls (Days 15, 45).</li></ul>
+<h3>Covered and covering variants</h3>
+<p>Every preflop range now carries an <b>ICM shadow</b> (Phase III). Covered, opens tighten and the marginal calls disappear; covering, steals widen and the blocker 3-bets multiply. The playbook records both columns for each spot, because on Day 4 you'll switch between them within a single orbit. A preflop chapter without the covered/covering split is a Day 1 document that goes blind at the bubble.</p>
+<h3>Keep it short — ranges as patterns</h3>
+<p>The discipline is <b>compression</b>: ranges as grids and patterns, not paragraphs of prose. A chapter you can absorb in a glance beats a treatise you'll never reopen. The target for the whole playbook (across Days 81–83) is roughly twelve pages, re-readable in twenty minutes — a reference, not a textbook.</p>
+${NOTE("the temptation is to write an encyclopedia — a forty-page masterwork that documents every node and never gets reopened. The twelve-page playbook you actually re-read every morning beats the perfect one that sits in a drawer. Write for the tired version of yourself on Day 5.")}`,
+quiz:[
+{q:"The core reason to write a playbook:",o:["To make game-day ranges retrieval instead of reconstruction","To prove to yourself the study is complete","To have something to show a coach or backer","To replace live decision-making with a script"],a:0,e:"The point is <b>bandwidth</b>: recalling a written range frees the mind for the read, while rebuilding it from scratch at the table burns the attention the hard decision needs. It doesn't replace decisions — it frees you to make them."},
+{q:"The preflop chapters should be written as:",o:["Range grids and patterns you can absorb at a glance","Detailed prose explaining the theory behind each range","A decision tree covering every possible action sequence","A list of the hands you personally find difficult"],a:0,e:"Compression is the discipline: <b>grids and patterns, not paragraphs</b>. A glanceable chapter gets re-read; a treatise gets abandoned. The reasoning lives in the earlier phases — the playbook is the distilled reference."},
+{q:"'Covered and covering variants' for each preflop range means:",o:["An ICM-adjusted version for when you're at risk vs when you threaten","A tighter version for freezeouts and a looser one for re-entries","A live-reads version and a solver-baseline version","A cash-game version and a tournament version"],a:0,e:"Every range carries an <b>ICM shadow</b> (Phase III): covered, opens tighten and marginal calls vanish; covering, steals and blocker 3-bets widen. On Day 4 you switch columns within an orbit."},
+{q:"A preflop chapter missing the covered/covering split is:",o:["A Day 1 document that goes blind at the bubble","Fine — ICM only matters at the final table","Too long already; the split is optional detail","Only a problem if you play satellites"],a:0,e:"Without the ICM columns the playbook covers deep-stack Day 1 and nothing else. <b>The bubble is where you most need the reference</b>, and that's exactly where a split-less chapter falls silent."},
+{q:"The 3-bet chapter should include, for each depth:",o:["A pre-decided answer to the 4-bet","Every possible board you might see postflop","The exact frequencies to three decimal places","A note on your table image that day"],a:0,e:"A 3-bet you can't continue against a 4-bet is a leak waiting to happen (Days 33, 45). The chapter records the <b>pre-committed jam-or-fold response</b> so the leverage spot is decided cold, not improvised."},
+{q:"The whole playbook's target length:",o:["About twelve pages, re-readable in twenty minutes","As long as it needs to be to cover everything","One page per phase, five total","Whatever fits in a single notebook"],a:0,e:"<b>Roughly twelve pages, twenty-minute re-read</b> (across Days 81–83). It's a reference you reopen every tournament morning — length is capped by re-readability, not by how much you could write."},
+{q:"The 'quiet danger' of the playbook stage:",o:["Writing a forty-page encyclopedia you'll never reopen","Making it too short to be useful","Copying ranges you don't actually understand","Losing the physical copy before the event"],a:0,e:"The perfectionist trap: a masterwork so exhaustive it never gets re-read. <b>The twelve-page playbook you open every morning beats the perfect one in a drawer</b> — write for your tired Day 5 self."},
+{q:"On Day 4 of the Main, how do you use the two range columns?",o:["Switch between covered and covering within a single orbit as seats change","Pick one for the whole day based on your stack","Average them into a middle range","Use covering only, since aggression always wins the bubble"],a:0,e:"Your bubble factor differs against every seat (Day 42), so you <b>toggle covered/covering hand to hand</b> — tight against the stack that covers you, wide against the mediums you cover. One fixed column can't do that."}]});
+
+/* ============ DAY 82 ============ */
+L.push({d:82,t:"Playbook II: postflop chapters",f:"z",obj:"The postflop half of the playbook: c-bet families, turn polarization, and river logic — written as the questions that generate answers, with the three river and four bluff questions verbatim.",
+body:`
+<h3>Postflop can't be a chart — so it's a set of questions</h3>
+<p>Preflop compresses into grids; postflop can't, because the board branches endlessly. The postflop chapters instead capture the <b>frameworks that generate the answer live</b> — the c-bet families by texture, the turn polarization principle, and the river logic. You're not memorizing nodes; you're recording the questions that produce the right node at the table.</p>
+<h3>The chapters</h3>
+<ul>
+<li><b>C-bet families</b> — dry, wet, paired, monotone: the sizing and frequency pattern for each texture class (Days 6, 8, 24), plus range-advantage versus nut-advantage.</li>
+<li><b>Turn polarization</b> — the turn range narrows to strong value and robust bluffs while medium hands check; sizing is about pressure and the river SPR it builds (Days 9, 19, 28).</li>
+<li><b>River logic</b> — thin value by opponent type, sizing that matches the repped range, and bluff-catching by the range, not the hand.</li></ul>
+<h3>The questions, verbatim</h3>
+<p>Two question-sets are the heart of the postflop chapters — write them word for word, because they're what you actually run in real time:</p>
+${T2([
+["River bluff-catch (Mateos)","1. What value beats me? &nbsp; 2. What bluffs do I beat? &nbsp; 3. Which blockers matter?"],
+["Bluff / turn-raise (Deeb)","1. What am I repping? &nbsp; 2. Why can I have it? &nbsp; 3. Why can't villain? &nbsp; 4. Who actually folds?"]],
+["Set","The questions"])}
+<h3>Blocker rules, condensed</h3>
+<p>The blocker science (Day 32) compresses to a short rule-set: when bluffing, block their value and unblock their folds; when bluff-catching, prefer hands that <b>don't</b> block the bluffs you beat (the Mateos A♦2♦ logic). A few lines beat a chapter — the questions above already invoke blockers, so the rules just make the reflex explicit.</p>
+${NOTE("the trap is trying to write postflop as an exhaustive tree — thousands of nodes, unreadable and useless under pressure. The playbook holds the QUESTIONS, not the answers, because a good question generates the right answer on a board you've never seen. Store the engine, not every output.")}`,
+quiz:[
+{q:"Why are the postflop chapters written as questions rather than charts?",o:["The board branches endlessly, so you store the engine that generates answers","Questions are easier to memorize than ranges","Postflop play is too situational to have any correct answers","Charts are only for preflop by convention"],a:0,e:"Preflop compresses into grids; postflop can't. <b>You record the frameworks and questions that produce the right node live</b> — on a board you've never seen, a good question beats a chart that can't contain every runout."},
+{q:"The three river bluff-catch questions are:",o:["What value beats me? What bluffs do I beat? Which blockers matter?","What's my equity? What are the pot odds? What's my read?","Is he capable of bluffing? Do I have a good hand? Is the price right?","What would a solver do? What would a rec do? Which is he?"],a:0,e:"The Mateos model (Day 11): call because the <b>range</b> says so. Beat the bluffs, hold blockers that matter, and know what value has you drawing dead — his A♦2♦ call was right because it beat the bluffs without blocking them."},
+{q:"The four bluff / turn-raise questions are:",o:["What am I repping? Why can I have it? Why can't villain? Who folds?","Is it balanced? Is it profitable? Is it safe? Is it fun?","What's my fold equity? My pot odds? My outs? My image?","Do I have it? Does he have it? Who's ahead? Who cares?"],a:0,e:"Deeb's doctrine (Day 25): a bluff must tell a believable story to an opponent capable of folding. <b>Gate four — 'who actually folds?' — is the one most players skip</b>, and it's the one that decides whether the bluff prints or burns."},
+{q:"The turn polarization principle the chapter records:",o:["Range narrows to strong value and robust bluffs; medium hands check","Bet bigger on every turn to deny equity","Barrel every draw you hold for maximum pressure","Check the turn to control the pot at all costs"],a:0,e:"By the turn, strategy polarizes (Days 9, 28): value and robust bluffs continue while medium hands check, and sizing is about pressure and the <b>river SPR you're building</b> — not 'can a worse hand call this one street'."},
+{q:"When bluff-catching, the blocker rule prefers hands that:",o:["Don't block the bluffs you're trying to beat","Block as much of villain's value as possible","Block both his value and his bluffs equally","Have the best raw showdown value"],a:0,e:"The Mateos A♦2♦ logic (Day 32): you want to beat his bluffs <b>and not remove them from his range</b>. Blocking the very bluffs you're calling to beat shrinks the region that makes the call profitable."},
+{q:"When bluffing, the blocker rule is:",o:["Block their value, unblock their folds","Block their bluffs so they can't have them","Hold blockers to the nuts only","Ignore blockers — bet based on fold equity alone"],a:0,e:"You want a card that makes their <b>calling range smaller and their folding range bigger</b> (Day 32): holding an ace to block their strong aces while not holding the junk they'd fold anyway. Block the calls, free the folds."},
+{q:"The postflop chapters should hold:",o:["The questions and frameworks — the engine, not every output","A worked solution for every common board texture","Only the spots where you've made mistakes before","A full solver sim printed for reference"],a:0,e:"<b>Store the engine, not every output.</b> A thousand-node tree is unreadable under pressure; the c-bet families, the polarization rule, and the two question-sets regenerate the right play on any board."},
+{q:"'C-bet families' organize your flop strategy by:",o:["Board texture — dry, wet, paired, monotone","Your hand strength — value, draw, air","Position — in position vs out of position","The number of players in the pot"],a:0,e:"Texture classes (Days 6, 8, 24) each carry a sizing-and-frequency pattern plus a range-vs-nut-advantage read. Position and count adjust within a family, but <b>the texture names the family</b>."}]});
+
+/* ============ DAY 83 ============ */
+L.push({d:83,t:"Playbook III: the war map",f:"z",obj:"The strategic spine: the ICM chapters — bubble scripts, ladder logic, final-table roles — plus the day-by-day survival/aggression curve and the tournament-day routine as an appendix. Twelve pages, complete.",
+body:`
+<h3>The chapters that win the tournament</h3>
+<p>Preflop and postflop are how you play hands; the war map is how you play the <b>tournament</b>. These chapters carry the material that decides deep runs: the bubble scripts in both modes, ladder and pay-jump logic, and the three final-table roles. A playbook heavy on hand tactics and light on the war map is a manual for winning pots while losing the event.</p>
+<h3>The ICM chapters</h3>
+<ul>
+<li><b>Bubble scripts</b> — covered 75/25 (cut marginal opens, refuse domination traps) and covering 35/65 (relentless steals, blocker 3-bets), each condensed to a card that fires without deliberation (Days 43, 44, 64).</li>
+<li><b>Ladder logic</b> — when a pay jump justifies folding a big hand, and when 'laddering' is just fear that leaks equity (Days 51, 65).</li>
+<li><b>Final-table roles</b> — leader pressures, middle avoids collisions, short waits for profitable jams and never blinds out (Days 52, 53).</li></ul>
+<h3>The survival/aggression curve</h3>
+<p>The strategic spine written as one table — the ratio and mode for every tournament day:</p>
+${T2([
+["Day 1","60/40 — exploit &amp; observe"],
+["Day 2","55/45 — selective accumulation"],
+["Day 3","50/50 — pressure with discipline"],
+["Day 4 bubble","75/25 covered · 35/65 covering"],
+["Day 5","45/55 — re-accelerate post-cash"],
+["Day 6","50/50 — precision over volume"],
+["Days 7–8","65/35 middling · 40/60 big stack"],
+["Final table","Role-based"]],
+["Day","Ratio &amp; mode"])}
+<p><b>Notation:</b> the ratio is <b>survival&#8202;/&#8202;aggression</b> — how much of your intent is preserving your stack versus applying pressure. 60/40 = survival-led; 50/50 = balanced full pressure; 35/65 = aggression-led warlord.</p>
+<h3>The routine as appendix</h3>
+<p>The tournament-day machine (Phase IV) goes in the back: wake time, fuel plan, warm-up, break protocol, reset script, bag-and-debrief. It's an appendix, not a chapter, because it's a <b>checklist you execute</b>, not a strategy you reason through. With this, the playbook is complete — twelve pages, everything you know, re-readable in twenty minutes.</p>
+${NOTE("a playbook that's all hand-tactics and no war map is the most common amateur version — pages of c-bet theory and not one line on how to play the bubble covered. You can play every hand perfectly and still bust the tournament in the one orbit the war map governs. The spine is not optional.")}`,
+quiz:[
+{q:"The war-map chapters cover:",o:["Bubble scripts, ladder logic, and final-table roles","The best hands to open from each position","C-bet sizing across board textures","Live tells and physical reads"],a:0,e:"Preflop and postflop are how you play hands; <b>the war map is how you play the tournament</b> — the ICM material (Phase III) that decides deep runs, not hand-by-hand tactics."},
+{q:"In the ratio '75/25', the first number refers to:",o:["Survival — the share of your intent that's preserving your stack","Aggression — how often you apply pressure","The percentage of hands you play","Your equity threshold to continue"],a:0,e:"The ratio is <b>survival&#8202;/&#8202;aggression</b>. 75/25 is survival-led (covered bubble); 35/65 is aggression-led (the covering warlord); 50/50 is balanced full pressure."},
+{q:"A playbook heavy on hand tactics but light on the war map is:",o:["A manual for winning pots while losing the event","Ideal — hand skill is what actually matters","Fine as long as you're a strong postflop player","Only a problem in satellites"],a:0,e:"<b>You can play every hand perfectly and still bust in the one orbit the war map governs.</b> The bubble and final-table chapters aren't optional detail — they're the spine that decides the tournament."},
+{q:"'Ladder logic' in the war map is about:",o:["When a pay jump justifies folding a big hand — and when it's just fear","Climbing the blinds structure efficiently","Building a stack ladder to the chip lead","The order in which you attack opponents"],a:0,e:"Pay-jump discipline (Days 51, 65) cuts both ways: sometimes folding a monster near a jump is correct, and sometimes 'laddering' is fear leaking equity. The chapter records <b>which is which</b>."},
+{q:"Why is the tournament-day routine an appendix, not a chapter?",o:["It's a checklist you execute, not a strategy you reason through","It's less important than the strategy chapters","It changes too often to write down","It belongs in a separate document entirely"],a:0,e:"Strategy chapters generate decisions; the routine is a <b>fixed checklist</b> — wake, fuel, warm-up, breaks, reset, bag. You run it, you don't reason about it, so it lives in the back as a reference."},
+{q:"The final-table role chapter records that the short stack should:",o:["Wait for profitable jams and never blind out","Fold down to the next pay jump","Gamble immediately to double or bust","Play exactly like the chip leader"],a:0,e:"Role-based play (Day 53): the short stack's job is <b>profitable jam windows, not passivity</b> — blinding out is the one unforgivable short-stack death, and it's not the leader's aggressive game either."},
+{q:"The survival/aggression curve exists in the playbook so that:",o:["You play the right game on the right day by reference, not guesswork","You can predict exactly how the tournament will unfold","You always know how many hands to play","You can show your strategy is balanced"],a:0,e:"The curve is the <b>strategic spine</b> (Day 65) — one table telling you the mode for every day. It doesn't predict the tournament; it tells you which of your trained games to run as the days progress."},
+{q:"The completed playbook, across all three days, is:",o:["About twelve pages — everything you know, re-readable in twenty minutes","A comprehensive reference of every spot you might face","Whatever length captures the full depth of your study","Three separate documents, one per section"],a:0,e:"<b>Twelve pages, twenty-minute re-read.</b> Preflop grids, postflop questions, war-map chapters, and the routine appendix — compressed to a single reference you reopen every tournament morning."}]});
+
+/* ============ DAY 84 ============ */
+L.push({d:84,t:"Full Main Event day simulation",f:"m",obj:"The full-length rehearsal: five simulated levels with real break timing, the complete fuel plan, phone away, and the reset script on demand. The test is whether the machine holds all day — especially the back half.",
+body:`
+<h3>The whole day, not half</h3>
+<p>Day 79's half-day sim proved you can run the machine for three hours. Today you run it for <b>five levels with real break timing</b> — the full arc of a Main Event day. The point of the extra length is not more reps of the same thing; it's the <b>back half</b>, where fatigue arrives and the amateur's C-game quietly takes over. Anyone holds their A-game for two hours. The Main asks for it across five levels, four days in a row.</p>
+<h3>The full protocol</h3>
+${T2([
+["Structure","Five simulated levels, real break timing between them (Days 58, 70)"],
+["Fuel","The complete plan — pre-session meal, break fuel, hydration schedule (Day 70)"],
+["Focus","Phone away except on breaks (Day 68); the reset script on demand"],
+["Grading","A/B/C-game share by level, so the back-half drop-off is visible"]],
+["Element","What you run"])}
+<h3>The checkpoint: ≥70% A/B, routine held all day</h3>
+<p>Two grades, both required. <b>≥70% A/B-game share</b> — the C-game under ~30% (Days 38, 79) — and the <b>routine held all day</b>: every break taken, phone away, fuel and hydration on schedule, reset fired if needed. A sim where the poker was fine but the routine frayed by Level 4 is the warning it's meant to surface, because on the real Day 1 the fraying comes earlier, under more pressure.</p>
+<h3>Where the data is richest</h3>
+<p>Grade level by level and the graph tells the truth: for most players the A/B share is high early and dips in Levels 4–5. <b>That dip is your homework</b> — it names the exact hour your discipline needs conditioning (Day 89) or your fuel plan needs adjusting (Day 70). A single-number grade hides it; the per-level breakdown exposes it.</p>
+${NOTE("the seduction is to end the sim early once you've 'proven the point' in the first three levels — which conveniently skips the exact stretch the sim exists to test. The back half is the whole reason for a full-day rehearsal; quitting at Level 3 is quitting right before the exam.")}`,
+quiz:[
+{q:"What does the full-day sim test that Day 79's half-day sim did not?",o:["The back half, where fatigue arrives and the C-game creeps in","A wider spread of stack depths","A tougher simulated field","Your preflop ranges specifically"],a:0,e:"Anyone holds an A-game for two hours. The extra length targets the <b>back half</b> — Levels 4–5, where fatigue takes over and deep runs are decided (Days 38, 89) — not more of the same early reps."},
+{q:"The two grades the checkpoint requires:",o:["≥70% A/B-game share AND the routine held all day","A profit and a positive A/B share","Fifteen marked hands and a written review","Surviving all five levels with chips"],a:0,e:"Both are required: <b>C-game under ~30% and every routine seam holding</b> — breaks taken, phone away, fuel on schedule, reset fired. Sharp poker with a frayed routine is the warning the sim exists to catch."},
+{q:"Why grade the A/B share level by level instead of one overall number?",o:["The per-level dip names the exact hour that needs conditioning or fuel work","It's easier to calculate in pieces","One number is fine; per-level is unnecessary detail","To make the sim take longer"],a:0,e:"The graph tells the truth: most players' share dips in Levels 4–5. <b>That dip is the homework</b> — it points at the specific hour (Day 89's conditioning, Day 70's fuel) that a single average would hide."},
+{q:"The 'quiet danger' of the full-day sim:",o:["Ending it early once you've 'proven the point' in the first three levels","Playing too tight to gather good data","Taking too many breaks and losing rhythm","Grading yourself too harshly"],a:0,e:"Quitting at Level 3 <b>skips the exact stretch the sim exists to test</b>. The back half is the whole reason for a full-day rehearsal — leaving early is quitting right before the exam."},
+{q:"During the sim, the phone should be:",o:["Away except on scheduled breaks","Out but silenced, for tracking time","Used briefly between hands to stay loose","Off entirely, even on breaks"],a:0,e:"Phone discipline (Day 68) is part of the routine under test: <b>away except on breaks</b>. If it creeps out in a low-pressure sim, it will creep out under the lights."},
+{q:"The break timing in the sim should be:",o:["Real — matched to the actual tournament structure","Shortened to keep the session efficient","Whenever you feel you need a rest","Skipped, to build endurance"],a:0,e:"Real break timing (Days 58, 70) is what makes it a rehearsal of the day, not just a long session — the fuel, hydration, and movement all key off the real cadence."},
+{q:"A sim where the poker was sharp but the routine frayed by Level 4 is:",o:["The warning the sim is designed to surface","A success — the poker is what counts","Acceptable, since routines matter more over multiple days","Impossible if your poker was truly sharp"],a:0,e:"On the real Day 1 the fraying comes <b>earlier and under more pressure</b>. The routine is the foundation the poker stands on; a Level-4 fray in a calm sim is a Level-2 collapse in the arena."},
+{q:"The purpose of the reset script being available 'on demand' in the sim:",o:["To rep it live at least once, so it's muscle memory in the Main","Because you're guaranteed to tilt during five levels","To fill time between hands","To practice leaving the table calmly"],a:0,e:"After a real or simulated setback, <b>rep the reset live</b> (Day 68) so the two-outer under the lights triggers muscle memory, not a reminder that you meant to build a script."}]});
+
+/* ============ DAY 85 ============ */
+L.push({d:85,t:"Leak patch I",f:"z",obj:"Take your top remaining leak and give it a real patch: ninety minutes of focused drilling, forty-five re-testing the exact failure spots, and forty-five writing the correction rule into the playbook. A leak isn't fixed until it has a written rule.",
+body:`
+<h3>One leak, all the way fixed</h3>
+<p>You've carried a top-three leak list since Day 1, re-forged at every phase exam. Now you patch them one at a time, properly. Today: the <b>single biggest remaining leak</b> gets the full treatment. Not a glance — a patch: drill the failure, re-test it under fresh conditions, and encode the fix as a rule you can execute at the table. The goal isn't to feel better about the leak; it's to <b>make it stop costing you chips</b>.</p>
+<h3>The three blocks</h3>
+${T2([
+["90m — drill","Focused reps on the exact leak: the spot, the decision, the correct play, over and over until the pattern is grooved"],
+["45m — re-test","Return to the exact failure spots under fresh conditions — has the drilling actually changed the decision, or only your confidence?"],
+["45m — write the rule","Encode the fix as a single executable line in the playbook (Days 81–83): the correction you'll actually recall under pressure"]],
+["Block","The work"])}
+<h3>The rule is the patch</h3>
+<p>This is the day's core: <b>a leak isn't patched until it has a written correction rule.</b> Drilling alone grooves the pattern in a calm room, but under pressure the old habit returns unless a concrete rule overrides it — 'facing a river raise from a passive live player, I fold top pair' beats a vague sense that you've 'worked on' river raises. The drilling finds and grooves the fix; the written rule is what deploys it when your A-game is offline.</p>
+<h3>Re-test honestly</h3>
+<p>The re-test guards against false confidence. It's easy to drill a leak until it feels solved and mistake that feeling for the fix. Returning to the <b>exact failure spots</b> — cold, framed as they originally beat you — is the only proof the change is real. If you miss them again, the leak isn't patched; it's just more familiar.</p>
+${NOTE("drilling a leak without writing the rule is the classic incomplete patch: it feels productive, the spot gets familiar, and then under Day 4 pressure the old reflex fires anyway because nothing concrete was there to override it. The correction rule — one executable line — is the actual repair; the drilling just locates it.")}`,
+quiz:[
+{q:"A leak isn't considered patched until:",o:["It has a written correction rule you can execute at the table","You've drilled it until it feels solved","You understand why it was a mistake","You've avoided the spot for a full session"],a:0,e:"The day's core: <b>the written rule is the patch.</b> Drilling grooves the fix in a calm room, but under pressure the old habit returns unless a concrete, executable line overrides it."},
+{q:"The purpose of the 45-minute re-test:",o:["To prove the fix is real, not just increased confidence","To drill the leak a second time","To find new leaks in the same area","To warm up before the writing block"],a:0,e:"It's easy to drill a leak until it <b>feels</b> solved. Returning to the exact original failure spots, cold, is the only proof the decision actually changed — miss them again and the leak is merely familiar, not fixed."},
+{q:"Why does drilling alone fail to patch a leak under pressure?",o:["The old habit returns unless a concrete rule overrides it","Drilling is a waste of time","You can't drill live spots realistically","Pressure erases all learning equally"],a:0,e:"Drilling grooves the pattern in calm conditions, but when your A-game is offline the reflex reasserts itself. <b>A written correction rule is what deploys the fix</b> when you're tired or under pressure and not reasoning it out fresh."},
+{q:"A good correction rule looks like:",o:["'Facing a river raise from a passive live player, I fold top pair'","'Play better on rivers'","'Remember to think about river raises'","'Rivers are where I lose money'"],a:0,e:"A rule must be <b>concrete and executable</b> — a specific trigger and a specific action. Vague reminders don't fire under pressure; 'in THIS spot, do THIS' is what you can actually recall and run."},
+{q:"Today you patch:",o:["The single biggest remaining leak, all the way","All three leaks at once, briefly","Whatever leak showed up most recently","A new leak you discover during the session"],a:0,e:"One leak, the full treatment — <b>drill, re-test, write the rule</b>. Leak #2 gets the same on Day 86. A proper patch on the top leak beats a light pass over all three."},
+{q:"The 'quiet danger' of leak-patching:",o:["Drilling until it feels fixed but never writing the rule","Spending too long on one leak","Patching a leak that wasn't really a problem","Writing the rule but skipping the drilling"],a:0,e:"The classic incomplete patch: drilling feels productive and the spot gets familiar, then the old reflex fires under Day 4 pressure because <b>nothing concrete was there to override it</b>. The rule is the repair."},
+{q:"The re-test must use:",o:["The exact failure spots, framed as they originally beat you","Easier versions of the spot to build confidence","Completely new spots to test breadth","A timed quiz on the general topic"],a:0,e:"Only the <b>exact original spots, cold</b>, prove the fix. An easier version tests nothing; the leak beat you in a specific configuration, so that configuration is the honest exam."},
+{q:"Where does the correction rule get recorded?",o:["Into the playbook, as a line you'll re-read every morning","On a sticky note for the day","Nowhere — once drilled it's internalized","In a separate leak journal you review yearly"],a:0,e:"The fix goes <b>into the playbook</b> (Days 81–83) so it's re-read every tournament morning and deployed when needed. A patch that isn't in the reference you actually reopen will quietly un-patch."}]});
+
+/* ============ DAY 86 ============ */
+L.push({d:86,t:"Leak patch II",f:"g",obj:"The second leak, same treatment — drill, re-test, write the rule — plus the harder step: have a partner or coach challenge your fix, because the leak you're most defensive about is usually the real one.",
+body:`
+<h3>The second patch</h3>
+<p>Leak #2 gets the same rigor as Day 85: ninety minutes of focused drilling, forty-five re-testing the exact failure spots, forty-five encoding the correction rule into the playbook. The process is proven; today the addition is an <b>external check</b> on whether the fix is actually a fix.</p>
+<h3>Get the fix challenged</h3>
+<p>If a partner, coach, or study group is available, <b>have them attack your correction rule</b>. You cannot fully see your own blind spots — the leak persisted this long precisely because your own review kept missing or excusing it. An outside eye asks the question you won't: is this rule right, or is it just the rationalization that let the leak survive? A fix that survives a challenge is a fix; one that only survives your own approval may be the leak wearing a disguise.</p>
+${T2([
+["Drill (90m)","Same as Day 85 — groove the corrected pattern on the exact spot"],
+["Re-test (45m)","Cold return to the original failures; confidence is not proof"],
+["Challenge (part of 45m)","A partner or coach stress-tests the rule; defend it or revise it"],
+["Write (45m)","The surviving rule goes into the playbook as an executable line"]],
+["Block","The work"])}
+<h3>The tell: your own defensiveness</h3>
+<p>Notice which leak you least want challenged. <b>The leak you're most defensive about is usually the real one</b> — the spot where ego, a favorite play, or an old habit has been protecting a hole in your game. Defensiveness is a signal, not a verdict: the stronger your urge to explain why it's 'actually fine,' the more the challenge is worth submitting to. The gladiator's honesty is aimed inward here.</p>
+${NOTE("without an outside challenge, leak-patching risks becoming self-ratification — you drill the spot, write a rule that matches what you already do, and declare it fixed. The blind spot stays exactly where it was. If no coach is available, at minimum argue the fix from the opponent's side: what would a sharp reg say is still wrong with it?")}`,
+quiz:[
+{q:"The addition to the process on Day 86 versus Day 85:",o:["Having a partner or coach challenge your correction rule","Drilling for twice as long","Patching two leaks instead of one","Skipping the re-test to save time"],a:0,e:"Same drill-retest-write rigor, plus an <b>external check</b>. You can't fully see your own blind spots — an outside eye asks whether the fix is real or just the rationalization that let the leak survive."},
+{q:"Why is an external challenge to the fix valuable?",o:["You can't fully see your own blind spots — the leak survived your own review","A coach's opinion always outranks yours","It's required to make the patch official","It makes the session take longer, which builds discipline"],a:0,e:"The leak persisted <b>because your own review kept missing or excusing it</b>. An outside eye asks the question you won't, which is exactly why it can catch what you can't."},
+{q:"'The leak you're most defensive about' is usually:",o:["The real one — defensiveness is protecting a hole in your game","A false alarm you can safely dismiss","Already fixed, hence the confidence","Too minor to bother challenging"],a:0,e:"Defensiveness is a <b>signal, not a verdict</b>: the stronger the urge to explain why it's 'actually fine,' the more likely ego or an old habit is guarding a real hole. Submit that one to the challenge first."},
+{q:"If no partner or coach is available, the fallback is:",o:["Argue the fix from a sharp reg's perspective — what's still wrong with it?","Skip the challenge; your own review is enough","Post the hand publicly for strangers to judge","Assume the fix is correct and move on"],a:0,e:"At minimum, <b>take the opponent's side against your own rule</b>. Self-ratification — writing a rule that matches what you already do — leaves the blind spot untouched; an adversarial internal check is the next best thing to a real one."},
+{q:"A correction rule that only survives your own approval:",o:["May be the leak wearing a disguise","Is automatically valid","Is better than one a coach suggested","Should be trusted more, since you know your game best"],a:0,e:"A fix that survives a real challenge is a fix; <b>one that only passes your own review may be the rationalization that protected the leak</b> all along. Your approval is the weakest possible test of your own blind spot."},
+{q:"The re-test in the leak-patch process uses:",o:["The exact original failure spots, cold","A general quiz on the topic area","Easier spots to confirm the fix works","New spots the coach invents on the day"],a:0,e:"As on Day 85, <b>the exact original spots</b> are the honest exam — confidence isn't proof, and the leak beat you in a specific configuration that you must face again to know it's patched."},
+{q:"The final block writes into the playbook:",o:["The rule that survived the challenge, as an executable line","Both the original and revised rules, for comparison","A note that the leak was addressed","Nothing — the challenge replaces the written rule"],a:0,e:"Only the <b>surviving rule</b> — challenged and defended or revised — goes in, as a concrete executable line (Day 85). The written rule in the re-read reference is what deploys the fix under pressure."},
+{q:"The gladiator's honesty on Day 86 is aimed:",o:["Inward — at the leak your ego has been protecting","At the opponents you'll face in the Main","At your coach's weaker suggestions","At the parts of your game that are already strong"],a:0,e:"The fearless honesty (Days 39, 90) turns on the self here: <b>the hole ego, a favorite play, or an old habit has been guarding</b>. Facing it down is the harder, more valuable rep than drilling a leak you're comfortable admitting."}]});
+
+/* ============ DAY 87 — consolidation ============ */
+L.push({d:87,t:"Consolidation gauntlet",f:"z",obj:"Twelve questions drawn from the playbook and patch days (81–86). Then a light simulated session and the weekly review. The pass bar is 85%+ — the playbook should be near-automatic now.",
+body:`
+<h3>Today's protocol</h3>
+<ul>
+<li><b>The gauntlet below:</b> 12 questions sampled at random from Days 81–86 — the playbook chapters, the full-day sim, and the two leak patches. Different every attempt; retake until you clear the bar.</li>
+<li><b>Higher pass bar — 85%+:</b> this late in the program, the playbook material should be near-automatic. Below 85% names the chapter to re-read before the Final Trial (Day 90).</li>
+<li><b>60m light sim:</b> a relaxed session applying the playbook — no grinding, just confirming the ranges and questions fire on their own.</li>
+<li><b>45m weekly review:</b> which leak patches are holding? Is the playbook actually re-readable in twenty minutes, or has it bloated? Trim if needed.</li></ul>`,
+pool:{days:[81,82,83,84,85,86],n:12}});
+
+/* ============ DAY 88 ============ */
+L.push({d:88,t:"Speed drills: snap classification",f:"g",obj:"Automate the routine decisions so the hard ones get your full mind: board classification, hand bucketing, and jam/fold at speed — 90% accuracy with sub-ten-second decisions, reviewing only the misses.",
+body:`
+<h3>Speed is a skill, and it's separate from accuracy</h3>
+<p>You know the material; today you make the routine parts <b>fast</b>. Live poker runs on a clock and a table pace — deliberating over an easy spot costs you time, telegraphs information, and, worse, <b>spends the finite bandwidth you need for the genuinely hard decisions</b>. The goal is to automate the routine so completely that it happens beneath conscious thought, leaving your full mind for the spots that actually deserve it.</p>
+<h3>The three speed drills</h3>
+${T2([
+["Board classification","Dry / wet / paired / monotone, and who has the range and nut advantage — sub-10 seconds (Days 6, 24)"],
+["Hand bucketing","Nuts / near-nuts / pairs / strong draws / weak draws / overcards / trash — instant sorting (Day 8)"],
+["Jam / fold","Short-stack push-fold by position and depth — the band where speed and accuracy both pay instantly (Days 48, 49)"]],
+["Drill","Standard &amp; target"])}
+<h3>The bar: 90% accuracy, sub-ten-second</h3>
+<p>Both numbers matter and they pull against each other. <b>Fast but wrong</b> is worse than slow — you've automated a mistake. <b>Right but slow</b> means it isn't automatic yet — it'll fail under table pressure and fatigue. The target is 90% accuracy <em>at</em> speed: the decision arrives correct and immediate, the way it must when the clock is running and you're five hours into Day 4.</p>
+<h3>Review the misses only</h3>
+<p>Don't re-grade what you got right — that's just reassurance. <b>Review only the misses</b>, because they're the entire signal: a miss at speed is either a knowledge gap (you don't actually know it cold) or a speed gap (you know it but can't retrieve it fast). Each miss routes to more drilling on that exact category until the snap decision is both right and instant.</p>
+${NOTE("the danger is chasing speed at the cost of accuracy — snap-classifying boards wrong because you're proud of being fast. A grooved-in wrong pattern is worse than a slow correct one, because it fires automatically at the worst moment. Speed only counts on top of accuracy, never instead of it.")}`,
+quiz:[
+{q:"The core reason to make routine decisions fast:",o:["To save your finite bandwidth for the genuinely hard decisions","To intimidate opponents with quick actions","To play more hands per hour","To avoid ever using your time bank"],a:0,e:"Deliberating over easy spots <b>spends the attention the hard spots need</b> — and telegraphs information and burns clock. Automating the routine leaves your full mind for the decisions that actually deserve it."},
+{q:"The Day 88 accuracy-and-speed bar:",o:["90% accuracy at sub-ten-second speed","100% accuracy, speed irrelevant","Fast decisions, accuracy secondary","Whatever speed feels comfortable"],a:0,e:"<b>Both numbers, together</b>: 90% accuracy AT speed. They pull against each other, and the target is the correct decision arriving immediately — the way it must when the clock runs on Day 4."},
+{q:"Fast but wrong is worse than slow because:",o:["You've automated a mistake that now fires at the worst moment","It isn't — speed always beats accuracy","Opponents notice fast mistakes more","Slow play is against tournament rules"],a:0,e:"A grooved-in wrong pattern <b>fires automatically under pressure</b>, exactly when you can least afford it. Speed only counts on top of accuracy — never as a substitute for it."},
+{q:"Right but slow means:",o:["It isn't automatic yet and will fail under pressure and fatigue","You're playing perfectly; speed doesn't matter","You should slow down further to be safe","The material is too advanced for you"],a:0,e:"Knowing it but not retrieving it fast means it's <b>not yet grooved</b> — on the clock, five hours into Day 4, a decision you can't make quickly is a decision you'll get wrong or rush."},
+{q:"You should review:",o:["Only the misses — they're the entire signal","Every decision, right and wrong","Only the ones you got right, to reinforce them","The fastest decisions, regardless of correctness"],a:0,e:"Re-grading correct answers is just reassurance. <b>The misses are the signal</b>: each is a knowledge gap or a speed gap, and each routes to more drilling on that exact category."},
+{q:"A miss at speed is either:",o:["A knowledge gap or a speed gap","A tilt problem or a fatigue problem","Bad luck or a bad read","A preflop error or a postflop error"],a:0,e:"Either you <b>don't know it cold</b> (knowledge) or you know it but <b>can't retrieve it fast enough</b> (speed). Both route back to targeted drilling on that category until the snap decision is right and instant."},
+{q:"The 'quiet danger' of speed drills:",o:["Chasing speed at the cost of accuracy","Going too slowly to ever improve","Reviewing the misses too thoroughly","Drilling categories you already know"],a:0,e:"Snap-classifying wrong because you're proud of being fast grooves an automatic error. <b>A wrong pattern that fires instantly is worse than a slow correct one</b> — accuracy first, then speed on top."},
+{q:"Automating routine decisions is valuable specifically because:",o:["Table pace, the clock, and fatigue don't allow deliberation on every spot","It looks professional","It reduces the number of decisions you face","It guarantees you never make an error"],a:0,e:"The live environment <b>forces speed</b> — a running clock, table pace, and five-hour fatigue. Automating the routine spots is what makes it possible to still think deeply about the ones that matter."}]});
+
+/* ============ DAY 89 ============ */
+L.push({d:89,t:"Pressure under fatigue",f:"m",obj:"Deliberately run a session late and tired, put an ICM quiz in the final hour, and log exactly where fatigue bends your decisions — because the deep run is decided by whose C-game is least bad.",
+body:`
+<h3>Train the game you'll actually be playing</h3>
+<p>Day 4 of the Main is played tired. By the late levels of a deep run you are fatigued, and so is everyone left — which means the tournament isn't decided by whose A-game is best (everyone's A-game is similar) but by <b>whose C-game is least bad</b>. Today you deliberately induce fatigue and study your own degradation, because you can't manage a decline you've never measured.</p>
+<h3>The protocol</h3>
+<ul>
+<li><b>Run the session late and deliberately tired</b> — the end of a long day, not a fresh morning. The point is to reproduce Day 4's conditions, not to dodge them.</li>
+<li><b>ICM quiz in the final hour</b> — put the hardest, highest-stakes material (Phase III) at your lowest energy, because that's exactly when the bubble arrives in the Main.</li>
+<li><b>Log where fatigue bent your decisions</b> — build the fatigue-error map: the specific, personal ways your game degrades when you're spent.</li></ul>
+<h3>The fatigue-error map</h3>
+<p>Fatigue doesn't degrade everyone the same way. Yours might collapse into <b>passivity</b> (folding spots you'd fight for fresh), or into <b>impatience</b> (spewing to end hands faster), or into <b>autopilot</b> (missing reads you'd normally catch). The map names your specific failure mode so you can counter it: if you go passive tired, your Day-4 rule becomes 'when exhausted, trust the aggressive read'; if you go impatient, 'when exhausted, take the extra ten seconds.' A named failure mode is a defendable one.</p>
+${T2([
+["Fear corrupts first","The high-pressure ICM folds and calls go wrong before anything else (Day 57)"],
+["Roles blur second","Covered/covering and final-table roles start bleeding together"],
+["Math goes last","Raw range and combo knowledge is the most fatigue-resistant layer"]],
+["Order of collapse","What to expect"])}
+<p>Where your misses cluster tells you which layer to shore up before the Main — and the order above (fear first, math last) is the general pattern to check yours against.</p>
+${NOTE("the instinct is to always study fresh, at your peak — which trains a version of you that won't be at the table on Day 4. Studying only rested is like a boxer only sparring rested: you never learn how you fight hurt. The tired reps are the ones that transfer to the moment that decides the tournament.")}`,
+quiz:[
+{q:"Why deliberately train while tired?",o:["The deep run is decided by whose C-game is least bad, and Day 4 is played tired","To build the stamina to skip sleep during the event","Tired practice is more efficient use of time","To prove you can win without rest"],a:0,e:"Everyone's A-game is similar; the late levels of a deep run are decided by <b>whose C-game is least bad</b>. You can't manage a decline you've never measured — so you reproduce Day 4's conditions, not dodge them."},
+{q:"Why put the ICM quiz in the FINAL hour of the tired session?",o:["The hardest material at your lowest energy mirrors the bubble arriving on Day 4","ICM is easier when you're tired and less anxious","To end the session on a strong note","Because the quiz is short"],a:0,e:"The bubble — the highest-stakes ICM of the event — arrives deep into a long day. <b>Test the hardest material at your lowest energy</b> because that's the exact pairing the Main will demand."},
+{q:"The 'fatigue-error map' records:",o:["The specific, personal way your game degrades when you're spent","A general list of common poker mistakes","How many hours you can play before busting","The times of day you play best"],a:0,e:"Fatigue degrades everyone differently — into passivity, impatience, or autopilot. <b>The map names YOUR failure mode</b> so you can write a counter-rule for Day 4; a named failure mode is a defendable one."},
+{q:"Under fatigue, which layer of your game tends to collapse FIRST?",o:["Fear-driven decisions — the high-pressure ICM folds and calls","Raw combo and range math","Basic preflop opening ranges","Physical stamina to stay seated"],a:0,e:"The order is <b>fear first, roles second, math last</b> (Day 57). The emotionally-loaded ICM spots corrupt earliest, which is why they're the ones to stress-test tired — where your misses cluster names the layer to shore up."},
+{q:"If your fatigue failure mode is passivity, your Day-4 counter-rule might be:",o:["'When exhausted, trust the aggressive read'","'When exhausted, fold everything marginal'","'When exhausted, leave the table'","'When exhausted, play faster to end hands'"],a:0,e:"A named failure mode gets a specific counter: if you go passive tired, you pre-commit to <b>trusting the aggression you'd normally apply fresh</b>. If you went impatient instead, the rule would be to take the extra ten seconds."},
+{q:"Studying only when fresh and rested is a leak because:",o:["It trains a version of you that won't be at the table on Day 4","Fresh study is less effective than tired study","It wastes your best hours on easy material","Rested play has no bad beats to learn from"],a:0,e:"Like a boxer who only spars rested, you <b>never learn how you play hurt</b>. Day 4 is played tired, so the tired reps are the ones that transfer to the moment that decides the tournament."},
+{q:"The most fatigue-resistant layer of your game is:",o:["Raw range and combo math","High-pressure bluff-catches","Reading covered-vs-covering roles","Live physical tells"],a:0,e:"Math goes <b>last</b> (Day 57): the mechanical range and combo knowledge survives fatigue longest, while the fear-loaded and role-based judgment erodes first. It's the layer you can most rely on when spent."},
+{q:"The output of Day 89 is:",o:["A written fatigue-error map naming your specific degradation","A profit from the late session","A higher tolerance for skipping sleep","Proof you don't get tired"],a:0,e:"The checkpoint is the <b>fatigue-error map</b> — your personal failure mode named and paired with a counter-rule. It feeds the Day-4 discipline (Days 68–70), not a claim that you're immune to fatigue."}]});
+
+/* ============ DAY 90 — final trial ============ */
+L.push({d:90,t:"The Final Trial",f:"z",obj:"Twenty-five questions drawn from the whole of Phase V. Retake the Trial of the Three Thirds, compare your Day 1, Day 50, and Day 90 scores, and write an honest readiness verdict. The weakest third gets the last drills.",
+body:`
+<h3>The last measurement</h3>
+<ul>
+<li><b>The trial below:</b> 25 randomized questions sampled from every drill day of Phase V (81–89). Different each attempt; target <b>85%+</b>.</li>
+<li><b>Retake the Trial of the Three Thirds</b> — the Blade, the Wasteland, the Stillness quiz from the war plan. You took it cold on Day 1 and again on Day 50; take it a third time and <b>compare all three scores</b>. The arc from Day 1 to now is the real measure of the hundred days.</li>
+<li><b>The weakest third gets the last drills.</b> Whichever of the three archetypes scores lowest — gladiator, road warrior, or monk — is where the final week's remaining study points.</li>
+<li><b>Write the readiness verdict, honestly.</b> Not a pep talk — an assessment: what's sharp, what's still shaky, and whether the shaky parts are knowledge, nerve, or conditioning (Day 72). Honesty here is worth more than confidence.</li></ul>
+<h3>What Phase V has built so far</h3>
+<p>The personal playbook — preflop grids, postflop questions, the war map, the routine appendix · the full-day Main Event simulation graded level by level · two leaks patched to written rules · snap classification at speed · and your fatigue-error map. The integration is nearly complete. Everything after today is taper: sharpen, rehearse, and rest, subtracting load until you arrive at the arena fresher, not fuller.</p>`,
+pool:{days:[81,82,83,84,85,86,88,89],n:25,exam:true,label:"The Final Trial"}});
+
+/* ============ DAY 91 ============ */
+L.push({d:91,t:"Live Session IV — A-game grading",f:"g",obj:"The last live rep before the Main: a full session graded A/B/C by hour, every routine element run as if it's Day 1. The bar rises to 75% A/B, because you've improved — and the next real session is the arena.",
+body:`
+<h3>The final rep is the dress rehearsal</h3>
+<p>This is the <b>last live or long-online session before the Main Event</b>. There's no more preparation after it — the next time you sit down for real poker, it's Day 1 of the arena. So you treat this session exactly as if it already is: full routine, full focus, the playbook running on its own. Not a warm-up, not an experiment — a dress rehearsal you perform at performance intensity.</p>
+<h3>Grade A/B/C by hour</h3>
+<p>Same discipline as the sims (Days 79, 84): grade your decision quality — not results — as an A/B/C share, broken down <b>by hour</b>. The hourly breakdown catches the fatigue curve (Day 89) and the routine seams (Day 71) in a real game against real opponents, which is a truer test than any sim. Where does your share dip, and does it dip earlier or later than in the controlled sim?</p>
+<h3>The bar rises to 75%</h3>
+<p>Day 79's half-day sim asked for ≥70% A/B; today the bar is <b>≥75%</b>. The standard climbs because you've spent the phase patching leaks, drilling speed, and mapping fatigue — the floor should have risen with the work. If it hasn't, that's information, not failure: the gap between 70% and 75% names exactly how much the final week's light drills and taper (Days 95–98) need to protect and sharpen, versus letting anything slip.</p>
+<h3>Run every element as Day 1</h3>
+<p>Wake time, fuel, warm-up, tagging the table, marking hands, breaks with water and movement, the reset script, bag-and-debrief — <b>all of it, exactly as the Main demands</b>. The temptation in a 'practice' session is to run the poker hard and let the routine slide; that's the precise inversion of what this day is for. The routine is what you're rehearsing most, because on Day 1 the poker will have your attention and the routine must run itself.</p>
+${NOTE("treating the last session as 'just practice' is the trap — you play the hands seriously and wing the routine, which trains exactly the wrong reflex for the one session that matters. This IS the Main, one week early. If the routine slides here, it slides in the arena, where it costs the most.")}`,
+quiz:[
+{q:"Why treat Live Session IV as if it's Day 1 of the Main?",o:["It's the last rep — the next real session is the arena itself","To make it more stressful for training","Because the stakes are financially identical","So you can practice new strategies under pressure"],a:0,e:"There's no preparation after it: <b>the next time you play real poker, it's Day 1</b>. So you perform at performance intensity now — full routine, full focus — not a warm-up or an experiment."},
+{q:"The A/B-game bar for Day 91:",o:["≥75% — higher than Day 79's 70%, because you've improved","≥70%, unchanged from the earlier sims","100% A-game or the session fails","Whatever beats your previous best"],a:0,e:"The standard <b>climbs with the work</b>: a phase of leak patches, speed drills, and fatigue mapping should have raised the floor. If it hasn't, the 70–75% gap names how much the taper must protect versus sharpen."},
+{q:"Grading by hour (rather than one overall share) catches:",o:["The fatigue curve and routine seams in a real game","Which opponents were toughest","How many hands you played per level","Your win rate over the session"],a:0,e:"The hourly breakdown exposes <b>where the share dips</b> (Day 89's fatigue, Day 71's seams) against real opponents — a truer test than a controlled sim, and it shows whether your drop-off moved earlier or later."},
+{q:"The specific temptation this day warns against:",o:["Running the poker hard while letting the routine slide","Playing too tight to protect your A-game score","Grading yourself too generously","Taking too many breaks"],a:0,e:"'Just practice' trains the wrong reflex: <b>serious poker with a sloppy routine</b> is the exact inversion of the goal. The routine is what you're rehearsing most, because on Day 1 it must run itself."},
+{q:"What you grade is:",o:["Decision quality — the A/B/C share, not the result","Net profit from the session","Number of pots won","How you finished relative to the field"],a:0,e:"As in every sim (Days 79, 84), <b>decision quality, not results</b> — a losing all-A stretch is A-game, a winning spewed pot is C. Results lie over a single session; the A/B/C share tells the truth."},
+{q:"Why is the routine — not the poker — the main thing being rehearsed?",o:["On Day 1 the poker gets your attention, so the routine must run itself","The poker is already perfect and needs no work","Routine is more important than strategy in every game","Opponents can see your routine but not your thinking"],a:0,e:"Under the lights the hands demand focus, so <b>the routine has to be automatic</b> to survive. This session grooves it at performance intensity — if it slides here, it slides in the arena where it costs the most."},
+{q:"If your A/B share comes in below 75%, it is:",o:["Information — it names how much the taper must protect versus sharpen","A failure that means you're not ready","A reason to cram harder in the final week","Irrelevant, since it's only one session"],a:0,e:"Not failure — <b>a signal</b>. The gap tells you whether the final week's light drills (Days 95–98) need to hold the line or lift it, without ever tipping into the cramming the taper forbids."},
+{q:"This session includes marking hands because:",o:["The full Day-1 routine includes real-time hand marking for later review","You need material to study on Day 92","Marking hands slows you down usefully","It proves you were paying attention"],a:0,e:"Running <b>every element as Day 1</b> means marking hands live (Day 66) — and those marks feed the Day 92 review. The routine is complete or it isn't; marking is part of it."}]});
+
+/* ============ DAY 92 ============ */
+L.push({d:92,t:"Review & playbook revision",f:"z",obj:"Review the last session, make the final playbook edits from real evidence, then print or bind it — and stop. After today the playbook is frozen, because the urge to keep editing is the urge to keep worrying.",
+body:`
+<h3>The last edits, from evidence</h3>
+<p>Review the marked hands from Session IV and make the <b>final</b> playbook revisions — but only the ones the real session actually justifies. This is evidence-based editing: a rule changes because a live hand exposed it, not because you had a new theoretical idea in the shower. The playbook has been built over ten days of writing and patching; today it gets its last honest polish from the most recent real data you'll ever have before the Main.</p>
+<h3>Then freeze it</h3>
+<p>The day's discipline, and the checkpoint: <b>after today, no more edits.</b> The playbook is printed or bound and declared final. This is not arbitrary — it's the crucial transition from <em>building</em> the plan to <em>trusting</em> it. A plan you keep editing is a plan you don't yet trust, and the endless-tweak instinct is anxiety in a productive-looking costume. At some point the preparation has to close so the execution can open, and that point is today.</p>
+<h3>Why the hard stop matters</h3>
+${T2([
+["Editing forever","Signals you don't trust the plan; keeps the mind in 'what if' mode; never lets execution begin"],
+["Freezing today","Converts the playbook from a draft into an anchor; frees the taper to be rest, not revision"],
+["The real risk","Not an imperfect playbook — a perpetually-provisional one you never commit to and can't lean on under pressure"]],
+["Approach","Consequence"])}
+<h3>Print or bind it</h3>
+<p>Making it physical is part of the freeze. A printed, bound playbook is <b>done</b> in a way a file you can always reopen is not — the physical object closes the door on editing and becomes the thing you re-read each morning, calm in the knowledge that the thinking is finished. The taper that follows is for sharpening and resting the plan you've already committed to, not for second-guessing it.</p>
+${NOTE("the urge to keep editing the playbook right up to Day 1 feels like diligence but is really anxiety — every 'one more tweak' is the mind refusing to commit and trust. The imperfect playbook you trust and execute beats the perfect one you're still nervously revising in the hotel the night before. Freeze it, and let the taper be rest.")}`,
+quiz:[
+{q:"The playbook edits on Day 92 should be driven by:",o:["Evidence from the real session — hands that actually exposed a rule","Any new theoretical ideas you've had recently","A final pass to make it as comprehensive as possible","Your coach's latest general advice"],a:0,e:"Evidence-based editing: a rule changes <b>because a live hand exposed it</b>, not because of a shower thought. This is the last honest polish from the most recent real data you'll have before the Main."},
+{q:"The day's checkpoint and discipline:",o:["After today, the playbook is frozen — no more edits","Edit until the night before Day 1 to stay current","Keep a running edit log through the event","Rewrite anything that still feels uncertain"],a:0,e:"<b>Frozen after today</b>, printed or bound. It's the transition from building the plan to trusting it — at some point preparation must close so execution can open, and that point is today."},
+{q:"Endless playbook editing is really:",o:["Anxiety in a productive-looking costume","Diligence that always pays off","A sign of a serious, thorough player","Necessary because the game keeps changing"],a:0,e:"A plan you keep editing is a plan you don't yet trust. The <b>endless-tweak instinct is anxiety wearing the costume of preparation</b> — every 'one more edit' is the mind refusing to commit."},
+{q:"The real risk the freeze guards against is:",o:["A perpetually-provisional playbook you never commit to","An imperfect playbook with a few errors in it","Spending too little time on the playbook","Losing the file before the event"],a:0,e:"Not imperfection — <b>non-commitment</b>. A playbook you're still revising the night before can't be leaned on under pressure; the frozen, trusted one becomes an anchor even if it isn't perfect."},
+{q:"Printing or binding the playbook matters because:",o:["Making it physical closes the door on editing and makes it 'done'","Paper is easier to read than a screen","It's more professional","You can't lose a bound copy"],a:0,e:"The physical object is <b>done</b> in a way a reopenable file is not — it converts the playbook from an endlessly-editable draft into the fixed thing you re-read each morning, thinking finished."},
+{q:"After Day 92, the taper's purpose is:",o:["Sharpening and resting the plan you've committed to","A final chance to overhaul weak sections","Continued revision as new ideas arrive","Testing whether the playbook is really finished"],a:0,e:"The freeze frees the taper to be <b>rest and light sharpening</b>, not second-guessing. You've committed to the plan; the remaining days protect and rehearse it rather than rebuild it."},
+{q:"'The imperfect playbook you trust beats the perfect one you're still revising' because:",o:["A trusted plan can be leaned on under pressure; a provisional one can't","Perfect playbooks don't exist anyway","Trust matters more than correctness in all things","Revising takes time better spent playing"],a:0,e:"Under Day-4 pressure you need an <b>anchor you commit to</b>, not a draft you're still second-guessing. The committed imperfect plan holds; the perpetually-provisional perfect one leaves you adrift when it's hardest."},
+{q:"Evidence-based editing means a rule changes only when:",o:["A real hand from the session exposed a genuine flaw in it","You think of a way it could theoretically be better","It doesn't match the latest solver output","You feel uncertain about it"],a:0,e:"The bar is <b>demonstrated flaw from real play</b>, not theoretical improvement or vague unease. This late, chasing theoretical perfection is the cram instinct; only live evidence justifies touching the frozen-tomorrow plan."}]});
+
+/* ============ DAY 93 ============ */
+L.push({d:93,t:"Tournament-day dress rehearsal",f:"z",obj:"Run the complete tournament-day routine at the real start time — wake, meal, warm-up, arrival simulation, mental warm-up, and the venue break walkthrough — start to finish, without improvising a single element.",
+body:`
+<h3>Rehearse at the real clock</h3>
+<p>You've rehearsed the routine before (Days 71, 84), but today the variable is <b>time of day</b>. Run the full sequence at the Main's actual start time: if cards fly at noon, wake at your real 3.5–4.5-hour-out time (Day 69), eat the real pre-session meal then, warm up then, simulate the arrival then. A routine that runs smoothly at 2pm can fall apart at a 7:30am wake — the body is different at the real hour, and the only way to know is to rehearse at it.</p>
+<h3>The full sequence, timed</h3>
+${T2([
+["Wake","At the real out-time (3.5–4.5h before cards) — the clock is the point"],
+["Meal &amp; hydration","The pre-session plan, eaten at the real hour (Day 70)"],
+["Warm-up","Movement, breathing, and the mental warm-up (Days 77, 95)"],
+["Arrival simulation","The real logistics — travel time, registration, finding the seat (Day 94)"],
+["Break walkthrough","The venue break strategy: where you go, what you do, timed to real breaks"]],
+["Step","Run at the real time"])}
+<h3>The mental warm-up</h3>
+<p>Part of the rehearsal is the <b>ten-minute mental warm-up</b> you'll run before every Day: a rehearsal of the first orbit (tag everyone), the day's ratio and mode (Day 83), and the reset-script cue. Repping it today, at the real hour, means on Day 1 it's a familiar groove rather than a thing you're inventing while nervous. The mind, like the body, plays better warm.</p>
+<h3>Start to finish, no improvising</h3>
+<p>The checkpoint is that the whole routine <b>runs start to finish without you improvising a single element</b>. Every gap you have to fill on the fly today is a gap that will widen under Day-1 nerves. Find them now, in the calm rehearsal, where fixing them costs nothing.</p>
+${NOTE("rehearsing the routine at a convenient afternoon hour instead of the real early-morning start time hides the failures that only the real clock reveals — the meal that sits wrong at 8am, the warm-up you skip because you're groggy, the arrival you underestimated. The rehearsal is only honest at the real time.")}`,
+quiz:[
+{q:"What's the key variable Day 93 adds over the earlier routine rehearsals?",o:["The real time of day — running the routine at the Main's actual start time","A tougher simulated field","Longer session length","New strategy to test"],a:0,e:"You've run the routine before (Days 71, 84); today the point is the <b>clock</b>. A sequence that flows at 2pm can fall apart at a 7:30am wake — the body is different at the real hour, and rehearsing at it is the only way to know."},
+{q:"The mental warm-up you rehearse consists of:",o:["First-orbit tagging, the day's ratio and mode, and the reset cue","A review of every range in the playbook","Twenty minutes of meditation","A study session on your weakest area"],a:0,e:"A tight ten-minute groove (Days 77, 95): rehearse tagging the table, recall the day's mode (Day 83), and prime the reset cue. Repped at the real hour, it's <b>familiar on Day 1 rather than invented while nervous</b>."},
+{q:"The checkpoint for the dress rehearsal:",o:["The whole routine runs start to finish without improvising a single element","You feel confident about the Main","You complete it faster than last time","You identify new things to add to the routine"],a:0,e:"<b>No improvising</b> — every gap you fill on the fly today widens under Day-1 nerves. The calm rehearsal is where you find and fix them, at zero cost."},
+{q:"Why rehearse at the real early start time instead of a convenient hour?",o:["The real clock reveals failures a convenient hour hides","It's more disciplined for its own sake","Mornings are when you play worst, so you need practice","To adjust your sleep schedule that day"],a:0,e:"The meal that sits wrong at 8am, the warm-up you skip groggy, the arrival you underestimated — <b>only the real time surfaces them</b> (Day 69). An afternoon rehearsal is a dishonest one."},
+{q:"The arrival simulation covers:",o:["Real travel time, registration, and finding your seat","A visualization of winning the tournament","The first few hands you'll play","Your opponents' likely line-ups"],a:0,e:"The real logistics (Day 94): <b>travel, registration windows, locating the seat</b> — timed as they'll actually happen, so nothing about arriving is a surprise on Day 1."},
+{q:"'The mind, like the body, plays better warm' means:",o:["A rehearsed mental warm-up makes Day 1's start a familiar groove","You should think harder before playing","Mental warm-ups replace physical ones","Warming up guarantees a good result"],a:0,e:"Repping the first-orbit-and-mode routine at the real hour means on Day 1 it <b>arrives as a groove, not an invention</b> — the mind, primed and familiar, starts sharper than a cold one."},
+{q:"A gap you have to improvise in today's rehearsal is:",o:["A gap that will widen under Day-1 nerves","Fine, since you handled it","A sign the routine is flexible","Only a problem if it happens twice"],a:0,e:"Every on-the-fly fill today <b>widens under real pressure</b>. The rehearsal's value is finding those gaps now, in calm, where closing them is free — not discovering them under the lights."},
+{q:"The pre-session meal in the rehearsal is eaten:",o:["At the real hour it will be eaten on Day 1","Whenever is convenient during the rehearsal","Skipped, to test playing hungry","In a lighter version, since it's practice"],a:0,e:"At the <b>real time</b> — because how a meal sits depends on the hour, and a breakfast that's fine at noon may not be at 8am. The whole rehearsal is only honest run on the real clock (Day 70)."}]});
+
+/* ============ DAY 94 ============ */
+L.push({d:94,t:"Logistics lockdown",f:"m",obj:"Remove every non-poker uncertainty before the event: travel, lodging, registration windows, which Day 1 flight, seat-draw and table-change procedures, the expenses sheet, and the buy-in source. Every logistic gets an answer.",
+body:`
+<h3>Clear the mind of everything but poker</h3>
+<p>An unresolved logistic doesn't stay in a spreadsheet — it migrates to the table and sits in your head during a hand. The mind at the felt should have <b>nothing to solve but poker</b>. Today you lock down every practical detail so that when you sit down on Day 1, there is not one open question about travel, money, or procedure competing for the attention your decisions need.</p>
+<h3>The lockdown checklist</h3>
+${T2([
+["Travel &amp; lodging","Booked and confirmed; arrival buffer before Day 1; a room close enough to protect the sleep window (Day 69)"],
+["Registration window","When registration opens and closes; late-reg implications (Day 58); your plan for arriving on time"],
+["Which Day 1 flight","Chosen deliberately — the trade-off below"],
+["Seat-draw &amp; table-change","The venue's procedures known cold, so nothing about moving tables is a surprise (Day 74)"],
+["Expenses sheet","Total series budget and the stop-adding threshold, confirmed (Day 73)"],
+["Buy-in source","Direct, satellite, or sold action — settled and in hand, in writing where relevant (Day 73)"]],
+["Item","Locked-down state"])}
+<h3>Which Day 1 flight?</h3>
+<p>The Main runs multiple Day 1 flights, and the choice has real trade-offs. <b>Later flights</b> often mean a more crowded field and sometimes softer late-registering opponents, and let you scout results — but compress your runway if you re-enter. <b>Earlier flights</b> give a cleaner schedule and more recovery time between days. There's no universally correct answer, but there is a correct <em>process</em>: decide deliberately, in advance, for stated reasons — not by defaulting to whichever flight you happen to wake up for.</p>
+<h3>Every item gets an answer</h3>
+<p>The checkpoint is total: <b>every logistic on the checklist has a definite answer</b> before you leave for the event. 'I'll figure out the room situation there' is exactly the open loop that becomes a Day-1 distraction. Lockdown means no open loops — the practical life fully handled, so the poker mind arrives empty and ready.</p>
+${NOTE("unresolved logistics are silent tilt: the missed registration window, the hotel too far from the venue, the buy-in you're not quite sure is covered — each one sits in the back of the mind and taxes the decisions at the table. Handle every one now, so the only thing you carry into the arena is the poker.")}`,
+quiz:[
+{q:"The core reason to lock down logistics before the event:",o:["An unresolved logistic migrates to the table and taxes your decisions","It's more efficient to plan ahead","To impress travel companions with your organization","Casinos require advance registration"],a:0,e:"The mind at the felt should have <b>nothing to solve but poker</b>. An open practical question — the room, the buy-in, the registration window — sits in your head during hands, silently taxing the attention your decisions need."},
+{q:"Choosing which Day 1 flight is best done by:",o:["Deciding deliberately in advance, for stated reasons","Whichever flight you happen to wake up in time for","Always taking the last flight for the softest field","Always taking the first flight to bank recovery time"],a:0,e:"There's no universally correct flight, but there is a correct <b>process</b>: pick deliberately for reasons. Later flights offer scouting and sometimes softer late-reg spots but compress a re-entry runway; earlier ones give cleaner recovery time."},
+{q:"The checkpoint for logistics lockdown:",o:["Every item on the checklist has a definite answer","The most important items are handled","You have a rough plan for everything","The travel and lodging are booked"],a:0,e:"<b>Total</b> — every logistic answered before you leave. 'I'll figure out the room there' is the exact open loop that becomes a Day-1 distraction; lockdown means no open loops at all."},
+{q:"Unresolved logistics are described as:",o:["Silent tilt — they tax your decisions from the back of the mind","A minor inconvenience with no real cost","A problem only if something actually goes wrong","Someone else's responsibility to handle"],a:0,e:"The missed window, the far-off hotel, the uncertain buy-in — each <b>sits in the back of the mind and taxes the table</b>. Handling them now means the only thing you carry into the arena is the poker."},
+{q:"Lodging should be chosen partly to:",o:["Protect the sleep window with a room close to the venue","Minimize cost above all else","Be near the best restaurants","Impress other players"],a:0,e:"A room close enough to <b>protect the 7–9-hour sleep window</b> (Day 69) — the commute eats directly into the highest-leverage non-poker input. Proximity to the venue is a poker decision, not just a comfort one."},
+{q:"The buy-in source should be:",o:["Settled and in hand — in writing where action is sold","Arranged during the event as needed","Left flexible in case you change your mind","Whatever's cheapest at the last minute"],a:0,e:"Direct, satellite, or sold action — <b>settled in advance, in writing where relevant</b> (Day 73). An uncertain buy-in is one of the heaviest silent-tilt items; it must be a closed question before Day 1."},
+{q:"Knowing the seat-draw and table-change procedures cold matters because:",o:["Nothing about moving tables should be a surprise mid-event","You get to choose your own seat","It lets you avoid tough opponents","The rules change between venues randomly"],a:0,e:"Table changes reset your image and dynamics (Day 74); knowing the <b>procedure</b> in advance means the logistics of a move never distract you from re-tagging the new table and playing."},
+{q:"The expenses sheet confirmed today includes:",o:["The total series budget and the stop-adding threshold","Only the Main Event buy-in","A projection of your expected winnings","The rake for each event"],a:0,e:"The full <b>series budget and the hard stop-adding line</b> (Day 73) — the financial framework locked so money is a closed question at the table, not an open one that becomes tilt after a bust."}]});
+
+/* ============ DAY 95 ============ */
+L.push({d:95,t:"Light drills & visualization",f:"z",obj:"The taper begins in earnest: greatest-hits flashcards only, then visualization of the key moments — first orbit, a bubble hand, a big river call — and an easy walk. The checkpoint is a single word: calm.",
+body:`
+<h3>The taper turns the corner</h3>
+<p>From here the work is <b>subtraction</b>. Today: light flashcards on the greatest hits only — no new material, no heavy sessions, nothing that loads the mind. The preparation is done (the playbook is frozen, Day 92); these final days protect and prime what you've built rather than adding to it. If a study impulse feels like it's about relief from anxiety rather than genuine sharpening, that's the signal to stop.</p>
+<h3>Visualization — rehearse the moments</h3>
+<p>The day's real work is <b>mental rehearsal of the key moments</b>, so that live they arrive as reruns instead of surprises:</p>
+${T2([
+["The first orbit","See yourself tagging every seat, calm and observant, before forcing a hand (Day 61)"],
+["A bubble hand","Rehearse both roles — the covered fold and the covering steal — firing without deliberation (Days 64, 96)"],
+["A big river call","Feel the pressure of a Mateos-style bluff-catch and see yourself calling on the range, not the fear (Day 11)"]],
+["Moment","What to visualize"])}
+<p>Visualization isn't mysticism — it's <b>pre-loading the response</b> so the real moment feels familiar. The brain rehearses under imagined pressure and builds the same grooves that live reps do, which is why athletes across every sport use it. You're making Day 4's hardest moments into things you've already 'done.'</p>
+<h3>The checkpoint is calm</h3>
+<p>The war plan names the checkpoint for this day in one word: <b>calm.</b> Not more knowledge, not a higher score — a settled nervous system. The easy walk, the light drills, and the visualization all serve that single end. If you finish the day calmer than you started, the day succeeded; if you finish more wound up, you overdid it, and tomorrow subtract more.</p>
+${NOTE("the pull in the final week is to 'just review a little more' — but past this point extra study buys almost no knowledge and costs real freshness and calm. The greatest-hits pass is a maintenance touch, not a cram. Visualize, walk, and let the nervous system settle; a calm player finds his A-game faster than a loaded, anxious one.")}`,
+quiz:[
+{q:"The checkpoint for Day 95 is:",o:["Calm — a settled nervous system","A perfect flashcard score","Mastery of a new concept","A completed full-length sim"],a:0,e:"The war plan names it in one word: <b>calm</b>. Not more knowledge or a higher score — the light drills, visualization, and easy walk all serve a settled nervous system, which finds its A-game faster than an anxious one."},
+{q:"The study this day is limited to:",o:["Greatest-hits flashcards only — no new material","A full review of every phase","Your two weakest topics in depth","Whatever you feel least confident about"],a:0,e:"The taper is <b>subtraction</b>: light maintenance on what you know cold, nothing that loads the mind. The playbook is frozen (Day 92); these days prime what you've built, they don't add to it."},
+{q:"Visualization works because it:",o:["Pre-loads the response so the real moment arrives familiar","Predicts what cards you'll be dealt","Replaces the need for actual practice","Guarantees a calm result on Day 1"],a:0,e:"It's <b>pre-loading, not mysticism</b>: the brain rehearses under imagined pressure and builds grooves like live reps do — which is why athletes across every sport use it. Day 4's hardest moments become things you've already 'done.'"},
+{q:"The three moments to visualize:",o:["The first orbit, a bubble hand (both roles), a big river call","Winning the tournament, the final table, the trophy","Your best three hands from the sims","A bad beat, a cooler, and a bluff gone wrong"],a:0,e:"Rehearse the <b>process moments</b>, not the outcome: tagging the first orbit (Day 61), the covered/covering bubble decision (Day 64), and a Mateos-style river call on the range (Day 11) — so they arrive as reruns."},
+{q:"If a study impulse in the final week feels like anxiety relief rather than sharpening:",o:["That's the signal to stop","Follow it — more study never hurts","Redirect it to your weakest area","Study for exactly thirty more minutes"],a:0,e:"Past this point extra study <b>buys almost no knowledge and costs freshness and calm</b>. A study urge that's really about soothing nerves is the cram instinct in disguise — recognize it and stop."},
+{q:"If you finish the day more wound up than you started:",o:["You overdid it — tomorrow, subtract more","You worked hard, which is good","You should add a session to burn off the energy","It doesn't matter as long as you studied"],a:0,e:"The checkpoint is calm, so <b>more wound-up means the day failed its purpose</b>. The taper's logic is to keep subtracting until the nervous system settles — an anxious player's A-game is harder to reach."},
+{q:"Visualizing a big river call means seeing yourself:",o:["Call on the range, not on the fear","Always make the hero call","Fold to avoid the tough spot","Win the pot every time"],a:0,e:"The Mateos model (Day 11): <b>call because the range says so</b>, whether or not this particular hand wins. You're rehearsing the correct process under pressure, not a fantasy of always being right."},
+{q:"Why is the greatest-hits flashcard pass 'maintenance, not a cram'?",o:["It touches what you know cold to keep it warm, without loading new material","It covers everything, quickly","It's the last chance to learn something new","It replaces the frozen playbook"],a:0,e:"A light touch keeps the core <b>warm and accessible</b> without the freshness cost of real study. The taper protects the plan you've committed to; cramming new material now would only trade calm for noise."}]});
+
+/* ============ DAY 96 ============ */
+L.push({d:96,t:"Final sim: bubble & FT scenarios",f:"m",obj:"The last targeted reps on the spots that decide the tournament: bubble scenarios in both roles and final-table role scenarios, then close the training log. The bubble scripts should fire automatically, with no deliberation.",
+body:`
+<h3>Drill the spots that decide everything</h3>
+<p>The final sim isn't a full day — it's <b>targeted reps on the highest-leverage spots</b>: the bubble and the final table, where the tournament is actually won or lost. You've played thousands of ordinary hands in prep; these are the few dozen decisions that carry the most equity per choice, and the last chance to make them automatic before the arena.</p>
+<h3>The two scenario blocks</h3>
+${T2([
+["Bubble, both roles","Covered 75/25 (cut marginals, refuse traps) and covering 35/65 (relentless steals, blocker 3-bets) — rep both until the switch is instant (Days 64, 44, 43)"],
+["Final-table roles","Leader pressures, middle avoids collisions, short waits for profitable jams — rep all three seats (Days 52, 53)"]],
+["Block","What you rep"])}
+<p><b>Notation:</b> the ratio is <b>survival&#8202;/&#8202;aggression</b> — 75/25 is survival-led (covered), 35/65 is aggression-led (covering warlord).</p>
+<h3>The checkpoint: the scripts fire automatically</h3>
+<p>The bar is <b>no deliberation</b>. On the real bubble, hand-for-hand and under maximum pressure, you won't have the bandwidth to reason out covered-versus-covering from scratch — the response has to be a reflex. Today's reps groove it so that when the moment comes, seeing your stack relative to the table instantly selects the mode, and the mode instantly selects the play. If you're still deliberating in the sim, you're not done; rep until it's automatic.</p>
+<h3>Close the training log</h3>
+<p>After the reps, <b>close the training log</b> — a small but real ritual. The building is finished; from here it's taper and rest. Closing the log is the mental counterpart to binding the playbook (Day 92): a deliberate line drawn under the work, so the remaining days can be about arriving fresh rather than doing more.</p>
+${NOTE("the bubble is the single highest-leverage hour of the Main, and the spot most players have never actually drilled — they improvise it live, under the most pressure, for the most equity. Repping covered and covering until the switch is a reflex is possibly the highest-value preparation in the whole hundred days. Don't shortchange it because it's the last sim.")}`,
+quiz:[
+{q:"Why does the final sim target only bubble and final-table spots?",o:["They're the highest-leverage decisions — where the tournament is won or lost","They're the most fun to practice","They're the spots you're weakest at","Full-day sims are no longer allowed this late"],a:0,e:"A few dozen decisions carry the most <b>equity per choice</b> in the whole event. With prep nearly done, the last reps go to the spots that decide everything, not more ordinary hands."},
+{q:"The checkpoint for the bubble reps:",o:["The scripts fire automatically, with no deliberation","You win the simulated bubble","You can explain the theory clearly","You survive to the money every time"],a:0,e:"<b>No deliberation</b>: hand-for-hand under maximum pressure, you won't have bandwidth to reason covered-vs-covering from scratch. The reps groove it so your stack-vs-table read instantly selects the mode and the play."},
+{q:"On the bubble you rep:",o:["Both roles — covered 75/25 and covering 35/65 — until the switch is instant","Only the covering role, since aggression wins bubbles","Only the covered role, to practice survival","A single balanced strategy for both"],a:0,e:"Your bubble factor differs by opponent (Day 42), so you must <b>toggle both modes fluidly</b> (Days 43, 44, 64) — survival-led when covered, aggression-led when covering — with the switch grooved to a reflex."},
+{q:"In '35/65', the numbers mean:",o:["Aggression-led — 35% survival, 65% pressure (the covering warlord)","65% survival, 35% aggression","You play 35% of hands","A 35-to-65 chip ratio"],a:0,e:"The ratio is <b>survival&#8202;/&#8202;aggression</b>: 35/65 is aggression-led, the covering warlord relentlessly pressuring the fearful. 75/25 is its survival-led mirror when you're the one covered."},
+{q:"Closing the training log is:",o:["A deliberate line under the work — the mental counterpart to binding the playbook","An administrative formality with no real purpose","A record you'll keep adding to during the event","The end of your poker career preparation forever"],a:0,e:"The building is finished; closing the log (like binding the playbook, Day 92) <b>draws a line under the work</b> so the remaining days are about arriving fresh, not doing more."},
+{q:"The final-table block reps:",o:["All three seats — leader, middle, and short","Only the chip-leader role","Only the short-stack push-fold game","Heads-up play for the win"],a:0,e:"Role-based play means rehearsing <b>all three seats</b> (Days 52, 53): the leader pressures, the middle avoids collisions, the short waits for profitable jams — because you don't get to choose which role you'll hold."},
+{q:"The bubble is called out as possibly the highest-value prep because:",o:["It's the highest-leverage hour and the spot most players never actually drill","It happens the most often","It's the easiest to get right","It's the only spot ICM applies"],a:0,e:"Most players <b>improvise the bubble live</b> — under the most pressure, for the most equity, never having drilled it. Grooving covered/covering to a reflex is among the highest-value preparation in the hundred days."},
+{q:"If you're still deliberating over covered-vs-covering during the sim, you:",o:["Aren't done — rep until the mode selection is a reflex","Are ready; understanding is enough","Should move on to other spots","Have overtrained and should stop"],a:0,e:"Deliberation in the calm sim becomes paralysis under real bubble pressure. <b>The response has to be automatic</b> — seeing your stack relative to the table selects the mode without conscious reasoning, so rep until it does."}]});
+
+/* ============ DAY 97 ============ */
+L.push({d:97,t:"Taper I",f:"z",obj:"A ninety-minute cap: flashcards, a re-read of the bubble notes, a routine review — and then stop. The checkpoint is to finish feeling fresher, not more loaded. The urge to cram now is anxiety wearing a study plan.",
+body:`
+<h3>The taper proper</h3>
+<p>Ninety minutes, total, and then you stop. Thirty on greatest-hits flashcards, thirty re-reading the bubble notes (the highest-leverage material, Day 96), thirty reviewing the routine (Day 93) — and <b>no marathon study</b>. This is not a day with a light study session bolted onto normal life; the cap <em>is</em> the discipline. The hard part isn't doing the ninety minutes, it's not doing the fourth hour.</p>
+<h3>Finish fresher, not more loaded</h3>
+<p>The checkpoint, verbatim from the war plan: <b>finish feeling fresher, not more loaded.</b> Everything is already learned; the playbook is frozen and bound. Additional study at this point cannot meaningfully raise your knowledge — the curve has flattened — but it can absolutely drain the freshness and calm that are now your scarcest resources. The taper trades a knowledge gain you can no longer get for a freshness gain you badly need.</p>
+<h3>Why the cram feels like diligence</h3>
+<p>The urge to study more in the final days is powerful and it feels responsible — but it's <b>anxiety wearing a study plan.</b> The nervous mind reaches for 'one more review' as a way to feel in control, not because the review adds anything. Recognizing the feeling for what it is — nerves, not need — is what lets you honor the cap. Trust the hundred days; the work is done, and doing it again won't make it more done.</p>
+${NOTE("every instinct in a serious player screams to prepare harder as the event nears — and that instinct, which served you for ninety-odd days, now actively hurts you. The taper is counterintuitive precisely because it asks you to do less exactly when you most want to do more. The players who arrive fresh beat the equally-skilled players who cram themselves exhausted.")}`,
+quiz:[
+{q:"The Day 97 checkpoint, verbatim:",o:["Finish feeling fresher, not more loaded","Master one final concept","Complete ninety minutes of intense study","Score higher than your last attempt"],a:0,e:"<b>Fresher, not more loaded.</b> The knowledge curve has flattened — more study can't raise it meaningfully — but it can drain the freshness and calm that are now your scarcest resources."},
+{q:"The ninety-minute cap is:",o:["The discipline itself — the hard part is not doing the fourth hour","A minimum you can exceed if motivated","A rough guideline, not a real limit","Just enough to cover everything once"],a:0,e:"The cap <b>is</b> the point. Doing ninety minutes is easy; <b>stopping</b> is the discipline — the taper asks you to resist the marathon study your nerves are pushing you toward."},
+{q:"The urge to cram in the final days is:",o:["Anxiety wearing a study plan","Responsible diligence that pays off","A sign you're underprepared","Necessary to stay sharp"],a:0,e:"The nervous mind reaches for 'one more review' <b>to feel in control, not because it adds anything</b>. Recognizing it as nerves rather than need is what lets you honor the cap."},
+{q:"Why can't extra study meaningfully help at this point?",o:["The knowledge curve has flattened — the learning is already done","Because studying is always useless","You've forgotten how to study effectively","There's no material left to cover"],a:0,e:"After a hundred days, additional review <b>can't raise your knowledge much</b> — but it can drain freshness and calm. The taper trades a gain you can no longer get for one you badly need."},
+{q:"The taper is counterintuitive because:",o:["It asks you to do less exactly when you most want to do more","It requires more discipline than any other phase","It contradicts everything about poker strategy","Resting is harder than studying"],a:0,e:"The prepare-harder instinct served you for ninety days and <b>now actively hurts you</b>. Arriving fresh beats arriving crammed-and-exhausted — but only if you can override the urge to keep grinding."},
+{q:"The ninety minutes is spent on:",o:["Flashcards, bubble notes, and a routine review","New material you haven't mastered","A full-length practice session","Your single weakest topic in depth"],a:0,e:"Greatest-hits maintenance: <b>flashcards, the highest-leverage bubble notes (Day 96), and the routine (Day 93)</b> — warming what you know, not loading anything new."},
+{q:"'The players who arrive fresh beat the equally-skilled players who cram exhausted' — the lesson is:",o:["Freshness is now a competitive edge worth protecting","Skill doesn't matter as much as rest","You should have studied less all along","Cramming works if you're skilled enough"],a:0,e:"Among equally-skilled players, <b>freshness is the tiebreaker</b> — and it's fully in your control. The taper protects the edge that the exhausted crammer throws away the week before the event."},
+{q:"Re-reading the bubble notes specifically (not everything) reflects that:",o:["The bubble is the highest-leverage material, worth the limited review time","Bubble notes are the shortest to read","You're weakest on the bubble","Everything else is already forgotten"],a:0,e:"With a strict time cap, the review goes to the <b>highest-leverage spot</b> (Day 96) — the bubble decides the tournament, so it earns the scarce review minutes over lower-value material."}]});
+
+/* ============ DAY 98 ============ */
+L.push({d:98,t:"Taper II: the read-aloud",f:"z",obj:"Read the entire playbook aloud, once, and rehearse the first-day mental script — then an early night. Reading aloud finds the passages you don't actually believe; those are the ones to fix or cut tonight.",
+body:`
+<h3>Read the whole playbook aloud, once</h3>
+<p>Tonight's ritual is to read the <b>entire frozen playbook aloud</b> — start to finish, one time. Not to study it and not to edit it, but to internalize it as a whole and, crucially, to hear it. Reading silently lets your eyes skate over familiar words; reading aloud forces every line through your own voice, and that changes what you notice.</p>
+<h3>What the read-aloud reveals</h3>
+<p>The read-aloud is a <b>final honesty check</b>: reading aloud finds the passages you don't actually believe. A line you'd skim past silently will make you hesitate when you have to say it — that hesitation is the tell that some part of you doesn't trust the rule. Those are the only lines worth touching tonight: not to expand the playbook, but to <b>fix or cut</b> the handful you can't say with conviction. A playbook you fully believe is one you'll execute under pressure; one with lines you secretly doubt has cracks that open on Day 4.</p>
+<h3>Rehearse the first-day mental script</h3>
+<p>Then rehearse the <b>Day-1 mental script</b> (Day 93): the wake-up, the warm-up, the first orbit, the calm opening frame. Run it in your mind one more time so tomorrow's early night leads into a Day-1 morning that feels rehearsed, not novel. You've built the groove; tonight you touch it once more and then let it rest.</p>
+<h3>Then, an early night</h3>
+<p>The day ends deliberately early. The playbook is internalized, the mental script is primed, and the single most important input to the next stretch is sleep (Day 69). <b>Lights out early</b> — the read-aloud is the last real work of the hundred days, and everything after it is rest.</p>
+${NOTE("reading the playbook silently is comfortable and reveals nothing — your eyes agree with every familiar line. Reading it aloud is where the doubt surfaces, in the small hesitations before the sentences you don't quite trust. This is the last window to fix those; after tonight, the plan is what it is and the only remaining job is to rest and execute it.")}`,
+quiz:[
+{q:"The purpose of reading the playbook aloud:",o:["To find the passages you don't actually believe","To memorize it word for word","To time how long a full review takes","To practice explaining it to others"],a:0,e:"It's a <b>final honesty check</b>: reading aloud forces every line through your voice, and the ones you hesitate on are the ones some part of you doesn't trust. Silent reading hides exactly that."},
+{q:"A line that makes you hesitate as you read it aloud is:",o:["A rule some part of you doesn't trust — fix or cut it tonight","Fine; hesitation is just unfamiliarity","A sign to expand it into more detail","Proof the playbook is too long"],a:0,e:"The hesitation is the <b>tell</b>. A playbook you fully believe you'll execute under pressure; one with secretly-doubted lines has cracks that open on Day 4. Tonight is the last window to fix or cut those few."},
+{q:"Reading silently reveals less than reading aloud because:",o:["Your eyes skate over familiar words and agree with everything","Silent reading is faster","You can't hear the strategy silently","Aloud reading covers more material"],a:0,e:"Silent reading is comfortable and <b>reveals nothing</b> — the eyes nod along to familiar lines. The voice is what surfaces the doubt, in the small hesitations before sentences you don't quite believe."},
+{q:"Editing tonight should be limited to:",o:["The handful of lines you can't say with conviction","Any section that could be more thorough","Nothing — the playbook was frozen on Day 92","A full polish of the whole document"],a:0,e:"Not expansion — <b>only the lines the read-aloud exposed as doubted</b>. The playbook was frozen (Day 92); this is a narrow honesty correction, not a reopening of the whole document."},
+{q:"After the read-aloud and mental-script rehearsal, the day ends with:",o:["An early night — sleep is the most important next input","One more full practice session","A late review to reinforce everything","A detailed plan for tomorrow's study"],a:0,e:"<b>Lights out early</b> (Day 69). The read-aloud is the last real work of the hundred days; the playbook is internalized, the script is primed, and everything after is rest."},
+{q:"The first-day mental script you rehearse covers:",o:["The wake-up, warm-up, first orbit, and calm opening frame","Every range in the playbook","Your plan for the final table","The hands you expect to be dealt"],a:0,e:"The Day-1 process groove (Day 93): <b>wake, warm-up, tag the first orbit, settle into the calm frame</b> — run once more so tomorrow's morning feels rehearsed, not novel."},
+{q:"Why is the read-aloud the LAST real work of the hundred days?",o:["After tonight the plan is fixed and the only job left is rest and execution","There's nothing more that could be studied","You run out of time after it","The playbook forbids further reading"],a:0,e:"It's the final honesty pass on a frozen plan. After it, <b>the plan is what it is</b> — Days 99–100 are rest and the eve, not preparation. The building is complete; only arriving fresh remains."},
+{q:"A playbook you fully believe matters because:",o:["You'll execute it under pressure; doubted lines crack on Day 4","Belief makes the strategy correct","It means you wrote it well","Confidence intimidates opponents"],a:0,e:"Under Day-4 pressure you fall back on what you <b>trust</b>, not what you wrote. A rule you secretly doubt won't fire when it's hardest — which is why the read-aloud hunts those lines down while there's still time to fix them."}]});
+
+/* ============ DAY 99 ============ */
+L.push({d:99,t:"Rest day",f:"z",obj:"Walk, breathe, pack the snack bag. No poker content today. Sleep is the only assignment. Total rest is not laziness — it's the deliberate consolidation that lets you arrive at the arena sharp instead of frayed.",
+body:`
+<h3>The assignment is nothing</h3>
+<p>Today you do <b>no poker</b>. No flashcards, no notes, no sim, no reading the playbook 'just once more.' The list of tasks is short and none of them are poker: walk, breathe, pack the snack bag (Day 70), and sleep. This is the hardest day of the taper for a prepared, motivated player, because doing nothing feels like negligence when the biggest event of your life is two days away. It isn't negligence — it's the plan.</p>
+<h3>Why total rest, deliberately</h3>
+<p>Rest is not the absence of work; it's <b>the work of consolidation</b>. The mind integrates and settles what it has learned during downtime, and a nervous system given a full day of low stimulation arrives regulated instead of frayed. Cramming the day before a major performance is a known way to degrade it — you trade consolidation and calm for a knowledge gain that no longer exists. The rest day is an active investment in Day 1's sharpness, disguised as doing nothing.</p>
+<h3>The only real assignment</h3>
+<p><b>Sleep is the assignment</b> — 7 to 9 hours, protected (Day 69). Everything else today serves it: the easy walk regulates you, the light day keeps stimulation low, the early quiet protects the window. The checkpoint is exactly that and nothing more: a full night's sleep. If you get it, the day succeeded completely.</p>
+<h3>Pack the snack bag</h3>
+<p>The one small practical task — <b>pack the snack bag</b> from your template (Day 70) — is included precisely because it's calm, concrete, and finite. It gives the restless prepared mind something legitimate and useful to do with its hands that isn't poker study, and it closes one more Day-1 logistic. Then set it by the door and let the rest of the day be rest.</p>
+${NOTE("the crammer's instinct treats a rest day as wasted time and sneaks in 'a little review' — and arrives on Day 1 subtly frayed, a step slower exactly when it matters most. Doing nothing, deliberately, is the discipline here. The rested player finds his A-game on Day 1; the one who couldn't stop studying is chasing it from behind.")}`,
+quiz:[
+{q:"The only real assignment on Day 99:",o:["Sleep — a full 7–9 hours, protected","A final light review of the playbook","A short visualization session","Packing and a brief flashcard pass"],a:0,e:"<b>Sleep is the assignment</b> (Day 69). The walk, the light day, and the early quiet all serve it. The checkpoint is a full night's sleep and nothing more — get it, and the day succeeded completely."},
+{q:"Total rest the day before is valuable because:",o:["Rest is the work of consolidation — the mind settles and integrates during downtime","Rest is a reward for the hard work you've done","There's genuinely nothing left you could do","Resting one day makes up for poor sleep earlier"],a:0,e:"Rest isn't absence of work — it's <b>consolidation</b>. A low-stimulation day arrives regulated, not frayed; cramming before a major performance trades that calm for a knowledge gain that no longer exists."},
+{q:"How much poker study happens on Day 99?",o:["None at all","A light greatest-hits pass","Just the bubble notes","Whatever keeps you calm"],a:0,e:"<b>Zero poker content</b> — no flashcards, notes, sim, or 'one more' playbook read. The taper has fully subtracted; today the mind rests and consolidates, and the only tasks are non-poker."},
+{q:"Why is the rest day the hardest day of the taper for a motivated player?",o:["Doing nothing feels like negligence with the big event so close","The withdrawal from caffeine is worst today","There's too much to pack and prepare","Sleeping in an unfamiliar place is difficult"],a:0,e:"The prepared, driven mind reads 'do nothing' as negligence two days out — but <b>it's the plan, not neglect</b>. Overriding the urge to sneak in study is the discipline the day demands."},
+{q:"Packing the snack bag is included today because:",o:["It's a calm, concrete, finite task for the restless mind that isn't study","It's the most important preparation left","There won't be time later","It counts as light exercise"],a:0,e:"It gives the restless prepared mind <b>something legitimate to do that isn't poker</b>, and closes one more logistic (Day 70). Set it by the door, then let the rest of the day be rest."},
+{q:"The crammer who sneaks in 'a little review' the day before:",o:["Arrives on Day 1 subtly frayed, a step slower when it matters most","Gains a real edge from the extra work","Feels more confident and plays better","Does no harm as long as it's brief"],a:0,e:"The extra study buys no knowledge and <b>costs the freshness that decides Day 1</b>. The rested player finds his A-game; the one who couldn't stop is chasing it from behind all day."},
+{q:"The easy walk on the rest day serves to:",o:["Regulate the nervous system and keep stimulation low","Burn calories before a sedentary event","Build last-minute physical endurance","Review hands while moving"],a:0,e:"Everything today serves sleep and calm: the walk <b>regulates and settles</b> you, keeping the day low-stimulation so the nervous system arrives at Day 1 regulated, not wound up."},
+{q:"'Doing nothing, deliberately' is framed as:",o:["The discipline of the day — an active investment in Day 1's sharpness","A reward you've earned","A failure of preparation","A neutral, optional choice"],a:0,e:"Total rest is an <b>active investment disguised as idleness</b> — it protects consolidation and calm. The discipline is resisting the urge to work, which for a motivated player is genuinely hard."}]});
+
+/* ============ DAY 100 ============ */
+L.push({d:100,t:"Arena Eve",f:"z",obj:"Thirty minutes maximum: the structure summary and the Day-1 script, once. Confirm the wake time — 3.5 to 4.5 hours before cards fly. The hundred days are complete. Walk in calm, hunt patiently, strike without fear.",
+body:`
+<h3>Thirty minutes, and no more</h3>
+<p>The eve of the arena. The single rule for tonight is a hard cap: <b>thirty minutes, maximum.</b> Read the structure summary once (60k stack, 120-minute levels, the bubble on Day 4), run the Day-1 script once (Day 93), and stop. Not to learn anything — everything is already learned — but to touch the plan one final time and set it down. More than thirty minutes tonight isn't preparation; it's anxiety, and it costs the sleep that is the only thing that still matters.</p>
+<h3>Confirm the wake time</h3>
+<p>The one concrete task: <b>confirm your wake time — 3.5 to 4.5 hours before cards fly</b> (Day 69). Set the alarm, know the sequence it kicks off (hydrate, move, warm up, review, arrive early), and trust that the routine you've rehearsed at the real hour (Day 93) will run itself. With that set, there is nothing left to decide.</p>
+<h3>The hundred days are complete</h3>
+<p>You began on Day 1 with a leak list and a structure sheet. You forged the baseline, learned range warcraft, crossed the wasteland of ICM, raided the live field, and tapered to stillness. The playbook is bound, the leaks are patched, the routine is a groove, the bubble scripts fire on their own. <b>The work is done.</b> Whatever happens across the table tomorrow, the preparation is complete in a way it has never been before — and that completeness is the calm you walk in with.</p>
+<h3>The charge</h3>
+<p>You are the gladiator, fearless in leverage. You are the road warrior, relentless and disciplined. You are the monk, calm under any pressure the event brings. <b>Walk in calm, hunt patiently, strike without fear.</b> Then sleep — the hundred days end here, and the arena begins in the morning.</p>
+${NOTE("the eve is where a hundred days of discipline can be undone by one anxious all-nighter of 'final' review that wrecks the sleep window and frays the mind. Thirty minutes, the wake time confirmed, then lights out. You have done the work. Trust it, rest, and let tomorrow be the day you get to use it.")}`,
+quiz:[
+{q:"The hard cap on study the night before Day 1:",o:["Thirty minutes, maximum","Two hours of focused review","As long as you feel you need","One last full run through the playbook"],a:0,e:"<b>Thirty minutes, maximum</b> — structure summary once, Day-1 script once, then stop. More than that isn't preparation; it's anxiety costing the sleep that's now the only thing that matters."},
+{q:"The one concrete task on Arena Eve:",o:["Confirm the wake time — 3.5 to 4.5 hours before cards fly","Finalize your opening-hand strategy","Re-read the entire war map","Decide which hands to play in Level 1"],a:0,e:"<b>Confirm the wake time</b> (Day 69) and set the alarm that kicks off the rehearsed sequence. The routine runs itself from there — with it set, there's nothing left to decide."},
+{q:"Why cap the eve review at thirty minutes?",o:["Everything's already learned; more is anxiety that costs sleep","Thirty minutes is enough to relearn the key spots","The venue closes study areas at night","Any longer and you'd forget it by morning"],a:0,e:"The learning is done; the review is just <b>touching the plan once and setting it down</b>. Beyond thirty minutes it becomes anxiety, and the sleep window is the only thing that still moves the needle tomorrow."},
+{q:"The state you're meant to walk into the arena with:",o:["Calm, from the completeness of the preparation","Fired-up and aggressive","Anxious but determined","Uncertain but hopeful"],a:0,e:"<b>Calm</b> — and it comes from completeness: playbook bound, leaks patched, routine grooved, bubble scripts automatic. The work is done, and that done-ness is the composure you carry to the table."},
+{q:"The closing charge is:",o:["Walk in calm, hunt patiently, strike without fear","Play tight and survive to the money","Attack relentlessly from the first hand","Trust your instincts over your preparation"],a:0,e:"<b>Walk in calm, hunt patiently, strike without fear</b> — the synthesis of the three thirds: the monk's calm, the road warrior's patient discipline, and the gladiator's fearless strike, in that order."},
+{q:"The greatest risk on Arena Eve is:",o:["An anxious all-nighter of 'final' review that wrecks the sleep window","Not reviewing enough to remember the strategy","Forgetting to set an alarm","Over-packing the snack bag"],a:0,e:"A hundred days of discipline can be undone by <b>one anxious night of cramming</b> that frays the mind and destroys sleep. Thirty minutes, wake time set, lights out — trust the work and rest."},
+{q:"The structure summary you read once covers:",o:["60k stack, 120-minute levels, and the Day-4 bubble","Every payout in the prize pool","Your opponents at the Day-1 table","The full survival/aggression curve in detail"],a:0,e:"A single calm read of the <b>terrain</b> (Days 1, 58): the deep starting stack, the slow levels, the bubble on Day 4 — orienting yourself once, not studying anything new."},
+{q:"'You have done the work. Trust it, rest' captures the eve's whole lesson:",o:["The preparation is complete; the only remaining job is to arrive fresh","There's always more you could have done","Rest matters more than the hundred days of work","Trusting yourself replaces needing a plan"],a:0,e:"After a hundred days the plan is built and internalized — <b>the last act is to rest and let tomorrow be the day you use it</b>. Not more work, not doubt: completeness, trust, and sleep."}]});
+
+/* ---------- ENGINE ---------- */
+const store=JSON.parse(localStorage.getItem("wsop100.study5")||"{}");
+const save=()=>localStorage.setItem("wsop100.study5",JSON.stringify(store));
+const FCHIP={g:['g','⚔ Gladiator'],m:['m','🏜 Mad Max'],z:['z','◯ Zen Monk']};
+let cur=81, qState=null;
+
+const nav=document.getElementById("daynav"), content=document.getElementById("content");
+
+function badge(d){
+  const s=store["d"+d];
+  if(!s||s.best==null)return"";
+  return s.best>=90?"★":s.best>=80?"✓":"";
+}
+function renderNav(){
+  nav.innerHTML="";
+  L.forEach(x=>{
+    const b=document.createElement("button");
+    b.type="button";
+    const s=store["d"+x.d];
+    b.className="dbtn"+(x.d===cur?" on":"")+(s&&s.best>=90?" star":s&&s.best>=80?" pass":"");
+    const tag=x.pool?(x.pool.tag||(x.pool.exam?"trial":"gauntlet")):"drill";
+    b.innerHTML=`${x.d}<small>${tag}</small><span class="badge">${badge(x.d)}</span>`;
+    b.title=`Day ${x.d} — ${x.t}`;
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    nav.appendChild(b);
+  });
+  const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
+  document.getElementById("stPassed").textContent=scores.filter(v=>v>=80).length;
+  document.getElementById("stMastered").textContent=scores.filter(v=>v>=90).length;
+  document.getElementById("stAvg").textContent=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)+"%":"—";
+}
+function shufQ(q){
+  const idx=q.o.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]];}
+  return {...q,o:idx.map(k=>q.o[k]),a:idx.indexOf(q.a)};
+}
+function getQuiz(day){
+  const x=L.find(l=>l.d===day);
+  if(x.quiz)return x.quiz.map(shufQ);
+  let pool=[];
+  x.pool.days.forEach(sd=>{const s=L.find(l=>l.d===sd);if(s&&s.quiz)pool=pool.concat(s.quiz.map(q=>({...q,src:sd})));});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  return pool.slice(0,x.pool.n).map(shufQ);
+}
+/* legend shown under options on any question that uses a survival/aggression ratio */
+const RATIO_RE=/\b\d\d\/\d\d\b/;
+function ratioLegend(q){
+  const hay=q.q+" "+q.o.join(" ");
+  if(!RATIO_RE.test(hay))return"";
+  return `<div class="qlegend"><b>Ratio key</b> — written survival&#8202;/&#8202;aggression: the share of intent spent preserving your stack vs applying pressure. 60/40 survival-led · 50/50 balanced full pressure · 35/65 aggression-led (warlord).</div>`;
+}
+function renderAll(){
+  const x=L.find(l=>l.d===cur);
+  const [fc,fl]=FCHIP[x.f];
+  content.innerHTML=`
+    <div class="dayhead">
+      <span class="dnum">D${String(x.d).padStart(3,"0")}</span>
+      <h2>${x.t}</h2>
+      <span class="focus-chip ${fc}">${fl}</span>
+    </div>
+    <p class="obj">${x.obj}</p>
+    <div class="lesson">${x.body}</div>
+    <div class="quiz" id="quiz"></div>`;
+  renderQuizStart();
+  renderNav();
+}
+function renderQuizStart(){
+  const x=L.find(l=>l.d===cur);
+  const s=store["d"+cur];
+  const label=x.pool?(x.pool.label||(x.pool.exam?"The Phase Exam":"The Gauntlet")):"The Drill";
+  const n=x.pool?x.pool.n:x.quiz.length;
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead">
+      <h3>${label} — ${n} questions</h3>
+      <span class="bestline">${s&&s.best!=null?`best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}`:"not yet attempted"}</span>
+    </div>
+    <p style="color:var(--dim);font-size:15px;margin:8px 0 16px">Pass at 80%+ · mastery at 90%+${x.pool?" · questions re-sample every attempt":""}. Immediate judgment after every answer.</p>
+    <div class="qnav" style="justify-content:flex-start"><button class="btn" id="qgo" type="button">${s&&s.best!=null?"Retake":"Begin"}</button></div>`;
+  document.getElementById("qgo").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+}
+function showQ(){
+  const q=qState.qs[qState.i];
+  document.getElementById("quiz").innerHTML=`
+    <div class="qmeta">
+      <span class="mono">QUESTION ${qState.i+1} / ${qState.qs.length}</span>
+      <span class="mono">${qState.right} correct${q.src?` · from Day ${q.src}`:""}</span>
+    </div>
+    <p class="qtext">${q.q}</p>
+    <div class="qopts">${q.o.map((o,i)=>`<button class="qopt" type="button" data-i="${i}">${o}</button>`).join("")}</div>
+    <div id="qfb"></div>
+    <div class="qnav" id="qnav"></div>`;
+  document.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  if(qState.done)return;qState.done=true;
+  const q=qState.qs[qState.i],right=i===q.a;
+  if(right)qState.right++;
+  document.querySelectorAll(".qopt").forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.a)b.classList.add("correct");
+    else if(bi===i)b.classList.add("wrong");
+  });
+  document.getElementById("qfb").innerHTML=`<div class="qexpl"><b>${right?"Struck true.":"A wound — learn from it."}</b> ${q.e}</div>`+ratioLegend(q);
+  document.getElementById("qnav").innerHTML=`<button class="btn" type="button" id="qnext">${qState.i<qState.qs.length-1?"Next":"See result"}</button>`;
+  const nb=document.getElementById("qnext");
+  nb.onclick=()=>{qState.i++;qState.done=false;qState.i<qState.qs.length?showQ():finish();};
+  nb.focus();
+}
+function finish(){
+  const pct=Math.round(qState.right/qState.qs.length*100);
+  const s=store["d"+cur]||{best:null,att:0};
+  s.att++;if(s.best==null||pct>s.best)s.best=pct;
+  store["d"+cur]=s;save();
+  const pass=pct>=80,star=pct>=90;
+  const x=L.find(l=>l.d===cur);
+  document.getElementById("quiz").innerHTML=`
+    <div class="qhead"><h3>Result</h3><span class="bestline">best ${s.best}% · ${s.att} attempt${s.att>1?"s":""}</span></div>
+    <div class="result-title ${pass?"pass":""}">${star?"Mastered":pass?"Passed":"Not yet"}</div>
+    <p class="scoreline"><span class="mono">${qState.right} / ${qState.qs.length} — ${pct}%</span> ${star?"— the checkpoint is conquered.":pass?"— solid. Retake for mastery when fresh.":"— re-read the lesson, then come back. The misses named your homework."}</p>
+    <div class="bar ${pass?"pass":""}"><i style="width:${pct}%"></i></div>
+    <div class="qnav" style="justify-content:flex-start;gap:10px">
+      <button class="btn" type="button" id="qretry">${x.pool?"New sample":"Retake"}</button>
+      ${cur<100?`<button class="btn ghost" type="button" id="qadv">Next day →</button>`:""}
+    </div>`;
+  document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
+  const adv=document.getElementById("qadv");
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  renderNav();
+}
+renderAll();
+</script>
