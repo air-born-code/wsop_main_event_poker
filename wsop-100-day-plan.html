@@ -285,6 +285,10 @@ footer .creed{
 nav{position:relative}
 nav .wrap{padding-right:150px}
 .hallsdd{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+a.dnum{text-decoration:none}
+a.dnum:hover{color:var(--rust);text-decoration:underline}
+.dopen{display:inline-block;margin-top:10px;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13.5px;color:var(--rust)}
+.dopen:hover{text-decoration:underline}
 </style>
 
 <nav>
@@ -664,14 +668,15 @@ function renderPhase(){
     det.innerHTML=`
       <summary>
         <input type="checkbox" class="dchk" ${done.has(num)?"checked":""} aria-label="Mark day ${num} complete">
-        <span class="dnum">D${String(num).padStart(3,"0")}</span>
+        <a class="dnum" href="wsop-phase${curPhase+1}-study.html#d${num}" title="Open Day ${num} in the study hall">D${String(num).padStart(3,"0")}</a>
         <span class="dtitle">${d.t}</span>
-        <span class="dtime">${d.h}</span>
       </summary>
       <div class="dbody">
         <ul>${d.i.map(x=>`<li>${x}</li>`).join("")}</ul>
-        <div class="chkpt"><b>Checkpoint</b> — ${d.c}</div>${d.n?`<div class="coach"><b>&#9873; Holz</b> — ${d.n}</div>`:""}
+        <div class="chkpt"><b>Checkpoint</b> — ${d.c}</div>
+        <a class="dopen" href="wsop-phase${curPhase+1}-study.html#d${num}">Open D${String(num).padStart(3,"0")} in the study hall — lesson &amp; drill →</a>${d.n?`<div class="coach"><b>&#9873; Holz</b> — ${d.n}</div>`:""}
       </div>`;
+    det.querySelector("a.dnum").addEventListener("click",e=>e.stopPropagation());
     const chk=det.querySelector(".dchk");
     chk.addEventListener("click",e=>e.stopPropagation());
     chk.addEventListener("change",()=>{
