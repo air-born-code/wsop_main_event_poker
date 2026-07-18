@@ -228,6 +228,34 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);f
   .hl-top{padding:9px 12px;gap:8px}
   .hl-gymhead .hl-meta{width:100%;order:9}
 }
+
+/* committee: table scroll affordance */
+.tblwrap{background:
+  linear-gradient(90deg,var(--bg) 30%,transparent) 0 0/44px 100% no-repeat local,
+  linear-gradient(270deg,var(--bg) 30%,transparent) 100% 0/44px 100% no-repeat local,
+  radial-gradient(farthest-side at 0 50%,color-mix(in srgb,var(--ink) 30%,transparent),transparent) 0 0/22px 100% no-repeat scroll,
+  radial-gradient(farthest-side at 100% 50%,color-mix(in srgb,var(--ink) 30%,transparent),transparent) 100% 0/22px 100% no-repeat scroll}
+
+/* committee: touch + readability */
+.hl-recnote{padding:8px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--dim);background:var(--bg2)}
+.hl-rec{-webkit-tap-highlight-color:transparent}
+.hl-log{background:
+  linear-gradient(var(--bg2) 30%,transparent) 0 0/100% 30px no-repeat local,
+  linear-gradient(transparent,var(--bg2) 70%) 0 100%/100% 30px no-repeat local,
+  radial-gradient(farthest-side at 50% 0,color-mix(in srgb,var(--ink) 25%,transparent),transparent) 0 0/100% 14px no-repeat scroll,
+  radial-gradient(farthest-side at 50% 100%,color-mix(in srgb,var(--ink) 25%,transparent),transparent) 0 100%/100% 14px no-repeat scroll}
+@media(max-width:720px){
+  .sitenav a{padding:11px 14px}
+}
+@media(max-width:640px){
+  .hl-plate b{font-size:12.5px}
+  .hl-plate small{font-size:12px}
+  .hl-bub{font-size:12px}
+  .hl-log{font-size:12px;max-height:170px}
+  .hl-opt{padding:11px 12px}
+  .hl-mid{top:48%}
+  .hl-board .hl-card{width:40px;height:56px}
+}
 </style>
 
 <nav class="sitenav" aria-label="The Hundred">
@@ -241,6 +269,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);f
     <a data-local="wsop-phase5-study.html" href="wsop-phase5-study.html">V &middot; Taper</a>
   </div>
 </nav>
+<script>document.querySelector(".sitenav .here")&&document.querySelector(".sitenav .here").scrollIntoView({inline:"center",block:"nearest"});</script>
 <script>
 if(location.protocol==="file:")document.querySelectorAll(".sitenav a[data-local]").forEach(function(a){a.href=a.dataset.local});
 </script>
@@ -1594,4 +1623,15 @@ window.addEventListener("hashchange",goHash);
 goHash();
 window.hlInit();
 })();
+</script>
+<script>
+document.addEventListener("click",function(e){
+  var r=e.target.closest(".hl-rec");if(!r)return;
+  var top=r.closest(".hl-top");if(!top)return;
+  var n=top.parentElement.querySelector(".hl-recnote");
+  if(n){n.remove();return;}
+  n=document.createElement("div");n.className="hl-recnote";
+  n.textContent=r.getAttribute("title")||"Cards partially reconstructed; actions and sizings verified.";
+  top.insertAdjacentElement("afterend",n);
+});
 </script>

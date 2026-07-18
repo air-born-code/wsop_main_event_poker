@@ -105,3 +105,24 @@
   .hl-top{padding:9px 12px;gap:8px}
   .hl-gymhead .hl-meta{width:100%;order:9}
 }
+
+/* committee: touch + readability */
+.hl-recnote{padding:8px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--dim);background:var(--bg2)}
+.hl-rec{-webkit-tap-highlight-color:transparent}
+.hl-log{background:
+  linear-gradient(var(--bg2) 30%,transparent) 0 0/100% 30px no-repeat local,
+  linear-gradient(transparent,var(--bg2) 70%) 0 100%/100% 30px no-repeat local,
+  radial-gradient(farthest-side at 50% 0,color-mix(in srgb,var(--ink) 25%,transparent),transparent) 0 0/100% 14px no-repeat scroll,
+  radial-gradient(farthest-side at 50% 100%,color-mix(in srgb,var(--ink) 25%,transparent),transparent) 0 100%/100% 14px no-repeat scroll}
+@media(max-width:720px){
+  .sitenav a{padding:11px 14px}
+}
+@media(max-width:640px){
+  .hl-plate b{font-size:12.5px}
+  .hl-plate small{font-size:12px}
+  .hl-bub{font-size:12px}
+  .hl-log{font-size:12px;max-height:170px}
+  .hl-opt{padding:11px 12px}
+  .hl-mid{top:48%}
+  .hl-board .hl-card{width:40px;height:56px}
+}

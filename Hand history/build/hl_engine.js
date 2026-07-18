@@ -283,3 +283,15 @@ window.addEventListener("hashchange",goHash);
 goHash();
 window.hlInit();
 })();
+
+/* tap-to-reveal reconstruction note */
+
+document.addEventListener("click",function(e){
+  var r=e.target.closest(".hl-rec");if(!r)return;
+  var top=r.closest(".hl-top");if(!top)return;
+  var n=top.parentElement.querySelector(".hl-recnote");
+  if(n){n.remove();return;}
+  n=document.createElement("div");n.className="hl-recnote";
+  n.textContent=r.getAttribute("title")||"Cards partially reconstructed; actions and sizings verified.";
+  top.insertAdjacentElement("afterend",n);
+});
