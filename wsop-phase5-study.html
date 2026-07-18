@@ -711,7 +711,7 @@ function renderNav(){
     const tag=x.pool?(x.pool.tag||(x.pool.exam?"trial":"gauntlet")):"drill";
     b.innerHTML=`${x.d}<small>${tag}</small><span class="badge">${badge(x.d)}</span>`;
     b.title=`Day ${x.d} — ${x.t}`;
-    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();document.getElementById("content").scrollIntoView()};
     nav.appendChild(b);
   });
   const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
@@ -814,7 +814,7 @@ function finish(){
     </div>`;
   document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
   const adv=document.getElementById("qadv");
-  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();document.getElementById("content").scrollIntoView()};
   renderNav();
 }
 renderAll();

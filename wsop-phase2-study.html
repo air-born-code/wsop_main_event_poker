@@ -951,7 +951,7 @@ function renderNav(){
     b.className="dbtn"+(x.d===cur?" on":"")+(s&&s.best>=90?" star":s&&s.best>=80?" pass":"");
     b.innerHTML=`${x.d}<small>${x.pool?(x.pool.exam?"exam":"gauntlet"):"drill"}</small><span class="badge">${badge(x.d)}</span>`;
     b.title=`Day ${x.d} — ${x.t}`;
-    b.onclick=()=>{cur=x.d;qState=null;renderAll();window.scrollTo({top:0})};
+    b.onclick=()=>{cur=x.d;qState=null;renderAll();document.getElementById("content").scrollIntoView()};
     nav.appendChild(b);
   });
   const scores=L.map(x=>store["d"+x.d]).filter(s=>s&&s.best!=null).map(s=>s.best);
@@ -1050,7 +1050,7 @@ function finish(){
     </div>`;
   document.getElementById("qretry").onclick=()=>{qState={qs:getQuiz(cur),i:0,right:0,done:false};showQ();};
   const adv=document.getElementById("qadv");
-  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();window.scrollTo({top:0})};
+  if(adv)adv.onclick=()=>{cur++;qState=null;renderAll();document.getElementById("content").scrollIntoView()};
   renderNav();
 }
 renderAll();
@@ -1758,7 +1758,7 @@ window.hlInit=function(){
 function goHash(){
   try{
     const m=location.hash.match(/^#d(\d+)$/);
-    if(m&&L.some(x=>x.d===+m[1])){cur=+m[1];qState=null;renderAll();window.scrollTo({top:0});}
+    if(m&&L.some(x=>x.d===+m[1])){cur=+m[1];qState=null;renderAll();document.getElementById("content").scrollIntoView();}
   }catch(e){}
 }
 window.addEventListener("hashchange",goHash);
