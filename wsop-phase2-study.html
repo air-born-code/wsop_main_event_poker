@@ -120,6 +120,95 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);f
 .sitenav a:hover{color:var(--ink);background:var(--bg2)}
 .sitenav a.here{background:var(--rust);color:#fff8ef}
 .sitenav .soon{color:var(--faint)}
+
+/* ---------- HAND LAB — animated live-hand replayer ---------- */
+.handlab{margin:26px 0 8px;border:1px solid var(--line);background:var(--bg2);box-shadow:var(--shadow)}
+.hl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.hl-tag{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--rust)}
+.hl-id{font-size:12px;color:var(--faint)}
+.hl-title{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:15px}
+.hl-meta{font-size:12.5px;color:var(--dim)}
+.hl-rec{font-size:11px;color:var(--bronze);border:1px solid color-mix(in srgb,var(--bronze) 45%,transparent);padding:1px 8px;border-radius:10px;cursor:help;white-space:nowrap}
+.hl-best{margin-left:auto;font-size:11px;color:var(--sage)}
+.hl-stage{padding:14px 14px 6px}
+.hl-felt{position:relative;height:330px;border-radius:46%/40%;border:2px solid color-mix(in srgb,var(--bronze) 40%,var(--line));
+  background:radial-gradient(ellipse at 50% 42%, color-mix(in srgb,var(--sage-deep) 40%,var(--bg)) 0%, color-mix(in srgb,var(--sage-deep) 18%,var(--bg)) 72%, var(--bg2) 100%)}
+@media(max-width:640px){.hl-felt{height:370px;border-radius:24px}}
+.hl-seat{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;width:170px;transition:opacity .5s,filter .5s}
+.hl-seat.hl-hero{left:50%;bottom:6px}
+.hl-seat.hl-folded{opacity:.35;filter:grayscale(.85)}
+.hl-plate{background:var(--card);border:1px solid var(--line);padding:3px 10px;text-align:center;border-radius:3px;line-height:1.25}
+.hl-plate b{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12.5px;display:block}
+.hl-plate small{font-size:10.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.hl-hero .hl-plate{border-color:color-mix(in srgb,var(--rust) 60%,var(--line))}
+.hl-hole{display:flex;gap:4px;min-height:54px}
+.hl-bub{min-height:22px;font-size:11.5px;line-height:1.2;background:color-mix(in srgb,var(--bg) 72%,transparent);border-radius:11px;padding:2px 10px;color:var(--ink);max-width:180px;text-align:center;font-variant-numeric:tabular-nums;empty-cell:hide}
+.hl-bub:empty{background:transparent}
+.hl-bub.hl-pop{animation:hlPop .3s both}
+.hl-card{width:38px;height:53px;border-radius:4px;background:#f6efdd;border:1px solid #b9a98c;color:#20180e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,.3);flex:none}
+.hl-card b{font-size:15px;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;letter-spacing:0}
+.hl-card i{font-style:normal;font-size:13px}
+.hl-card.hl-red{color:#a8341c}
+.hl-card.hl-back{background:repeating-linear-gradient(45deg,var(--rust-deep) 0 3px,#6e2f14 3px 6px);border-color:#582a12}
+.hl-card.hl-in{animation:hlIn .45s both}
+.hl-card.hl-flip{animation:hlFlip .5s both}
+.hl-mid{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;pointer-events:none}
+.hl-board{display:flex;gap:5px;min-height:62px}
+.hl-board .hl-card{width:44px;height:61px}
+.hl-board .hl-card b{font-size:17px}
+.hl-pot{font-size:13px;background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);padding:2px 14px;border-radius:12px}
+.hl-pot b{color:var(--bronze)}
+.hl-pot.hl-pulse{animation:hlPulse .5s}
+.hl-panel{padding:14px;border-top:1px solid var(--line)}
+.hl-setup{margin:0 0 12px;color:var(--dim);font-size:15.5px}
+.hl-hint{margin:0;color:var(--faint);font-size:13px;font-style:italic;min-height:18px}
+.hl-q{font-size:16px;margin-bottom:10px}
+.hl-onyou{display:inline-block;background:var(--rust);color:#fff8ef;font-size:10.5px;padding:1px 8px;letter-spacing:.15em;margin-right:7px;transform:translateY(-2px)}
+.hl-opts{display:grid;gap:6px}
+.hl-opt{text-align:left;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:9px 12px;cursor:pointer;font:inherit;font-size:15px}
+.hl-opt:hover:not(:disabled){border-color:var(--rust)}
+.hl-opt:disabled{cursor:default;opacity:.7}
+.hl-opt.hl-pro{border-color:var(--sage);background:color-mix(in srgb,var(--sage) 14%,var(--card));opacity:1}
+.hl-opt.hl-okpick{border-color:var(--bronze);opacity:1}
+.hl-opt.hl-badpick{border-color:var(--rust);background:color-mix(in srgb,var(--rust) 12%,var(--card));opacity:1}
+.hl-fb{margin-top:12px}
+.hl-verdict{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.hl-verdict.pro{color:var(--sage)}.hl-verdict.ok{color:var(--bronze)}.hl-verdict.bad{color:var(--rust)}
+.hl-fb p{margin:6px 0 10px;font-size:15px}
+.hl-endbox .hl-res{font-size:16px;margin-bottom:8px}
+.hl-score{font-size:13px;color:var(--dim);margin-bottom:10px}
+.hl-score b{color:var(--rust)}
+.hl-lesson{border-left:3px solid var(--bronze);padding:7px 12px;background:var(--card);margin-bottom:10px;font-size:15px}
+.hl-lesson .disp{display:block;font-size:10.5px;color:var(--bronze);letter-spacing:.22em;margin-bottom:2px}
+.hl-note{font-size:12px;color:var(--faint);margin-bottom:6px}
+.hl-src{font-size:12px;color:var(--faint);margin-bottom:12px}
+.hl-src a{color:var(--dim)}
+.hl-log{padding:10px 14px;border-top:1px solid var(--line);max-height:180px;overflow:auto;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--dim);line-height:1.5}
+.hl-ll{padding:1px 0}
+.hl-ls{color:var(--bronze);margin-top:4px}
+.hl-lh{color:var(--ink)}
+.hl-ld{color:var(--rust)}
+.hl-dim{color:var(--faint)}
+.hl-onyou2{color:var(--rust);letter-spacing:.1em;font-weight:700}
+.hl-brief{border:1px solid var(--line);border-left:3px solid var(--bronze);background:var(--bg2);padding:12px 16px;margin:22px 0}
+.hl-brief .hl-bk{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--bronze);display:block;margin-bottom:4px}
+.hl-index{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 4px}
+.hl-index th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--faint);text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}
+.hl-index td{padding:6px 8px;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);vertical-align:top}
+.hl-index a{color:var(--rust)}
+.aggro-gym{margin:26px 0 8px;border:1px solid var(--line);border-top:3px solid var(--rust);background:var(--bg2);box-shadow:var(--shadow)}
+.hl-gymhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:8px}
+.hl-gymcards{display:inline-flex;gap:3px;margin-left:auto}
+.hl-card.hl-gc{width:30px;height:42px;border-radius:3px}
+.hl-card.hl-gc b{font-size:12px}
+.hl-card.hl-gc i{font-size:10px}
+.hl-sit{margin:0 0 12px;font-size:15.5px}
+.hl-resp{border-left:3px solid var(--rust);background:var(--card);padding:7px 12px;margin:14px 0 12px;font-size:15px}
+.hl-resp .disp{display:block;font-size:10.5px;color:var(--rust);letter-spacing:.22em;margin-bottom:2px}
+@keyframes hlIn{from{opacity:0;transform:translateY(-16px) rotate(-5deg)}to{opacity:1;transform:none}}
+@keyframes hlFlip{from{opacity:0;transform:rotateY(88deg)}to{opacity:1;transform:none}}
+@keyframes hlPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+@keyframes hlPulse{50%{transform:scale(1.1)}}
 </style>
 
 <nav class="sitenav" aria-label="The Hundred">
@@ -234,7 +323,11 @@ body:`
 <li><b>Denial hands</b> — mediums that hate giving free rivers to overcards.</li></ul>
 <h3>The double-check river</h3>
 <p>When flop and turn both go check-check, the river bettor wins far more than his share: both ranges are capped, but <b>the field under-stabs</b>. Bet your value mercilessly and bluff the runouts that favor your line.</p>
-${NOTE("live raisers check back the flop and then fold turn AND river at rates that make the probe an ATM. The one hand to fear: the trapped monster — rare, and he'll tell you by raising.")}`,
+${NOTE("live raisers check back the flop and then fold turn AND river at rates that make the probe an ATM. The one hand to fear: the trapped monster — rare, and he'll tell you by raising.")}
+<h3>Table time — live hand</h3>
+<p>Delayed c-bets and probes are about keeping the story credible until the board turns your way. Margets 3-bets, then goes silent for two streets — on purpose.</p>
+<div class="handlab" data-hand="LM-011"></div>
+`,
 quiz:[
 {q:"The preflop raiser checks back the flop. His range is now:",o:["Stronger than before — he's trapping","Capped: mediums, weak showdown value, and give-ups","Unchanged — checks mean nothing","All air, always"],a:1,e:"Strong top pair and big draws bet flops at high frequency. The check-back <b>caps his ceiling</b> — and capped ranges are attackable on two streets."},
 {q:"A probe bet is:",o:["Any bet made into the preflop raiser before he acts","An out-of-position turn lead after the raiser checked back the flop","A small turn lead designed to block his bigger bet","A preflop 3-bet"],a:1,e:"You couldn't lead the flop into the raiser's uncapped range — but once he checks back, <b>the turn lead attacks his confessed weakness</b>."},
@@ -317,7 +410,11 @@ body:`
 <li>The corollary that saves stacks: <b>never bluff-raise when your own line can't hold the hands you're repping.</b> The story you couldn't have told gets called.</li></ul>
 <h3>Believability economics</h3>
 <p>Live players don't count combos, but they feel stories: a big raise on a scary card "means it" to them too. The full four-question rep works best against thinking regs; against recreationals, questions one through three still matter — but question four decides everything.</p>
-${NOTE("the field bluffs exactly backwards: they bluff when THEY are capped and the board scares them, and give up when their range owns it. Deeb's edge isn't magic — it's running the story right-side up, relentlessly.")}`,
+${NOTE("the field bluffs exactly backwards: they bluff when THEY are capped and the board scares them, and give up when their range owns it. Deeb's edge isn't magic — it's running the story right-side up, relentlessly.")}
+<h3>Table time — live hand</h3>
+<p>Repping a range is exactly this: arrive at the river with nothing, check what your line credibly holds, and size like you mean it. Mateos with the bottom of his range.</p>
+<div class="handlab" data-hand="AM-010"></div>
+`,
 quiz:[
 {q:"The four questions, in order:",o:["Who folds? What do I have? What's the pot? What's my image?","What am I repping? Why can I have it? Why can't villain? Who actually folds?","Am I ahead? Am I behind? Should I bet? How much?","What would Deeb do? — the only question"],a:1,e:"<b>Rep, credibility, cap, and the population gate</b> — in that order, before any big aggressive line. Skip one and the story has a hole."},
 {q:"What made the published turn raise unbeatable?",o:["He had the nuts — the raise was simply value getting paid","His line genuinely contained every straight combo while villain's line couldn't hold one","The villain was weak","The sizing — a raise that large is unplayable whatever the ranges"],a:1,e:"<b>You can only rep what your line owns.</b> When every nut combo lives in your line and none in his, your raise plays the nuts whether you hold them or not."},
@@ -352,7 +449,11 @@ ${T2([
 <li>The leak that undoes it all: <b>"but he COULD have..."</b> Could isn't does. Population priors hold until this specific villain shows you otherwise.</li></ul>
 <h3>Re-opening the calls</h3>
 <p>The list is a prior, not a prison. Re-open hero calls when: the villain has <b>demonstrated</b> big bluffs, the history between you is dynamic (he's targeting you), or your blockers scream (Day 11's three questions still gate everything).</p>
-${NOTE("every deep Main Event run contains at least one enormous laydown with a one-pair hand that felt impossible. The players who cash deep made it; the rail is full of players who 'had to call.'")}`,
+${NOTE("every deep Main Event run contains at least one enormous laydown with a one-pair hand that felt impossible. The players who cash deep made it; the rail is full of players who 'had to call.'")}
+<h3>Table time — live hand</h3>
+<p>The population read from the lesson — live fields under-bluff rivers and arrive stronger than theory — is exactly what saves Mateos two bets here.</p>
+<div class="handlab" data-hand="AM-003"></div>
+`,
 quiz:[
 {q:"Why is folding an indifferent bluff-catcher profitable against live fields?",o:["It isn't — zero EV is zero EV whoever you're playing","The population under-bluffs, so theory's zero-EV calls become clearly losing calls","Folding is always safest","Calling risks tilt, and tilt costs more than any single pot"],a:1,e:"Indifference assumes balanced bluffing. <b>Remove the bluffs and the call only loses.</b> Money saved is exactly as valuable as money won — it just doesn't feel like it."},
 {q:"A passive live player check-raises the river. Your overpair is:",o:["A snap call — you beat bluffs","A fold","A raise","A crying call"],a:1,e:"Two never-bluff markers stack: <b>check-raise from a passive player + river aggression</b>. One-pair hands fold without a speech."},
@@ -417,7 +518,11 @@ ${T2([
 <p>Against recreationals, your river value size is an auction: <b>find the biggest number their curiosity pays</b> (Day 10). Today's upgrade: the ceiling moves with board texture and drama. Scary runouts lower it; boring bricks raise it. A station who'd pay 75% on a brick pays 40% when the flush hits — bill accordingly.</p>
 <h3>Raising thin — the forgotten weapon</h3>
 <p>The field only raises with monsters (Day 24, Day 26 — that's why you fold to theirs). The mirror exploit: <b>raise thin for value against weak leads</b>. When a station donk-bets small into your strong top pair, raise — worse pairs and draws call. The play the population never makes is free money when you make it correctly.</p>
-${NOTE("count your session's checked-back rivers against stations at the break. Each one with second pair or better was a bill you wrote and didn't send — the phase exam will ask if you sent them.")}`,
+${NOTE("count your session's checked-back rivers against stations at the break. Each one with second pair or better was a bill you wrote and didn't send — the phase exam will ask if you sent them.")}
+<h3>Table time — live hand</h3>
+<p>Thin value mastery, live from Day 1 of the Main Event: three streets with one pair against a passive professional, and not a chip left behind.</p>
+<div class="handlab" data-hand="AM-002"></div>
+`,
 quiz:[
 {q:"Thin value is properly planned:",o:["River by river as it comes","On the flop","Only preflop","Never — thin value is a leak"],a:1,e:"<b>Bet/bet/bet vs the station, bet/bet/evaluate vs the reg, bet/check/check vs the nit</b> — named at the flop. Improvising each street from scratch is how streets get missed."},
 {q:"KQ on K84r-2-3 versus a station. The plan?",o:["Bet flop, check turn and river — pot control","Three streets, ascending sizes","Check-raise every street","One small bet then shut down"],a:1,e:"Boring runout, station opponent: <b>bill all three streets and size up</b>. His curiosity is inelastic; the only mistake is leaving streets unbilled."},
@@ -447,7 +552,11 @@ ${T2([
 ["Line","When"])}
 <h3>Protecting showdown value</h3>
 <p>The two sins against a medium hand: <b>turning it into a bluff</b> (raising 'to find out' — you fold out worse, get action from better) and <b>paying three streets with it</b> (calling down 'because you had top pair once'). Both convert a profitable two-street hand into a disaster. The monk holds the middle: bet or call exactly as much as the hand is worth, then stop.</p>
-${NOTE("the field plays mediums in exactly the two wrong ways: station-types pay three streets, tight-types fold them to the first barrel. The two-street discipline — rare, boring, precise — beats both without ever doing anything spectacular.")}`,
+${NOTE("the field plays mediums in exactly the two wrong ways: station-types pay three streets, tight-types fold them to the first barrel. The two-street discipline — rare, boring, precise — beats both without ever doing anything spectacular.")}
+<h3>Table time — live hand</h3>
+<p>The check-call line in the wild: second pair, out of position, 200bb deep. Watch how small the pot stays — that's the whole point.</p>
+<div class="handlab" data-hand="AM-001"></div>
+`,
 quiz:[
 {q:"When betting ranges polarize, medium hands:",o:["Bet bigger to compete","Check","Always fold","Turn into bluffs"],a:1,e:"Day 9's mirror: <b>polarized betting means mediums check</b>. A checking range with showdown value collects from bluffs and avoids the bloated-pot disaster."},
 {q:"Most medium-strength hands are worth:",o:["Three streets — always bet","Two streets","One street maximum","Zero — check them down"],a:1,e:"<b>Two streets, chosen deliberately</b>: bet/bet/check when denial matters, bet/check/bet when the middle is dangerous, check-call/check-call as the defender."},
@@ -476,7 +585,14 @@ ${T2([
 ["Line","Population meaning"])}
 <h3>Facing river overbets</h3>
 <p>Blocker-first analysis (Days 11 and 32): run the three questions, weight the blockers, then apply the population discount — <b>the field's big river bets are value-heavy</b>, and their overbets even more so. Your calls need to block his value, unblock his bluffs, AND face an opponent capable of an overbet bluff at all. Most live opponents aren't; most live overbets are the nuts asking to be paid.</p>
-${NOTE("unusual lines are where the field is MOST honest, not least — weird means true. The min-raise, the sudden donk jam, the river overbet from a passive player: each is a confession wearing a costume. Believe the confession.")}`,
+${NOTE("unusual lines are where the field is MOST honest, not least — weird means true. The min-raise, the sudden donk jam, the river overbet from a passive player: each is a confession wearing a costume. Believe the confession.")}
+<h3>Table time — live hand</h3>
+<p>An unusual sizing is information. Mateos reads it, prices it, calls twice anyway — and buys a read worth more than the pot.</p>
+<div class="handlab" data-hand="AM-008"></div>
+<h3>Table time — live hand</h3>
+<p>And the donk-lead version: when the unusual move is a sudden big turn lead, the exit is the skill. Margets folds the best hand — and is still right.</p>
+<div class="handlab" data-hand="LM-010"></div>
+`,
 quiz:[
 {q:"A live player donk-bets small into you, the preflop raiser. Population meaning?",o:["The nuts — leads are strong","Weak pair, cheap draw, or blocking bet","Always a total bluff","Random noise"],a:1,e:"The field was taught to check-raise monsters. <b>The small lead is the weak part of their range</b> announcing itself — raise value, float mediums in position."},
 {q:"Your response to a small donk lead with strong top pair:",o:["Just call — keep him leading","Raise","Fold — respect the lead","Min-raise"],a:1,e:"Weak lead + your strong hand = <b>raise for value</b>. It's the same population honesty exploited in the other direction."},
@@ -536,7 +652,11 @@ ${T2([
 <li><b>40–60bb (Day 15's band):</b> the 5-bet node disappears — the tree collapses to open / 3-bet / jam. Leverage per chip peaks; blocker 3-bet jams print.</li></ul>
 <h3>The tournament-life question</h3>
 <p>Before each level, ask: <b>"If the escalation war happens ONCE today for my tournament life — what are my thresholds?"</b> Decide now: which hands 4-bet-call, which 4-bet-fold, which flat, at this depth, versus these players. The Foxen jam was decided days before it happened. Yours must be too — a freezeout gives no second rig.</p>
-${NOTE("live 4-bets are QQ+/AK and live 5-bets are KK+ — the field simply does not bluff the top of the tree. Two exploits: your A5s 4-bet gets a mountain of credit, and their 5-bet tells you to fold QQ without a tear.")}`,
+${NOTE("live 4-bets are QQ+/AK and live 5-bets are KK+ — the field simply does not bluff the top of the tree. Two exploits: your A5s 4-bet gets a mountain of credit, and their 5-bet tells you to fold QQ without a tear.")}
+<h3>Table time — live hand</h3>
+<p>The 4-bet tree from the lesson, played for tournament life on Day 5: kings, a four-bet pot 250bb deep, and the fold that made the news.</p>
+<div class="handlab" data-hand="AM-006"></div>
+`,
 quiz:[
 {q:"The real lesson of the published six-bet jam:",o:["Always escalate with premiums","The tree was built before the hand","Six-bets are standard now","Never fold preflop at a $25K"],a:1,e:"<b>Fearless is a preparation, not a personality.</b> The jam was decided in study, days earlier; the table just watched the plan execute."},
 {q:"Standard 4-bet sizing:",o:["Pot or more","~2.2–2.5x the 3-bet IP, slightly larger OOP","Exactly double","Always all-in"],a:1,e:"Day 4's number, now with its logic: <b>big enough to deny the 3-bettor's equity, small enough that your bluffs can release</b> to the 5-bet."},
@@ -583,7 +703,11 @@ ${T2([
 <p><b>Strong means weak, weak means strong.</b> Acted reluctance — the sigh, the shrug, the sad call — is strength performing. Genuine stillness and a frozen posture lean bluff (fear of leaking); relaxed chattiness leans value; shaky hands are adrenaline, and adrenaline is almost always a monster, not a bluff.</p>
 <h3>Integration discipline</h3>
 <p>Day 16's law holds: <b>reads adjust the weights inside range logic — they never replace it.</b> A read is worth one bucket boundary (Day 8), one notch of thin-value threshold (Day 29) — not a new range. When a rung-3 twitch contradicts rung-1 betting patterns, the patterns win.</p>
-${NOTE("your own tells matter as much as theirs: routine breathing, one bet motion, one posture, fixed decision cadence. The monk's stillness isn't mysticism — it's denying the table the same data you're harvesting from them.")}`,
+${NOTE("your own tells matter as much as theirs: routine breathing, one bet motion, one posture, fixed decision cadence. The monk's stillness isn't mysticism — it's denying the table the same data you're harvesting from them.")}
+<h3>Table time — live hand</h3>
+<p>Live tells are provisional data. Watch the first read form — and then watch what a fast, confident barrel does to it.</p>
+<div class="handlab" data-hand="AM-004"></div>
+`,
 quiz:[
 {q:"The reliability ladder, top to bottom:",o:["Physical, timing, betting patterns","Betting patterns, timing, physical","Timing, physical, betting patterns","All equal — use everything equally"],a:1,e:"<b>Chips talk, clocks whisper, bodies mumble.</b> A twitch never outvotes a betting line; when rungs conflict, the higher rung wins."},
 {q:"The sizing-tell upgrade over Day 8's baseline:",o:["Big now means bluff — the population overcorrected years ago","Deviations from a player's OWN baseline outrank absolute sizes","Sizing tells don't exist","Only river sizes matter — earlier streets are too scripted to read"],a:1,e:"2/3-pot means nothing from a guy who always bets 2/3 — <b>and everything from one who never does</b>. Calibrate per player, then flag deviations."},
@@ -636,7 +760,11 @@ body:`
 <li><b>He can fold</b> — gate four. Never bluff-raise a station's river bet; it's the purest donation in poker.</li></ul>
 <h3>Facing river raises (the other side, formalized)</h3>
 <p>Days 10, 26, 31 all said it; today it's law: <b>population river raises are near-nuts.</b> Your value bets fold to them without near-nuts of your own. Run the blocker check (do I block his value? unblock his bluffs?) — but expect the answer to be fold, because the bluffs mostly don't exist. The asymmetry is the whole opportunity: <b>they never bluff-raise rivers, and they never expect you to.</b></p>
-${NOTE("the river raise is simultaneously the most under-used +EV play against thinking regs (your bluff-raise gets massive credit) and the most honest action the field takes against you (their raise is the nuts). Exploit the asymmetry in both directions — and never confuse which direction you're facing.")}`,
+${NOTE("the river raise is simultaneously the most under-used +EV play against thinking regs (your bluff-raise gets massive credit) and the most honest action the field takes against you (their raise is the nuts). Exploit the asymmetry in both directions — and never confuse which direction you're facing.")}
+<h3>Table time — live hand</h3>
+<p>A river raise tree unlocked by a live read: Margets turns a pair of aces with no kicker into the most credible jam at the table.</p>
+<div class="handlab" data-hand="SUP-001"></div>
+`,
 quiz:[
 {q:"The threshold question for a river value raise:",o:["Am I ahead of his betting range?","Do I beat the hands that CALL my raise","Is the pot big enough?","Do I have two pair or better?"],a:1,e:"Mediums bet-fold; monsters bet-call. <b>The raise plays only against the calls</b> — beating what he bet is necessary but nowhere near sufficient."},
 {q:"Two pair that beats his value-betting range but loses to his bet-then-call range is:",o:["A raise — you beat his bets","A call","A fold","A jam"],a:1,e:"Day 30's medium-hand sin at the river: <b>the raise turns your winner into a bluff</b> that costs a raise-sized bet. Call, win the showdown, keep the difference."},
@@ -693,7 +821,42 @@ ${T2([
 <li><b>One spot from YOUR game where it applies</b> — a specific recurring situation, named: "when I face river jams holding mediocre blockers, I run the three questions before touching chips."</li></ol>
 <h3>The synthesis paragraph</h3>
 <p>One paragraph, in your log, that answers: <b>what is my hybrid style?</b> Which third leads at which moments — the gladiator's prepared trees at the leverage nodes, the Mad Max grind and story discipline through the long middle, the monk's range-executed calls under fire? This paragraph becomes your identity card for Phase III, where the wasteland (ICM) will test all three thirds at once.</p>
-${NOTE("knowledge you can't transfer is trivia. The field watches the same streams and reads the same hands you do — the difference is the player who wrote the lesson into his own game before Day 1 of the Main.")}`,
+${NOTE("knowledge you can't transfer is trivia. The field watches the same streams and reads the same hands you do — the difference is the player who wrote the lesson into his own game before Day 1 of the Main.")}
+<h3>The casebook — every documented hand in the program</h3>
+<p>The master database (v3) holds 34 documented spots from Adrián Mateos and Leo Margets. The interactive ones are placed where their lesson lives — Phase II links jump directly; other phases open in their own study hall. Seven more power the <a href="wsop-phase3-study.html#d55">Aggression Gym on Phase III Day 55</a>.</p>
+<table class="hl-index">
+<tr><th>Hand</th><th>Spot</th><th>Lesson home</th></tr>
+<tr><td class="mono">AM-005</td><td>Three-street thin value in a soft field</td><td><a href="wsop-phase1-study.html#d10">Phase I · Day 10</a></td></tr>
+<tr><td class="mono">LM-012</td><td>Bluff-catch twice, fold the polarized river</td><td><a href="wsop-phase1-study.html#d11">Phase I · Day 11</a></td></tr>
+<tr><td class="mono">LM-019</td><td>Defend once, believe the second barrel</td><td><a href="wsop-phase1-study.html#d17">Phase I · Day 17</a></td></tr>
+<tr><td class="mono">AM-009</td><td>Protection c-bet → polarized river sizing</td><td><a href="wsop-phase1-study.html#d19">Phase I · Day 19</a></td></tr>
+<tr><td class="mono">LM-011</td><td>Delayed aggression in a 3-bet pot</td><td><a href="#d22">Day 22</a></td></tr>
+<tr><td class="mono">AM-010</td><td>Bottom-of-range river bluff, repping straights</td><td><a href="#d25">Day 25</a></td></tr>
+<tr><td class="mono">AM-003</td><td>Squeezed pot, disciplined give-up</td><td><a href="#d26">Day 26</a></td></tr>
+<tr><td class="mono">AM-002</td><td>Blind-vs-blind thin value vs a passive pro</td><td><a href="#d29">Day 29</a></td></tr>
+<tr><td class="mono">AM-001</td><td>Second pair OOP, pot control</td><td><a href="#d30">Day 30</a></td></tr>
+<tr><td class="mono">AM-008</td><td>Oversized-bet read, planned bluff-catch</td><td><a href="#d31">Day 31</a></td></tr>
+<tr><td class="mono">LM-010</td><td>C-bet, then fold to the big turn lead</td><td><a href="#d31">Day 31</a></td></tr>
+<tr><td class="mono">AM-006</td><td>The kings fold in a 4-bet pot</td><td><a href="#d33">Day 33</a></td></tr>
+<tr><td class="mono">AM-004</td><td>Updating a live read mid-hand</td><td><a href="#d35">Day 35</a></td></tr>
+<tr><td class="mono">SUP-001</td><td>Behavior-driven river jam</td><td><a href="#d37">Day 37</a></td></tr>
+<tr><td class="mono">LM-003</td><td>AJo call-off vs a short-stack jam</td><td><a href="wsop-phase3-study.html#d46">Phase III · Day 46</a></td></tr>
+<tr><td class="mono">LM-014</td><td>Back-jam over the squeeze with 77</td><td><a href="wsop-phase3-study.html#d46">Phase III · Day 46</a></td></tr>
+<tr><td class="mono">LM-004</td><td>QQ vs jam — no ICM fear</td><td><a href="wsop-phase3-study.html#d48">Phase III · Day 48</a></td></tr>
+<tr><td class="mono">LM-013</td><td>AQ call-off that meets kings — and holds</td><td><a href="wsop-phase3-study.html#d48">Phase III · Day 48</a></td></tr>
+<tr><td class="mono">LM-002</td><td>Folding 99 to a 3x-pot overbet</td><td><a href="wsop-phase3-study.html#d51">Phase III · Day 51</a></td></tr>
+<tr><td class="mono">LM-005</td><td>JJ vs AK — the flip for the chip lead</td><td><a href="wsop-phase3-study.html#d52">Phase III · Day 52</a></td></tr>
+<tr><td class="mono">LM-018</td><td>Cold 4-bet jam under ICM</td><td><a href="wsop-phase3-study.html#d52">Phase III · Day 52</a></td></tr>
+<tr><td class="mono">LM-006</td><td>Ace-king released vs a multiway lead</td><td><a href="wsop-phase3-study.html#d53">Phase III · Day 53</a></td></tr>
+<tr><td class="mono">LM-007</td><td>Final-table race, played right</td><td><a href="wsop-phase3-study.html#d53">Phase III · Day 53</a></td></tr>
+<tr><td class="mono">GYM</td><td>Aggression Gym — 8 attack-and-exit drills (LM-008/009/015/016/017/020/021, AM-010)</td><td><a href="wsop-phase3-study.html#d55">Phase III · Day 55</a></td></tr>
+<tr><td class="mono">LM-001</td><td>Bubble stack posture (stage brief)</td><td><a href="wsop-phase4-study.html#d64">Phase IV · Day 64</a></td></tr>
+<tr><td class="mono">AM-007</td><td>Aces cracked — process vs outcome</td><td><a href="wsop-phase4-study.html#d68">Phase IV · Day 68</a></td></tr>
+<tr><td class="mono">BHS-001</td><td>Full house, checked thrice — bluff-catching the aggressor</td><td><a href="wsop-phase4-study.html#d74">Phase IV · Day 74</a></td></tr>
+<tr><td class="mono">BHS-002</td><td>The invisible set — inducing the covering jam</td><td><a href="wsop-phase4-study.html#d74">Phase IV · Day 74</a></td></tr>
+</table>
+<p>Hands not listed (LM-008, LM-009, LM-015, LM-016, LM-017, LM-020, LM-021) live inside the Aggression Gym rather than as standalone replayers. Full sourcing for every hand is in <span class="mono">Hand history/wsop_hands_master.csv</span>.</p>
+`,
 quiz:[
 {q:"The Mateos hand's doctrine:",o:["Hero-call more rivers","Call because the range says so","Ace-high is underrated","Always call half-pot bets"],a:1,e:"The call <b>beat the bluff region and didn't block it</b> — profitable against the range even when this one lost. Result is noise; process is the signal."},
 {q:"The Foxen hand's doctrine:",o:["Six-bets win pots","Leverage is prepared, not improvised","Never fold preflop","Aggression beats everything"],a:1,e:"<b>Fearless is a preparation</b> (Day 33). The thresholds were decided in study; the table only watched the plan execute."},
@@ -777,6 +940,7 @@ function renderAll(){
     <div class="quiz" id="quiz"></div>`;
   renderQuizStart();
   renderNav();
+  if(window.hlInit)window.hlInit();
 }
 function renderQuizStart(){
   const x=L.find(l=>l.d===cur);
@@ -842,4 +1006,715 @@ function finish(){
   renderNav();
 }
 renderAll();
+</script>
+<script>
+/* ---------- HAND LAB DATA — Phase II ---------- */
+window.HL_HANDS={
+"LM-011":{
+ id:"LM-011",title:"The patient assassin",who:"Leo Margets · 2025 Main Event · Day 7, 43 left",
+ rec:1,recNote:"Hero hole cards unknown — reconstructed as a busted-draw bluff consistent with the reported line and the quick fold. The 3-bet to 1,125,000, both checked streets, the 1,700,000 river bet and Gibbons' fold are verified.",
+ setup:"Day 7, forty-three players left, blinds 125K/250K. Paul Gibbons opens early position; Margets 3-bets to 1,125,000 and he calls. Watch what she does with the initiative — which is, for two full streets, nothing.",
+ heroName:"Margets",heroPos:"BTN",heroStack:"~15,000,000",heroCards:["Ad","5d"],
+ blinds:"125K/250K (250K ante)",
+ vill:[{name:"Gibbons",pos:"EP",stack:"~12,000,000"}],
+ src:[["https://www.pokernews.com/tours/wsop/2025-wsop/event-81-10000-wsop-main-event/day7/?page=17","PokerNews Day 7 live report"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"opens to 500,000",pot:1125000},
+  {t:"act",who:"H",txt:"3-bets to 1,125,000",pot:2250000},
+  {t:"act",who:0,txt:"calls 625,000 more",pot:2875000},
+  {t:"street",name:"FLOP",cards:["Qd","Td","4s"],pot:2875000},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Q-T-4 with your two diamonds — a board that smacks his calling range as hard as your 3-betting range. He checks. The automatic play is a c-bet. Is automatic right?",
+   opts:[
+    {l:"Check back — save the story for later",v:"pro",e:"Margets checks. On a board this connected, a c-bet gets check-raised or floated by every Qx, Tx and draw — and her nut-flush draw wants to see a card, not to bloat a pot. Checking keeps her range credible and uncapped for the streets where pressure actually lands."},
+    {l:"C-bet 1,400,000 — you 3-bet, so bet",v:"bad",e:"Betting 'because initiative' into the board that hits the caller is where 3-bet pots go to die. When he continues — and this texture continues a lot — the hand has no plan except more expensive guesses."},
+    {l:"C-bet 700,000 small — cheap pressure",v:"ok",e:"The small stab is defensible with the draw, but it opens the door to a check-raise that torches your equity and your credibility at once. The delayed line risks nothing and loses nothing."}],
+   did:{txt:"checks back"}},
+  {t:"street",name:"TURN",cards:["8d"],pot:2875000},
+  {t:"act",who:0,txt:"checks",wait:700},
+  {t:"act",who:"H",txt:"checks — patience",wait:900},
+  {t:"street",name:"RIVER",cards:["Jh"],pot:2875000},
+  {t:"act",who:0,txt:"checks a third time",wait:1000},
+  {t:"ask",txt:"The river J♥ misses your flush draw — but look at the board: Q-T-4-8-J. Straights everywhere, and he's checked three times. Ace-high. Pot 2,875,000.",
+   opts:[
+    {l:"Bet 1,700,000 — his range is capped, yours isn't",v:"pro",e:"Margets fires and Gibbons folds quickly. Two checked streets left him with capped one-pair and ace-high hands — while her line still contains AK, K9, J-x two pair, everything the runout crowned. Delayed aggression works because the story stayed credible: she never bet until the board made her range the strong one."},
+    {l:"Check — ace-high might even win",v:"bad",e:"Against an EP opener's range, ace-five high wins almost no showdowns that matter. The whole value of two patient streets was building this exact river — cashing out into a check wastes the setup."},
+    {l:"Jam — maximum pressure on the scare board",v:"bad",e:"The overkill version folds out nothing extra — his capped range folds to 1,700,000 just as fast — while risking your whole image and stack on the one time he trapped. Pressure should cost as little as it can."}],
+   did:{txt:"bets 1,700,000",pot:4575000}},
+  {t:"act",who:0,txt:"folds quickly",fold:true,wait:1000},
+  {t:"end",res:"Gibbons folds at speed and the patient line collects — two checks, one bet, one pot. The 3-bet bought the range story; the checks kept it credible; the river cashed it.",
+   lesson:"Aggression can be delayed. Preserve range credibility through the middle streets, then attack a capped opponent when the river favours your range — the bet you didn't make on the flop is what makes the river bet believable."}
+ ]},
+
+"LM-010":{
+ id:"LM-010",title:"Permission to stop",who:"Leo Margets · 2025 Main Event · Day 6",
+ rec:0,recNote:"",
+ setup:"Day 6, late session, blinds 100K/150K, deep in the pay jumps. Margets opens A♣Q♣ from middle position; Diego Ponce defends the small blind. A standard spot that's about to teach the least standard skill: stopping.",
+ heroName:"Margets",heroPos:"MP",heroStack:"~11,000,000",heroCards:["Ac","Qc"],
+ blinds:"100K/150K (150K ante)",
+ vill:[{name:"Ponce",pos:"SB",stack:"~9,000,000"}],
+ src:[["https://www.pokernews.com/tours/wsop/2025-wsop/event-81-10000-wsop-main-event/day6/?page=2","PokerNews Day 6 live report"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 300,000",pot:750000},
+  {t:"act",who:0,txt:"calls from the small blind",pot:900000},
+  {t:"street",name:"FLOP",cards:["4s","8h","8s"],pot:900000},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Paired, raggy, checked to you — 4-8-8 two spades. Ace-queen high. The normal line?",
+   opts:[
+    {l:"C-bet 275,000 — this board is yours",v:"pro",e:"Margets bets. Paired rag boards favour the raiser's range enormously; a ~30% c-bet with two overs and backdoors taxes his under-pairs and overcards at a price that risks little. This is the normal aggressive line, correctly taken."},
+    {l:"Check back — nothing yet, keep it small",v:"bad",e:"Surrendering the best c-betting texture in poker with the best unpaired hand available. The bet wins immediately often, and checking invites the small blind to take the pot away from you on any turn."},
+    {l:"Bet 700,000 — big, end it now",v:"bad",e:"The board is too locked-down to need the big size — his folds fold to 275,000 too, and the oversize only builds a pot for the times he's slow-playing an eight."}],
+   did:{txt:"bets 275,000",pot:1175000}},
+  {t:"act",who:0,txt:"calls 275,000",pot:1450000},
+  {t:"street",name:"TURN",cards:["5d"],pot:1450000},
+  {t:"act",who:0,txt:"suddenly leads 1,100,000",pot:2550000,wait:1600},
+  {t:"ask",txt:"A blank 5♦ — and Ponce, who check-called the paired flop, suddenly leads 1,100,000, three-quarters pot, into the raiser. Ace-queen high. What is this line telling you?",
+   opts:[
+    {l:"Fold — the credible big lead is permission to stop",v:"pro",e:"Margets folds. A large turn donk after check-calling a paired flop is highly value-weighted in live populations — 8x, slow-played fives-full draws, hands that decided to stop letting you set the price. Here's the uncomfortable postscript: Ponce had Q♥J♥ — a stone bluff, this time. The fold is still correct: the range that takes this line has AQ-high crushed, and no single result changes the range."},
+    {l:"Call — you have two overs and he's repping thin",v:"bad",e:"Ace-high with no draw, out of initiative, against a line that live players under-bluff drastically. Calling turns 'normal aggression' into 'paying to argue' — and leaves an even worse river decision behind it."},
+    {l:"Raise — punish the donk lead",v:"bad",e:"Raising a value-weighted line with no pair and no draw is lighting 2M+ on fire to win a 2.5M pot you can only win when he was bluffing — in which case the fold was free."}],
+   did:{txt:"folds A♣Q♣",fold:true}},
+  {t:"reveal",who:0,cards:["Qh","Jh"],txt:"the bluff worked — this time"},
+  {t:"end",res:"Ponce drags it with queen-jack high — the lead was a bluff, and the fold was still right. Range discipline means occasionally paying a bluffer his due and never changing the policy for it.",
+   lesson:"Take the normal aggressive flop line, but a credible large turn lead is permission to stop. Exit rules are judged by the range they fold against, not by the two cards one opponent happens to show."}
+ ]},
+"AM-003":{
+ id:"AM-003",title:"The disciplined give-up",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Board cards reconstructed to fit the described textures (narrow-range flop, bad turn, flush-completing river). Hero hand A-Js, all sizings and the full action sequence are verified.",
+ setup:"Day 1, ~150bb deep, blinds 250/500. Mateos opens A♦J♦ from the lojack, the button calls — and the small blind, a deep-stacked unknown, squeezes to 7,000.",
+ heroName:"Mateos",heroPos:"LJ",heroStack:"~78,000",heroCards:["Ad","Jd"],
+ blinds:"250/500",
+ vill:[{name:"Squeezer",pos:"SB",stack:"~90,000"},{name:"Reg",pos:"BTN",stack:"~70,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 2,000",pot:2750},
+  {t:"act",who:1,txt:"calls 2,000",pot:4750},
+  {t:"act",who:0,txt:"squeezes to 7,000",pot:11500,wait:1200},
+  {t:"ask",txt:"A squeeze to 7,000 from the small blind, 150bb deep, with the button still behind. A♦J♦ — your move?",
+   opts:[
+    {l:"Call 5,000 more",v:"pro",e:"Mateos calls. Deep-stacked, in position, with a suited broadway that flops well — folding is too tight and 4-betting turns a fine hand into a bluff against a range that isn't folding. The button folds behind."},
+    {l:"4-bet to 16,500",v:"bad",e:"AJs is a classic 4-bet bluff candidate at 40bb — not at 150bb against an unknown squeezing from the small blind. You get called by better, isolate yourself against the top of his range, and bloat a pot out of position postflop... this one at least has position, but the hand plays far better as a call."},
+    {l:"Fold — squeezes are strong live",v:"ok",e:"Defensible. Live squeezes do run strong, and AJo would be a clear fold. But suited, in position, 150bb deep with the nut-flush suit — this combination has too much playability to release preflop."}],
+   did:{txt:"calls 5,000 more",pot:16500}},
+  {t:"act",who:1,txt:"folds",fold:true,wait:700},
+  {t:"street",name:"FLOP",cards:["Kh","Qs","4c"],pot:16500},
+  {t:"act",who:0,txt:"bets 5,100",pot:21600,wait:1200},
+  {t:"ask",txt:"K-Q-4 smashes his squeezing range. He bets 5,100 into 16,500 — under a third pot. You hold a gutshot to the nuts and an overcard. Plan?",
+   opts:[
+    {l:"Call — gutshot, deep implied odds",v:"pro",e:"Mateos calls. Getting over 4-to-1 with a gutshot to the nut straight, a possible ace-high win, backdoors, and 140bb behind if a ten rolls off — the small sizing prices in exactly this kind of continue."},
+    {l:"Raise — attack the small bet",v:"bad",e:"His small bet on K-Q-4 isn't weakness — this board belongs to the squeezer's range. Raising rep nothing (you'd 4-bet AA/KK preflop), burns your equity, and gets you jammed on by every real hand."},
+    {l:"Fold — you have jack-high",v:"bad",e:"Too tight at this price. 4-to-1 with four nut outs, an over, and huge implied odds against a deep stack is a clear peel. The discipline comes later — not here."}],
+   did:{txt:"calls 5,100",pot:26700}},
+  {t:"street",name:"TURN",cards:["4h"],pot:26700},
+  {t:"act",who:0,txt:"checks",wait:900},
+  {t:"ask",txt:"The board pairs — a bad card for you — and he checks. 26,700 in the middle. Take the free card or attack the check?",
+   opts:[
+    {l:"Check back",v:"pro",e:"Mateos checks. His stated read: Main Event players arrive at rivers with much stronger ranges than theory predicts after checking the turn — a check here doesn't mean surrender. Take the free card at the nut straight instead of forcing a bluff at a range that isn't folding."},
+    {l:"Bet 16,000 — he gave up",v:"bad",e:"This is the punt Mateos specifically avoided. The turn check from a squeezer on K-Q-4-4 is often a trap or a pause, not a white flag — and you still have four clean outs worth seeing for free."},
+    {l:"Stab 8,000, take it cheap",v:"ok",e:"Cheaper than the big barrel, but it has the same flaw: population here doesn't fold enough after squeezing this board, and when called you've bloated a pot with jack-high. The free card is worth more than the stab."}],
+   did:{txt:"checks back"}},
+  {t:"street",name:"RIVER",cards:["8h"],pot:26700},
+  {t:"act",who:0,txt:"bets 11,200",pot:37900,wait:1300},
+  {t:"ask",txt:"The river completes a backdoor flush and misses your gutshot. He wakes up with 11,200 into 26,700. Ace-high — what now?",
+   opts:[
+    {l:"Fold",v:"pro",e:"Mateos folds without agonizing. Missed draw, a river betting range that population under-bluffs, and no read suggesting weakness. Losing the minimum in squeezed pots is a skill — the recap's whole point is that not every missed draw should become a bluff or a hero call."},
+    {l:"Call — ace-high catches bluffs",v:"bad",e:"Against a balanced solver range, A-high is sometimes a call here. Against a live Main Event population that arrives at this river too strong and under-bluffs after check-calling lines — it's burning 11,200."},
+    {l:"Raise all-in — rep the flush",v:"bad",e:"The maximum punt. You rep a narrow runner-runner range he can beat with half his value hands, risking ~40,000 to win a pot your line never credibly claimed. This is exactly the low-EV bluff the pros decline."}],
+   did:{txt:"folds A♦J♦",fold:true}},
+  {t:"end",res:"Mateos loses the pot — and that's the lesson. He paid the minimum for a well-priced draw and refused both the punt-bluff and the punt-call when it missed.",
+   lesson:"Not every missed draw should become a bluff. Live populations arrive at rivers stronger than theory — disciplined give-ups are quietly one of the most profitable habits in a Main Event."}
+ ]},
+
+"AM-002":{
+ id:"AM-002",title:"Value that doesn't wait",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Hero hand and board reconstructed. The limp-check preflop, every bet size (600→2,200→5,400), the pot sizes, the villain's reluctant fold and Mateos' reasoning are verified.",
+ setup:"Blind vs blind, blinds 450/900. A professional with about 33bb limps the small blind — a line that screams pot control. Mateos checks his option in the big blind.",
+ heroName:"Mateos",heroPos:"BB",heroStack:"~90,000",heroCards:["Kc","9c"],
+ blinds:"450/900",
+ vill:[{name:"Pro",pos:"SB",stack:"~29,700 (33bb)"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"limps 900",pot:1800},
+  {t:"act",who:"H",txt:"checks",pot:1800},
+  {t:"street",name:"FLOP",cards:["Kh","7c","4d"],pot:1800},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Top pair in a limped blind-vs-blind pot. The pro checks to you. How do you start?",
+   opts:[
+    {l:"Bet 600 (⅓ pot)",v:"pro",e:"Mateos bets 600 into 1,800. Small, rangey, and it starts the value chain immediately — his read on this pro is a passive line with a low check-raise frequency, so betting is close to free."},
+    {l:"Check — keep the pot small vs a pro",v:"bad",e:"This concedes the exact street where value begins. K9 is comfortably best here most of the time, and against a passive opponent who won't check-raise you, the small bet risks almost nothing."},
+    {l:"Bet 1,400 (~80%)",v:"ok",e:"You'll win the pot more often but smaller — the big size folds out the 7x, 4x, gutshots and overcards you want hanging around for two more streets. Limped pots want small opening salvos."}],
+   did:{txt:"bets 600",pot:2400}},
+  {t:"act",who:0,txt:"calls 600",pot:3000},
+  {t:"street",name:"TURN",cards:["2s"],pot:3000},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Deuce bricks. He checks again. This is the decision the hand is famous for — keep betting, or check to 'induce'?",
+   opts:[
+    {l:"Bet 2,200 (~73%)",v:"pro",e:"Mateos bets 2,200 into 3,000 — a real size now. His logic: against a passive professional who check-raises rarely and won't bluff rivers after you check back, checking to induce is waiting for money that never arrives. Strong one-pair keeps betting."},
+    {l:"Check back — let him bluff the river",v:"bad",e:"The trap that costs a street of value. Mateos expects few induced river bluffs from this player type — the check doesn't induce anything, it just deletes the second value bet from the hand."},
+    {l:"Bet 1,000, keep him in cheap",v:"ok",e:"Betting beats checking, but this hand wants a growing pot. The 73% size sets up a meaningful river bet; the timid size caps the whole hand's value against an opponent who was going to call anyway."}],
+   did:{txt:"bets 2,200",pot:5200}},
+  {t:"act",who:0,txt:"calls 2,200",pot:7400},
+  {t:"street",name:"RIVER",cards:["6d"],pot:7400},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Third check. Pot 7,400, he has about 26,000 behind. Third barrel with K9?",
+   opts:[
+    {l:"Bet 5,400 (~73%)",v:"pro",e:"Mateos fires 5,400. Top pair, decent kicker, three checks from a passive line — worse kings, sevens, and stubborn pairs pay this often enough, and he loses nothing extra the times he's behind because this player would have bet his monsters somewhere."},
+    {l:"Check — one pair, showdown is free",v:"bad",e:"The core leak this hand teaches against: strong one-pair hands against passive lines must keep betting for value. Free showdowns are for marginal hands, not for the best hand at the table three streets running."},
+    {l:"Bet 2,500 — a safe touch",v:"ok",e:"Value, but the smallest version of it. When the line says passive-station, the river is where you charge the full toll. The 73% size is the one the villain reluctantly pays — or reluctantly folds, having already funded two streets."}],
+   did:{txt:"bets 5,400",pot:12800}},
+  {t:"act",who:0,txt:"tanks… folds, visibly annoyed",fold:true,wait:1200},
+  {t:"end",res:"The pro folds the river reluctantly — but he already paid 600 and 2,200 on the way. Mateos wins a real pot with one pair by refusing to wait for bluffs that were never coming.",
+   lesson:"Against passive lines, keep betting strong one-pair hands for value instead of checking to induce. If the opponent doesn't bluff, a check is not a trap — it's a refund."}
+ ]},
+
+"AM-001":{
+ id:"AM-001",title:"Second pair, small pot",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Cards and exact board reconstructed to fit the verified 'second-pair texture' and turn ace. The check-call flop, check-check turn and river, the 1,500-into-4,100 sizing and the showdown win are verified.",
+ setup:"Day 1, 200bb+ deep, blinds 300/600. Mateos opens T♥9♥ and the button — a competent regular — calls. Deep-stacked, out of position, marginal hand: this is a pot-control masterclass.",
+ heroName:"Mateos",heroPos:"HJ",heroStack:"~125,000",heroCards:["Th","9h"],
+ blinds:"300/600",
+ vill:[{name:"Reg",pos:"BTN",stack:"~120,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 1,600",pot:2500},
+  {t:"act",who:0,txt:"calls 1,600",pot:4100},
+  {t:"street",name:"FLOP",cards:["Qc","Td","5s"],pot:4100},
+  {t:"ask",txt:"Second pair on Q-T-5, out of position, 200bb deep against a reg who has position all hand. First act?",
+   opts:[
+    {l:"Check",v:"pro",e:"Mateos checks. Second pair OOP in a deep single-raised pot is a hand that wants a small pot — c-betting into the queen-high board starts building exactly the pot T9 can't handle, and gets raised off its equity at the worst price."},
+    {l:"C-bet 2,700 (~65%)",v:"bad",e:"Betting 'because you raised' is the leak. Deep-stacked and OOP, a medium c-bet with second pair opens the door to raises and multi-street pressure — the hand plays the next three streets bloated and blind."},
+    {l:"C-bet 1,300 small",v:"ok",e:"A small range-bet is defensible on some Q-high boards, but 200bb deep and OOP against a good button, checking the marginal middle of your range is the line that keeps every street cheap and honest."}],
+   did:{txt:"checks"}},
+  {t:"act",who:0,txt:"bets 1,500",pot:5600,wait:1100},
+  {t:"ask",txt:"He stabs 1,500 into 4,100 — barely a third. Second pair faces the small bet.",
+   opts:[
+    {l:"Call",v:"pro",e:"Mateos calls. Second pair is far too strong to fold to a one-third stab that every button makes with air here, and raising turns it into a bluff. Call, keep the pot small, re-evaluate every street — structural pot control."},
+    {l:"Check-raise to 5,000",v:"bad",e:"Turns a showdown hand into a bluff. When he continues — and buttons continue plenty on Q-T-5 — you're deep, OOP, and guessing for stacks with second pair. No target hand pays you three streets."},
+    {l:"Fold — he bet, you have second pair",v:"bad",e:"Massively too tight. A third-pot stab from position folds out almost nothing it should; second pair with backdoors is a trivial peel getting nearly 4-to-1."}],
+   did:{txt:"calls 1,500",pot:7100}},
+  {t:"street",name:"TURN",cards:["As"],pot:7100},
+  {t:"ask",txt:"The A♠ arrives — the card that hits his calling range and caps yours. Your action?",
+   opts:[
+    {l:"Check",v:"pro",e:"Mateos checks, and the reg checks behind. The ace is the perfect card to slow everything down: it smashes the button's range, so second pair's job now is to reach showdown as cheaply as possible."},
+    {l:"Lead 4,500 — take it away",v:"bad",e:"Bluffing into the card that improves his range, with a hand that still wins at showdown, is lighting value on fire. When you're behind you get called; when you're ahead you fold out worse."},
+    {l:"Lead 2,000 as a blocker",v:"ok",e:"The blocker lead saves money against some sizes, but against a good reg it mostly opens you to a raise you can't stand. The check keeps his bluffs in and his raises impossible."}],
+   did:{txt:"checks"}},
+  {t:"act",who:0,txt:"checks back",wait:900},
+  {t:"street",name:"RIVER",cards:["5d"],pot:7100},
+  {t:"ask",txt:"Board pairs on the river: Q-T-5-A-5. He checked the turn behind. Last decision — bet or show it down?",
+   opts:[
+    {l:"Check",v:"pro",e:"Mateos checks, the reg checks back, and second pair wins at showdown. The hand never needed a big pot — 200bb deep, the marginal one-pair holding extracted exactly what it was owed: a cheap showdown it could win."},
+    {l:"Bet 3,500 for thin value",v:"bad",e:"Value from what? Worse tens might call, but the hands that call a river bet after this line are mostly Qx and Ax that beat you. Thin value needs a real target; this bet mostly gets called when you lose."},
+    {l:"Bet 5,500 — he showed weakness twice",v:"bad",e:"His turn check-back doesn't make T9 a value hand or a good bluff. You block nothing, you beat the hands that fold, and you lose to the hands that call — the definition of a pointless river bet."}],
+   did:{txt:"checks"}},
+  {t:"act",who:0,txt:"checks — showdown",wait:900},
+  {t:"act",who:0,txt:"mucks to the pair of tens",fold:true,wait:800},
+  {t:"end",res:"Mateos tables T♥9♥ and drags a small pot — which was the whole plan. Deep stacks, marginal hand, out of position: the pot stayed exactly as small as it was supposed to.",
+   lesson:"Deep stacks do not require bloating marginal one-pair pots. Position and hand class set the pot size — second pair OOP wants small pots and cheap showdowns, and there is no shame in winning a small one."}
+ ]},
+
+"AM-006":{
+ id:"AM-006",title:"The kings go in the muck",who:"Adrián Mateos · 2024 Main Event · Day 5",
+ rec:1,recNote:"Preflop sizings and positions reconstructed (the sources confirm a 4-bet pot but not the exact preflop numbers). Both hands, the full board, and both postflop bets — 425,000 into 1,360,000 and 1,300,000 into 2,210,000 — are verified via PokerNews.",
+ setup:"Day 5 of the Main Event, deep stacks, a 4-bet pot brewing against Will Berry. This is the hand PokerNews wrote up as one of the folds of the tournament.",
+ heroName:"Mateos",heroPos:"BTN",heroStack:"~5,200,000",heroCards:["Ks","Kh"],
+ blinds:"10K/20K (20K ante)",
+ vill:[{name:"Berry",pos:"MP",stack:"covers"}],
+ src:[["https://www.pokernews.com/news/2024/07/mateos-kings-fold-wsop-main-event-46510.htm","PokerNews hand report"],["https://www.youtube.com/watch?v=GhzqcTPZP-A","Inside the Mind of a Pro EP14"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"opens to 45,000",pot:95000},
+  {t:"act",who:"H",txt:"3-bets to 140,000",pot:235000},
+  {t:"act",who:0,txt:"4-bets to 655,000",pot:845000,wait:1300},
+  {t:"ask",txt:"Berry 4-bets to 655,000. You hold K♠K♥, over 250bb deep on Day 5. The whole tournament can happen in this hand.",
+   opts:[
+    {l:"Call 515,000 more",v:"pro",e:"Deep in a 4-bet pot, calling keeps Berry's bluffs and worse value in while committing nothing more. At these depths kings flat the 4-bet comfortably — jamming folds out everything you beat and gets called by the one hand you fear."},
+    {l:"5-bet all-in — kings are the second nuts",v:"bad",e:"At 40bb, fine. At 250bb+, a 5-bet jam turns kings into a bluff-catcher against exactly aces. The deeper the stacks, the narrower the range that plays for all of it — this is the geometry the whole hand hinges on."},
+    {l:"Fold preflop — 4-bets are aces here",v:"bad",e:"One street too early. A 4-bet range still contains AK, QQ, and some bluffs at these depths; folding kings preflop for 30bb more torches equity. The information that justifies folding hasn't arrived yet."}],
+   did:{txt:"calls 515,000",pot:1360000}},
+  {t:"street",name:"FLOP",cards:["Qd","4d","2c"],pot:1360000},
+  {t:"act",who:0,txt:"bets 425,000",pot:1785000,wait:1300},
+  {t:"ask",txt:"Q-4-2 with two diamonds. Berry c-bets 425,000 into 1,360,000. Overpair, 4-bet pot.",
+   opts:[
+    {l:"Call",v:"pro",e:"Mateos calls. The overpair is comfortably ahead of a 4-bet c-betting range on this dry board — but raising builds a monster pot in which only aces continue. Call, let the turn define his range."},
+    {l:"Raise to 1,100,000",v:"bad",e:"The raise gets exactly one street of information at the price of the whole stack: worse folds, aces piles in. Kings on Q-4-2 in a 4-bet pot want the pot growing slowly, on Berry's initiative, not yours."},
+    {l:"Fold — the 4-bet plus c-bet is enough",v:"bad",e:"Far too early. Every AK and QQ fires this flop; a single third-pot c-bet on a dry board carries almost no extra information. The fold has a correct address — it just isn't this street."}],
+   did:{txt:"calls 425,000",pot:2210000}},
+  {t:"street",name:"TURN",cards:["Ts"],pot:2210000},
+  {t:"act",who:0,txt:"sets out 1,300,000",pot:3510000,wait:1500},
+  {t:"ask",txt:"The T♠. Berry now bets 1,300,000 into 2,210,000 — a huge second barrel that leverages your whole stack. Kings, one pair, Day 5 of the Main Event.",
+   opts:[
+    {l:"Fold",v:"pro",e:"Mateos tanks just over a minute — and releases kings. The line tells the story: 4-bet preflop, c-bet, then a massive turn barrel that sets up stacks. At this depth, in this pot, that range is aces and almost nothing else. No physical tell required — range logic alone makes the elite fold."},
+    {l:"Call and re-evaluate rivers",v:"bad",e:"Calling 1,300,000 here commits you to a stack-depth river decision with one pair against a range that has you crushed. If the turn call is this ugly, the river only gets uglier — the fold happens now or the stack goes in drawing near-dead."},
+    {l:"Move all-in — protect against diamonds",v:"bad",e:"The maximum disaster. You fold out the barrel-bluffs that were funding you and get snap-called by aces. Protection is not a concept that applies when the only calling hand beats you."}],
+   did:{txt:"tanks over a minute… folds K♠K♥",fold:true}},
+  {t:"reveal",who:0,cards:["As","Ac"],txt:"had it the whole way"},
+  {t:"end",res:"Berry had A♠A♣ — the fold saved Mateos' Day 5 stack and his tournament. PokerNews wrote it up the same day.",
+   lesson:"Even premium overpairs are not automatic stack-offs in deep 4-bet pots. Stack depth sets how strong 'strong' is: at 250bb, kings facing a 4-bet-and-barrel line are a bluff-catcher, and the line itself is the read."}
+ ]},
+
+"AM-004":{
+ id:"AM-004",title:"The read that reversed",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Hero hand and board reconstructed to fit the verified 'second pair, multiway' spot. The limp, the small raise, both exact bet sizes (2,000 into 5,400, then a fast 6,500 into 11,400), the callers and the fold are verified.",
+ setup:"Day 1, 200bb deep, blinds 300/600. An early-position player limps, and an amateur-looking hijack makes a suspiciously small raise. Mateos defends the big blind; the limper comes along. Three ways to a flop.",
+ heroName:"Mateos",heroPos:"BB",heroStack:"~120,000",heroCards:["9s","8s"],
+ blinds:"300/600",
+ vill:[{name:"Limper",pos:"UTG",stack:"~95,000"},{name:"Amateur",pos:"HJ",stack:"~100,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"limps 600",pot:1500},
+  {t:"act",who:1,txt:"raises small — to 1,700",pot:3200},
+  {t:"act",who:"H",txt:"calls 1,100 more",pot:4300},
+  {t:"act",who:0,txt:"calls 1,100",pot:5400},
+  {t:"street",name:"FLOP",cards:["Qd","9h","5c"],pot:5400},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"checks",wait:600},
+  {t:"act",who:1,txt:"bets 2,000",pot:7400,wait:1100},
+  {t:"ask",txt:"Second pair in a three-way pot. The amateur's tiny preflop raise said 'weak' — now he bets 2,000 into 5,400. The limper still lurks behind you.",
+   opts:[
+    {l:"Call — the small sizing still reads weak",v:"pro",e:"Mateos calls. The initial read — small preflop raise from an amateur-looking player suggests a modest hand — plus a third-pot stab makes second pair an easy continue. The limper quickly calls behind, which is itself new information."},
+    {l:"Check-raise to 6,500 — punish the stab",v:"bad",e:"Into two players, repping almost nothing, with a hand that hates getting continued on — the check-raise converts a fine bluff-catcher into an expensive guess. Multiway pots punish fancy plays."},
+    {l:"Fold — second pair, multiway, why bother",v:"ok",e:"Tighter than needed against this sizing tree. When both the preflop and flop sizes look timid, second pair with a backdoor draw is worth one cheap street — the key is staying ready to update."}],
+   did:{txt:"calls 2,000",pot:9400}},
+  {t:"act",who:0,txt:"quickly calls 2,000",pot:11400,wait:1100},
+  {t:"street",name:"TURN",cards:["3d"],pot:11400},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"checks",wait:600},
+  {t:"act",who:1,txt:"instantly fires 6,500 — confident",pot:17900,wait:1300},
+  {t:"ask",txt:"Blank turn. The amateur doesn't hesitate — a fast, confident 6,500 into 11,400, firing into two flop callers. The 'weak' read is now in open conflict with the action.",
+   opts:[
+    {l:"Fold — the new information wins",v:"pro",e:"Mateos folds, and the limper folds behind. The tiny preflop raise said weak; the fast, confident barrel into two callers says the opposite — and the newer, costlier signal outranks the older, cheaper one. Initial tells are provisional. He lets second pair go without ceremony."},
+    {l:"Call — stick with the preflop read",v:"bad",e:"This is the exact leak the hand teaches: anchoring. A read formed on a 1,700 raise doesn't survive a fast 6,500 barrel into two players. Paying two more streets to defend a stale read is how second pair loses a stack."},
+    {l:"Check-raise all-in — call the story a lie",v:"bad",e:"Turning second pair into a giant bluff against a player whose line just got stronger, with a limper still behind — this isn't a hero play, it's a refusal to update dressed up as one."}],
+   did:{txt:"folds 9♠8♠",fold:true}},
+  {t:"act",who:0,txt:"folds too",fold:true,wait:800},
+  {t:"end",res:"The amateur drags the pot. Whatever he had, Mateos paid one small bet for the information and got away the moment the story changed.",
+   lesson:"Initial tells are provisional — new information must override the first read. The preflop sizing said weak; the fast turn barrel into two callers said strong. The pro isn't the one with the best first read, but the one who updates fastest."}
+ ]},
+
+"SUP-001":{
+ id:"SUP-001",title:"The jam the solver wouldn't find",who:"Leo Margets · 2025 Main Event · Day 1 (supplemental)",
+ rec:1,recNote:"Turn card, exact sizings and villain's exact combo reconstructed. The 3-bet with A4s, the Q-T-9 flop, the small c-bet, the river ace, villain's lead, the jam and the fold are verified from the published analysis.",
+ setup:"Day 1, deep stacks, blinds 200/400. UTG+1 — an amateurish unknown — opens. Margets looks down at A♥4♥ in the lojack. Through the hand, watch the villain, not just the cards: the analysis of this hand is about a live read.",
+ heroName:"Margets",heroPos:"LJ",heroStack:"~60,000",heroCards:["Ah","4h"],
+ blinds:"200/400",
+ vill:[{name:"Amateur",pos:"UTG+1",stack:"~45,000"}],
+ src:[["https://www.gipsyteam.com/news/07-08-2025/balance-gto-lab","GipsyTeam strategy analysis"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"opens to 1,000",pot:1600,wait:1100},
+  {t:"ask",txt:"UTG+1 opens to 1,000. A♥4♥ in the lojack — a hand most players fold or flat. Margets has a different idea.",
+   opts:[
+    {l:"3-bet to 3,300",v:"pro",e:"Margets 3-bets. A4s is a classic light-3-bet candidate: the ace blocks his strongest continues, the suit gives playability, and against a non-elite opener the 3-bet buys initiative that pays off on later streets — as it's about to."},
+    {l:"Flat call",v:"ok",e:"Playable, but flatting a suited wheel ace multiway-invites the whole table in and surrenders the initiative that makes the river play possible. The hand's power is in the story you get to tell, not its raw strength."},
+    {l:"Fold — ace-rag from middle position",v:"bad",e:"Against a strong UTG range, sure. Against an amateurish opener with position and a blocker-rich suited ace, folding gives up one of the highest-leverage light 3-bet spots live poker offers."}],
+   did:{txt:"3-bets to 3,300",pot:4900}},
+  {t:"act",who:0,txt:"calls 2,300 more",pot:7200},
+  {t:"street",name:"FLOP",cards:["Qs","Td","9c"],pot:7200},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"Q-T-9 — a coordinated board that smacks his calling range harder than your 3-betting range. He checks. Ace-high, no pair, no draw... except the story.",
+   opts:[
+    {l:"C-bet small — 2,400 (⅓)",v:"pro",e:"Margets fires a small continuation bet. It keeps the initiative cheaply, gets folds from the worst of his range now, and — critically — keeps her range uncapped for the streets ahead. The villain calls."},
+    {l:"Check back — this board hates you",v:"ok",e:"Solver-reasonable on a board that favors the caller. But checking surrenders the one asset A4s bought with the 3-bet: the right to keep telling a stronger story than the cards. The exploit line keeps the pressure on."},
+    {l:"Bet 5,400 (¾) — hit it hard",v:"bad",e:"The big size on the board that hits him builds a bloated pot with ace-high and no plan. Small keeps every option open; big commits chips to a bluff that hasn't earned its leverage yet."}],
+   did:{txt:"bets 2,400",pot:9600}},
+  {t:"act",who:0,txt:"calls 2,400",pot:12000},
+  {t:"street",name:"TURN",cards:["2s"],pot:12000},
+  {t:"act",who:0,txt:"checks — shifts in his seat, won't hold a gaze",wait:1300},
+  {t:"act",who:"H",txt:"checks back",wait:900},
+  {t:"street",name:"RIVER",cards:["Ac"],pot:12000},
+  {t:"act",who:0,txt:"leads out 6,000",pot:18000,wait:1400},
+  {t:"ask",txt:"The A♣ pairs your ace — and he suddenly leads 6,000 into 12,000 after checking twice. Through the turn he looked genuinely uncomfortable: shrinking posture, no eye contact. Pair of aces, terrible kicker.",
+   opts:[
+    {l:"Move all-in — the read says he can't stand it",v:"pro",e:"Margets jams. The published analysis is explicit: the sincere discomfort suggested a hand that hated the runout — a queen, a worse ace's kicker fear, a busted plan — and the sudden lead looked like a blocker bet begging not to be raised. The jam turns her near-worst 'made hand' into the most credible ace at the table. He agonizes… and folds better."},
+    {l:"Call — pair of aces is a bluff-catcher",v:"ok",e:"The solid, unimaginative line: you beat his bluffs, you lose to every real ace and two pair. Calling wins the minimum when ahead and pays full price when behind. The read — if you trust it — offers strictly more."},
+    {l:"Fold — the lead means you're outkicked",v:"bad",e:"Folding the best blocker hand in your range to a bet your own read says is uncomfortable is the worst of all worlds — it ignores both the cards' logic and the human's."}],
+   did:{txt:"moves all-in — about 26,000"}},
+  {t:"act",who:0,txt:"agonizes for minutes…",wait:1600},
+  {t:"reveal",who:0,cards:["Ad","Tc"],txt:"folds the better hand!"},
+  {t:"act",who:0,txt:"folds A♦T♣ face up",fold:true,wait:900},
+  {t:"end",res:"He folds two pair-ish strength — top pair of aces with a ten — to the jam. Margets' A♥4♥ was behind the whole way; the read, not the cards, won the pot.",
+   lesson:"Live behavior can unlock a bluff that pure theory would never choose — but the quality of the read is everything. This jam is brilliant with a sincere read and a punt without one. Earn the read first; then trust it fully."}
+ ]},
+
+"AM-010":{
+ id:"AM-010",title:"The bottom of the range tells a story",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Board cards and suits reconstructed to fit the verified description (trips-favoring turn, four cards to a ten-high straight by the river). K5s, the loose deep-stack call, all pot sizes, the 1,500 flop stab, the turn check-back and the 7,700-into-7,800 river bluff are verified.",
+ setup:"Day 1, ~100bb effective, blinds 300/600. A masked, unreadable early-position player opens. Mateos makes a deliberately loose deep-stack call with K5s — a hand theory folds — because position plus a soft table buys flexibility. The big blind comes along.",
+ heroName:"Mateos",heroPos:"HJ",heroStack:"~60,000",heroCards:["Ks","5s"],
+ blinds:"300/600",
+ vill:[{name:"Masked reg",pos:"EP",stack:"~60,000"},{name:"Amateur",pos:"BB",stack:"~55,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"opens to 1,500",pot:2400,wait:1100},
+  {t:"ask",txt:"A masked early-position player opens to 1,500. K5s in the hijack, 100bb deep. Theory has an easy answer — Mateos has a different one.",
+   opts:[
+    {l:"Call — a deliberate loose deep call",v:"pro",e:"Mateos calls, knowing it's loose. His logic: deep stacks, position on an unreadable opponent, and a table soft enough that postflop edges pay for preflop liberties. The point isn't that K5s is secretly good — it's that he's buying a position-and-initiative lottery ticket at a table where he expects to outplay the field. The big blind calls behind."},
+    {l:"Fold — K5s doesn't beat an EP range",v:"ok",e:"The charts agree with you, and against strong opposition this fold is simply correct. But this hand is in the casebook precisely because live deep-stack poker sometimes pays for calculated deviations — provided you know the price and have the postflop plan. Fold by default; deviate on purpose."},
+    {l:"3-bet — suited king, take initiative",v:"bad",e:"The worst of both worlds: you build a pot out of the one position advantage you had, against an early-position range that isn't folding, with a hand that plays terribly when called. Loose calls can be strategic; loose 3-bets against EP opens are just donations."}],
+   did:{txt:"calls 1,500",pot:3900}},
+  {t:"act",who:1,txt:"calls from the big blind",pot:4800},
+  {t:"street",name:"FLOP",cards:["Td","8c","7h"],pot:4800},
+  {t:"act",who:1,txt:"checks",wait:600},
+  {t:"act",who:0,txt:"checks",wait:800},
+  {t:"ask",txt:"T-8-7 — a board that smashes callers and misses an EP opener. Both check to you. King-high, no pair, no draw... and the only player whose range likes this flop.",
+   opts:[
+    {l:"Stab 1,500 (~30%)",v:"pro",e:"Mateos bets small. Two checks on the board his position is supposed to own, a cheap price, and a stab that starts writing the story his river will need: the player betting T-8-7 into two checkers looks exactly like the straights and two pairs he doesn't have. The big blind folds; the opener calls."},
+    {l:"Check back — you have nothing",v:"bad",e:"Nothing is what the stab is for. Checking back king-high wins the pot only when it accidentally show-downs best; betting wins it now from two players whose checks already confessed. The bottom of the range has to earn its pots with initiative."},
+    {l:"Bet 3,500 (~75%) — hit the weakness hard",v:"bad",e:"The big size commits real chips before you know if anyone's trapping the wet board, and it doesn't fold out much more than the small one. Cheap stabs keep the bluff's cost proportional to the information you have — which is one street of checks."}],
+   did:{txt:"bets 1,500",pot:6300}},
+  {t:"act",who:1,txt:"folds",fold:true,wait:700},
+  {t:"act",who:0,txt:"calls 1,500",pot:7800},
+  {t:"street",name:"TURN",cards:["Ts"],pot:7800},
+  {t:"act",who:0,txt:"checks",wait:900},
+  {t:"ask",txt:"The board pairs — T-8-7-T. Trips just entered the caller's range in force: every Tx that peeled the flop got there. He checks. Barrel or breathe?",
+   opts:[
+    {l:"Check back — the card hit him, not you",v:"pro",e:"Mateos considers barreling and declines: the paired ten improves the flop-caller's range heavily, and a second bullet into trips is the expensive kind of stubborn. The check also quietly sets up the river — his range still contains every straight, and one more card might hand him the story."},
+    {l:"Barrel 5,500 — he checked twice",v:"bad",e:"He also called the flop on a board that favors callers, and the turn just promoted a chunk of his range to trips. Barreling 'because check' without asking what the card did to whom is how bluffs die on the middle street."},
+    {l:"Barrel 2,500 — keep it cheap again",v:"ok",e:"Cheaper, but aimed at the same wall: flop-callers on T-8-7 don't fold to small turn bets once the board pairs their way. The stab logic worked when checks meant weakness; a call-then-check on this turn doesn't."}],
+   did:{txt:"checks back"}},
+  {t:"street",name:"RIVER",cards:["6d"],pot:7800},
+  {t:"act",who:0,txt:"checks",wait:1100},
+  {t:"ask",txt:"River 6♦: the board now reads T-8-7-T-6 — four cards to a ten-high straight. He checks a third time. You hold the absolute bottom of your range: king-high. Pot 7,800.",
+   opts:[
+    {l:"Bet 7,700 — nearly full pot, rep the nine",v:"pro",e:"Mateos fires 7,700 into 7,800. The runout wrote the story for him: after this line, his value range at this size is almost entirely straights — and the opponent's check-check-check line is packed with one-pair hands that are automatic folds facing a near-pot bet into four-to-a-straight. Bottom of range, credible polarized story, mountain of natural folds: that's the checklist. The villain quickly folds."},
+    {l:"Check back — take the free showdown",v:"bad",e:"King-high has no showdown value against a flop-calling range, so 'free showdown' is a free loss. When you arrive at the river with the absolute bottom of your range, the only question is whether the board offers a credible bluff — and this one is offering it with both hands."},
+    {l:"Bet 3,000 — a cheaper lie",v:"ok",e:"The half-size bluff tells the same story with less conviction — and this specific story needs conviction: straights on this river don't bet small into a capped range. Polarized rivers reward polar sizes; the discount invites the curiosity call that beats king-high."}],
+   did:{txt:"bets 7,700",pot:15500}},
+  {t:"act",who:0,txt:"quickly folds",fold:true,wait:1000},
+  {t:"end",res:"The masked player's hand hits the muck at speed, and the loose preflop call finishes the arc it started: bought with position, sustained with a cheap stab, cashed with a near-pot story the board itself co-signed.",
+   lesson:"When you reach the river with the absolute bottom of your range, ask two questions: does the runout give you a credible polarized story, and does his line have enough natural folds? If both answers are yes, size the bluff like the value hand you're claiming to be — big."}
+ ]},
+
+"AM-008":{
+ id:"AM-008",title:"The sizing tells, the showdown confirms",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Board and suits reconstructed. 86o vs JJ, ~100bb effective, the unusually large 3,000-into-3,900 flop bet, the 5,000-into-9,900 turn barrel, the borderline call, and the villain instantly tabling JJ without a river bet are all verified from the recap.",
+ setup:"Day 1, ~100bb effective, blinds 300/600. The hijack opens and Mateos defends the big blind with 86o. What follows is a hand about information: an unusual bet size on the way in, and an even more revealing non-bet on the way out.",
+ heroName:"Mateos",heroPos:"BB",heroStack:"~60,000",heroCards:["8c","6h"],
+ blinds:"300/600",
+ vill:[{name:"Hijack",pos:"HJ",stack:"~60,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:0,txt:"opens to 1,800",pot:2700},
+  {t:"act",who:"H",txt:"defends the big blind",pot:3900},
+  {t:"street",name:"FLOP",cards:["Ts","8h","3d"],pot:3900},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"bets 3,000 — unusually large",pot:6900,wait:1400},
+  {t:"ask",txt:"Second pair on T-8-3. The hijack fires 3,000 into 3,900 — way above the standard c-bet for this field. The size itself is talking. What does 86 do with it?",
+   opts:[
+    {l:"Call — read the strength, but take the price",v:"pro",e:"Mateos reads the oversized bet as strength — and calls anyway. Second pair is too strong to fold to one bet at this price, and the read isn't a verdict yet, it's a hypothesis. The call buys another street of information while the hand still beats plenty of the big-sizing range's semi-bluffs."},
+    {l:"Fold — unusual size means a big hand, believe it",v:"ok",e:"Coherent, and against some players correct — but folding second pair to a single flop bet, even a big one, surrenders too much too early at 100bb. The skill isn't obeying the tell instantly; it's pricing it into a plan for the whole hand."},
+    {l:"Check-raise — attack the polarized size",v:"bad",e:"If the read says strength, raising into it is arguing with your own information. You'd be turning second pair into a bluff against the exact range you just diagnosed as unfoldable."}],
+   did:{txt:"calls 3,000",pot:9900}},
+  {t:"street",name:"TURN",cards:["Qd"],pot:9900},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"bets 5,000",pot:14900,wait:1400},
+  {t:"ask",txt:"The Q♦ puts a second overcard out there. He bets 5,000 into 9,900. Your 8s are now third pair and the flop read said 'strong'. This is a genuinely borderline spot — Mateos said so himself.",
+   opts:[
+    {l:"Call — borderline, but he rarely bluffs rivers",v:"pro",e:"Mateos makes the borderline call, and his reasoning is the interesting part: against this player type he expects few river bluffs AND few thin river value bets — meaning the river will usually check through and the turn price is the last toll. A call that's marginal in a vacuum becomes defensible when you know the last street comes free."},
+    {l:"Fold — third pair, two overcards, strength confirmed",v:"ok",e:"Nobody would audit this fold; the flop read plus a second barrel is honest pressure. But note what folding costs: the hand ends before the cheapest information of the tournament arrives — the river behavior that Mateos was specifically paying to see."},
+    {l:"Raise — he's on AK, make him prove it",v:"bad",e:"The line that loses the most the most often: the oversized flop bet plus turn barrel is weighted to overpairs, and a raise gets you to the exact showdown you fear at triple the price. Borderline calls are fine; borderline raises are punts."}],
+   did:{txt:"calls 5,000",pot:14900}},
+  {t:"street",name:"RIVER",cards:["4c"],pot:14900},
+  {t:"act",who:"H",txt:"checks",wait:900},
+  {t:"act",who:0,txt:"checks — and instantly tables jacks",wait:1200},
+  {t:"reveal",who:0,cards:["Jd","Jc"]},
+  {t:"end",res:"Mateos loses the pot — jacks were ahead the whole way. But look at what he bought: the instant river check-show confirms this opponent under-value-bets rivers and barely bluffs them. That read is now free money for the rest of Day 1.",
+   lesson:"Treat unusual sizing as information, but plan the whole hand: a borderline turn call can be defensible when the opponent rarely bluffs rivers and fails to value-bet thinly. And a lost pot that confirms a read isn't a loss — it's tuition, paid once, collected all day."}
+ ]}
+};
+
+/* ============ HAND LAB ENGINE — animated interactive hand histories ============ */
+(function(){
+const SUIT={s:"♠",h:"♥",d:"♦",c:"♣"};
+const fmt=n=>typeof n==="number"?n.toLocaleString("en-US"):(n||"");
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const VPOS={1:[[50,-2]],2:[[24,2],[76,2]],3:[[13,30],[50,-2],[87,30]]};
+const pretty=cs=>cs.map(c=>c==="?"?"??":c.slice(0,-1).replace("T","10")+SUIT[c.slice(-1)]).join(" ");
+const who=(S,w)=>w==="H"?`<b>${S.h.heroName}</b>`:`<b>${S.h.vill[w].name}</b>`;
+
+function cardEl(c){
+  const d=document.createElement("div");d.className="hl-card";
+  if(!c||c==="?"){d.classList.add("hl-back");return d;}
+  const s=c.slice(-1),r=c.slice(0,-1).replace("T","10");
+  if(s==="h"||s==="d")d.classList.add("hl-red");
+  d.innerHTML=`<b>${r}</b><i>${SUIT[s]}</i>`;
+  return d;
+}
+function mount(el){
+  const h=(window.HL_HANDS||{})[el.dataset.hand];
+  if(!h)return;
+  el.innerHTML=`<div class="hl-top">
+      <span class="hl-tag">▶ live hand</span>
+      <span class="hl-id mono">${h.id}</span>
+      <span class="hl-title">${h.title}</span>
+      <span class="hl-meta">${h.who}</span>
+      ${h.rec?`<span class="hl-rec" title="${h.recNote||""}">◆ reconstructed</span>`:""}
+      <span class="hl-best mono"></span>
+    </div>
+    <div class="hl-stage"><div class="hl-felt"></div></div>
+    <div class="hl-panel"></div>
+    <div class="hl-log" hidden></div>`;
+  const S={el,h,panel:el.querySelector(".hl-panel"),log:el.querySelector(".hl-log"),seats:[],hit:0,tot:0};
+  showBest(S);buildTable(S);
+  S.panel.innerHTML=`<p class="hl-setup">${h.setup}</p><button type="button" class="btn">Deal the hand ▸</button>`;
+  S.panel.querySelector("button").onclick=()=>run(S);
+}
+function showBest(S){
+  try{const b=store["h"+S.h.id];
+    S.el.querySelector(".hl-best").textContent=b?`best ${b.hit}/${b.tot}`:"";
+  }catch(e){}
+}
+function buildTable(S){
+  const h=S.h,felt=S.el.querySelector(".hl-felt");
+  felt.innerHTML="";S.seats=[];
+  const vp=VPOS[h.vill.length]||VPOS[1];
+  h.vill.forEach((v,i)=>{
+    const d=document.createElement("div");d.className="hl-seat";
+    d.style.left=vp[i][0]+"%";d.style.top=vp[i][1]+"%";
+    d.innerHTML=`<div class="hl-hole"></div><div class="hl-plate"><b>${v.name}</b><small>${v.pos} · ${v.stack}</small></div><div class="hl-bub"></div>`;
+    felt.appendChild(d);S.seats.push(d);
+  });
+  const hero=document.createElement("div");hero.className="hl-seat hl-hero";
+  hero.innerHTML=`<div class="hl-bub"></div><div class="hl-hole"></div><div class="hl-plate"><b>${h.heroName} (you)</b><small>${h.heroPos} · ${h.heroStack}</small></div>`;
+  felt.appendChild(hero);S.hero=hero;
+  const mid=document.createElement("div");mid.className="hl-mid";
+  mid.innerHTML=`<div class="hl-board"></div><div class="hl-pot mono">blinds ${h.blinds}</div>`;
+  felt.appendChild(mid);S.mid=mid;
+}
+function logLine(S,txt,cls){
+  const p=document.createElement("div");p.className="hl-ll "+(cls||"");p.innerHTML=txt;
+  S.log.appendChild(p);S.log.scrollTop=S.log.scrollHeight;
+}
+function bubble(S,w,txt){
+  const seat=w==="H"?S.hero:S.seats[w];
+  const b=seat.querySelector(".hl-bub");
+  b.textContent=txt;b.classList.remove("hl-pop");void b.offsetWidth;b.classList.add("hl-pop");
+}
+function setPot(S,pot){
+  if(pot==null)return;
+  const p=S.mid.querySelector(".hl-pot");
+  p.innerHTML=`${S.street?S.street.toLowerCase()+" · ":""}pot <b>${fmt(pot)}</b>`;
+  p.classList.remove("hl-pulse");void p.offsetWidth;p.classList.add("hl-pulse");
+}
+async function run(S){
+  buildTable(S);S.hit=0;S.tot=0;S.log.hidden=false;S.log.innerHTML="";
+  S.panel.innerHTML=`<p class="hl-hint">Watch the action — the table pauses when it's on you.</p>`;
+  for(const st of S.h.steps){
+    if(!S.el.isConnected)return;
+    await doStep(S,st);
+  }
+}
+async function doStep(S,st){
+  const h=S.h;
+  if(st.t==="deal"){
+    const hh=S.hero.querySelector(".hl-hole");
+    h.heroCards.forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.13)+"s";e.classList.add("hl-in");hh.appendChild(e);});
+    S.seats.forEach((sd,i)=>{
+      const vh=sd.querySelector(".hl-hole"),v=h.vill[i];
+      (v.cards||["?","?"]).forEach((c,j)=>{const e=cardEl(v.open?c:"?");e.style.animationDelay=(.25+j*.13)+"s";e.classList.add("hl-in");vh.appendChild(e);});
+    });
+    logLine(S,`<b>${h.heroName}</b> is dealt <b>${pretty(h.heroCards)}</b> · blinds ${h.blinds}`,"hl-lh");
+    await sleep(950);
+  }else if(st.t==="act"){
+    bubble(S,st.who,st.txt);
+    if(st.fold)(st.who==="H"?S.hero:S.seats[st.who]).classList.add("hl-folded");
+    setPot(S,st.pot);
+    logLine(S,`${who(S,st.who)} ${st.txt}`);
+    await sleep(st.wait||1000);
+  }else if(st.t==="street"){
+    S.el.querySelectorAll(".hl-bub").forEach(b=>b.textContent="");
+    S.street=st.name;
+    const bd=S.mid.querySelector(".hl-board");
+    (st.cards||[]).forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.2)+"s";e.classList.add("hl-flip");bd.appendChild(e);});
+    setPot(S,st.pot);
+    logLine(S,`— <b>${st.name}</b> ${st.cards?pretty(st.cards):""} <span class="hl-dim">(pot ${fmt(st.pot)})</span>`,"hl-ls");
+    await sleep(1100);
+  }else if(st.t==="reveal"){
+    const sd=S.seats[st.who],vh=sd.querySelector(".hl-hole"),cs=st.cards||h.vill[st.who].cards;
+    vh.innerHTML="";
+    cs.forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.16)+"s";e.classList.add("hl-flip");vh.appendChild(e);});
+    if(st.txt)bubble(S,st.who,st.txt);
+    logLine(S,`${who(S,st.who)} shows <b>${pretty(cs)}</b>`);
+    await sleep(1100);
+  }else if(st.t==="ask"){
+    await ask(S,st);
+  }else if(st.t==="end"){
+    end(S,st);
+  }
+}
+function ask(S,st){
+  return new Promise(res=>{
+    S.tot++;
+    const opts=st.opts.slice();
+    for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+    S.panel.innerHTML=`<div class="hl-ask">
+      <div class="hl-q"><span class="hl-onyou disp">on you</span>${st.txt}</div>
+      <div class="hl-opts">${opts.map((o,i)=>`<button type="button" class="hl-opt" data-i="${i}">${o.l}</button>`).join("")}</div>
+      <div class="hl-fb" hidden></div></div>`;
+    S.panel.scrollIntoView({block:"nearest",behavior:"smooth"});
+    S.panel.querySelectorAll(".hl-opt").forEach(b=>{
+      b.onclick=()=>{
+        const o=opts[+b.dataset.i];
+        if(o.v==="pro")S.hit++;
+        S.panel.querySelectorAll(".hl-opt").forEach(x=>{
+          const oo=opts[+x.dataset.i];x.disabled=true;
+          if(oo.v==="pro")x.classList.add("hl-pro");
+          else if(x===b)x.classList.add(o.v==="ok"?"hl-okpick":"hl-badpick");
+        });
+        const fb=S.panel.querySelector(".hl-fb");
+        fb.hidden=false;
+        fb.innerHTML=`<div class="hl-verdict ${o.v}">${o.v==="pro"?"✓ the pro's line":o.v==="ok"?"△ defensible — but not the line":"✗ not this"}</div><p>${o.e}</p><button type="button" class="btn">Continue ▸</button>`;
+        fb.querySelector("button").onclick=async()=>{
+          S.panel.innerHTML=`<p class="hl-hint">…</p>`;
+          if(st.did){
+            bubble(S,"H",st.did.txt);
+            if(st.did.fold)S.hero.classList.add("hl-folded");
+            setPot(S,st.did.pot);
+            logLine(S,`<b>${S.h.heroName}</b> ${st.did.txt}`,"hl-lh");
+            await sleep(900);
+          }
+          res();
+        };
+        logLine(S,`<span class="hl-onyou2">decision</span> “${o.l}” ${o.v==="pro"?"✓":o.v==="ok"?"△":"✗"}`,"hl-ld");
+      };
+    });
+  });
+}
+function end(S,st){
+  let extra="";
+  try{
+    const k="h"+S.h.id,prev=store[k];
+    if(!prev||S.hit>prev.hit||(S.hit===prev.hit&&S.tot>prev.tot)){
+      store[k]={hit:S.hit,tot:S.tot};save();
+      if(prev)extra=" — new best";
+    }
+    showBest(S);
+  }catch(e){}
+  S.panel.innerHTML=`<div class="hl-endbox">
+    <div class="hl-res">${st.res}</div>
+    <div class="hl-score mono">You matched <b>${S.hit}/${S.tot}</b> of the pro's decisions${extra}</div>
+    <div class="hl-lesson"><span class="disp">key lesson</span>${st.lesson}</div>
+    ${S.h.rec?`<div class="hl-note">◆ ${S.h.recNote}</div>`:""}
+    ${S.h.src?`<div class="hl-src">Source: ${S.h.src.map(s=>`<a href="${s[0]}" target="_blank" rel="noopener">${s[1]}</a>`).join(" · ")}</div>`:""}
+    <button type="button" class="btn ghost">↺ Replay hand</button></div>`;
+  S.panel.querySelector("button").onclick=()=>run(S);
+}
+/* ---- Aggression Gym ---- */
+function gymBest(el){
+  try{const b=store["gym"];
+    el.querySelector(".hl-best").textContent=b?`best ${b.hit}/${b.tot}`:"";
+  }catch(e){}
+}
+function mountGym(el){
+  const G=window.HL_GYM;if(!G)return;
+  el.innerHTML=`<div class="hl-top">
+      <span class="hl-tag">⚔ ${G.title}</span>
+      <span class="hl-meta">8 drills · 2 decisions each — the attack, then the exit</span>
+      <span class="hl-best mono"></span></div>
+    <div class="hl-panel"></div>`;
+  gymBest(el);
+  const panel=el.querySelector(".hl-panel");
+  panel.innerHTML=`<p class="hl-setup">${G.intro}</p><button type="button" class="btn">Enter the gym ▸</button>`;
+  panel.querySelector("button").onclick=()=>gymRun(el,panel);
+}
+function gymRun(el,panel){
+  const G=window.HL_GYM,S={i:0,hit:0};
+  const next=()=>{ if(S.i>=G.drills.length){gymEnd(el,panel,S);return;} gymCard(panel,G.drills[S.i],S,next); };
+  next();
+}
+function gymCard(panel,d,S,next){
+  const cards=d.cards.map(c=>{
+    if(c==="?")return `<span class="hl-card hl-back hl-gc"></span>`;
+    const s=c.slice(-1),r=c.slice(0,-1).replace("T","10");
+    return `<span class="hl-card hl-gc ${(s==="h"||s==="d")?"hl-red":""}"><b>${r}</b><i>${SUIT[s]}</i></span>`;
+  }).join("");
+  panel.innerHTML=`<div class="hl-gymcard">
+    <div class="hl-gymhead"><span class="hl-onyou disp">drill ${S.i+1}/8</span>
+      <span class="hl-id mono">${d.id} · ${d.hand}</span><span class="hl-meta">${d.stage}</span>
+      <span class="hl-gymcards">${cards}</span></div>
+    <p class="hl-sit">${d.sit}</p>
+    <div class="hl-qbox"></div></div>`;
+  const box=panel.querySelector(".hl-qbox");
+  gymAsk(box,d.q1,ok1=>{
+    const r=document.createElement("div");
+    r.className="hl-resp";
+    r.innerHTML=`<span class="disp">the response</span> ${d.resp}`;
+    box.appendChild(r);
+    const b2=document.createElement("div");box.appendChild(b2);
+    gymAsk(b2,d.q2,ok2=>{
+      if(ok1)S.hit++;if(ok2)S.hit++;
+      const f=document.createElement("div");
+      f.innerHTML=`<div class="hl-lesson"><span class="disp">repeatable heuristic</span>${d.heur}</div>
+        <div class="hl-note">✗ Mistake to avoid: ${d.mistake}</div>
+        <button type="button" class="btn">${S.i<7?"Next drill ▸":"Finish ▸"}</button>`;
+      box.appendChild(f);
+      f.querySelector("button").onclick=()=>{S.i++;next();};
+    });
+  });
+}
+function gymAsk(box,q,done){
+  const opts=q.opts.slice();
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  const w=document.createElement("div");
+  w.innerHTML=`<div class="hl-q">${q.txt}</div>
+    <div class="hl-opts">${opts.map((o,i)=>`<button type="button" class="hl-opt" data-i="${i}">${o.l}</button>`).join("")}</div>
+    <div class="hl-fb" hidden></div>`;
+  box.appendChild(w);
+  w.querySelectorAll(".hl-opt").forEach(b=>{
+    b.onclick=()=>{
+      const o=opts[+b.dataset.i];
+      w.querySelectorAll(".hl-opt").forEach(x=>{
+        const oo=opts[+x.dataset.i];x.disabled=true;
+        if(oo.v==="pro")x.classList.add("hl-pro");
+        else if(x===b)x.classList.add(o.v==="ok"?"hl-okpick":"hl-badpick");
+      });
+      const fb=w.querySelector(".hl-fb");
+      fb.hidden=false;
+      fb.innerHTML=`<div class="hl-verdict ${o.v}">${o.v==="pro"?"✓ the documented line":o.v==="ok"?"△ defensible — but not the line":"✗ not this"}</div><p>${o.e}</p>`;
+      done(o.v==="pro");
+    };
+  });
+}
+function gymEnd(el,panel,S){
+  let extra="";
+  try{
+    const prev=store["gym"];
+    if(!prev||S.hit>prev.hit){store["gym"]={hit:S.hit,tot:16};save();if(prev)extra=" — new best";}
+    gymBest(el);
+  }catch(e){}
+  panel.innerHTML=`<div class="hl-endbox">
+    <div class="hl-res">Gym complete. The pattern, eight ways: pick a target who can fold, take the line, and exit the instant the response is serious.</div>
+    <div class="hl-score mono">You matched <b>${S.hit}/16</b> documented decisions${extra}</div>
+    <div class="hl-lesson"><span class="disp">the meta-rule</span>Every aggressive line in this gym was profitable because the exit was decided before the first chip went in. Aggression without exits is spew; exits without aggression is surrender.</div>
+    <div class="hl-src">Source: wsop_aggression_drills_v3 — PokerNews Day 4–8 live reports & GipsyTeam EP03 recap</div>
+    <button type="button" class="btn ghost">↺ Run it again</button></div>`;
+  panel.querySelector("button").onclick=()=>gymRun(el,panel);
+}
+window.hlInit=function(){
+  document.querySelectorAll(".handlab").forEach(el=>{
+    if(!el.dataset.m){el.dataset.m=1;mount(el);}
+  });
+  document.querySelectorAll(".aggro-gym").forEach(el=>{
+    if(!el.dataset.m){el.dataset.m=1;mountGym(el);}
+  });
+};
+function goHash(){
+  try{
+    const m=location.hash.match(/^#d(\d+)$/);
+    if(m&&L.some(x=>x.d===+m[1])){cur=+m[1];qState=null;renderAll();window.scrollTo({top:0});}
+  }catch(e){}
+}
+window.addEventListener("hashchange",goHash);
+goHash();
+window.hlInit();
+})();
 </script>

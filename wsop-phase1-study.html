@@ -119,6 +119,95 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);f
 .sitenav a:hover{color:var(--ink);background:var(--bg2)}
 .sitenav a.here{background:var(--rust);color:#fff8ef}
 .sitenav .soon{color:var(--faint)}
+
+/* ---------- HAND LAB — animated live-hand replayer ---------- */
+.handlab{margin:26px 0 8px;border:1px solid var(--line);background:var(--bg2);box-shadow:var(--shadow)}
+.hl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.hl-tag{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--rust)}
+.hl-id{font-size:12px;color:var(--faint)}
+.hl-title{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:15px}
+.hl-meta{font-size:12.5px;color:var(--dim)}
+.hl-rec{font-size:11px;color:var(--bronze);border:1px solid color-mix(in srgb,var(--bronze) 45%,transparent);padding:1px 8px;border-radius:10px;cursor:help;white-space:nowrap}
+.hl-best{margin-left:auto;font-size:11px;color:var(--sage)}
+.hl-stage{padding:14px 14px 6px}
+.hl-felt{position:relative;height:330px;border-radius:46%/40%;border:2px solid color-mix(in srgb,var(--bronze) 40%,var(--line));
+  background:radial-gradient(ellipse at 50% 42%, color-mix(in srgb,var(--sage-deep) 40%,var(--bg)) 0%, color-mix(in srgb,var(--sage-deep) 18%,var(--bg)) 72%, var(--bg2) 100%)}
+@media(max-width:640px){.hl-felt{height:370px;border-radius:24px}}
+.hl-seat{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;width:170px;transition:opacity .5s,filter .5s}
+.hl-seat.hl-hero{left:50%;bottom:6px}
+.hl-seat.hl-folded{opacity:.35;filter:grayscale(.85)}
+.hl-plate{background:var(--card);border:1px solid var(--line);padding:3px 10px;text-align:center;border-radius:3px;line-height:1.25}
+.hl-plate b{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12.5px;display:block}
+.hl-plate small{font-size:10.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.hl-hero .hl-plate{border-color:color-mix(in srgb,var(--rust) 60%,var(--line))}
+.hl-hole{display:flex;gap:4px;min-height:54px}
+.hl-bub{min-height:22px;font-size:11.5px;line-height:1.2;background:color-mix(in srgb,var(--bg) 72%,transparent);border-radius:11px;padding:2px 10px;color:var(--ink);max-width:180px;text-align:center;font-variant-numeric:tabular-nums;empty-cell:hide}
+.hl-bub:empty{background:transparent}
+.hl-bub.hl-pop{animation:hlPop .3s both}
+.hl-card{width:38px;height:53px;border-radius:4px;background:#f6efdd;border:1px solid #b9a98c;color:#20180e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,.3);flex:none}
+.hl-card b{font-size:15px;font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;letter-spacing:0}
+.hl-card i{font-style:normal;font-size:13px}
+.hl-card.hl-red{color:#a8341c}
+.hl-card.hl-back{background:repeating-linear-gradient(45deg,var(--rust-deep) 0 3px,#6e2f14 3px 6px);border-color:#582a12}
+.hl-card.hl-in{animation:hlIn .45s both}
+.hl-card.hl-flip{animation:hlFlip .5s both}
+.hl-mid{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;pointer-events:none}
+.hl-board{display:flex;gap:5px;min-height:62px}
+.hl-board .hl-card{width:44px;height:61px}
+.hl-board .hl-card b{font-size:17px}
+.hl-pot{font-size:13px;background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);padding:2px 14px;border-radius:12px}
+.hl-pot b{color:var(--bronze)}
+.hl-pot.hl-pulse{animation:hlPulse .5s}
+.hl-panel{padding:14px;border-top:1px solid var(--line)}
+.hl-setup{margin:0 0 12px;color:var(--dim);font-size:15.5px}
+.hl-hint{margin:0;color:var(--faint);font-size:13px;font-style:italic;min-height:18px}
+.hl-q{font-size:16px;margin-bottom:10px}
+.hl-onyou{display:inline-block;background:var(--rust);color:#fff8ef;font-size:10.5px;padding:1px 8px;letter-spacing:.15em;margin-right:7px;transform:translateY(-2px)}
+.hl-opts{display:grid;gap:6px}
+.hl-opt{text-align:left;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:9px 12px;cursor:pointer;font:inherit;font-size:15px}
+.hl-opt:hover:not(:disabled){border-color:var(--rust)}
+.hl-opt:disabled{cursor:default;opacity:.7}
+.hl-opt.hl-pro{border-color:var(--sage);background:color-mix(in srgb,var(--sage) 14%,var(--card));opacity:1}
+.hl-opt.hl-okpick{border-color:var(--bronze);opacity:1}
+.hl-opt.hl-badpick{border-color:var(--rust);background:color-mix(in srgb,var(--rust) 12%,var(--card));opacity:1}
+.hl-fb{margin-top:12px}
+.hl-verdict{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.hl-verdict.pro{color:var(--sage)}.hl-verdict.ok{color:var(--bronze)}.hl-verdict.bad{color:var(--rust)}
+.hl-fb p{margin:6px 0 10px;font-size:15px}
+.hl-endbox .hl-res{font-size:16px;margin-bottom:8px}
+.hl-score{font-size:13px;color:var(--dim);margin-bottom:10px}
+.hl-score b{color:var(--rust)}
+.hl-lesson{border-left:3px solid var(--bronze);padding:7px 12px;background:var(--card);margin-bottom:10px;font-size:15px}
+.hl-lesson .disp{display:block;font-size:10.5px;color:var(--bronze);letter-spacing:.22em;margin-bottom:2px}
+.hl-note{font-size:12px;color:var(--faint);margin-bottom:6px}
+.hl-src{font-size:12px;color:var(--faint);margin-bottom:12px}
+.hl-src a{color:var(--dim)}
+.hl-log{padding:10px 14px;border-top:1px solid var(--line);max-height:180px;overflow:auto;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--dim);line-height:1.5}
+.hl-ll{padding:1px 0}
+.hl-ls{color:var(--bronze);margin-top:4px}
+.hl-lh{color:var(--ink)}
+.hl-ld{color:var(--rust)}
+.hl-dim{color:var(--faint)}
+.hl-onyou2{color:var(--rust);letter-spacing:.1em;font-weight:700}
+.hl-brief{border:1px solid var(--line);border-left:3px solid var(--bronze);background:var(--bg2);padding:12px 16px;margin:22px 0}
+.hl-brief .hl-bk{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--bronze);display:block;margin-bottom:4px}
+.hl-index{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 4px}
+.hl-index th{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--faint);text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}
+.hl-index td{padding:6px 8px;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);vertical-align:top}
+.hl-index a{color:var(--rust)}
+.aggro-gym{margin:26px 0 8px;border:1px solid var(--line);border-top:3px solid var(--rust);background:var(--bg2);box-shadow:var(--shadow)}
+.hl-gymhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:8px}
+.hl-gymcards{display:inline-flex;gap:3px;margin-left:auto}
+.hl-card.hl-gc{width:30px;height:42px;border-radius:3px}
+.hl-card.hl-gc b{font-size:12px}
+.hl-card.hl-gc i{font-size:10px}
+.hl-sit{margin:0 0 12px;font-size:15.5px}
+.hl-resp{border-left:3px solid var(--rust);background:var(--card);padding:7px 12px;margin:14px 0 12px;font-size:15px}
+.hl-resp .disp{display:block;font-size:10.5px;color:var(--rust);letter-spacing:.22em;margin-bottom:2px}
+@keyframes hlIn{from{opacity:0;transform:translateY(-16px) rotate(-5deg)}to{opacity:1;transform:none}}
+@keyframes hlFlip{from{opacity:0;transform:rotateY(88deg)}to{opacity:1;transform:none}}
+@keyframes hlPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+@keyframes hlPulse{50%{transform:scale(1.1)}}
 </style>
 
 <nav class="sitenav" aria-label="The Hundred">
@@ -447,7 +536,11 @@ ${T([
 <li>Versus recreationals, <b>story matters less than the number</b>: pick the biggest size their curiosity pays.</li></ul>
 <h3>The check-back discipline</h3>
 <p>When neither question has a good answer — no worse hands call, better hands never fold — <b>check back and win the pot you already have</b>. The river bet that accomplishes nothing only opens the door to a check-raise you can't call.</p>
-${NOTE("recreational players pay off river value bets at rates that would make an online reg dizzy. Missing thin value vs stations is the single most expensive live leak — bet the second pair.")}`,
+${NOTE("recreational players pay off river value bets at rates that would make an online reg dizzy. Missing thin value vs stations is the single most expensive live leak — bet the second pair.")}
+<h3>Table time — live hand</h3>
+<p>The lesson above set the river value thresholds. Now sit in the seat: Day 1 of the 2024 Main Event, a soft table, and three streets of sizing decisions. Match the line Mateos actually took.</p>
+<div class="handlab" data-hand="AM-005"></div>
+`,
 quiz:[
 {q:"Before any river value bet, the two questions in order:",o:["Am I ahead? Am I behind?","Which worse hands call","How big is the pot? How big is my stack?","Did he look nervous? Did he bet fast?"],a:1,e:"<b>Name the worse hands that call, then size at them.</b> If you can't name them, you don't have a value bet — you have a hope."},
 {q:"You hold KQ on K-8-4-2-7 vs a recreational caller who check-called twice. River action?",o:["Check back — he called twice, he's strong","Bet ~60%","Overbet jam","Bet 10% pot"],a:1,e:"Stations check-call with <b>worse Kx, middle pairs, and curiosity</b>. Top pair good kicker is a clear value bet at a size their range pays."},
@@ -476,7 +569,11 @@ ${T([
 ["Effect","Consequence"])}
 <h3>The population discount</h3>
 <p>All of that is the theory baseline. Now apply the live discount: <b>the Main Event field under-bluffs rivers, massively</b>, especially with big sizings and in raised lines. Your default vs unknown live players: fold the marginal bluff-catchers, reserve the hero calls for opponents who've shown they can fire three streets with air.</p>
-${NOTE("if you cannot answer all three questions — losses, beaten bluffs, blockers — you are not allowed to call a big river bet in a deep-run spot. That's not a suggestion; it's the discipline standard.")}`,
+${NOTE("if you cannot answer all three questions — losses, beaten bluffs, blockers — you are not allowed to call a big river bet in a deep-run spot. That's not a suggestion; it's the discipline standard.")}
+<h3>Table time — live hand</h3>
+<p>Bluff-catching is street-by-street re-evaluation, never a promise. Margets calls the champion twice — and shows you why the third street is a different decision entirely.</p>
+<div class="handlab" data-hand="LM-012"></div>
+`,
 quiz:[
 {q:"The real lesson of the Mateos A♦2♦ river call:",o:["Hero call more often","The call was profitable against the range","Ace-high is secretly strong","Always call half-pot bets"],a:1,e:"<b>Call because the range says so, not because you want to be right.</b> Results on one hand are noise; range logic is the signal."},
 {q:"The three questions before calling a big river bet, in order:",o:["Pot odds, stack size, position","What value do I lose to? What bluffs do I beat? What do I block/unblock?","Is he capable? Is he tilted? Is he tired?","How much is left? Can I rebuy? Who's watching?"],a:1,e:"Losses, beaten bluffs, blockers — <b>in that order, every time</b>. Skipping one turns a call into a coin flip."},
@@ -626,7 +723,11 @@ ${T([
 <p>Bluffing wants two properties, in order: <b>unblock their folds</b> (don't hold cards from the junk they'd release) and <b>block their continues</b> (hold cards from the hands that call). The A♠-on-two-spades barrel does both: blocks the nut flush draw that continues, unblocks the offsuit junk that folds.</p>
 <h3>The triple-barrel gate</h3>
 <p>Before the river bullet, three gates: (1) does his turn call cap him below your rep? (2) do your blockers still work? (3) is this <b>opponent type</b> capable of folding the bluff-catcher? Gate three is the population gate — vs stations the answer is no, and the barrel dies at two.</p>
-${NOTE("the field triple-barrels almost never as a bluff — which is why your disciplined triple gets so much credit, and why their third barrel deserves yours.")}`,
+${NOTE("the field triple-barrels almost never as a bluff — which is why your disciplined triple gets so much credit, and why their third barrel deserves yours.")}
+<h3>Table time — live hand</h3>
+<p>Facing barrels is range-reading under fire. One overcard you can call; the second barrel on the card that crowns his range is information — believe it, like Margets did at 14 left.</p>
+<div class="handlab" data-hand="LM-019"></div>
+`,
 quiz:[
 {q:"You c-bet Q72r; the turn is an ace. Barrel quality and why?",o:["Bad — scare cards check","Elite","Neutral — depends on nothing","Only barrel if you hold the ace"],a:1,e:"Overcards to the flop are <b>your</b> cards: the raiser owns Ax, the flop-caller mostly doesn't. Value and bluffs both barrel."},
 {q:"The second spade lands on the turn and you hold the A♠ (no made flush). Your barrel gains because:",o:["Ace-high still wins unimproved often enough to bet it for value","You block their nut flush draws (continues) while repping the flush yourself","Spades complete your range only","It doesn't gain — without a made flush the barrel is still pure air"],a:1,e:"<b>Block the continues, rep the arrival.</b> The A♠ barrel is the textbook blocker-driven aggression card."},
@@ -676,7 +777,11 @@ body:`
 <li>Overbet <b>bluffs</b> want nut blockers (the A♠ again): rep the exact hand you prevent.</li></ul>
 <h3>When it doesn't</h3>
 <p>No nut advantage, no blockers, or an opponent who can't find fold — the overbet is just a big donation. Vs stations, overbet <b>value only</b>, ever.</p>
-${NOTE("live Main Event fields barely use overbets and rarely face them. A correctly-timed overbet gets folds no normal size buys — and your value overbets get paid by curiosity that never learned the pattern.")}`,
+${NOTE("live Main Event fields barely use overbets and rarely face them. A correctly-timed overbet gets folds no normal size buys — and your value overbets get paid by curiosity that never learned the pattern.")}
+<h3>Table time — live hand</h3>
+<p>The solver wants an overbet on this river; Mateos chooses 6,200 against an unknown — play the whole sizing tree and see why both answers matter.</p>
+<div class="handlab" data-hand="AM-009"></div>
+`,
 quiz:[
 {q:"SPR is calculated as:",o:["Pot ÷ stack","Effective stack ÷ pot, on the flop","Stack ÷ blinds","Pot × streets remaining"],a:1,e:"<b>Effective stack over pot.</b> It's the commitment gauge: how many pots-worth remain behind."},
 {q:"At SPR 2.5 with top pair, your commitment stance:",o:["Pot-control — too shallow to stack off","Committed","Fold to any bet","Depends on nothing"],a:1,e:"At SPR ≤3 the math has decided: <b>one pair stacks off</b>. Trying to 'play it careful' just donates equity."},
@@ -760,6 +865,7 @@ function renderAll(){
     <div class="quiz" id="quiz"></div>`;
   renderQuizStart();
   renderNav();
+  if(window.hlInit)window.hlInit();
 }
 function renderQuizStart(){
   const x=L.find(l=>l.d===cur);
@@ -825,4 +931,462 @@ function finish(){
   renderNav();
 }
 renderAll();
+</script>
+<script>
+/* ---------- HAND LAB DATA — Phase I ---------- */
+window.HL_HANDS={
+"LM-012":{
+ id:"LM-012",title:"Two calls are not a promise",who:"Leo Margets · 2025 Main Event · Day 7, 40 left",
+ rec:0,recNote:"",
+ setup:"Day 7, forty players left, blinds 150K/300K. Margets opens pocket nines from the hijack and Michael Mizrachi — the eventual champion — 3-bets to 1,350,000 in position. What follows is a masterclass in bluff-catching with an exit plan.",
+ heroName:"Margets",heroPos:"HJ",heroStack:"~16,000,000",heroCards:["9s","9c"],
+ blinds:"150K/300K (300K ante)",
+ vill:[{name:"Mizrachi",pos:"CO",stack:"covers"}],
+ src:[["https://www.pokernews.com/tours/wsop/2025-wsop/event-81-10000-wsop-main-event/day7/?page=12","PokerNews Day 7 live report"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 600,000",pot:1350000},
+  {t:"act",who:0,txt:"3-bets to 1,350,000",pot:2700000,wait:1200},
+  {t:"act",who:"H",txt:"calls 750,000 more",pot:3450000},
+  {t:"street",name:"FLOP",cards:["Th","4c","2c"],pot:3450000},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"bets 725,000",pot:4175000,wait:1200},
+  {t:"ask",txt:"T-4-2 with two clubs. One overcard to your nines, and the 3-bettor fires 725,000 into 3,450,000. First bluff-catching decision.",
+   opts:[
+    {l:"Call — nines beat his bluffs and his AK",v:"pro",e:"Margets calls. A 3-bettor's c-bet on T-4-2 is nearly range-wide — every AK, AQ and suited broadway fires here. Nines are comfortably ahead of that betting range, and the 9♣ even holds a club. Folding now would surrender to pure frequency."},
+    {l:"Fold — he 3-bet, the ten hits him",v:"bad",e:"T-4-2 hits a 3-betting range less than almost any flop. Folding second-pair-plus to a single standard c-bet makes your preflop call pointless — you continued exactly to catch this bet."},
+    {l:"Check-raise — take the pot now",v:"bad",e:"Raising folds out the AK-highs you beat and gets the pot bloated against overpairs. Nines in a 3-bet pot are a bluff-catcher; bluff-catchers call, they don't raise."}],
+   did:{txt:"calls 725,000",pot:4900000}},
+  {t:"street",name:"TURN",cards:["5c"],pot:4900000},
+  {t:"act",who:"H",txt:"checks",wait:600},
+  {t:"act",who:0,txt:"bets 1,600,000",pot:6500000,wait:1300},
+  {t:"ask",txt:"The 5♣ puts three clubs out there — and you hold the 9♣. He barrels 1,600,000. Second decision, and it's genuinely closer.",
+   opts:[
+    {l:"Call — the 9♣ and his barrel range keep this ahead",v:"pro",e:"Margets calls again. His double-barrel range still holds plenty of AK/AQ with one big club, and the 9♣ means she can improve against flushes while blocking some of his. Continuing twice against an aggressive 3-bettor is defensible — the key is knowing it buys the river decision, not a commitment."},
+    {l:"Fold — three clubs and a barrel is enough",v:"ok",e:"Nobody audits this fold; the turn genuinely improves his range. But folding the second-best bluff-catcher in your range to the second barrel lets an elite aggressor print with his whole range — the call keeps his bluffs honest one more street."},
+    {l:"Check-raise — the 9♣ makes it a semi-bluff",v:"bad",e:"Raising here builds a giant pot with one pair and a one-card draw against a range that isn't folding flushes or overpairs. Maximum cost, minimum credibility."}],
+   did:{txt:"calls 1,600,000",pot:8100000}},
+  {t:"street",name:"RIVER",cards:["Kh"],pot:8100000},
+  {t:"act",who:"H",txt:"checks",wait:700},
+  {t:"act",who:0,txt:"moves all-in — 10,975,000",pot:19075000,wait:1600},
+  {t:"ask",txt:"The K♥ — and Mizrachi jams 10,975,000, covering you. Two calls already made, 8,100,000 in the middle, your tournament behind the decision. The third street changes everything.",
+   opts:[
+    {l:"Fold quickly",v:"pro",e:"Margets folds at speed. The river king smashes his 3-betting range, the all-in sizing is maximally polarized, and calling costs her tournament at 40 left. Continuing twice is not a commitment to call the river — every street is a new decision against a new range. This time he had A♦7♦, a busted wheel draw. The fold is still right: the range jams value far more often than this."},
+    {l:"Call — you called twice, see it through",v:"bad",e:"The sunk-cost call, and the most expensive leak in tournament poker. The 2,325,000 already invested is gone; the question is whether 10,975,000 more wins against a jamming range on the worst runout for your hand. It doesn't."},
+    {l:"Call — the king is a scare-card he'd bluff",v:"bad",e:"Elite players do bluff scare cards — but the K is a card his range genuinely owns: AK just got there, KK was always there, and flushes never left. A bluff-catcher that loses to the value range AND the improved bluffs isn't a bluff-catcher anymore."}],
+   did:{txt:"folds 9♠9♣",fold:true}},
+  {t:"reveal",who:0,cards:["Ad","7d"],txt:"had the busted wheel draw"},
+  {t:"end",res:"Mizrachi shows the three-street bluff — this time. Margets loses 2,325,000 finding out and keeps the other 11 million; she outlasts all but a handful of the field from here. The champion won the pot; the discipline won the tournament.",
+   lesson:"Continuing twice is not a commitment to call the river. Fold when the response becomes maximally polarized on a card that crowns his range — the two earlier calls bought information, not an obligation."}
+ ]},
+
+"LM-019":{
+ id:"LM-019",title:"One call, then believe him",who:"Leo Margets · 2025 Main Event · Day 8, 14 left",
+ rec:0,recNote:"",
+ setup:"Day 8, fourteen players left, blinds 600K/1.2M. Margets opens pocket tens under the gun; Kenny Hallaert — a serious, seasoned player — calls in the cutoff. The flop brings one overcard and trouble underneath it.",
+ heroName:"Margets",heroPos:"UTG",heroStack:"~55,000,000",heroCards:["Ts","Th"],
+ blinds:"600K/1.2M (1.2M ante)",
+ vill:[{name:"Hallaert",pos:"CO",stack:"~35,000,000"}],
+ src:[["https://www.pokernews.com/tours/wsop/2025-wsop/event-81-10000-wsop-main-event/day8/?page=3","PokerNews Day 8 live report"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 2,400,000",pot:5400000},
+  {t:"act",who:0,txt:"calls in position",pot:7800000},
+  {t:"street",name:"FLOP",cards:["Jc","7d","2c"],pot:7800000},
+  {t:"act",who:"H",txt:"checks",wait:700},
+  {t:"act",who:0,txt:"bets 2,600,000",pot:10400000,wait:1300},
+  {t:"ask",txt:"J-7-2 with two clubs. You checked your tens under the jack; Hallaert bets 2,600,000 into 7,800,000. First decision.",
+   opts:[
+    {l:"Call — one overcard, his stabs are wide",v:"pro",e:"Margets calls. In-position players bet this flop with their whole airy range once it's checked to them — floats, club draws, overcards. Tens under one overcard are a clear one-street continue; the plan is call once, then re-evaluate against real information."},
+    {l:"Fold — UTG tens play fit-or-fold",v:"bad",e:"Folding an overpair-to-everything-but-the-jack to a single stab surrenders far too much. His flop betting range is wide; your hand is near the top of your check-calling range."},
+    {l:"Check-raise — find out now",v:"bad",e:"The information costs triple and arrives garbled: he folds his air, continues with everything that beats you, and the pot bloats at 14 left with second pair. Call once, cheaply, and let his next action speak."}],
+   did:{txt:"calls 2,600,000",pot:13000000}},
+  {t:"street",name:"TURN",cards:["Kc"],pot:13000000},
+  {t:"act",who:"H",txt:"checks",wait:700},
+  {t:"act",who:0,txt:"bets 6,000,000",pot:19000000,wait:1400},
+  {t:"ask",txt:"The K♣ — a second overcard, a third club, and the card that smashes a cutoff calling range. Hallaert fires 6,000,000. Second decision.",
+   opts:[
+    {l:"Fold — a serious player, a serious card, a serious bet",v:"pro",e:"Margets folds, and Hallaert was sitting on a flopped set of sevens. But the fold doesn't need the reveal: the K♣ improves his Kx, completes his flushes, and a seasoned player's second barrel on the exact card that crowns his range is value-heavy to the bone. One call was appropriate; two would be stubbornness."},
+    {l:"Call again — you called the flop, stay consistent",v:"bad",e:"Consistency is not a poker concept; ranges are. The turn card transformed his range and buried your tens under two overcards, a flush, and every set. Paying 6M to see it proven at 14 left is how big stacks bleed."},
+    {l:"Check-raise — clubs and kings are scare cards for him too",v:"bad",e:"With no club in hand, tens have nothing to semi-bluff toward and no story to tell — you'd be jamming money into the one range configuration that never folds."}],
+   did:{txt:"folds T♠T♥",fold:true}},
+  {t:"reveal",who:0,cards:["7s","7h"],txt:"flopped set"},
+  {t:"end",res:"Hallaert shows the flopped set of sevens — the fold saved Margets six million and change on the turn, plus whatever the river would have cost. Fourteen players left, stack intact.",
+   lesson:"Continue once when appropriate; fold when a serious player repeats aggression on a card that improves his range. The flop call bought information — the turn barrel delivered it, and she believed it."}
+ ]},
+"AM-005":{
+ id:"AM-005",title:"Three streets in a soft field",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Cards reconstructed to fit the verified texture. The three-street sizings, action sequence and reasoning are verified from Mateos' own episode recap.",
+ setup:"Day 1, ~200bb deep, blinds 300/600. The table is soft, so Mateos is opening wider than theory from the cutoff. Only the big blind — an amateur whose posture already shows hesitation — defends.",
+ heroName:"Mateos",heroPos:"CO",heroStack:"~120,000",heroCards:["Kc","Tc"],
+ blinds:"300/600",
+ vill:[{name:"Amateur",pos:"BB",stack:"~110,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 1,600",pot:2500},
+  {t:"act",who:0,txt:"calls 1,600",pot:3500},
+  {t:"street",name:"FLOP",cards:["Ks","8d","3c"],pot:3500},
+  {t:"act",who:0,txt:"checks",wait:700},
+  {t:"ask",txt:"Top pair on a bone-dry board, heads-up in position against a nervous amateur. Your c-bet?",
+   opts:[
+    {l:"Bet 1,000 (~30% pot)",v:"pro",e:"Mateos bets 1,000 into 3,500. On K-8-3 rainbow his range crushes a BB caller's — a small bet taxes every worse hand that peels (Kx worse kicker, 8x, gutshots, floats) and starts building the pot he intends to grow for three streets."},
+    {l:"Bet 2,600 (~75% pot)",v:"ok",e:"Not a disaster, but the big size folds out exactly the worse hands you want to keep in against a player who already under-calls. Dry, locked-down boards want small sizes with the whole range."},
+    {l:"Check back and pot-control",v:"bad",e:"This is a value hand in a soft field, not a marginal one. Checking gives a free card and wastes the exact exploit Mateos came for: populations here under-defend and under-call — so you bet, and keep betting."}],
+   did:{txt:"bets 1,000",pot:4500}},
+  {t:"act",who:0,txt:"calls 1,000",pot:5500},
+  {t:"street",name:"TURN",cards:["Th"],pot:5500},
+  {t:"act",who:0,txt:"checks",wait:700},
+  {t:"ask",txt:"The T♥ gives you top two pair. The amateur checks again. Now what?",
+   opts:[
+    {l:"Bet 3,200 (~58% pot)",v:"pro",e:"Mateos bets 3,200 into 5,500 — a real bet, growing the pot now that his hand improved to two pair. The turn is a great protection-and-value card, and his read is that this player calls too much but never check-raises."},
+    {l:"Check to trap",v:"bad",e:"Trapping only works against players who bluff when checked to. Mateos' whole read is the opposite: this opponent under-bluffs and under-raises. A check just gives a free river and shrinks the final pot."},
+    {l:"Bet 1,000 again, keep it cheap",v:"ok",e:"Betting is right, but two pair against a station-ish amateur wants a bigger pot. The tiny size leaves value on the table on the street where the pot needs to grow for the river bet to matter."}],
+   did:{txt:"bets 3,200",pot:8700}},
+  {t:"act",who:0,txt:"calls 3,200",pot:11900},
+  {t:"street",name:"RIVER",cards:["4c"],pot:11900},
+  {t:"act",who:0,txt:"checks",wait:700},
+  {t:"ask",txt:"River bricks. He checks a third time. Two pair, 11,900 in the middle — finish the job?",
+   opts:[
+    {l:"Bet 8,200 (~69% pot)",v:"pro",e:"Mateos fires 8,200 into 11,900. His read: the opponent's posture made a raise look impossible, so the only question is how much a worse hand pays. Three streets of value with two pair is exactly the soft-field exploit — the BB tanks… and calls."},
+    {l:"Check back — he only calls with better",v:"bad",e:"That logic belongs against strong, balanced players. Against a live field that under-defends and under-calls, worse one-pair hands still pay this off. Checking back the river is where most amateurs leak their biggest value."},
+    {l:"Bet 3,500, a safe little value bet",v:"ok",e:"Value, but timid. When the read says 'calls too much, never raises', size up — the marginal chips a bigger bet extracts are close to free. Mateos chose 8,200 and got paid."}],
+   did:{txt:"bets 8,200",pot:20100}},
+  {t:"act",who:0,txt:"tanks… and calls 8,200",pot:28300,wait:1300},
+  {t:"act",who:0,txt:"sees the two pair — mucks",fold:true,wait:800},
+  {t:"end",res:"Mateos tables K♣T♣ — two pair, three streets of value, a 28,000 pot on Day 1 without ever holding better than two pair.",
+   lesson:"When live populations under-defend and under-call, widen your value range and keep betting. The money in soft fields comes from thin value taken relentlessly — not from fancy bluffs."}
+ ]},
+
+"AM-009":{
+ id:"AM-009",title:"Small, small… sledgehammer",who:"Adrián Mateos · 2024 Main Event · Day 1",
+ rec:1,recNote:"Board, suits and the villain's exact set reconstructed. Pocket sixes, the multiway pot, the 1,100-into-4,500 protection c-bet, the turn check-back, the considered-overbet-then-6,200 river and the villain folding a set are all verified from the recap.",
+ setup:"Day 1, deep stacks, blinds 300/600. Mateos opens pocket sixes from the cutoff and both blinds call. Three-way — and unknown to everyone, the small blind has flopped a set. Watch how the sizing tree wins the hand anyway.",
+ heroName:"Mateos",heroPos:"CO",heroStack:"~120,000",heroCards:["6s","6h"],
+ blinds:"300/600",
+ vill:[{name:"Unknown",pos:"SB",stack:"~100,000"},{name:"Amateur",pos:"BB",stack:"~90,000"}],
+ src:[["https://www.gipsyteam.com/news/06-03-2025/inside-the-mind-of-a-pro-adrian-mateos-on-day-1-of-the-2024-wsop-main-event","GipsyTeam episode recap"]],
+ steps:[
+  {t:"deal"},
+  {t:"act",who:"H",txt:"opens to 1,500",pot:2400},
+  {t:"act",who:0,txt:"calls from the small blind",pot:3600},
+  {t:"act",who:1,txt:"calls from the big blind",pot:4500},
+  {t:"street",name:"FLOP",cards:["9h","7h","2s"],pot:4500},
+  {t:"act",who:0,txt:"checks",wait:600},
+  {t:"act",who:1,txt:"checks",wait:800},
+  {t:"ask",txt:"Two live overcards to your sixes, a heart draw and connectors everywhere, three-way. Both blinds check. Pocket sixes — plan?",
+   opts:[
+    {l:"Bet 1,100 (~25%) — cheap protection",v:"pro",e:"Mateos makes the high-frequency protection c-bet: 1,100 into 4,500. Vulnerable pairs in multiway pots want to charge the overcards and gutshots something rather than nothing — but at a price that doesn't turn the hand into a crisis when called. The small blind calls; the big blind folds."},
+    {l:"Check — sixes can't stand action three-way",v:"ok",e:"Defensible in theory, but it hands two players free cards against a hand that is currently best surprisingly often. The tiny-bet line achieves protection at almost the same cost as checking — that's why it's near-mandatory at this size."},
+    {l:"Bet 3,200 (~70%) — protect properly",v:"bad",e:"Protection is a price problem, not a courage problem. The big bet folds out the hands paying you rent and inflates the pot against exactly the continues that beat sixes — you've built a big pot with a small pair."}],
+   did:{txt:"bets 1,100",pot:5600}},
+  {t:"act",who:0,txt:"calls 1,100",pot:6700},
+  {t:"act",who:1,txt:"folds",fold:true,wait:800},
+  {t:"street",name:"TURN",cards:["Ks"],pot:6700},
+  {t:"act",who:0,txt:"checks",wait:900},
+  {t:"ask",txt:"The K♠ arrives — draws shrink, and the board changes character. The small blind checks again. Sixes, heads-up now.",
+   opts:[
+    {l:"Check back — preserve showdown value",v:"pro",e:"Mateos checks. The king hits the caller's range and the draws just got cheaper to deny — a second barrel from sixes now folds out only the hands you beat. The pair's job on this turn is to reach the river intact, not to win the pot by force."},
+    {l:"Bet 4,000 — keep the pressure on",v:"bad",e:"Barreling the card that improves his range with a hand that wins at showdown is value-torching. When he continues — and the flop call says he has something — you've turned sixes into a bluff with no story."},
+    {l:"Bet 2,000 — small again, same logic as the flop",v:"ok",e:"The flop's logic doesn't transfer: protection mattered when six cards could beat you free; the turn K changes who the small bet serves. Now it mostly rebuilds a pot for the player with the range advantage."}],
+   did:{txt:"checks back"}},
+  {t:"street",name:"RIVER",cards:["6d"],pot:6700},
+  {t:"act",who:0,txt:"checks",wait:900},
+  {t:"ask",txt:"The 6♦ — third set out there is now yours. He checks a third time. Pot 6,700. The solver says overbet. The opponent is a total unknown. Size it.",
+   opts:[
+    {l:"Bet 6,200 (~90%) — big, but callable",v:"pro",e:"Mateos considers the overbet and deliberately sizes down to 6,200. His reasoning is the exam answer: against an unknown, he doesn't know whether strong one-pair hands can even find a call versus extreme sizing — the near-pot bet keeps the polarized value story while staying inside a stranger's calling threshold. The small blind quickly folds… a set."},
+    {l:"Overbet 12,000 — the river is polarized, take the max",v:"ok",e:"The theory choice, and against a known calling station or a strong reg it's right. But an overbet only outperforms when the opponent's calling range holds up against it — information Mateos simply didn't have. Unknown opponent, unknown thresholds: take the size that gets paid by the whole distribution."},
+    {l:"Bet 2,500 — make it easy to call",v:"bad",e:"The river finally handed sixes a polarized value advantage and this size declines to use it. Rivers that transform your hand class are exactly where the big sizes live — betting small here is solving a problem you no longer have."}],
+   did:{txt:"bets 6,200",pot:12900}},
+  {t:"act",who:0,txt:"quickly folds a flopped set",fold:true,wait:1100},
+  {t:"end",res:"The small blind releases his flopped set — a genuinely strong fold — and Mateos wins the pot his sizing tree built: smallest when vulnerable, silent when the board turned, biggest when the river made him polarized.",
+   lesson:"Use small flop bets to protect vulnerable pairs multiway, preserve showdown value on changing turns, then size large when the river creates a polarized value advantage. And when the opponent is unknown, buy the size the whole population can pay — not just the solver's favorite."}
+ ]}
+};
+
+/* ============ HAND LAB ENGINE — animated interactive hand histories ============ */
+(function(){
+const SUIT={s:"♠",h:"♥",d:"♦",c:"♣"};
+const fmt=n=>typeof n==="number"?n.toLocaleString("en-US"):(n||"");
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const VPOS={1:[[50,-2]],2:[[24,2],[76,2]],3:[[13,30],[50,-2],[87,30]]};
+const pretty=cs=>cs.map(c=>c==="?"?"??":c.slice(0,-1).replace("T","10")+SUIT[c.slice(-1)]).join(" ");
+const who=(S,w)=>w==="H"?`<b>${S.h.heroName}</b>`:`<b>${S.h.vill[w].name}</b>`;
+
+function cardEl(c){
+  const d=document.createElement("div");d.className="hl-card";
+  if(!c||c==="?"){d.classList.add("hl-back");return d;}
+  const s=c.slice(-1),r=c.slice(0,-1).replace("T","10");
+  if(s==="h"||s==="d")d.classList.add("hl-red");
+  d.innerHTML=`<b>${r}</b><i>${SUIT[s]}</i>`;
+  return d;
+}
+function mount(el){
+  const h=(window.HL_HANDS||{})[el.dataset.hand];
+  if(!h)return;
+  el.innerHTML=`<div class="hl-top">
+      <span class="hl-tag">▶ live hand</span>
+      <span class="hl-id mono">${h.id}</span>
+      <span class="hl-title">${h.title}</span>
+      <span class="hl-meta">${h.who}</span>
+      ${h.rec?`<span class="hl-rec" title="${h.recNote||""}">◆ reconstructed</span>`:""}
+      <span class="hl-best mono"></span>
+    </div>
+    <div class="hl-stage"><div class="hl-felt"></div></div>
+    <div class="hl-panel"></div>
+    <div class="hl-log" hidden></div>`;
+  const S={el,h,panel:el.querySelector(".hl-panel"),log:el.querySelector(".hl-log"),seats:[],hit:0,tot:0};
+  showBest(S);buildTable(S);
+  S.panel.innerHTML=`<p class="hl-setup">${h.setup}</p><button type="button" class="btn">Deal the hand ▸</button>`;
+  S.panel.querySelector("button").onclick=()=>run(S);
+}
+function showBest(S){
+  try{const b=store["h"+S.h.id];
+    S.el.querySelector(".hl-best").textContent=b?`best ${b.hit}/${b.tot}`:"";
+  }catch(e){}
+}
+function buildTable(S){
+  const h=S.h,felt=S.el.querySelector(".hl-felt");
+  felt.innerHTML="";S.seats=[];
+  const vp=VPOS[h.vill.length]||VPOS[1];
+  h.vill.forEach((v,i)=>{
+    const d=document.createElement("div");d.className="hl-seat";
+    d.style.left=vp[i][0]+"%";d.style.top=vp[i][1]+"%";
+    d.innerHTML=`<div class="hl-hole"></div><div class="hl-plate"><b>${v.name}</b><small>${v.pos} · ${v.stack}</small></div><div class="hl-bub"></div>`;
+    felt.appendChild(d);S.seats.push(d);
+  });
+  const hero=document.createElement("div");hero.className="hl-seat hl-hero";
+  hero.innerHTML=`<div class="hl-bub"></div><div class="hl-hole"></div><div class="hl-plate"><b>${h.heroName} (you)</b><small>${h.heroPos} · ${h.heroStack}</small></div>`;
+  felt.appendChild(hero);S.hero=hero;
+  const mid=document.createElement("div");mid.className="hl-mid";
+  mid.innerHTML=`<div class="hl-board"></div><div class="hl-pot mono">blinds ${h.blinds}</div>`;
+  felt.appendChild(mid);S.mid=mid;
+}
+function logLine(S,txt,cls){
+  const p=document.createElement("div");p.className="hl-ll "+(cls||"");p.innerHTML=txt;
+  S.log.appendChild(p);S.log.scrollTop=S.log.scrollHeight;
+}
+function bubble(S,w,txt){
+  const seat=w==="H"?S.hero:S.seats[w];
+  const b=seat.querySelector(".hl-bub");
+  b.textContent=txt;b.classList.remove("hl-pop");void b.offsetWidth;b.classList.add("hl-pop");
+}
+function setPot(S,pot){
+  if(pot==null)return;
+  const p=S.mid.querySelector(".hl-pot");
+  p.innerHTML=`${S.street?S.street.toLowerCase()+" · ":""}pot <b>${fmt(pot)}</b>`;
+  p.classList.remove("hl-pulse");void p.offsetWidth;p.classList.add("hl-pulse");
+}
+async function run(S){
+  buildTable(S);S.hit=0;S.tot=0;S.log.hidden=false;S.log.innerHTML="";
+  S.panel.innerHTML=`<p class="hl-hint">Watch the action — the table pauses when it's on you.</p>`;
+  for(const st of S.h.steps){
+    if(!S.el.isConnected)return;
+    await doStep(S,st);
+  }
+}
+async function doStep(S,st){
+  const h=S.h;
+  if(st.t==="deal"){
+    const hh=S.hero.querySelector(".hl-hole");
+    h.heroCards.forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.13)+"s";e.classList.add("hl-in");hh.appendChild(e);});
+    S.seats.forEach((sd,i)=>{
+      const vh=sd.querySelector(".hl-hole"),v=h.vill[i];
+      (v.cards||["?","?"]).forEach((c,j)=>{const e=cardEl(v.open?c:"?");e.style.animationDelay=(.25+j*.13)+"s";e.classList.add("hl-in");vh.appendChild(e);});
+    });
+    logLine(S,`<b>${h.heroName}</b> is dealt <b>${pretty(h.heroCards)}</b> · blinds ${h.blinds}`,"hl-lh");
+    await sleep(950);
+  }else if(st.t==="act"){
+    bubble(S,st.who,st.txt);
+    if(st.fold)(st.who==="H"?S.hero:S.seats[st.who]).classList.add("hl-folded");
+    setPot(S,st.pot);
+    logLine(S,`${who(S,st.who)} ${st.txt}`);
+    await sleep(st.wait||1000);
+  }else if(st.t==="street"){
+    S.el.querySelectorAll(".hl-bub").forEach(b=>b.textContent="");
+    S.street=st.name;
+    const bd=S.mid.querySelector(".hl-board");
+    (st.cards||[]).forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.2)+"s";e.classList.add("hl-flip");bd.appendChild(e);});
+    setPot(S,st.pot);
+    logLine(S,`— <b>${st.name}</b> ${st.cards?pretty(st.cards):""} <span class="hl-dim">(pot ${fmt(st.pot)})</span>`,"hl-ls");
+    await sleep(1100);
+  }else if(st.t==="reveal"){
+    const sd=S.seats[st.who],vh=sd.querySelector(".hl-hole"),cs=st.cards||h.vill[st.who].cards;
+    vh.innerHTML="";
+    cs.forEach((c,i)=>{const e=cardEl(c);e.style.animationDelay=(i*.16)+"s";e.classList.add("hl-flip");vh.appendChild(e);});
+    if(st.txt)bubble(S,st.who,st.txt);
+    logLine(S,`${who(S,st.who)} shows <b>${pretty(cs)}</b>`);
+    await sleep(1100);
+  }else if(st.t==="ask"){
+    await ask(S,st);
+  }else if(st.t==="end"){
+    end(S,st);
+  }
+}
+function ask(S,st){
+  return new Promise(res=>{
+    S.tot++;
+    const opts=st.opts.slice();
+    for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+    S.panel.innerHTML=`<div class="hl-ask">
+      <div class="hl-q"><span class="hl-onyou disp">on you</span>${st.txt}</div>
+      <div class="hl-opts">${opts.map((o,i)=>`<button type="button" class="hl-opt" data-i="${i}">${o.l}</button>`).join("")}</div>
+      <div class="hl-fb" hidden></div></div>`;
+    S.panel.scrollIntoView({block:"nearest",behavior:"smooth"});
+    S.panel.querySelectorAll(".hl-opt").forEach(b=>{
+      b.onclick=()=>{
+        const o=opts[+b.dataset.i];
+        if(o.v==="pro")S.hit++;
+        S.panel.querySelectorAll(".hl-opt").forEach(x=>{
+          const oo=opts[+x.dataset.i];x.disabled=true;
+          if(oo.v==="pro")x.classList.add("hl-pro");
+          else if(x===b)x.classList.add(o.v==="ok"?"hl-okpick":"hl-badpick");
+        });
+        const fb=S.panel.querySelector(".hl-fb");
+        fb.hidden=false;
+        fb.innerHTML=`<div class="hl-verdict ${o.v}">${o.v==="pro"?"✓ the pro's line":o.v==="ok"?"△ defensible — but not the line":"✗ not this"}</div><p>${o.e}</p><button type="button" class="btn">Continue ▸</button>`;
+        fb.querySelector("button").onclick=async()=>{
+          S.panel.innerHTML=`<p class="hl-hint">…</p>`;
+          if(st.did){
+            bubble(S,"H",st.did.txt);
+            if(st.did.fold)S.hero.classList.add("hl-folded");
+            setPot(S,st.did.pot);
+            logLine(S,`<b>${S.h.heroName}</b> ${st.did.txt}`,"hl-lh");
+            await sleep(900);
+          }
+          res();
+        };
+        logLine(S,`<span class="hl-onyou2">decision</span> “${o.l}” ${o.v==="pro"?"✓":o.v==="ok"?"△":"✗"}`,"hl-ld");
+      };
+    });
+  });
+}
+function end(S,st){
+  let extra="";
+  try{
+    const k="h"+S.h.id,prev=store[k];
+    if(!prev||S.hit>prev.hit||(S.hit===prev.hit&&S.tot>prev.tot)){
+      store[k]={hit:S.hit,tot:S.tot};save();
+      if(prev)extra=" — new best";
+    }
+    showBest(S);
+  }catch(e){}
+  S.panel.innerHTML=`<div class="hl-endbox">
+    <div class="hl-res">${st.res}</div>
+    <div class="hl-score mono">You matched <b>${S.hit}/${S.tot}</b> of the pro's decisions${extra}</div>
+    <div class="hl-lesson"><span class="disp">key lesson</span>${st.lesson}</div>
+    ${S.h.rec?`<div class="hl-note">◆ ${S.h.recNote}</div>`:""}
+    ${S.h.src?`<div class="hl-src">Source: ${S.h.src.map(s=>`<a href="${s[0]}" target="_blank" rel="noopener">${s[1]}</a>`).join(" · ")}</div>`:""}
+    <button type="button" class="btn ghost">↺ Replay hand</button></div>`;
+  S.panel.querySelector("button").onclick=()=>run(S);
+}
+/* ---- Aggression Gym ---- */
+function gymBest(el){
+  try{const b=store["gym"];
+    el.querySelector(".hl-best").textContent=b?`best ${b.hit}/${b.tot}`:"";
+  }catch(e){}
+}
+function mountGym(el){
+  const G=window.HL_GYM;if(!G)return;
+  el.innerHTML=`<div class="hl-top">
+      <span class="hl-tag">⚔ ${G.title}</span>
+      <span class="hl-meta">8 drills · 2 decisions each — the attack, then the exit</span>
+      <span class="hl-best mono"></span></div>
+    <div class="hl-panel"></div>`;
+  gymBest(el);
+  const panel=el.querySelector(".hl-panel");
+  panel.innerHTML=`<p class="hl-setup">${G.intro}</p><button type="button" class="btn">Enter the gym ▸</button>`;
+  panel.querySelector("button").onclick=()=>gymRun(el,panel);
+}
+function gymRun(el,panel){
+  const G=window.HL_GYM,S={i:0,hit:0};
+  const next=()=>{ if(S.i>=G.drills.length){gymEnd(el,panel,S);return;} gymCard(panel,G.drills[S.i],S,next); };
+  next();
+}
+function gymCard(panel,d,S,next){
+  const cards=d.cards.map(c=>{
+    if(c==="?")return `<span class="hl-card hl-back hl-gc"></span>`;
+    const s=c.slice(-1),r=c.slice(0,-1).replace("T","10");
+    return `<span class="hl-card hl-gc ${(s==="h"||s==="d")?"hl-red":""}"><b>${r}</b><i>${SUIT[s]}</i></span>`;
+  }).join("");
+  panel.innerHTML=`<div class="hl-gymcard">
+    <div class="hl-gymhead"><span class="hl-onyou disp">drill ${S.i+1}/8</span>
+      <span class="hl-id mono">${d.id} · ${d.hand}</span><span class="hl-meta">${d.stage}</span>
+      <span class="hl-gymcards">${cards}</span></div>
+    <p class="hl-sit">${d.sit}</p>
+    <div class="hl-qbox"></div></div>`;
+  const box=panel.querySelector(".hl-qbox");
+  gymAsk(box,d.q1,ok1=>{
+    const r=document.createElement("div");
+    r.className="hl-resp";
+    r.innerHTML=`<span class="disp">the response</span> ${d.resp}`;
+    box.appendChild(r);
+    const b2=document.createElement("div");box.appendChild(b2);
+    gymAsk(b2,d.q2,ok2=>{
+      if(ok1)S.hit++;if(ok2)S.hit++;
+      const f=document.createElement("div");
+      f.innerHTML=`<div class="hl-lesson"><span class="disp">repeatable heuristic</span>${d.heur}</div>
+        <div class="hl-note">✗ Mistake to avoid: ${d.mistake}</div>
+        <button type="button" class="btn">${S.i<7?"Next drill ▸":"Finish ▸"}</button>`;
+      box.appendChild(f);
+      f.querySelector("button").onclick=()=>{S.i++;next();};
+    });
+  });
+}
+function gymAsk(box,q,done){
+  const opts=q.opts.slice();
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  const w=document.createElement("div");
+  w.innerHTML=`<div class="hl-q">${q.txt}</div>
+    <div class="hl-opts">${opts.map((o,i)=>`<button type="button" class="hl-opt" data-i="${i}">${o.l}</button>`).join("")}</div>
+    <div class="hl-fb" hidden></div>`;
+  box.appendChild(w);
+  w.querySelectorAll(".hl-opt").forEach(b=>{
+    b.onclick=()=>{
+      const o=opts[+b.dataset.i];
+      w.querySelectorAll(".hl-opt").forEach(x=>{
+        const oo=opts[+x.dataset.i];x.disabled=true;
+        if(oo.v==="pro")x.classList.add("hl-pro");
+        else if(x===b)x.classList.add(o.v==="ok"?"hl-okpick":"hl-badpick");
+      });
+      const fb=w.querySelector(".hl-fb");
+      fb.hidden=false;
+      fb.innerHTML=`<div class="hl-verdict ${o.v}">${o.v==="pro"?"✓ the documented line":o.v==="ok"?"△ defensible — but not the line":"✗ not this"}</div><p>${o.e}</p>`;
+      done(o.v==="pro");
+    };
+  });
+}
+function gymEnd(el,panel,S){
+  let extra="";
+  try{
+    const prev=store["gym"];
+    if(!prev||S.hit>prev.hit){store["gym"]={hit:S.hit,tot:16};save();if(prev)extra=" — new best";}
+    gymBest(el);
+  }catch(e){}
+  panel.innerHTML=`<div class="hl-endbox">
+    <div class="hl-res">Gym complete. The pattern, eight ways: pick a target who can fold, take the line, and exit the instant the response is serious.</div>
+    <div class="hl-score mono">You matched <b>${S.hit}/16</b> documented decisions${extra}</div>
+    <div class="hl-lesson"><span class="disp">the meta-rule</span>Every aggressive line in this gym was profitable because the exit was decided before the first chip went in. Aggression without exits is spew; exits without aggression is surrender.</div>
+    <div class="hl-src">Source: wsop_aggression_drills_v3 — PokerNews Day 4–8 live reports & GipsyTeam EP03 recap</div>
+    <button type="button" class="btn ghost">↺ Run it again</button></div>`;
+  panel.querySelector("button").onclick=()=>gymRun(el,panel);
+}
+window.hlInit=function(){
+  document.querySelectorAll(".handlab").forEach(el=>{
+    if(!el.dataset.m){el.dataset.m=1;mount(el);}
+  });
+  document.querySelectorAll(".aggro-gym").forEach(el=>{
+    if(!el.dataset.m){el.dataset.m=1;mountGym(el);}
+  });
+};
+function goHash(){
+  try{
+    const m=location.hash.match(/^#d(\d+)$/);
+    if(m&&L.some(x=>x.d===+m[1])){cur=+m[1];qState=null;renderAll();window.scrollTo({top:0});}
+  }catch(e){}
+}
+window.addEventListener("hashchange",goHash);
+goHash();
+window.hlInit();
+})();
 </script>
