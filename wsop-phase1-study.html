@@ -121,6 +121,38 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--faint);f
 .sitenav a.here{background:var(--rust);color:#fff8ef}
 .sitenav .soon{color:var(--faint)}
 
+/* ---------- RANGE LAB — interactive 13×13 range grids ---------- */
+.rangelab{margin:26px 0 8px;border:1px solid var(--line);background:var(--bg2);box-shadow:var(--shadow)}
+.rl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.rl-tag{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--rust)}
+.rl-title{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:15px}
+.rl-sub{font-size:12.5px;color:var(--dim);width:100%}
+.rl-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0}
+.rl-tab{font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px;
+  padding:5px 12px;border:1px solid var(--line);background:var(--card);color:var(--dim);cursor:pointer}
+.rl-tab.on{background:var(--rust);border-color:var(--rust);color:#fff8ef}
+.rl-desc{padding:8px 14px 0;font-size:13px;color:var(--dim);line-height:1.45}
+.rl-gridwrap{padding:12px 14px 4px}
+.rl-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:2px;max-width:560px}
+.rl-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--line);
+  font-family:"Avenir Next Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:clamp(7.5px,1.9vw,11.5px);letter-spacing:0;
+  color:var(--faint);cursor:pointer;user-select:none;line-height:1}
+.rl-cell.rl-pair{border-color:color-mix(in srgb,var(--bronze) 45%,var(--line))}
+.rl-cell.rl-sel{outline:2px solid var(--ink);outline-offset:-2px;z-index:1}
+.rl-cell.rl-a1{background:var(--rust);border-color:var(--rust-deep);color:#fff8ef}
+.rl-cell.rl-a2{background:var(--bronze);border-color:var(--bronze);color:#fff8ef}
+.rl-cell.rl-a3{background:var(--sage);border-color:var(--sage-deep);color:#fff8ef}
+.rl-cell.rl-a4{background:color-mix(in srgb,var(--sage) 40%,var(--card));border-color:var(--sage);color:var(--ink)}
+.rl-legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:10px 14px 2px;font-size:12px;color:var(--dim)}
+.rl-key{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.rl-swatch{width:12px;height:12px;border:1px solid var(--line);flex:none}
+.rl-swatch.rl-a1{background:var(--rust)}.rl-swatch.rl-a2{background:var(--bronze)}
+.rl-swatch.rl-a3{background:var(--sage)}.rl-swatch.rl-a4{background:color-mix(in srgb,var(--sage) 40%,var(--card))}
+.rl-info{margin:8px 14px 12px;padding:7px 12px;border:1px dashed var(--line);font-size:13px;color:var(--ink);min-height:20px;font-variant-numeric:tabular-nums}
+.rl-info b{color:var(--rust)}
+.rl-total{margin-left:auto;color:var(--ink)}
+@media(max-width:640px){.rl-gridwrap{padding:10px 8px 2px}.rl-grid{gap:1.5px;max-width:none}.rl-legend{padding:8px 10px 0}.rl-info{margin:8px 10px 10px}}
+
 /* ---------- HAND LAB — animated live-hand replayer ---------- */
 .handlab{margin:26px 0 8px;border:1px solid var(--line);background:var(--bg2);box-shadow:var(--shadow)}
 .hl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
@@ -351,6 +383,7 @@ ${T([
 ["CO (~27%)","22+, A2s+, K9s+, Q9s+, J9s+, T8s+, 97s+, 87s, 76s, ATo+, KTo+, QJo"],
 ["BTN (~42%)","22+, any suited ace, K5s+, Q7s+, J7s+, T7s+, 96s+, 86s+, 75s+, 65s, A2o+ (A5o+ vs sticky blinds), K9o+, Q9o+, J9o+, T9o"]],
 ["Position","Baseline opening range"])}
+<div class="rangelab" data-range="rfi"></div>
 <h3>Sizing</h3>
 <ul>
 <li>Deep and live: <b>2.5x is the workhorse</b>. 2.2x is fine online-deep; 3x when the table calls everything and you want value-heavy pots.</li>
@@ -392,6 +425,7 @@ body:`
 <p>When folded to you in the SB, default to <b>raise-or-fold at ~3x, around 35–40%</b> of hands: all pairs, most suited hands down to ~75s, broadways, A2o+, K9o+, Q9o+, JTo. Limp-mixing is playable deep, but raise-or-fold is far harder to punish and much easier to execute for eight days.</p>
 <h3>Defending the big blind vs the small blind</h3>
 <p>BvB you close the action with position. Vs a 3x SB open defend wide — <b>call ~40%+</b> (any pair, any suited ace, most suited/connected hands, decent offsuit broadways) and 3-bet your best value plus A5s-type blocker hands.</p>
+<div class="rangelab" data-range="epsb"></div>
 ${NOTE("live SBs love the open-limp. When a weak player limps SB into your BB, raise big with your whole playable range — you have position, initiative, and a capped opponent for the entire hand.")}`,
 quiz:[
 {q:"A7o under the gun. Baseline?",o:["Open — any ace is playable","Fold","Limp","Open 2x to keep it cheap"],a:1,e:"<b>Fold.</b> A7o from EP creates dominated, out-of-position pots. The hands that call you have you crushed; the rest fold."},
@@ -428,6 +462,7 @@ ${T([
 ["BB vs BTN steal (polar)","Value TT+, AQ+ (62) + bluffs A5s–A2s, K9s–K6s, Q9s, J9s, T8s (~44) → ~8% — wider both sides, because his steal range is 40%+"],
 ["Vs a weak open / limp-heavy caller (linear)","TT+, AQ+, AJs, KQs, widening toward 88 and ATs as he calls more — zero bluff combos; every hand dominates his continues"]],
 ["Spot","Construction"])}
+<div class="rangelab" data-range="threebet"></div>
 <p>The math behind the shape: a naked 3-bet bluff at 3x needs roughly <b>60–65% immediate folds</b> to auto-profit. Nobody honest gives you that — which is why bluff combos carry blockers (fewer continues) and playability (rescue when called) instead of standing alone. When you widen a polar range, widen <b>both ends in ratio</b>; adding only bluffs is how 3-bet ranges rot.</p>
 ${NOTE("most live Main Event players under-3-bet dramatically and their 3-bets are honest (TT+/AK). Until proven otherwise: fold more vs live 3-bets, and 3-bet them more — they fold or play fit-or-fold when called.")}`,
 quiz:[
@@ -461,6 +496,7 @@ ${T([
 ["Call","22–99 · A9s–A6s (plus the wheel aces you don't 3-bet) · K5s+ · Q8s+ · J8s+ · T7s+ · 97s+ · 86s+ · 75s+ · 64s, 54s · ATo+, KTo+, QTo+, JTo"],
 ["Fold","Every offsuit hand below those thresholds — A9o-, K9o-, Q9o-, J9o- — plus the suited rags under K5s/Q8s. The price is there; the realization isn't"]],
 ["Action","Range"])}
+<div class="rangelab" data-range="bbdef"></div>
 <p>Two dials move this whole grid: <b>his position</b> (vs BTN add a tier everywhere; vs tight EP cut the bottom two tiers of calls and all bluff 3-bets) and <b>his size</b> (vs 2x add the offsuit broadway dregs; vs 3x+ suited-and-paired hands only). Suitedness is worth roughly two tiers of offsuit quality at this depth — A6s defends where A9o folds.</p>
 ${NOTE("the live population folds the BB far too much against steals and then defends too wide against 3x value opens. Be the opposite: defend correctly vs steals, and give tight EP raisers their credit.")}`,
 quiz:[
@@ -668,6 +704,7 @@ body:`
 <li>Live sizing: <b>~4bb + 1bb per limper</b> as a floor; vs sticky fields go bigger (5–6bb+1). The goal is a heads-up pot, in position, vs a capped range.</li>
 <li>Range: value-lean vs limp-callers — <b>pairs, big aces, good broadways, strong suited hands</b> (KJs, AT+, QJs...). Limpers call; bluff-isoing players who never fold is burning chips.</li>
 <li>Vs limpers who fold to raises: widen toward any playable suited hand — now it's a steal.</li></ul>
+<div class="rangelab" data-range="iso"></div>
 <h3>The squeeze</h3>
 <p>Open + caller(s) in front of you:</p>
 <ul>
@@ -916,6 +953,7 @@ function renderAll(){
   renderQuizStart();
   renderNav();
   if(window.hlInit)window.hlInit();
+  if(window.rlInit)window.rlInit();
 }
 function renderQuizStart(){
   const x=L.find(l=>l.d===cur);
@@ -1450,4 +1488,115 @@ document.addEventListener("click",function(e){
   n.textContent=r.getAttribute("title")||"Cards partially reconstructed; actions and sizings verified.";
   top.insertAdjacentElement("afterend",n);
 });
+</script>
+<script>
+/* ============ RANGE LAB ENGINE — interactive 13×13 range grids ============ */
+(function(){
+"use strict";
+const R="AKQJT98765432";
+const ri=c=>R.indexOf(c);
+function pairSpan(a,b){const out=[];for(let i=Math.min(a,b);i<=Math.max(a,b);i++)out.push(R[i]+R[i]);return out}
+function expand(tok){
+  tok=tok.trim();let m;
+  if((m=tok.match(/^([AKQJT98765432])\1-([AKQJT98765432])\2$/)))return pairSpan(ri(m[1]),ri(m[2]));
+  if((m=tok.match(/^([AKQJT98765432])\1(\+)?$/)))return m[2]?pairSpan(0,ri(m[1])):[m[1]+m[1]];
+  if((m=tok.match(/^([AKQJT98765432])([AKQJT98765432])(s|o)-\1([AKQJT98765432])\3$/))){
+    const X=m[1],s=m[3],out=[];for(let i=Math.min(ri(m[2]),ri(m[4]));i<=Math.max(ri(m[2]),ri(m[4]));i++)if(R[i]!==X)out.push(X+R[i]+s);
+    return out}
+  if((m=tok.match(/^([AKQJT98765432])([AKQJT98765432])(s|o)?(\+)?$/))){
+    const X=m[1],x=ri(X),y=ri(m[2]),suits=m[3]?[m[3]]:["s","o"],out=[];
+    const ys=[];if(m[4]){for(let i=x+1;i<=y;i++)ys.push(i)}else ys.push(y);
+    ys.forEach(i=>suits.forEach(s=>out.push(X+R[i]+s)));
+    return out}
+  return[]}
+function combosOf(h){return h.length===2?6:(h[2]==="s"?4:12)}
+function handAt(i,j){return i===j?R[i]+R[i]:(i<j?R[i]+R[j]+"s":R[j]+R[i]+"o")}
+
+const RL={
+rfi:{title:"RFI baselines — the living grid",sub:"Raise-first-in by position · 100bb+ live 9-handed · tap any cell for combos",tabs:[
+ {label:"LJ",desc:"Lojack: the tightest of the late-ish seats — big-card heavy, every open has an answer to a 3-bet.",
+  layers:[{name:"Open 2.5x",cls:"a1",spec:["55+","ATs+","KJs+","QJs","JTs","T9s","98s","AJo+","KQo"]}]},
+ {label:"HJ",desc:"Hijack: one seat later, one tier wider in every family.",
+  layers:[{name:"Open 2.5x",cls:"a1",spec:["44+","A9s+","KTs+","QTs+","J9s+","T9s","98s","ATo+","KJo+"]}]},
+ {label:"CO",desc:"Cutoff: every pair, every suited ace, the suited connectors arrive.",
+  layers:[{name:"Open 2.5x",cls:"a1",spec:["22+","A2s+","K9s+","Q9s+","J9s+","T8s+","97s+","87s","76s","ATo+","KTo+","QJo"]}]},
+ {label:"BTN",desc:"Button: the widest profitable range in poker — live blinds under-defend against it.",
+  layers:[{name:"Open 2.5x",cls:"a1",spec:["22+","A2s+","K5s+","Q7s+","J7s+","T7s+","96s+","86s+","75s+","65s","A2o+","K9o+","Q9o+","J9o+","T9o"]}]}]},
+epsb:{title:"Early position & blind-vs-blind",sub:"The Day 3 seats: discipline up front, structure in the blinds",tabs:[
+ {label:"UTG",desc:"Eight players behind you. It should feel too tight — that's the point.",
+  layers:[{name:"Open 2.5x",cls:"a1",spec:["66+","ATs+","KQs","QJs","JTs","AJo+","KQo"]}]},
+ {label:"SB RFI",desc:"Folded to you: raise-or-fold at ~3x. Hard to exploit, easy to execute tired.",
+  layers:[{name:"Raise 3x",cls:"a1",spec:["22+","A2s+","K5s+","Q7s+","J8s+","T8s+","97s+","86s+","75s+","65s","54s","A2o+","K9o+","Q9o+","JTo"]}]},
+ {label:"BB vs SB",desc:"Vs a 3x SB open — you close the action with position for the whole hand.",
+  layers:[{name:"3-bet value",cls:"a1",spec:["TT+","AQ+"]},
+          {name:"3-bet bluff",cls:"a2",spec:["A5s-A2s"]},
+          {name:"Call",cls:"a3",spec:["22-99","A2s+","K7s+","Q8s+","J8s+","T7s+","97s+","86s+","75s+","65s","54s","ATo+","KTo+","QTo+","JTo"]}]}]},
+threebet:{title:"3-bet constructions",sub:"The Day 4 shapes with every combo painted — value:bluff in ratio",tabs:[
+ {label:"BTN vs CO",desc:"Polarized, ~3x in position: 38 value combos + 24 blocker bluffs ≈ 3:2.",
+  layers:[{name:"3-bet value",cls:"a1",spec:["QQ+","AK","AQs"]},
+          {name:"3-bet bluff",cls:"a2",spec:["A5s-A2s","K6s-K5s"]}]},
+ {label:"BB vs BTN",desc:"Polarized vs a 40%+ steal — wider on both ends, in ratio.",
+  layers:[{name:"3-bet value",cls:"a1",spec:["TT+","AQ+"]},
+          {name:"3-bet bluff",cls:"a2",spec:["A5s-A2s","K9s-K6s","Q9s","J9s","T8s"]}]},
+ {label:"LINEAR",desc:"Vs weak opens and 3-bet-callers: value-heavy, zero air — every hand dominates his continues.",
+  layers:[{name:"Core value",cls:"a1",spec:["TT+","AQ+","AJs","KQs"]},
+          {name:"Widen as he calls more",cls:"a2",spec:["99-88","ATs"]}]}]},
+bbdef:{title:"BB defense vs CO 2.5x — the full map",sub:"~40% continue · price is necessary, realization decides · tap any cell",tabs:[
+ {label:"THE MAP",desc:"Vs BTN add a tier everywhere; vs tight EP cut the bottom two call tiers and all bluff 3-bets. Suitedness ≈ two tiers of offsuit quality.",
+  layers:[{name:"3-bet value",cls:"a1",spec:["TT+","AQ+"]},
+          {name:"3-bet bluff",cls:"a2",spec:["A5s-A2s","K6s-K5s"]},
+          {name:"Call",cls:"a3",spec:["22-99","A9s-A6s","K5s+","Q8s+","J8s+","T7s+","97s+","86s+","75s+","64s","54s","ATo+","KTo+","QTo+","JTo"]}]}]},
+iso:{title:"Iso-raises & squeezes",sub:"Day 1 bread and butter — width tracks his fold frequency",tabs:[
+ {label:"VS LIMP-CALLER",desc:"Value-lean: dominate what he calls with. ~4bb + 1bb per limper, bigger vs sticky fields.",
+  layers:[{name:"Iso-raise",cls:"a1",spec:["22+","ATs+","KJs+","QJs","JTs","ATo+","KQo"]}]},
+ {label:"VS FOLDY LIMPER",desc:"He folds to raises — now it's a steal. Widen toward any playable suited hand.",
+  layers:[{name:"Iso-raise",cls:"a1",spec:["22+","A2s+","K9s+","Q9s+","J9s+","T8s+","97s+","87s","76s","65s","54s","ATo+","KTo+","QJo"]}]},
+ {label:"SQUEEZE",desc:"Open + caller(s) in front: ~4x the open IP, ~5x OOP, +1x per extra caller. The overcaller is the weak link.",
+  layers:[{name:"Value squeeze",cls:"a1",spec:["QQ+","AK"]},
+          {name:"Bluff squeeze (blockers)",cls:"a2",spec:["A5s-A2s"]}]}]}
+};
+
+function buildMap(layers){
+  const map={};
+  layers.forEach((ly,li)=>ly.spec.forEach(tok=>expand(tok).forEach(h=>{if(!(h in map))map[h]=li})));
+  return map}
+function renderTab(el,def,ti){
+  const tab=def.tabs[ti];
+  const map=buildMap(tab.layers);
+  el.querySelectorAll(".rl-tab").forEach((b,i)=>b.classList.toggle("on",i===ti));
+  el.querySelector(".rl-desc").textContent=tab.desc;
+  const grid=el.querySelector(".rl-grid");grid.innerHTML="";
+  const counts=tab.layers.map(()=>0);
+  for(let i=0;i<13;i++)for(let j=0;j<13;j++){
+    const h=handAt(i,j),c=document.createElement("div");
+    c.className="rl-cell"+(i===j?" rl-pair":"");
+    if(h in map){c.classList.add("rl-"+tab.layers[map[h]].cls);counts[map[h]]+=combosOf(h)}
+    c.textContent=h;c.dataset.h=h;
+    c.onclick=()=>{
+      el.querySelectorAll(".rl-sel").forEach(x=>x.classList.remove("rl-sel"));c.classList.add("rl-sel");
+      const kind=h.length===2?"pair":(h[2]==="s"?"suited":"offsuit");
+      const act=h in map?tab.layers[map[h]].name:"fold";
+      el.querySelector(".rl-info").innerHTML="<b>"+h+"</b> · "+kind+" · "+combosOf(h)+" combos · "+act;
+    };
+    grid.appendChild(c)}
+  const total=counts.reduce((a,b)=>a+b,0);
+  el.querySelector(".rl-legend").innerHTML=
+    tab.layers.map((ly,i)=>'<span class="rl-key"><span class="rl-swatch rl-'+ly.cls+'"></span>'+ly.name+" · "+counts[i]+"</span>").join("")+
+    '<span class="rl-key rl-total">total '+total+" of 1,326 · "+(100*total/1326).toFixed(1)+"%</span>";
+  el.querySelector(".rl-info").innerHTML="Tap any cell for combos. Pairs run down the diagonal — suited above, offsuit below.";
+}
+function mount(el){
+  const def=RL[el.dataset.range];
+  if(!def){el.style.display="none";return}
+  el.innerHTML='<div class="rl-top"><span class="rl-tag">▦ Range Lab</span><span class="rl-title">'+def.title+'</span>'+
+    (def.sub?'<span class="rl-sub">'+def.sub+"</span>":"")+"</div>"+
+    '<div class="rl-tabs">'+def.tabs.map((t,i)=>'<button type="button" class="rl-tab'+(i===0?" on":"")+'">'+t.label+"</button>").join("")+"</div>"+
+    '<div class="rl-desc"></div><div class="rl-gridwrap"><div class="rl-grid"></div></div>'+
+    '<div class="rl-legend"></div><div class="rl-info"></div>';
+  el.querySelectorAll(".rl-tab").forEach((b,i)=>b.onclick=()=>renderTab(el,def,i));
+  renderTab(el,def,0)}
+window.rlInit=function(){
+  document.querySelectorAll(".rangelab").forEach(el=>{if(!el.dataset.m){el.dataset.m=1;mount(el)}})};
+window.rlInit();
+})();
 </script>
