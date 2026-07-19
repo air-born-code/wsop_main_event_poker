@@ -378,11 +378,12 @@ body:`
 <h3>The baseline ranges (100bb+, 9-handed live)</h3>
 <p>These are simplified live-deep defaults for a soft Main Event field. Learn them as tiers, not memorized grids — every hand you add or cut should have a reason (players behind, stack depths, table mood).</p>
 ${T([
-["LJ (~16%)","55+, ATs+, KJs+, QJs, JTs, T9s, 98s, AJo+, KQo"],
-["HJ (~20%)","44+, A9s+, KTs+, QTs+, J9s+, T9s, 98s, ATo+, KJo+"],
-["CO (~27%)","22+, A2s+, K9s+, Q9s+, J9s+, T8s+, 97s+, 87s, 76s, ATo+, KTo+, QJo"],
-["BTN (~42%)","22+, any suited ace, K5s+, Q7s+, J7s+, T7s+, 96s+, 86s+, 75s+, 65s, A2o+ (A5o+ vs sticky blinds), K9o+, Q9o+, J9o+, T9o"]],
+["LJ (~11%)","55+, ATs+, KJs+, QJs, JTs, T9s, 98s, AJo+, KQo"],
+["HJ (~15%)","44+, A9s+, KTs+, QTs+, J9s+, T9s, 98s, ATo+, KJo+"],
+["CO (~21%)","22+, A2s+, K9s+, Q9s+, J9s+, T8s+, 97s+, 87s, 76s, ATo+, KTo+, QJo"],
+["BTN (~38%)","22+, any suited ace, K5s+, Q7s+, J7s+, T7s+, 96s+, 86s+, 75s+, 65s, A2o+ (A5o+ vs sticky blinds), K9o+, Q9o+, J9o+, T9o"]],
 ["Position","Baseline opening range"])}
+<p><b>How to remember the ladder — the seats play casino games:</b> LJ opens <b>11%</b> (double down on eleven), HJ <b>15%</b> (a hard fifteen), CO <b>21%</b> (blackjack), and the BTN <b>38%</b> (every pocket on the roulette wheel). The tiers move just as predictably: pairs arrive 55 → 44 → all of them; suited aces AT → A9 → all of them; each seat later adds roughly one tier to every family.</p>
 <div class="rangelab" data-range="rfi"></div>
 <h3>Sizing</h3>
 <ul>
@@ -394,7 +395,7 @@ ${T([
 <li><b>Widen</b> when the blinds are tight-passive (they overfold) or when a weak player in the blinds pays off postflop.</li>
 <li><b>Tighten</b> when a competent aggressive reg is directly behind you, or when short stacks lurk ready to reshove.</li></ul>
 <h3>Range depth — combos, and the 3-bet answer</h3>
-<p>Percentages are combos, and you should feel the widths: <b>LJ ~16% ≈ 210 combos · HJ ~20% ≈ 265 · CO ~27% ≈ 360 · BTN ~42% ≈ 555</b> of the 1,326 dealable. Every open you make must come with a pre-built answer to a 3-bet — deciding after the 3-bet arrives is deciding badly:</p>
+<p>Percentages are combos, and you should feel the widths: <b>LJ ~11% ≈ 148 combos · HJ ~15% ≈ 194 · CO ~21% ≈ 282 · BTN ~38% ≈ 502</b> of the 1,326 dealable — the grids above count them for you. Every open you make must come with a pre-built answer to a 3-bet — deciding after the 3-bet arrives is deciding badly:</p>
 ${T([
 ["4-bet","QQ+, AK — plus A5s–A4s as the occasional bluff against 3-bettors who fold too much. Sizing ~2.2–2.5x their 3-bet"],
 ["Call in position","99–JJ, AQ, AJs, KQs, and suited connectors at depth — hands that flop nutted or dominate his continuing range"],
@@ -408,7 +409,7 @@ quiz:[
 {q:"A9s in the lojack, baseline?",o:["Open — any suited ace opens everywhere","Fold","3-bet if anyone limps","Open but only 2x"],a:1,e:"A9s is a <b>HJ open</b> in this baseline (LJ starts at ATs). Weak suited aces from early seats bleed chips into domination at 300bb."},
 {q:"Pocket deuces in the hijack?",o:["Open — 22+ opens from HJ","Fold","Limp behind your baseline","Jam to end the hand"],a:1,e:"The baseline floor is <b>44+ from HJ; 22 and 33 enter in the CO</b>. Tiny pairs need cheap, in-position setmining conditions."},
 {q:"Your default open size deep and live in the Main Event:",o:["Min-raise always","~2.5x, consistent across your range","3.5–4x to protect your hand","Pot-size raise"],a:1,e:"<b>2.5x is the workhorse</b> deep-live. Go 3x on call-happy tables for value, and never vary size by hand strength."},
-{q:"J9s folds to you in the cutoff. Play?",o:["Fold — too speculative","Open","Limp","Open-jam"],a:1,e:"CO opens <b>J9s+ and a wide suited/broadway mix (~27%)</b>. Suited one-gappers print with position on the blinds."},
+{q:"J9s folds to you in the cutoff. Play?",o:["Fold — too speculative","Open","Limp","Open-jam"],a:1,e:"CO opens <b>J9s+ and a wide suited/broadway mix (~21% — blackjack)</b>. Suited one-gappers print with position on the blinds."},
 {q:"Which single factor most justifies widening your BTN opens beyond baseline?",o:["Your stack is big","The blinds are tight-passive and overfold","You haven't played a hand in an hour","You have a tight image"],a:1,e:"Range width tracks <b>who you're stealing from</b>. Overfolding blinds make every extra BTN combo profitable; sticky blinds do the opposite."},
 {q:"A tough aggressive reg sits directly on your left. Baseline adjustment?",o:["No change — never adapt to one player","Tighten your opens slightly, especially from LJ/HJ","Widen — dominate him with volume","Only open premiums all day"],a:1,e:"A 3-bet-happy reg with position taxes your marginal opens. <b>Trim the bottom tier</b> (KQo, A9s-type hands) rather than surrendering your whole strategy."},
 {q:"Why is a consistent open size across your whole range non-negotiable?",o:["It speeds up your decisions and keeps your rhythm steady under fatigue","Varying by hand strength is a sizing tell competent players read instantly","Dealers prefer it","It saves chips on your weak opens while the premiums earn more later"],a:1,e:"Live players who go bigger with premiums and smaller with steals are <b>broadcasting their range</b>. One size, every hand, every time."}]});
@@ -417,21 +418,21 @@ quiz:[
 L.push({d:3,t:"RFI: early position & blind-vs-blind",f:"g",obj:"Early-position discipline that feels too tight, and a small-blind strategy you never have to improvise.",
 body:`
 <h3>Early position (UTG / UTG+1, 9-handed)</h3>
-<p>Eight players act behind you. The baseline is <b>~12–14%</b>: <b>66+, ATs+, KQs, QJs, JTs, AJo+, KQo</b> (trim KQo/66 at tough tables; add T9s/98s at soft ones). Every marginal EP open risks playing a bloated pot out of position against the field's strongest continuing ranges.</p>
+<p>Eight players act behind you. The baseline is <b>~10% — call it a hard ten</b>: <b>66+, ATs+, KQs, QJs, JTs, AJo+, KQo</b> (trim KQo/66 at tough tables; add T9s/98s at soft ones). Every marginal EP open risks playing a bloated pot out of position against the field's strongest continuing ranges.</p>
 <ul>
 <li>Hands like A7o, KTo, Q9s are <b>burning money from EP</b> even though they "look playable."</li>
 <li>Domination is the killer at 300bb: weak aces and weak kings lose big pots, not blinds.</li></ul>
 <h3>Small blind: raise-or-fold (mostly)</h3>
-<p>When folded to you in the SB, default to <b>raise-or-fold at ~3x, around 35–40%</b> of hands: all pairs, most suited hands down to ~75s, broadways, A2o+, K9o+, Q9o+, JTo. Limp-mixing is playable deep, but raise-or-fold is far harder to punish and much easier to execute for eight days.</p>
+<p>When folded to you in the SB, default to <b>raise-or-fold at ~3x, about a third of hands (~35%)</b>: all pairs, most suited hands down to ~75s, broadways, A2o+, K9o+, Q9o+, JTo. Limp-mixing is playable deep, but raise-or-fold is far harder to punish and much easier to execute for eight days. <b>Remember it as threes all the way down: 3x the size, a third of the hands.</b></p>
 <h3>Defending the big blind vs the small blind</h3>
-<p>BvB you close the action with position. Vs a 3x SB open defend wide — <b>call ~40%+</b> (any pair, any suited ace, most suited/connected hands, decent offsuit broadways) and 3-bet your best value plus A5s-type blocker hands.</p>
+<p>BvB you close the action with position. Vs a 3x SB open defend wide — <b>continue ~26%</b> (any pair, any suited ace, most suited/connected hands, decent offsuit broadways), 3-betting your best value plus A5s-type blocker hands and calling the rest.</p>
 <div class="rangelab" data-range="epsb"></div>
 ${NOTE("live SBs love the open-limp. When a weak player limps SB into your BB, raise big with your whole playable range — you have position, initiative, and a capped opponent for the entire hand.")}`,
 quiz:[
 {q:"A7o under the gun. Baseline?",o:["Open — any ace is playable","Fold","Limp","Open 2x to keep it cheap"],a:1,e:"<b>Fold.</b> A7o from EP creates dominated, out-of-position pots. The hands that call you have you crushed; the rest fold."},
 {q:"KTo under the gun?",o:["Open — two broadways","Fold","Limp-call","Open and fold to any 3-bet"],a:1,e:"KTo looks pretty and plays terribly from EP: <b>dominated by every KJ+/AT+ that continues</b>. It doesn't enter the baseline until much later position."},
 {q:"AJo under the gun, 9-handed?",o:["Fold — too weak UTG","Open","Limp","Open only with fewer than 6 players behind"],a:1,e:"<b>AJo is the EP offsuit floor</b> in this baseline. Below it (ATo, KJo) you're bleeding into domination."},
-{q:"Folded to your small blind. Your default framework?",o:["Limp everything playable to keep pots small","Raise-or-fold ~35–40% at ~3x","Fold everything but premiums — you're out of position","Min-raise 100% of hands"],a:1,e:"<b>Raise-or-fold ~3x</b> is the disciplined default: hard to exploit, easy to execute tired. Limp-mixing invites the BB to attack you all night."},
+{q:"Folded to your small blind. Your default framework?",o:["Limp everything playable to keep pots small","Raise-or-fold ~35% at ~3x","Fold everything but premiums — you're out of position","Min-raise 100% of hands"],a:1,e:"<b>Raise-or-fold ~3x</b> is the disciplined default: hard to exploit, easy to execute tired. Limp-mixing invites the BB to attack you all night."},
 {q:"Why size SB opens bigger (3x) than other positions?",o:["Tradition","You'll play the whole hand out of position","SB hands are stronger","To look intimidating"],a:1,e:"You're OOP against the one player left. <b>A bigger size taxes the BB's position</b> and denies cheap, easy defends."},
 {q:"SB opens 3x, you're in the BB with 86s. Baseline?",o:["Fold — junk","Call","3-bet large","Call only if suited in spades"],a:1,e:"BvB you defend wide with position: <b>86s comfortably continues</b> vs 3x. You close action and play every street with the informational edge."},
 {q:"A weak-passive player open-limps the SB. You're BB with K9s. Best line?",o:["Check and see a free flop","Raise big","Fold — don't get involved","Min-raise to be polite"],a:1,e:"Free flops are fine, but <b>raising is printing</b>: limping SBs are capped and play fit-or-fold OOP. K9s is way ahead of that range."},
@@ -463,6 +464,7 @@ ${T([
 ["Vs a weak open / limp-heavy caller (linear)","TT+, AQ+, AJs, KQs, widening toward 88 and ATs as he calls more — zero bluff combos; every hand dominates his continues"]],
 ["Spot","Construction"])}
 <div class="rangelab" data-range="threebet"></div>
+<p><b>How to remember the shapes:</b> polar in position is a <b>5% weapon at 3:2</b> (three value for every two bluffs); vs a steal it <b>doubles to 8%</b>, wider on both ends; linear <b>never bluffs</b> — if he calls too much, every combo you add must dominate his calls.</p>
 <p>The math behind the shape: a naked 3-bet bluff at 3x needs roughly <b>60–65% immediate folds</b> to auto-profit. Nobody honest gives you that — which is why bluff combos carry blockers (fewer continues) and playability (rescue when called) instead of standing alone. When you widen a polar range, widen <b>both ends in ratio</b>; adding only bluffs is how 3-bet ranges rot.</p>
 ${NOTE("most live Main Event players under-3-bet dramatically and their 3-bets are honest (TT+/AK). Until proven otherwise: fold more vs live 3-bets, and 3-bet them more — they fold or play fit-or-fold when called.")}`,
 quiz:[
@@ -489,7 +491,7 @@ ${T([
 ["Situation","BB defense baseline"])}
 <h3>3-betting from the BB</h3>
 <p>Vs late-position steals, 3-bet a <b>polarized</b> range: strong value (TT+, AQ+) plus blocker bluffs (A5s-A2s, K6s-type). Vs weak players who limp/call everything, shift linear and value-bet them relentlessly instead.</p>
-<h3>Range depth — the defend range vs CO 2.5x, written out (~40%)</h3>
+<h3>Range depth — the defend range vs CO 2.5x, written out (~26%)</h3>
 ${T([
 ["3-bet value","TT+, AQ+ (62 combos)"],
 ["3-bet bluff","A5s–A2s, K6s–K5s (24) — same polar logic as Day 4, discounted vs tight openers"],
@@ -497,6 +499,7 @@ ${T([
 ["Fold","Every offsuit hand below those thresholds — A9o-, K9o-, Q9o-, J9o- — plus the suited rags under K5s/Q8s. The price is there; the realization isn't"]],
 ["Action","Range"])}
 <div class="rangelab" data-range="bbdef"></div>
+<p><b>How to remember it — the quarter rule, twice:</b> vs a normal late open you continue with about <b>a quarter of your hands</b> (342 of 1,326), and about <b>a quarter of those continues go in as 3-bets</b> (86 of 342). Needing ~23–25% equity to call is the same quarter wearing a different hat.</p>
 <p>Two dials move this whole grid: <b>his position</b> (vs BTN add a tier everywhere; vs tight EP cut the bottom two tiers of calls and all bluff 3-bets) and <b>his size</b> (vs 2x add the offsuit broadway dregs; vs 3x+ suited-and-paired hands only). Suitedness is worth roughly two tiers of offsuit quality at this depth — A6s defends where A9o folds.</p>
 ${NOTE("the live population folds the BB far too much against steals and then defends too wide against 3x value opens. Be the opposite: defend correctly vs steals, and give tight EP raisers their credit.")}`,
 quiz:[
@@ -705,6 +708,7 @@ body:`
 <li>Range: value-lean vs limp-callers — <b>pairs, big aces, good broadways, strong suited hands</b> (KJs, AT+, QJs...). Limpers call; bluff-isoing players who never fold is burning chips.</li>
 <li>Vs limpers who fold to raises: widen toward any playable suited hand — now it's a steal.</li></ul>
 <div class="rangelab" data-range="iso"></div>
+<p><b>How to remember iso width — reuse the Day 2 ladder:</b> vs a limp-<i>caller</i>, iso roughly your <b>LJ range (~13%)</b> — value-lean, dominate his calls. Vs a limp-<i>folder</i>, iso roughly your <b>CO range (~22%)</b> — it's just a steal with a limper in it.</p>
 <h3>The squeeze</h3>
 <p>Open + caller(s) in front of you:</p>
 <ul>
@@ -1541,7 +1545,7 @@ threebet:{title:"3-bet constructions",sub:"The Day 4 shapes with every combo pai
  {label:"LINEAR",desc:"Vs weak opens and 3-bet-callers: value-heavy, zero air — every hand dominates his continues.",
   layers:[{name:"Core value",cls:"a1",spec:["TT+","AQ+","AJs","KQs"]},
           {name:"Widen as he calls more",cls:"a2",spec:["99-88","ATs"]}]}]},
-bbdef:{title:"BB defense vs CO 2.5x — the full map",sub:"~40% continue · price is necessary, realization decides · tap any cell",tabs:[
+bbdef:{title:"BB defense vs CO 2.5x — the full map",sub:"~26% continue · price is necessary, realization decides · tap any cell",tabs:[
  {label:"THE MAP",desc:"Vs BTN add a tier everywhere; vs tight EP cut the bottom two call tiers and all bluff 3-bets. Suitedness ≈ two tiers of offsuit quality.",
   layers:[{name:"3-bet value",cls:"a1",spec:["TT+","AQ+"]},
           {name:"3-bet bluff",cls:"a2",spec:["A5s-A2s","K6s-K5s"]},
